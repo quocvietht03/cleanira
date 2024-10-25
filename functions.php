@@ -23,6 +23,16 @@ function cleanira_mime_types($mimes)
 }
 add_filter('upload_mimes', 'cleanira_mime_types');
 
+/* Get icon SVG HTML */
+function cleanira_get_icon_svg_html($icon_file_name) {
+    if ($icon_file_name) {
+        return file_get_contents(CLEANIRA_IMG_DIR . $icon_file_name.'.svg');
+    }
+    else {
+        return 'File not found!';
+    }
+}
+
 /* Register Default Fonts */
 if (!function_exists('cleanira_fonts_url')) {
 	function cleanira_fonts_url()
@@ -96,6 +106,11 @@ if (!function_exists('cleanira_enqueue_admin_scripts')) {
 	}
 	add_action('admin_enqueue_scripts', 'cleanira_enqueue_admin_scripts');
 }
+
+/**
+ * Define theme path
+ */
+define('CLEANIRA_IMG_DIR', get_template_directory_uri() . '/assets/images/');
 
 /**
  * Theme install

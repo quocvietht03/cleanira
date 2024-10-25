@@ -26,9 +26,9 @@ a {
   color: inherit;
   -webkit-transition: all .3s;
   transition: all .3s;
-  &:hover, &:focus {
-    color: $color-accent;
-  }
+  // &:hover, &:focus {
+  //   color: $color-accent;
+  // }
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: $primary-font;

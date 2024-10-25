@@ -1,20 +1,23 @@
 /*
  * Fonts
  */
-$text-font: var(--e-global-typography-text-font-family, "DM Sans");
-$primary-font: var(--e-global-typography-primary-font-family, "DM Sans");
+$text-font: var(--e-global-typography-text-font-family, "Mulish");
+$primary-font: var(--e-global-typography-primary-font-family, "Mulish");
 $secondary-font: var(--e-global-typography-secondary-font-family, "Cormorant");
 $accent-font: var(--e-global-typography-accent-font-family, "Dancing Script");
 /*
  * colors
  */
-$color-text: var(--e-global-color-text, #555);
-$color-primary: var(--e-global-color-primary, #222);
-$color-accent: var(--e-global-color-accent, #c2a74e);
-$color-secondary: var(--e-global-color-secondary, #111);
+
+$color-primary: var(--e-global-color-primary, #212121);
+$color-secondary: var(--e-global-color-secondary, #C1DCFB);
+$color-text: var(--e-global-color-text, #636666);
+$color-accent: var(--e-global-color-accent, #2D77DC);
+$color-background: var(--e-global-color-background, #F1F5FB);
+
 
 /* Layout */
-$container: var(--container-max-width, 1420px);
+$container: var(--container-max-width, 1320px);
 $padding-start: var(--container-default-padding-block-start, 15px);
 $padding-end: var(--container-default-padding-block-end, 15px);
 $grid-column-gap: var(--grid-column-gap, 30px);

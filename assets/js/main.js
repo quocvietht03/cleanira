@@ -218,7 +218,7 @@
 		CleaniraCursorEffect();
 		CleaniraBubleEffect();
 		CleaniraShop();
-		CleaniraUnitsCustom();
+		// CleaniraUnitsCustom();
 		CleaniraCheckboxCustom();
 		CleaniraBorderTop();
 	});

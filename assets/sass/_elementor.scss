@@ -1127,7 +1127,7 @@
     }
     .bt-service-list-item {
       display: flex;
-      grid-gap: 8px;
+      grid-gap: 10px;
       align-items: center;
     }
     .bt-post {
@@ -1152,11 +1152,11 @@
     }
   }
 }
-.bt-elwg-service-loop-item {
-  &--default {
-    @extend .__bt-service-style-default;
-  }
-}
+// .bt-elwg-service-loop-item {
+//   &--default {
+//     @extend .__bt-service-style-default;
+//   }
+// }
 .bt-elwg-brand-loop-item {
   &--default {
     a {

@@ -42,6 +42,7 @@ class Widget_SiteInformation extends Widget_Base {
 					'phone'  => esc_html__( 'Phone', 'cleanira' ),
 					'email' => esc_html__( 'Email', 'cleanira' ),
 					'address' => esc_html__( 'Address', 'cleanira' ),
+					'opening_times:' => esc_html__( 'Opening Times:', 'cleanira' ),
 				],
 				'default' => [ 'phone', 'email' ],
 			]
