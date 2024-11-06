@@ -122,6 +122,26 @@
                     "append": ""
                 },
                 {
+                    "key": "field_6729cbf7bef68",
+                    "label": "Time",
+                    "name": "site_time",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "33",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_653c7d8c53031",
                     "label": "Socials",
                     "name": "site_socials",
@@ -159,9 +179,10 @@
                             },
                             "choices": {
                                 "facebook": "Facebook",
-                                "linkedin": "Linkedin",
                                 "twitter": "Twitter",
-                                "google": "Google"
+                                "instagram": "Instagram",
+                                "skype": "Skype",
+                                "telegram": "Telegram"
                             },
                             "default_value": false,
                             "return_format": "value",
@@ -1266,5 +1287,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1720680201
+    "modified": 1730795786
 }

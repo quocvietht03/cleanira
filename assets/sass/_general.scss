@@ -683,7 +683,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   span {
     display: inline-block;
     font-family: $primary-font;
@@ -697,25 +697,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
-    color: #fff;
-    background: $color-accent;
-    border-radius: 100px;
-    &.bt-facebook {
-      background: #186cb0;
-    }
-    &.bt-linkedin {
-      background: #074682;
-    }
-    &.bt-twitter {
-      background: #00b3d3;
-    }
-    &.bt-google {
-      background: #ffffff;
-    }
-    svg {
-      fill: currentColor;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border:1px solid #E4E4E4;
+    &:hover{
+      border-color: #C1DCFB;
+      background-color: #C1DCFB;
     }
   }
 }
