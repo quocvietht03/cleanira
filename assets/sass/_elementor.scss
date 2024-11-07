@@ -8,32 +8,32 @@
     margin: 0;
   }
 }
-.bt-popup-search{
-  &.elementor-popup-modal{
-    .dialog-widget-content{
+.bt-popup-search {
+  &.elementor-popup-modal {
+    .dialog-widget-content {
       position: initial;
-      .e-search-form{
-        .e-search-label{
-          svg{
+      .e-search-form {
+        .e-search-label {
+          svg {
             top: 54%;
           }
         }
       }
-      @media(max-width:$break-sm){
+      @media (max-width: $break-sm) {
         width: 100%;
       }
-      @media(max-width:$break-xs){
-        .e-search-form{
+      @media (max-width: $break-xs) {
+        .e-search-form {
           flex-direction: column;
           gap: 10px;
-          .e-search-label{
+          .e-search-label {
             position: absolute;
             top: 27px;
           }
-          input{
+          input {
             border-radius: 15px;
           }
-          .e-search-submit{
+          .e-search-submit {
             border-radius: 15px;
             display: block;
             padding: 10px;
@@ -41,7 +41,6 @@
         }
       }
     }
-    
   }
 }
 
@@ -209,7 +208,8 @@
       align-items: center;
       grid-gap: 8px;
     }
-    &.address,&.time {
+    &.address,
+    &.time {
       display: flex;
       align-items: center;
       grid-gap: 8px;
@@ -264,17 +264,18 @@
         > a {
           display: flex;
           align-items: center;
-          gap: 18px;
+          gap: 8px;
         }
 
         &-icon {
-          min-width: 67px;
-          min-height: 67px;
-          background-color: $color-accent;
+          min-width: 56px;
+          min-height: 56px;
+          background-color: $color-secondary;
+          border: 1px solid $color-secondary;
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: 10px 10px 10px 25px;
+          border-radius: 50%;
           svg {
             width: 100%;
             height: auto;
@@ -285,17 +286,18 @@
         &-content {
           h4 {
             color: $color-primary;
-            font-family: $secondary-font;
-            font-size: 24px;
-            font-weight: 500;
-            line-height: 33px;
-            margin-bottom: 5px;
+            text-align: left;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
           }
           span {
-            color: $color-text;
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 24px;
+            color: $color-primary;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 28px;
           }
         }
 

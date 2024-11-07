@@ -344,8 +344,6 @@
               }
             }
           }
-
-      
           @media (max-width: $break-lg) and (min-width: $break-tl) {
             gap: 10px;
             &:first-child {
@@ -376,89 +374,79 @@
     &.bt-header-nav-style-1 {
       &.elementor-sticky {
         &--effects {
-          box-shadow: 0px 4px 25px rgba(0, 0, 0, 0.2);
-          > .e-con-inner {
-            > .elementor-element {
-              &:last-child {
-                .elementor-widget-nav-menu {
-                  > .elementor-widget-container {
-                    .elementor-nav-menu {
-                      .elementor-item {
-                        padding-top: 30px;
-                        padding-bottom: 30px;
-                      }
-                    }
-                  }
-                }
-              }
-              @media (max-width: $break-tl) {
-                &:first-child {
-                  margin-bottom: 0;
-                  img {
-                    max-width: 170px;
-                  }
-                }
-              }
-            }
-          }
+          box-shadow: 0px 4px 50px rgba(0, 0, 0, 0.1);
         }
       }
       > .e-con-inner {
         > .elementor-element {
-          transition:
-            padding 0.3s,
-            font-size 0.3s;
           .elementor-widget-nav-menu {
             > .elementor-widget-container {
               .elementor-nav-menu {
-                .menu-item-has-children {
-                  .elementor-item {
-                    padding-right: 0 !important;
+                .elementor-item {
+                  &::after {
+                    top: 50%;
+                    margin-top: 13px;
                   }
-                }
-              }
-            }
-          }
-          @media (max-width: 1310px) and (min-width: $break-tl) {
-            &:last-child {
-              .elementor-widget-woocommerce-menu-cart {
-                > .elementor-widget-container {
-                  margin: 0px 20px 0px 15px;
-                }
-              }
-              .elementor-widget-nav-menu {
-                > .elementor-widget-container {
-                  margin-right: 0;
-                  .elementor-nav-menu {
-                    .elementor-item {
-                      font-size: 20px;
-                      margin-left: 8px;
-                      margin-right: 8px;
+                  .sub-arrow {
+                    padding: 4px 0 0 6px;
+                    svg {
+                      height: 12px;
+                      width: 12px;
                     }
                   }
                 }
               }
             }
           }
-          @media (max-width: 1180px) and (min-width: $break-tl) {
+          .elementor-widget-bt-site-information-style-1 {
+            .bt-elwg-site-infor--style-1 {
+              .bt-elwg-site-infor {
+                &--item-icon {
+                  min-width: 52px;
+                  min-height: 52px;
+                  svg {
+                    max-width: 26px;
+                  }
+                }
+                &--item-content {
+                  h4 {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+          @media(max-width:1410px) and (min-width: $break-tl) {
+            .elementor-widget-bt-site-information-style-1 {
+              display: none;
+            }
             &:first-child {
+              width: 68%;
             }
             &:last-child {
+              width: 32%;
+            }
+          }
+          @media (max-width: $break-lg) and (min-width: $break-tl) {
+            gap: 10px;
+            &:first-child {
+              width: 73%;
+              gap: 30px;
               .elementor-widget-nav-menu {
-                > .elementor-widget-container {
+                --e-nav-menu-horizontal-menu-item-margin: 10px;
+              }
+            }
+            &:last-child {
+              width: 27%;
+              gap: 10px;
+              .elementor-widget-button {
+                .elementor-widget-container {
                   margin-right: 0;
-                  .elementor-nav-menu {
-                    .elementor-item {
-                      margin-left: 0px;
-                      margin-right: 0px;
+                  .elementor-button-wrapper {
+                    .elementor-button {
+                      padding: 16px;
                     }
                   }
-                }
-              }
-              .bt-button-header-2 {
-                .elementor-button {
-                  padding: 17px 20px;
-                  font-size: 16px;
                 }
               }
             }
