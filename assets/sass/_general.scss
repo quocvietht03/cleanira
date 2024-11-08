@@ -683,7 +683,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   span {
     display: inline-block;
     font-family: $primary-font;
@@ -697,11 +697,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 44px;
-    height: 44px;
-    color: #fff;
-    border-radius: 100px;
-    border: 1px solid #A2A3AB;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border:1px solid #E4E4E4;
+    &:hover{
+      border-color: #C1DCFB;
+      background-color: #C1DCFB;
+    }
   }
 }
 

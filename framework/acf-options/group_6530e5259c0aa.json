@@ -180,13 +180,8 @@
                             "choices": {
                                 "facebook": "Facebook",
                                 "twitter": "Twitter",
-<<<<<<< HEAD
-                                "skype": "Skype",
-                                "instagram": "Instagram",
-=======
                                 "instagram": "Instagram",
                                 "skype": "Skype",
->>>>>>> d95e248e05c6491e79af199668811f7261c818fa
                                 "telegram": "Telegram"
                             },
                             "default_value": false,
@@ -243,6 +238,27 @@
                     "button_label": "Add Row",
                     "rows_per_page": 20,
                     "sub_fields": [
+                        {
+                            "key": "field_6688a0911e7c6",
+                            "label": "Heading",
+                            "name": "heading",
+                            "aria-label": "",
+                            "type": "text",
+                            "instructions": "",
+                            "required": 0,
+                            "conditional_logic": 0,
+                            "wrapper": {
+                                "width": "",
+                                "class": "",
+                                "id": ""
+                            },
+                            "default_value": "",
+                            "maxlength": "",
+                            "placeholder": "",
+                            "prepend": "",
+                            "append": "",
+                            "parent_repeater": "field_6688a0691e7c5"
+                        },
                         {
                             "key": "field_6688a09d1e7c7",
                             "label": "Hours",
@@ -1271,9 +1287,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-<<<<<<< HEAD
-    "modified": 1730434505
-=======
-    "modified": 1730795786
->>>>>>> d95e248e05c6491e79af199668811f7261c818fa
+    "modified": 1731046423
 }

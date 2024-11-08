@@ -9,6 +9,41 @@
     margin: 0;
   }
 }
+.bt-popup-search {
+  &.elementor-popup-modal {
+    .dialog-widget-content {
+      position: initial;
+      .e-search-form {
+        .e-search-label {
+          svg {
+            top: 54%;
+          }
+        }
+      }
+      @media (max-width: $break-sm) {
+        width: 100%;
+      }
+      @media (max-width: $break-xs) {
+        .e-search-form {
+          flex-direction: column;
+          gap: 10px;
+          .e-search-label {
+            position: absolute;
+            top: 27px;
+          }
+          input {
+            border-radius: 15px;
+          }
+          .e-search-submit {
+            border-radius: 15px;
+            display: block;
+            padding: 10px;
+          }
+        }
+      }
+    }
+  }
+}
 .elementor-widget-heading .elementor-heading-title {
   span {
     font-family: inherit;
@@ -34,7 +69,7 @@
 
   .elementor-widget-container,
   .elementor-text-editor {
-    >*:last-child {
+    > *:last-child {
       margin-bottom: 0;
     }
   }
@@ -202,7 +237,8 @@
       align-items: center;
       grid-gap: 8px;
     }
-    &.address {
+    &.address,
+    &.time {
       display: flex;
       align-items: center;
       grid-gap: 8px;
@@ -255,10 +291,9 @@
 
   &--style-1 {
     row-gap: 40px;
-
     .bt-elwg-site-infor {
       &--item {
-        >a {
+        > a {
           display: flex;
           align-items: center;
           gap: 8px;
@@ -272,7 +307,7 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          border-radius: 10px 10px 10px 25px;
+          border-radius: 50%;
           svg {
             width: 100%;
             height: auto;
@@ -280,7 +315,6 @@
             margin: 0;
           }
         }
-
         &-content {
           h4 {
             color: $color-primary;
@@ -290,7 +324,6 @@
             font-weight: 400;
             line-height: 20px;
           }
-
           span {
             color: $color-primary;
             font-size: 20px;
@@ -1856,6 +1889,39 @@
 
         @media (max-width: $break-xs) {
           font-size: 24px;
+        }
+      }
+    }
+  }
+}
+.bt-elwg-mini-cart {
+  &--default {
+    .bt-mini-cart {
+      a {
+        position: relative;
+        display: flex;
+        svg {
+          display: flex;
+          width: 24px;
+          height: 24px;
+          align-items: center;
+          justify-content: center;
+        }
+        span {
+          font-weight: 500;
+          border-radius: 100%;
+          color: #fff;
+          display: block;
+          font-size: 10px;
+          height: 16px;
+          inset-inline-end: -0.7em;
+          line-height: 16px;
+          min-width: 16px;
+          top: -4px;
+          right: -4px;
+          position: absolute;
+          text-align: center;
+          background: $color-primary;
         }
       }
     }
