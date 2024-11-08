@@ -80,11 +80,8 @@ class ElementorWidgets
 			'page-title-bar',
 			'site-box-phone',
 			'location-list',
-<<<<<<< HEAD
-			'opening-times'
-=======
+			'opening-times',
 			'mini-cart'
->>>>>>> d95e248e05c6491e79af199668811f7261c818fa
 		);
 
 		return $this->widgets;
@@ -212,12 +209,9 @@ class ElementorWidgets
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\SiteBoxPhone\Widget_SiteBoxPhone());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\PageTitleBar\Widget_PageTitleBar());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\LocationList\Widget_LocationList());
-<<<<<<< HEAD
 
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\OpeningTime\Widget_OpeningTime());
-=======
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\MiniCart\Widget_MiniCart());
->>>>>>> d95e248e05c6491e79af199668811f7261c818fa
 	}
 
 	/**
