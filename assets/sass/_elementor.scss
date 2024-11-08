@@ -9,7 +9,6 @@
     margin: 0;
   }
 }
-
 .elementor-widget-heading .elementor-heading-title {
   span {
     font-family: inherit;
@@ -194,24 +193,23 @@
 
   &--item {
     font-family: $primary-font;
-    font-size: 16px;
-    line-height: 150%;
+    font-size: 14px;
+    line-height: 22px;
     color: $color-primary;
-
+    font-weight: 400;
     a {
       display: flex;
       align-items: center;
-      grid-gap: 11px;
+      grid-gap: 8px;
     }
-
     &.address {
       display: flex;
       align-items: center;
-      grid-gap: 11px;
+      grid-gap: 8px;
     }
 
     span {
-      width: calc(100% - 37px);
+      width: calc(100% - 28px);
     }
 
     svg {
@@ -263,18 +261,18 @@
         >a {
           display: flex;
           align-items: center;
-          gap: 18px;
+          gap: 8px;
         }
 
         &-icon {
-          min-width: 67px;
-          min-height: 67px;
-          background-color: $color-accent;
+          min-width: 56px;
+          min-height: 56px;
+          background-color: $color-secondary;
+          border: 1px solid $color-secondary;
           display: flex;
           justify-content: center;
           align-items: center;
           border-radius: 10px 10px 10px 25px;
-
           svg {
             width: 100%;
             height: auto;
@@ -286,18 +284,19 @@
         &-content {
           h4 {
             color: $color-primary;
-            font-family: $secondary-font;
-            font-size: 24px;
-            font-weight: 500;
-            line-height: 33px;
-            margin-bottom: 5px;
+            text-align: left;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 20px;
           }
 
           span {
-            color: $color-text;
-            font-size: 18px;
-            font-weight: 400;
-            line-height: 24px;
+            color: $color-primary;
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 28px;
           }
         }
 
@@ -1862,7 +1861,6 @@
     }
   }
 }
-
 .bt-elwg-location-list {
   &--default {
     .bt-location-icon {

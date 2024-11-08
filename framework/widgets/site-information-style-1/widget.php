@@ -43,7 +43,7 @@ class Widget_SiteInformationStyle1 extends Widget_Base {
 					'email' => esc_html__( 'Email', 'cleanira' ),
 					'address' => esc_html__( 'Address', 'cleanira' ),
 				],
-				'default' => [ 'phone', 'email' ],
+				'default' => [ 'phone' ],
 			]
 		);
 
@@ -155,6 +155,17 @@ class Widget_SiteInformationStyle1 extends Widget_Base {
 				'default' => '',
 				'selectors' => [
 					'{{WRAPPER}} .bt-elwg-site-infor--item svg path' => 'fill: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
+			'icon_border_color',
+			[
+				'label' => __( 'Icon Border Color', 'cleanira' ),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}}  .bt-elwg-site-infor--item-icon' => 'fill: {{VALUE}};',
 				],
 			]
 		);
