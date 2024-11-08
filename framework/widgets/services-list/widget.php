@@ -379,10 +379,7 @@ class Widget_ServicesList extends Widget_Base
 										<?php endforeach; ?>
 									</ul>
 								<?php endif; ?>
-								<a class="bt-service--button bt-primary-btn" href="#">
-									<span><?php echo esc_html__( 'Request an estimate', 'cleanira') ?></span>
-									<?php echo cleanira_get_icon_svg_html('ArrowRight-icon') ?>
-								</a>
+								<?php echo cleanira_service_button_book_now_render('Request An Estimate'); ?>
 							</div>
 							<!-- Small, medium, and large bubbles -->
 							<?php 

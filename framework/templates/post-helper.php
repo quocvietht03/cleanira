@@ -389,9 +389,10 @@ if (!function_exists('cleanira_service_button_book_now_render')) {
         $book_now = '#';
       }
     ?>
-      <div class="bt-post--button-booknow">
-        <a href="<?php echo esc_html($book_now); ?>" class="bt-button-effect">
+      <div class="bt-post--button-booknow bt-button-hover-effect">
+        <a href="<?php echo esc_html($book_now); ?>" class="bt-primary-btn">
           <span> <?php echo esc_html($text) ?> </span>
+          <?php echo cleanira_get_icon_svg_html('ArrowRight-icon') ?>
         </a>
       </div>
     <?php }
