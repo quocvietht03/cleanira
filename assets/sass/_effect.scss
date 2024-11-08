@@ -2,6 +2,7 @@
 	from {
 		transform: rotate(0deg);
 	}
+
 	to {
 		transform: rotate(360deg);
 	}
@@ -10,36 +11,46 @@
 body {
 	--circle-diameter: 56vw;
 }
+
 @keyframes effectOrbit {
 	0% {
 		transform: rotate(0deg) translateX(-10px) translateY(calc(var(--circle-diameter) / 2)) rotate(0deg);
 	}
+
 	25% {
 		transform: rotate(90deg) translateX(-10px) translateY(calc(var(--circle-diameter) / 2)) rotate(-90deg);
 	}
+
 	50% {
 		transform: rotate(180deg) translateX(-10px) translateY(calc(var(--circle-diameter) / 2)) rotate(-180deg);
 	}
+
 	75% {
 		transform: rotate(270deg) translateX(-10px) translateY(calc(var(--circle-diameter) / 2)) rotate(-270deg);
 	}
+
 	100% {
 		transform: rotate(360deg) translateX(-10px) translateY(calc(var(--circle-diameter) / 2)) rotate(-360deg);
 	}
 }
+
 @keyframes effectOrbitScale {
 	0% {
 		transform: scale(0.5);
 	}
+
 	25% {
 		transform: scale(1);
 	}
+
 	50% {
 		transform: scale(1.5);
 	}
+
 	75% {
 		transform: scale(1);
 	}
+
 	100% {
 		transform: scale(0.5);
 	}
@@ -50,10 +61,12 @@ body {
 		transform: translate(-50%, -50%) scale(1);
 		opacity: 0;
 	}
+
 	50% {
 		transform: translate(-50%, -50%) scale(1.04);
 		opacity: 1;
 	}
+
 	100% {
 		transform: translate(-50%, -50%) scale(1.08);
 		opacity: 0;
@@ -64,6 +77,7 @@ body {
 	0% {
 		transform: translateX(-50%) rotate(0deg);
 	}
+
 	100% {
 		transform: translateX(-50%) rotate(360deg);
 	}
@@ -76,6 +90,7 @@ body {
 	border: 1px solid #eacee8;
 	border-radius: 100%;
 	transform: rotate(180deg);
+
 	.bt-orbit {
 		position: absolute;
 		top: 50%;
@@ -84,42 +99,53 @@ body {
 		height: 20px;
 		margin: -10px 0 0 -10px;
 		transform: rotate(0deg) translateX(-10px) translateY(calc(var(--circle-diameter) / 2)) rotate(0deg);
+
 		span {
 			display: block;
 			width: 100%;
 			height: 100%;
 			border-radius: 100px;
 		}
+
 		&.red {
 			animation: effectOrbit 10s linear infinite;
+
 			span {
 				background: $color-accent;
 				animation: effectOrbitScale 10s linear infinite;
 			}
 		}
+
 		&.blue {
 			animation: effectOrbit 12s linear infinite;
+
 			span {
 				background: #00b3d3;
 				animation: effectOrbitScale 12s linear infinite;
 			}
 		}
+
 		&.yellow {
 			animation: effectOrbit 15s linear infinite;
+
 			span {
 				background: #ffd800;
 				animation: effectOrbitScale 15s linear infinite;
 			}
 		}
+
 		&.purple {
 			animation: effectOrbit 18s linear infinite;
+
 			span {
 				background: #6600ff;
 				animation: effectOrbitScale 18s linear infinite;
 			}
 		}
+
 		&.green {
 			animation: effectOrbit 20s linear infinite;
+
 			span {
 				background: #00ff78;
 				animation: effectOrbitScale 20s linear infinite;
@@ -136,10 +162,12 @@ body {
 	.bt-elwg-orbit-circle {
 		display: block;
 	}
+
 	.bt-site-main {
 		position: relative;
 		overflow: hidden;
 		z-index: 1;
+
 		.bt-orbit-effect {
 			position: absolute;
 			top: 0;
@@ -153,6 +181,7 @@ body {
 body {
 	--pattern-diameter: 100vw;
 }
+
 .bt-bg-pattern-effect {
 	position: relative;
 	width: var(--pattern-diameter);
@@ -164,6 +193,7 @@ body {
 	background-size: 40px;
 	pointer-events: none;
 	opacity: 0.1;
+
 	&:before {
 		content: "";
 		position: absolute;
@@ -184,10 +214,12 @@ body {
 	.bt-elwg-pattern-background {
 		display: block;
 	}
+
 	.bt-site-main {
 		position: relative;
 		overflow: hidden;
 		z-index: 1;
+
 		.bt-bg-pattern-effect {
 			position: absolute;
 			top: 50%;
@@ -202,16 +234,20 @@ body {
 	from {
 		opacity: 0.15;
 	}
+
 	25% {
 		opacity: 0.5;
 		transform: scale3d(3, 3, 4);
 	}
+
 	50% {
 		opacity: 0.75;
 	}
+
 	75% {
 		opacity: 1;
 	}
+
 	to {
 		opacity: 0.15;
 	}
@@ -221,6 +257,7 @@ body {
 	position: relative;
 	overflow: hidden;
 	background: #f7f7f7;
+
 	.bt-bubles-beblow,
 	.bt-bubles-above {
 		display: flex;
@@ -228,9 +265,11 @@ body {
 		gap: 150px;
 		opacity: 0.5;
 	}
+
 	.bt-bubles-beblow {
 		margin: -25px 0 0 -25px;
 	}
+
 	.bt-bubles-above {
 		position: absolute;
 		top: 125px;
@@ -238,6 +277,7 @@ body {
 		width: 100%;
 		z-index: 1;
 	}
+
 	.buble {
 		display: block;
 		width: 100px;
@@ -246,126 +286,167 @@ body {
 		background: #f7f7f7;
 		box-shadow: 0 0 20px rgba(0, 0, 0, 0.25);
 		animation: effectBuble infinite;
+
 		&:nth-child(1) {
 			animation-duration: 8s;
 		}
+
 		&:nth-child(2) {
 			animation-duration: 22s;
 		}
+
 		&:nth-child(3) {
 			animation-duration: 9s;
 		}
+
 		&:nth-child(4) {
 			animation-duration: 6s;
 		}
+
 		&:nth-child(5) {
 			animation-duration: 8s;
 		}
+
 		&:nth-child(6) {
 			animation-duration: 10s;
 		}
+
 		&:nth-child(7) {
 			animation-duration: 15s;
 		}
+
 		&:nth-child(8) {
 			animation-duration: 13s;
 		}
+
 		&:nth-child(8) {
 			animation-duration: 8s;
 		}
+
 		&:nth-child(9) {
 			animation-duration: 21s;
 		}
+
 		&:nth-child(10) {
 			animation-duration: 8s;
 		}
+
 		&:nth-child(11) {
 			animation-duration: 6s;
 		}
+
 		&:nth-child(12) {
 			animation-duration: 7s;
 		}
+
 		&:nth-child(13) {
 			animation-duration: 10s;
 		}
+
 		&:nth-child(14) {
 			animation-duration: 20s;
 		}
+
 		&:nth-child(15) {
 			animation-duration: 12s;
 		}
+
 		&:nth-child(16) {
 			animation-duration: 20s;
 		}
+
 		&:nth-child(17) {
 			animation-duration: 16s;
 		}
+
 		&:nth-child(18) {
 			animation-duration: 6s;
 		}
+
 		&:nth-child(19) {
 			animation-duration: 8s;
 		}
+
 		&:nth-child(20) {
 			animation-duration: 10s;
 		}
+
 		&:nth-child(21) {
 			animation-duration: 15s;
 		}
+
 		&:nth-child(22) {
 			animation-duration: 6s;
 		}
+
 		&:nth-child(23) {
 			animation-duration: 19s;
 		}
+
 		&:nth-child(24) {
 			animation-duration: 7s;
 		}
+
 		&:nth-child(25) {
 			animation-duration: 6s;
 		}
+
 		&:nth-child(26) {
 			animation-duration: 10s;
 		}
+
 		&:nth-child(27) {
 			animation-duration: 14s;
 		}
+
 		&:nth-child(28) {
 			animation-duration: 18s;
 		}
+
 		&:nth-child(29) {
 			animation-duration: 15s;
 		}
+
 		&:nth-child(30) {
 			animation-duration: 8s;
 		}
+
 		&:nth-child(31) {
 			animation-duration: 21s;
 		}
+
 		&:nth-child(32) {
 			animation-duration: 8s;
 		}
+
 		&:nth-child(33) {
 			animation-duration: 6s;
 		}
+
 		&:nth-child(34) {
 			animation-duration: 7s;
 		}
+
 		&:nth-child(35) {
 			animation-duration: 15s;
 		}
+
 		&:nth-child(36) {
 			animation-duration: 11s;
 		}
+
 		&:nth-child(37) {
 			animation-duration: 17s;
 		}
+
 		&:nth-child(38) {
 			animation-duration: 8s;
 		}
+
 		&:nth-child(39) {
 			animation-duration: 6s;
 		}
+
 		&:nth-child(40) {
 			animation-duration: 10s;
 		}
@@ -380,13 +461,16 @@ body {
 	.bt-elwg-buble-background {
 		display: block;
 	}
+
 	.bt-social-mcn-ss {
 		position: relative;
 		overflow: hidden;
 		z-index: 1;
+
 		&:before {
 			display: none;
 		}
+
 		.bt-bg-buble-effect {
 			position: absolute;
 			top: 0;
@@ -394,6 +478,7 @@ body {
 			width: 100%;
 			height: 100%;
 			z-index: -1;
+
 			.buble {
 				background: -webkit-radial-gradient(center bottom, ellipse cover, #ddd 0%, #fff 100%);
 			}
@@ -405,48 +490,61 @@ body {
 	from {
 		background-position: center center;
 	}
+
 	25% {
 		background-position: center 75%;
 	}
+
 	75% {
 		background-position: center 25%;
 	}
+
 	to {
 		background-position: center center;
 	}
 }
+
 @keyframes effectBgScrollHorizontal {
 	from {
 		background-position: center center;
 	}
+
 	25% {
 		background-position: 75% center;
 	}
+
 	75% {
 		background-position: 25% center;
 	}
+
 	to {
 		background-position: center center;
 	}
 }
+
 .bt-bg-scroll-enable {
+
 	.bt-bg-scroll-effect,
 	.bt-site-titlebar {
 		animation: effectBgScroll 70s infinite;
 	}
+
 	.bt-bg-scroll-horizontal-effect {
 		@media (min-width: 1025px) {
 			animation: effectBgScrollHorizontal 50s infinite;
 		}
 	}
 }
+
 @keyframes effectImageZoom {
 	from {
 		transform: sscale(1);
 	}
+
 	50% {
 		transform: scale(1.2);
 	}
+
 	to {
 		transform: scale(1);
 	}
@@ -454,9 +552,10 @@ body {
 
 .bt-img-zoom-enable {
 	.bt-image-zoom-effect {
-		> .elementor-widget-container {
+		>.elementor-widget-container {
 			overflow: hidden;
 		}
+
 		img {
 			@media (min-width: $break-lg) {
 				animation: effectImageZoom 50s infinite;
@@ -465,6 +564,7 @@ body {
 		}
 	}
 }
+
 .bt-img-zoom-enable {
 	.bt-image-effect {
 		.bt-post {
@@ -472,6 +572,7 @@ body {
 				transform: scale(1);
 				transition: all 3s cubic-bezier(0.11, 0.52, 0.53, 0.79) 0s;
 			}
+
 			&:hover {
 				.bt-cover-image img {
 					transform: scale(1.1);
@@ -479,11 +580,13 @@ body {
 			}
 		}
 	}
+
 	.bt-pricing-item {
 		.bt-cover-image img {
 			transform: scale(1);
 			transition: all 3s cubic-bezier(0.11, 0.52, 0.53, 0.79) 0s;
 		}
+
 		&:hover {
 			.bt-cover-image img {
 				transform: scale(1.1);
@@ -501,10 +604,12 @@ body {
 		-webkit-transform: translateZ(0);
 		transform: translateZ(0);
 	}
+
 	50% {
 		-webkit-transform: translate3d(-10px, 0, 0);
 		transform: translate3d(-10px, 0, 0);
 	}
+
 	100% {
 		-webkit-transform: translateZ(0);
 		transform: translateZ(0);
@@ -516,10 +621,12 @@ body {
 		-webkit-transform: translateX(-50%) translateZ(0);
 		transform: translateX(-50%) translateZ(0);
 	}
+
 	50% {
 		-webkit-transform: translateX(-50%) translate3d(-10px, 0, 0);
 		transform: translateX(-50%) translate3d(-10px, 0, 0);
 	}
+
 	100% {
 		-webkit-transform: translateX(-50%) translateZ(0);
 		transform: translateX(-50%) translateZ(0);
@@ -529,6 +636,7 @@ body {
 .bt-effect-move-horizontal {
 	animation: effectMoveHorizontal 2s linear infinite;
 }
+
 .bt-effect-move-horizontal-center {
 	animation: effectMoveHorizontalCenter 2s linear infinite;
 }
@@ -552,6 +660,7 @@ body {
 		transform: translateY(8px);
 	}
 }
+
 .bt-images-vibrate-effect {
 	img {
 		animation-name: effectVibrateImagesSink, effectVibrateImages;
@@ -590,6 +699,7 @@ body {
 		box-shadow: 0 0 0 0 transparent;
 	}
 }
+
 @-webkit-keyframes effectPlayButton2 {
 	0% {
 		-webkit-box-shadow: 0 0 0 0 $color-accent;
@@ -617,22 +727,26 @@ body {
 		box-shadow: 0 0 0 0 transparent;
 	}
 }
+
 .bt-play-btn-effect {
 	.elementor-icon-box-icon {
 		-webkit-animation: effectPlayButton 2s infinite;
 		animation: effectPlayButton 2s infinite;
 		border-radius: 50%;
-		> a {
+
+		>a {
 			display: block;
 		}
 	}
 }
+
 .bt-play-btn-effect2 {
 	.elementor-icon-box-icon {
 		-webkit-animation: effectPlayButton2 2s infinite;
 		animation: effectPlayButton2 2s infinite;
 		border-radius: 50%;
-		> a {
+
+		>a {
 			display: block;
 		}
 	}
@@ -643,13 +757,16 @@ body {
 		.elementor-button-wrapper {
 			overflow: hidden;
 		}
+
 		.elementor-button {
 			position: relative;
 			z-index: 1;
 			transition: all 0.2s ease-in-out;
+
 			.elementor-button-text {
 				transition: all 0.2s ease-in-out;
 			}
+
 			&::before {
 				content: "";
 				position: absolute;
@@ -661,6 +778,7 @@ body {
 				transform: translate(-50%, -50%) rotate(-45deg);
 				z-index: 1;
 			}
+
 			&:hover {
 				&::before {
 					height: 250%;
@@ -670,15 +788,18 @@ body {
 			}
 		}
 	}
+
 	.gform_footer,
 	.bt-button-effect {
 		overflow: hidden;
 		position: relative;
 		z-index: 1;
+
 		input {
 			position: relative;
 			z-index: 2;
 		}
+
 		&::before {
 			content: "";
 			position: absolute;
@@ -690,6 +811,7 @@ body {
 			transform: translate(-50%, -50%) rotate(-45deg);
 			z-index: 1;
 		}
+
 		&:hover {
 			&::before {
 				height: 250%;
@@ -697,5 +819,108 @@ body {
 				background-color: transparent;
 			}
 		}
+	}
+}
+
+.bt-animation-bubble-number {
+	.elementor-widget-container {
+		position: relative;
+		animation-name: moveX;
+		animation-duration: 5s;
+		animation-timing-function: ease-in-out;
+		animation-direction: alternate;
+		animation-iteration-count: infinite;
+
+		&:before {
+			content: "";
+			width: 160px;
+			height: 146px;
+			background-image:
+				url("../images/img-bubble-num.svg");
+			background-size: contain;
+			background-repeat: no-repeat;
+			position: absolute;
+			left: calc(50% - 80px);
+			transform: translateX(-50%);
+			top: 0;
+			animation-name: deformY;
+			animation-duration: 3s;
+			animation-timing-function: ease-in-out;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+		}
+	}
+}
+
+.bt-animation-bubble-background {
+	z-index: 1 !important;
+
+	&:after {
+		content: "";
+		width: 800px;
+		height: 740px;
+		background-image: url(../images/img-bubble-bg.svg);
+		background-size: contain;
+		background-repeat: no-repeat;
+		position: absolute;
+		left: -100px;
+		top: -60px;
+		animation-name: deformY;
+		animation-duration: 3s;
+		animation-timing-function: ease-in-out;
+		animation-direction: alternate;
+		animation-iteration-count: infinite;
+		z-index: -1;
+	}
+}
+
+.bt-animation-bubble-up-6 {
+	animation: effectBubbleRise 10s linear infinite, effectBubbleSideWays 3s ease-in-out infinite alternate;
+	animation-duration: 6;
+}
+.bt-animation-bubble-up-12 {
+	animation: effectBubbleRise 10s linear infinite, effectBubbleSideWays 3s ease-in-out infinite alternate;
+	animation-duration: 12s;
+}
+
+@keyframes moveX {
+	from {
+		transform: translateX(-2px);
+	}
+
+	to {
+		transform: translateX(2px);
+	}
+}
+
+@keyframes moveY {
+	from {
+		transform: translateY(-2px);
+	}
+
+	to {
+		transform: translateY(2px);
+	}
+}
+
+@keyframes deformY {
+	0% {
+		transform: none;
+	}
+
+	25% {
+		transform: scaleY(1.05) skewY(2deg)
+	}
+
+	50% {
+		transform: none
+	}
+
+	75% {
+		transform: scaleY(1.05) skewY(-2deg)
+	}
+
+	100% {
+		transform: none;
 	}
 }

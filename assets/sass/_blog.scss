@@ -589,6 +589,7 @@
   .bt-post {
     &--inner {
       position: relative;
+
       &:hover {
         .bt-post {
           &--featured {
@@ -605,8 +606,8 @@
     &--featured {
       .bt-cover-image {
         padding: 0;
-        min-height: 279px;
-        border-radius: 20px 20px 0 0;
+        min-height: 308px;
+        border-radius: 0;
         img {
           transform: scale(1);
           transition: all 3s cubic-bezier(0.11, 0.52, 0.53, 0.79) 0s;
@@ -615,41 +616,7 @@
     }
 
     &--content {
-      background: #f7f4ef;
-      padding: 34px 50px 53px;
-      border-radius: 0px 0px 80px 20px;
-      position: relative;
-      @media (max-width: 1300px) and (min-width: $break-tl) {
-        padding-left: 15px;
-        padding-right: 15px;
-        border-radius: 0 0 40px 20px;
-      }
-      @media (max-width: 880px) and (min-width: $break-sm) {
-        padding-left: 15px;
-        padding-right: 15px;
-        border-radius: 0 0 40px 20px;
-      }
-      @media (max-width: $break-xs) {
-        padding-left: 15px;
-        padding-right: 15px;
-        border-radius: 0 0 40px 20px;
-      }
-    }
-
-    &--category {
-      z-index: 9;
-      position: absolute;
-      top: -16px;
-      a {
-        background-color: $color-accent;
-        color: #fff;
-        font-size: 15px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
-        padding: 7px 15px;
-        border-radius: 5px;
-      }
+      padding-top: 24px;
     }
 
     &--title {
@@ -657,143 +624,23 @@
       line-height: 1;
       a {
         color: $color-primary;
-        font-family: $secondary-font;
-        font-size: 26px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 33px;
-        text-transform: capitalize;
+        font-family: $text-font;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 133.333%;
         &:hover {
           color: $color-accent;
         }
       }
     }
 
-    &--info {
-      display: flex;
-      border: 5px solid #f7f4ef;
-      border-radius: 0px 0px 20px 20px;
-      background: #fff;
-      margin: 0 43px;
-      margin-top: -31px;
-      padding: 14px 23px;
-      align-items: center;
-      position: relative;
-      flex-wrap: wrap;
-      row-gap: 10px;
-      @media (max-width: 1300px) and (min-width: $break-tl) {
-        margin-left: 15px;
-        margin-right: 15px;
-      }
-      @media (max-width: $break-lg) and (min-width: $break-tl) {
-        padding: 9px;
-        .bt-post--publish {
-          padding-right: 10px;
-          margin-right: 10px;
-        }
-      }
-      @media (max-width: 880px) and (min-width: $break-sm) {
-        margin-left: 15px;
-        margin-right: 15px;
-      }
-      @media (max-width: $break-xs) {
-        margin-left: 15px;
-        margin-right: 15px;
-      }
-    }
-
-    &--publish,
-    &-author {
-      svg {
-        width: 100%;
-        max-width: 20px;
-        height: auto;
-      }
-    }
-
-    &--publish {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-right: 22px;
-      margin-right: 17px;
-      border-right: 1px solid #d9d9d9;
-      @media (max-width: $break-xs) {
-        padding-right: 10px;
-        margin-right: 10px;
-      }
-      span {
-        font-size: 16px;
-        font-weight: 500;
-        color: $color-text;
-        display: inline-block;
-        line-height: normal;
-      }
-
-      svg {
-        path {
-          fill: $color-accent;
-        }
-      }
-    }
-
-    &-author-icon {
-      display: flex;
-      margin: 0;
-      border: none;
-      border-radius: 0;
-      box-shadow: none;
-      gap: 4px;
-      align-items: center;
-      svg {
-        path {
-          stroke: $color-accent;
-        }
-      }
-
-      &--name {
-        font-size: 16px;
-        font-weight: 500;
-        color: $color-text;
-        display: inline-block;
-        line-height: normal;
-        text-transform: capitalize;
-        margin: 0;
-      }
-    }
-
-    &--button {
-      width: 100%;
-      border-top: 1px solid #d9d9d9;
-      padding-top: 17px;
-      a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-
-        &:hover {
-          svg {
-            transform: translateX(5px);
-          }
-        }
-
-        span {
-          display: inline-block;
-          font-size: 16px;
-          font-weight: 700;
-          line-height: normal;
-          text-transform: uppercase;
-          color: $color-accent;
-        }
-
-        svg {
-          transition: $transition;
-          path {
-            stroke: $color-accent;
-          }
-        }
-      }
+    &--excerpt {
+      color: $color-text;
+      font-family:$text-font;
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 162.5%;
+      margin-top: 12px;
     }
   }
 }

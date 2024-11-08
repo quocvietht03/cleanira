@@ -182,55 +182,19 @@ class Widget_PostLoopItem extends Widget_Base {
 		);
 
 		$this->add_control(
-			'category_style',[
-				'label' => esc_html__( 'Category', 'cleanira' ),
-				'type'  => Controls_Manager::HEADING,
-			]
-		);
-		$this->add_control(
-			'category_color',[
-				'label'     => esc_html__( 'Color', 'cleanira' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--category a' => 'color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_control(
-			'category_background',[
-				'label'     => esc_html__( 'Background', 'cleanira' ),
-				'type'      => Controls_Manager::COLOR,
-				'default'   => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--category a' => 'Background: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name'     => 'category_typography',
-				'label'    => esc_html__( 'Typography', 'cleanira' ),
-				'default'  => '',
-				'selector' => '{{WRAPPER}} .bt-post--category a',
-			]
-		);
-		$this->add_control(
-			'meta_style',[
-				'label' => esc_html__( 'Meta', 'cleanira' ),
+			'excerpt_style',[
+				'label' => esc_html__( 'Excerpt', 'cleanira' ),
 				'type'  => Controls_Manager::HEADING,
 			]
 		);
 
 		$this->add_control(
-			'meta_color',[
+			'excerpt_color',[
 				'label'     => esc_html__( 'Color', 'cleanira' ),
 				'type'      => Controls_Manager::COLOR,
 				'default'   => '',
 				'selectors' => [
-					'{{WRAPPER}} .bt-post--publish span' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .bt-post-author--name' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bt-post--excerpt' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -238,10 +202,10 @@ class Widget_PostLoopItem extends Widget_Base {
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name'     => 'meta_typography',
+				'name'     => 'excerpt_typography',
 				'label'    => esc_html__( 'Typography', 'cleanira' ),
 				'default'  => '',
-				'selector' => '{{WRAPPER}} .bt-post-author--name, {{WRAPPER}} .bt-post--publish span',
+				'selector' => '{{WRAPPER}} .bt-post--excerpt',
 			]
 		);
 

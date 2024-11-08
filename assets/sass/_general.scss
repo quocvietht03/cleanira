@@ -683,7 +683,7 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   span {
     display: inline-block;
     font-family: $primary-font;
@@ -697,26 +697,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 34px;
-    height: 34px;
+    width: 44px;
+    height: 44px;
     color: #fff;
-    background: $color-accent;
     border-radius: 100px;
-    &.bt-facebook {
-      background: #186cb0;
-    }
-    &.bt-linkedin {
-      background: #074682;
-    }
-    &.bt-twitter {
-      background: #00b3d3;
-    }
-    &.bt-google {
-      background: #ffffff;
-    }
-    svg {
-      fill: currentColor;
-    }
+    border: 1px solid #A2A3AB;
   }
 }
 

@@ -1,12 +1,10 @@
 <?php
-
 namespace CleaniraElementorWidgets\Widgets\PricingItem;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
 use Elementor\Group_Control_Image_Size;
-use Elementor\Repeater;
-use Elementor\Utils;
+use Elementor\Group_Control_Css_Filter;
 use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
@@ -14,809 +12,592 @@ use Elementor\Group_Control_Box_Shadow;
 class Widget_PricingItem extends Widget_Base
 {
 
-	public function get_name()
-	{
-		return 'bt-pricing-item';
-	}
+    public function get_name()
+    {
+        return 'bt-pricing-item';
+    }
 
-	public function get_title()
-	{
-		return __('Pricing Item', 'cleanira');
-	}
+    public function get_title()
+    {
+        return __('Pricing Item', 'cleanira');
+    }
 
-	public function get_icon()
-	{
-		return 'eicon-posts-ticker';
-	}
+    public function get_icon()
+    {
+        return 'eicon-posts-ticker';
+    }
 
-	public function get_categories()
-	{
-		return ['cleanira'];
-	}
+    public function get_categories()
+    {
+        return ['cleanira'];
+    }
 
-	protected function register_content_section_controls()
-	{
-		$this->start_controls_section(
-			'section_content',
-			[
-				'label' => __('Content', 'cleanira'),
-			]
-		);
-		$this->add_control(
-			'pricing_image',
-			[
-				'label' => esc_html__('Images', 'cleanira'),
-				'type' => Controls_Manager::MEDIA,
-				'default' => [
-					'url' => Utils::get_placeholder_image_src(),
-				],
-			]
-		);
-		$this->add_group_control(
-			Group_Control_Image_Size::get_type(),
-			[
-				'name' => 'pricing_image',
-				'label' => __('Image Size', 'cleanira'),
-				'show_label' => true,
-				'default' => 'medium',
-				'exclude' => ['custom'],
-			]
-		);
+    protected function register_layout_section_controls()
+    {
+        $this->start_controls_section(
+            'section_content',
+            [
+                'label' => __('Content', 'cleanira'),
+            ]
+        );
 
-		$this->add_responsive_control(
-			'image_ratio',
-			[
-				'label' => __('Image Ratio', 'cleanira'),
-				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 0.832,
-				],
-				'range' => [
-					'px' => [
-						'min' => 0.3,
-						'max' => 2,
-						'step' => 0.01,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--featured .bt-cover-image' => 'padding-bottom: calc( {{SIZE}} * 100% );',
-				],
-			]
-		);
-		$this->add_control(
-			'pricing_svg',
-			[
-				'label' => esc_html__('Icon Pricing', 'cleanira'),
-				'type' => Controls_Manager::MEDIA,
-				'media_types' => ['svg'],
-			]
-		);
-		$this->add_control(
-			'heading',
-			[
-				'label' => esc_html__('Heading', 'cleanira'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('This is the heading', 'cleanira'),
-			]
-		);
+        $this->add_control(
+            'select_best_value',
+            [
+                'label' => esc_html__('Best Value', 'cleanira'),
+                'type' => Controls_Manager::SELECT,
+                'default' => 'none',
+                'options' => [
+                    'none' => esc_html__('None', 'cleanira'),
+                    'one_time' => esc_html__('One-Time Cleaning', 'cleanira'),
+                    'weekly' => esc_html__('Weekly Cleaning', 'cleanira'),
+                    'bi_weekly' => esc_html__('Bi-Weekly Cleaning', 'cleanira'),
+                    'monthly' => esc_html__('Monthly Cleaning', 'cleanira'),
+                ],
+            ]
+        );
 
-		$this->add_control(
-			'price',
-			[
-				'label' => esc_html__('Price', 'cleanira'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('$200', 'cleanira'),
-			]
-		);
-		$this->add_control(
-			'price_after',
-			[
-				'label' => esc_html__('Price After', 'cleanira'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__(' / Monthly', 'cleanira'),
-			]
-		);
-		$this->add_control(
-			'time',
-			[
-				'label' => esc_html__('Time', 'cleanira'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('60 Mins', 'cleanira'),
-			]
-		);
+        $this->add_control(
+            'button_text',
+            [
+                'label' => esc_html__('Button Text', 'cleanira'),
+                'type' => Controls_Manager::TEXT,
+                'default' => esc_html__('Book Now', 'cleanira'),
+            ]
+        );
 
-		$repeater = new Repeater();
+        $this->add_control(
+            'button_url',
+            [
+                'label' => esc_html__('Link', 'cleanira'),
+                'type' => Controls_Manager::URL,
+                'options' => false,
+                'label_block' => true,
+            ]
+        );
 
-		$repeater->add_control(
-			'list_content',
-			[
-				'label' => __('Content', 'cleanira'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('This is the info', 'cleanira'),
-			]
-		);
-
-		$this->add_control(
-			'list_info',
-			[
-				'label' => __('List Info', 'cleanira'),
-				'type' => Controls_Manager::REPEATER,
-				'fields' => $repeater->get_controls(),
-				'default' => [
-					[
-						'list_content' => esc_html__('90-Minute Swedish Massage', 'cleanira')
-					],
-					[
-						'list_content' => esc_html__('60-Minute Classic Facial', 'cleanira')
-					],
-					[
-						'list_content' => esc_html__('45-Minute Full Body Scrub', 'cleanira')
-					],
-					[
-						'list_content' => esc_html__('Aromatherapy Session', 'cleanira')
-					],
-				],
-				'title_field' => '{{{ list_content }}}',
-			]
-		);
-		$this->add_control(
-			'button_text',
-			[
-				'label' => esc_html__('Button Text', 'cleanira'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('Subscribe Now', 'cleanira'),
-			]
-		);
-
-		$this->add_control(
-			'button_url',
-			[
-				'label' => esc_html__('Button Url', 'cleanira'),
-				'type' => Controls_Manager::URL,
-				'options' => ['url', 'is_external', 'nofollow'],
-				'default' => [
-					'url' => '',
-					'is_external' => false,
-					'nofollow' => false,
-					'custom_attributes' => '',
-				],
-				'label_block' => true,
-			]
-		);
-		$this->add_control(
-			'button_more',
-			[
-				'label' => esc_html__('Button More', 'cleanira'),
-				'type' => Controls_Manager::TEXT,
-				'label_block' => true,
-				'default' => esc_html__('pay per session.', 'cleanira'),
-			]
-		);
-
-		$this->add_control(
-			'button_more_url',
-			[
-				'label' => esc_html__('Button More Url', 'cleanira'),
-				'type' => Controls_Manager::URL,
-				'options' => ['url', 'is_external', 'nofollow'],
-				'default' => [
-					'url' => '',
-					'is_external' => false,
-					'nofollow' => false,
-					'custom_attributes' => '',
-				],
-				'label_block' => true,
-			]
-		);
-		$this->end_controls_section();
-	}
-
-	protected function register_style_box_section_controls()
-	{
+        $this->add_control(
+            'list_pricing',
+            [
+                'label' => esc_html__('Pricing', 'cleanira'),
+                'type' => Controls_Manager::REPEATER,
+                'fields' => [
+                    [
+                        'name' => 'pricing_title',
+                        'label' => esc_html__('Title', 'cleanira'),
+                        'type' => Controls_Manager::TEXT,
+                        'default' => esc_html__('Bedroom Apartment', 'cleanira'),
+                        'label_block' => true
+                    ],
+                    [
+                        'name' => 'pricing_one_time',
+                        'label' => esc_html__('One-Time Cleaning - Pricing', 'cleanira'),
+                        'type' => Controls_Manager::TEXT,
+                        'default' => esc_html__('$50 - $100', 'cleanira'),
+                        'label_block' => true
+                    ],
+                    [
+                        'name' => 'pricing_weekly',
+                        'label' => esc_html__('Weekly Cleaning - Pricing', 'cleanira'),
+                        'type' => Controls_Manager::TEXT,
+                        'default' => esc_html__('$50 - $100', 'cleanira'),
+                        'label_block' => true
+                    ],
+                    [
+                        'name' => 'pricing_bi_weekly',
+                        'label' => esc_html__('Bi-Weekly Cleaning - Pricing', 'cleanira'),
+                        'type' => Controls_Manager::TEXT,
+                        'default' => esc_html__('$50 - $100', 'cleanira'),
+                        'label_block' => true
+                    ],
+                    [
+                        'name' => 'pricing_monthly',
+                        'label' => esc_html__('Monthly Cleaning - Pricing', 'cleanira'),
+                        'type' => Controls_Manager::TEXT,
+                        'default' => esc_html__('$50 - $100', 'cleanira'),
+                        'label_block' => true
+                    ],
+                ],
+                'title_field' => '{{{ pricing_title }}}',
+                'default' => [
+                    [
+                        'list_title' => esc_html__('Bedroom Apartment', 'cleanira'),
+                    ],
+                    [
+                        'list_title' => esc_html__('Bedroom Apartment #2', 'cleanira'),
+                    ],
+                ],
+            ]
+        );
 
 
-		$this->start_controls_section(
-			'section_style_box',
-			[
-				'label' => esc_html__('Box', 'cleanira'),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
+        $this->end_controls_section();
+    }
 
+    protected function register_style_section_controls()
+    {
+        $this->start_controls_section(
+            'style_section',
+            [
+                'label' => esc_html__('Content', 'cleanira'),
+                'tab' => Controls_Manager::TAB_STYLE,
+            ]
+        );
 
-		$this->add_control(
-			'box_border_radius',
-			[
-				'label' => __('Border Radius', 'cleanira'),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => ['px', '%'],
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--featured .bt-cover-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} 0 0;',
-					'{{WRAPPER}} .bt-pricing--wrap-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} 0 0;',
-					'{{WRAPPER}} .bt-pricing--infor' => 'border-radius: 0 0 {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-					'{{WRAPPER}} .bt-pricing-item' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
+        $this->add_control(
+            'bg_color',
+            [
+                'label' => esc_html__('Background Color', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bt-elwg-pricing-item--default' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
 
+        $this->add_control(
+            'border_radius',
+            [
+                'label' => esc_html__('Border Radius', 'cleanira'),
+                'type' => Controls_Manager::DIMENSIONS,
+                'size_units' => ['px', '%', 'em', 'rem', 'custom'],
+                'default' => [
+                    'top' => 20,
+                    'right' => 20,
+                    'bottom' => 20,
+                    'left' => 20,
+                    'unit' => 'px',
+                    'isLinked' => false,
+                ],
+                'selectors' => [
+                    '{{WRAPPER}} .bt-elwg-pricing-item--default' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+                ],
+            ]
+        );
 
+        $this->add_control(
+            'name_heading',
+            [
+                'label' => __('Name', 'cleanira'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
 
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name' => 'box_shadow',
-				'selector' => '{{WRAPPER}} .bt-pricing-item',
-			]
-		);
+        $this->add_control(
+            'name_color',
+            [
+                'label' => esc_html__('Color', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bt-pricing-head--item .bt-pricing-name' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
-		$this->end_controls_section();
-	}
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'name_typography',
+                'selector' => '{{WRAPPER}} .bt-pricing-head--item .bt-pricing-name, {{WRAPPER}} .bt-pricing-mobile .bt-pricing-name',
+            ]
+        );
 
-	protected function register_style_content_section_controls()
-	{
+        $this->add_control(
+            'title_heading',
+            [
+                'label' => __('Title', 'cleanira'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
 
-		$this->start_controls_section(
-			'section_style_content_image',
-			[
-				'label' => esc_html__('Content Image', 'cleanira'),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
+        $this->add_control(
+            'title_color',
+            [
+                'label' => esc_html__('Color', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bt-pricing-body--item .bt-pricing-title' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .bt-pricing-body--item .bt-title-mb' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
-		$this->add_control(
-			'background_content_image',
-			[
-				'label' => __('Background Content Image', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--wrap-image' => 'background: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_control(
-			'icon_image_pricing',
-			[
-				'label' => __('Icon', 'cleanira'),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-		$this->add_responsive_control(
-			'icon_image_ratio',
-			[
-				'label' => __('Icon Width', 'cleanira'),
-				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 70,
-				],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--wrap-image svg ' => 'width: {{SIZE}}px;',
-				],
-			]
-		);
-		$this->add_control(
-			'icon_image_color',
-			[
-				'label' => __('Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--wrap-image svg path' => 'fill: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_control(
-			'heading_pricing',
-			[
-				'label' => __('Heading', 'cleanira'),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-		$this->add_control(
-			'heading_color',
-			[
-				'label' => __('Heading Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--heading' => 'color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_control(
-			'heading_color_hover',
-			[
-				'label' => __('Heading Color Hover', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--heading:hover' => 'color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'heading_typography',
-				'label' => __('Heading Typography', 'cleanira'),
-				'default' => '',
-				'selector' => '{{WRAPPER}} .bt-pricing--heading',
-			]
-		);
-		$this->add_control(
-			'price_pricing',
-			[
-				'label' => __('Price', 'cleanira'),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-		$this->add_control(
-			'price_color',
-			[
-				'label' => __('Price Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--price' => 'color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'price_typography',
-				'label' => __('Price Typography', 'cleanira'),
-				'default' => '',
-				'selector' => '{{WRAPPER}} .bt-pricing--price',
-			]
-		);
-		$this->add_control(
-			'price_after_pricing',
-			[
-				'label' => __('Price After', 'cleanira'),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-		$this->add_control(
-			'price_after_color',
-			[
-				'label' => __('Price After Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--price-after' => 'color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'price_after_typography',
-				'label' => __('Price After Typography', 'cleanira'),
-				'default' => '',
-				'selector' => '{{WRAPPER}} .bt-pricing--price-after',
-			]
-		);
-		$this->add_control(
-			'time_pricing',
-			[
-				'label' => __('Time', 'cleanira'),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-		$this->add_control(
-			'time_color',
-			[
-				'label' => __('Time Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--time' => 'color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_control(
-			'time_background',
-			[
-				'label' => __('Time Background', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--time' => 'background: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'time_typography',
-				'label' => __('Heading Typography', 'cleanira'),
-				'default' => '',
-				'selector' => '{{WRAPPER}} .bt-pricing--time',
-			]
-		);
-		$this->end_controls_section();
-		$this->start_controls_section(
-			'section_style_content',
-			[
-				'label' => esc_html__('Content', 'cleanira'),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-		$this->add_control(
-			'background_content',
-			[
-				'label' => __('Background Content', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--infor' => 'background: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_responsive_control(
-			'border_width_content_ratio',
-			[
-				'label' => __('Border Content Width', 'cleanira'),
-				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 5,
-				],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--infor' => 'border-width: {{SIZE}}px;',
-				],
-			]
-		);
-		$this->add_control(
-			'border_color_content',
-			[
-				'label' => __('Border Content Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--infor' => 'border-color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_control(
-			'list_info_pricing',
-			[
-				'label' => __('List Info', 'cleanira'),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-		$this->add_control(
-			'info_color',
-			[
-				'label' => __('Info Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--info li' => 'color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'info_typography',
-				'label' => __('Info Typography', 'cleanira'),
-				'default' => '',
-				'selector' => '{{WRAPPER}} .bt-pricing--info li',
-			]
-		);
-		$this->add_responsive_control(
-			'info_ratio',
-			[
-				'label' => __('Margin Bottom', 'cleanira'),
-				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 32,
-				],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--info ' => 'margin-bottom: {{SIZE}}px;',
-				],
-			]
-		);
-		$this->add_control(
-			'button_pricing',
-			[
-				'label' => __('Button', 'cleanira'),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-		$this->start_controls_tabs('button_style_tabs');
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'title_typography',
+                'selector' => '{{WRAPPER}} .bt-pricing-body--item .bt-pricing-title,{{WRAPPER}} .bt-pricing-body--item .bt-title-mb',
+            ]
+        );
 
-		$this->start_controls_tab(
-			'style_normal',
-			[
-				'label' => __('Normal', 'cleanira'),
-			]
-		);
+        $this->add_control(
+            'price_heading',
+            [
+                'label' => __('Price', 'cleanira'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
 
-		$this->add_control(
-			'button_text_color',
-			[
-				'label' => __('Text Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--button' => 'color: {{VALUE}};',
-				],
-			]
-		);
+        $this->add_control(
+            'price_color',
+            [
+                'label' => esc_html__('Color', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bt-pricing-body--item .bt-pricing-value' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .bt-content-mb .bt-pricing-value span' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
-		$this->add_control(
-			'button_bg_color',
-			[
-				'label' => __('Background Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--button' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_responsive_control(
-			'button_border_width_ratio',
-			[
-				'label' => __('Border Width', 'cleanira'),
-				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 2,
-				],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--button' => 'border-width: {{SIZE}}px;',
-				],
-			]
-		);
-		$this->add_control(
-			'button_border_color',
-			[
-				'label' => __('Border Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--button' => 'border-color: {{VALUE}};',
-				],
-			]
-		);
-		$this->end_controls_tab();
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'price_typography',
+                'selector' => '{{WRAPPER}} .bt-pricing-body--item .bt-pricing-value,{{WRAPPER}} .bt-content-mb .bt-pricing-value span',
+            ]
+        );
 
-		$this->start_controls_tab(
-			'style_hover',
-			[
-				'label' => __('Hover', 'cleanira'),
-			]
-		);
+        $this->add_control(
+            'button_heading',
+            [
+                'label' => __('Button', 'cleanira'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
 
-		$this->add_control(
-			'button_text_color_hover',
-			[
-				'label' => __('Text Color Hover', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--button:hover' => 'color: {{VALUE}};',
-				],
-			]
-		);
+        $this->add_group_control(
+            Group_Control_Typography::get_type(),
+            [
+                'name' => 'button_typography',
+                'selector' => '{{WRAPPER}} .bt-pricing-body--item .bt-pricing-value .bt-button',
+            ]
+        );
 
-		$this->add_control(
-			'button_bg_color_hover',
-			[
-				'label' => __('Background Color Hover', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--button:hover' => 'background-color: {{VALUE}}; border-color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_responsive_control(
-			'button_border_width_ratio_hover',
-			[
-				'label' => __('Border Width Hover', 'cleanira'),
-				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 2,
-				],
-				'range' => [
-					'px' => [
-						'min' => 1,
-						'max' => 100,
-						'step' => 1,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--button:hover' => 'border-width: {{SIZE}}px;',
-				],
-			]
-		);
-		$this->add_control(
-			'button_border_color_hover',
-			[
-				'label' => __('Border Color Hover', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--button:hover' => 'border-color: {{VALUE}};',
-				],
-			]
-		);
-		$this->end_controls_tab();
+        $this->start_controls_tabs(
+            'style_tabs'
+        );
 
-		$this->end_controls_tabs();
+        $this->start_controls_tab(
+            'style_normal_tab',
+            [
+                'label' => esc_html__('Normal', 'cleanira'),
+            ]
+        );
+        $this->add_control(
+            'button_bg_color',
+            [
+                'label' => esc_html__('Background Color', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bt-pricing-body--item .bt-pricing-value .bt-button' => 'background: {{VALUE}}',
+                    '{{WRAPPER}} .bt-content-mb .bt-button' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_control(
+            'button_color',
+            [
+                'label' => esc_html__('Color', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bt-pricing-body--item .bt-pricing-value .bt-button' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .bt-content-mb .bt-button' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->end_controls_tab();
 
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'button_typography',
-				'label' => __('Button Typography', 'cleanira'),
-				'default' => '',
-				'selector' => '{{WRAPPER}} .bt-pricing--button',
-			]
-		);
-		$this->add_control(
-			'button_more_pricing',
-			[
-				'label' => __('Button More', 'cleanira'),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-		$this->add_control(
-			'button_more_color',
-			[
-				'label' => __('Button More Color', 'cleanira'),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-pricing--button-more a' => 'color: {{VALUE}};',
-				],
-			]
-		);
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'button_more_typography',
-				'label' => __('Button More Typography', 'cleanira'),
-				'default' => '',
-				'selector' => '{{WRAPPER}} .bt-pricing--button-more',
-			]
-		);
+        $this->start_controls_tab(
+            'style_hover_tab',
+            [
+                'label' => esc_html__('Hover', 'cleanira'),
+            ]
+        );
+        $this->add_control(
+            'button_bg_color_hover',
+            [
+                'label' => esc_html__('Background Color', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bt-pricing-body--item .bt-pricing-value .bt-button:hover' => 'background: {{VALUE}}',
+                    '{{WRAPPER}} .bt-content-mb .bt-button:hover' => 'background: {{VALUE}}',
+                ],
+            ]
+        );
+        $this->add_control(
+            'button_color_hover',
+            [
+                'label' => esc_html__('Color', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
+                'selectors' => [
+                    '{{WRAPPER}} .bt-pricing-body--item .bt-pricing-value .bt-button:hover' => 'color: {{VALUE}}',
+                    '{{WRAPPER}} .bt-content-mb .bt-button:hover' => 'color: {{VALUE}}',
+                ],
+            ]
+        );
 
-		$this->end_controls_section();
-	}
+        $this->end_controls_tab();
+        $this->end_controls_tab();
 
-	protected function register_controls()
-	{
-		$this->register_content_section_controls();
-		$this->register_style_content_section_controls();
-		$this->register_style_box_section_controls();
-	}
-	protected function render()
-	{
-		$settings = $this->get_settings_for_display();
-		$svg_url = $settings['pricing_svg']['url'];
+        $this->end_controls_section();
 
+    }
 
-?>
-		<div class="bt-elwg-pricing-item--default">
-			<div class="bt-pricing-item ">
-				<div class="bt-pricing--featured">
-					<?php if (!empty($settings['pricing_image'])) {
-						$image = $settings['pricing_image'];
-						$image_url = Group_Control_Image_Size::get_attachment_image_src($image['id'], 'pricing_image', $settings);
-						if (!$image_url) {
-							$image_url = $image['url'];
-						}
-					?>
-						<div class="bt-cover-image">
-							<img src="<?php echo esc_url($image_url) ?>" alt="" />
-						</div>
+    protected function register_controls()
+    {
+        $this->register_layout_section_controls();
+        $this->register_style_section_controls();
+    }
 
-					<?php } ?>
-					<div class="bt-pricing--wrap-image">
-						<?php
-						if (!empty($svg_url) && 'svg' === pathinfo($svg_url, PATHINFO_EXTENSION)) {
-							echo file_get_contents($svg_url);
-						}
-						if (!empty($settings['heading'])) {
-							echo '<h3 class="bt-pricing--heading">' . esc_html($settings['heading']) . '</h3>';
-						}
-						?>
-						<div class="bt-pricing--price-time">
-							<div class="bt-pricing--price">
-								<?php
-								if (!empty($settings['price'])) {
-									echo esc_html($settings['price']);
-								}
-								if (!empty($settings['price_after'])) {
-									echo '<span class="bt-pricing--price-after">' . esc_html($settings['price_after']) . '</span>';
-								}
-								?>
-							</div>
-							<div class="bt-pricing--time">
-								<?php
-								if (!empty($settings['time'])) {
-									echo esc_html($settings['time']);
-								}
-								?>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="bt-pricing--infor">
-					<?php if (!empty($settings['list_info'])) { ?>
-						<ul class="bt-pricing--info">
-							<?php foreach ($settings['list_info'] as $item) { ?>
-								<li>
-									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-										<path d="M2.75 8.33383C2.43934 8.3347 2.13528 8.42351 1.87299 8.58997C1.6107 8.75644 1.4009 8.99377 1.26787 9.2745C1.13483 9.55523 1.084 9.86789 1.12124 10.1763C1.15849 10.4847 1.28229 10.7763 1.47833 11.0173L5.65745 16.1367C5.80645 16.3217 5.99746 16.4685 6.21459 16.5649C6.43172 16.6613 6.66872 16.7045 6.90589 16.6908C7.41314 16.6636 7.8711 16.3923 8.16308 15.9461L16.8442 1.96522C16.8456 1.9629 16.8471 1.96058 16.8486 1.9583C16.9301 1.83323 16.9036 1.58538 16.7355 1.42968C16.6893 1.38693 16.6349 1.35408 16.5755 1.33316C16.5162 1.31224 16.4531 1.3037 16.3904 1.30805C16.3276 1.31241 16.2663 1.32957 16.2104 1.35848C16.1545 1.3874 16.1051 1.42745 16.0653 1.47617C16.0622 1.48 16.059 1.48378 16.0557 1.48749L7.30068 11.3793C7.26736 11.417 7.2269 11.4476 7.18164 11.4695C7.13638 11.4914 7.08723 11.504 7.03704 11.5067C6.98685 11.5095 6.93661 11.5022 6.88926 11.4853C6.84191 11.4684 6.79837 11.4423 6.7612 11.4085L3.85558 8.76437C3.55381 8.48774 3.15938 8.33414 2.75 8.33383Z" fill="#C2A74E" />
-									</svg><?php echo esc_html($item['list_content']); ?>
-								</li>
-							<?php } ?>
-						</ul>
-					<?php
-					}
-					echo '<div class="bt-pricing--box-button">';
-					if (!empty($settings['button_url']['url'])) {
-						$this->add_link_attributes('button_url', $settings['button_url']);
-					}
+    protected function render()
+    {
+        $settings = $this->get_settings_for_display();
 
-					if (!empty($settings['button_text'])) {
-						echo '<a class="bt-pricing--button bt-button-effect" ' . $this->get_render_attribute_string('button_url') . '>' . esc_html($settings['button_text']) . '</a>';
-					}
-					if (!empty($settings['button_more_url']['url'])) {
-						$this->add_link_attributes('button_more_url', $settings['button_more_url']);
-					}
+        $pricing_list = $settings['list_pricing'];
 
-					if (!empty($settings['button_more'])) {
-						echo '<div class="bt-pricing--button-more">or <a ' . $this->get_render_attribute_string('button_more_url') . ' >' . esc_html($settings['button_more']) . '</a></div>';
-					}
-					echo '</div>';
-					?>
-				</div>
-			</div>
-		</div>
-<?php
-	}
+        $button_text = $settings['button_text'];
+        $button_url = $settings['button_url'];
+        $url = $button_url['url'];
+        ?>
+        <div class="bt-elwg-pricing-item--default">
+            <div class="bt-pricing-head">
+                <div class="bt-col bt-pricing-head--item">
+                    <h3 class="bt-pricing-name"><?php echo esc_html__('Bed Rooms', 'cleanira'); ?></h3>
+                </div>
+                <div class="bt-col bt-pricing-head--item">
+                    <?php
+                    if ($settings['select_best_value'] == 'one_time') {
+                        pricing_item_best_value();
+                    }
+                    ?>
+                    <h3 class="bt-pricing-name"><?php echo esc_html__('One-Time Cleaning', 'cleanira'); ?></h3>
+                </div>
+                <div class="bt-col bt-pricing-head--item">
+                    <?php
+                    if ($settings['select_best_value'] == 'weekly') {
+                        pricing_item_best_value();
+                    }
+                    ?>
+                    <h3 class="bt-pricing-name"><?php echo esc_html__('Weekly Cleaning', 'cleanira'); ?></h3>
+                </div>
+                <div class="bt-col bt-pricing-head--item">
+                    <?php
+                    if ($settings['select_best_value'] == 'bi_weekly') {
+                        pricing_item_best_value();
+                    }
+                    ?>
+                    <h3 class="bt-pricing-name"><?php echo esc_html__('Bi-Weekly Cleaning', 'cleanira'); ?></h3>
+                </div>
+                <div class="bt-col bt-pricing-head--item">
+                    <?php
+                    if ($settings['select_best_value'] == 'monthly') {
+                        pricing_item_best_value();
+                    }
+                    ?>
+                    <h3 class="bt-pricing-name"><?php echo esc_html__('Monthly Cleaning', 'cleanira'); ?></h3>
+                </div>
+            </div>
+            <div class="bt-pricing-body">
+                <?php
+                if (!empty($pricing_list)) {
+                    foreach ($pricing_list as $key => $item) {
+                        ?>
+                        <div class="bt-pricing-body--item">
+                            <div class="bt-col bt-pricing-title"><?php echo $item['pricing_title']; ?></div>
+                            <div class="bt-col bt-pricing-value">
+                                <?php
+                                echo $item['pricing_one_time'];
+                                ?>
+                            </div>
+                            <div class="bt-col bt-pricing-value">
+                                <?php
+                                echo $item['pricing_weekly'];
+                                ?>
+                            </div>
+                            <div class="bt-col bt-pricing-value">
+                                <?php
+                                echo $item['pricing_bi_weekly'];
+                                ?>
+                            </div>
+                            <div class="bt-col bt-pricing-value">
+                                <?php
+                                echo $item['pricing_monthly'];
+                                ?>
+                            </div>
+                        </div>
+                        <?php
+                    }
+                }
+                ?>
 
-	protected function content_template()
-	{
-	}
+                <?php if (!empty($button_text) && !empty($url)) { ?>
+                    <div class="bt-pricing-body--item">
+                        <div class="bt-col bt-pricing-title"></div>
+                        <div class="bt-col bt-pricing-value">
+                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        </div>
+                        <div class="bt-col bt-pricing-value">
+                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        </div>
+                        <div class="bt-col bt-pricing-value">
+                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        </div>
+                        <div class="bt-col bt-pricing-value">
+                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        </div>
+                    </div>
+                <?php } ?>
+
+            </div>
+            <div class="bt-pricing-mobile">
+                <div class="bt-col-mb">
+                    <h3 class="bt-pricing-name">
+                        <?php
+                        if ($settings['select_best_value'] == 'one_time') {
+                            pricing_item_best_value();
+                        }
+                        echo esc_html__('Bed Rooms', 'cleanira');
+                        ?>
+                    </h3>
+                    <div class="bt-content-mb">
+                        <?php
+                        foreach ($pricing_list as $key => $item) {
+                            ?>
+                            <div class="bt-pricing-body--item">
+                                <div class="bt-col bt-pricing-value">
+                                    <?php
+                                    if (!empty($item['pricing_title']))
+                                        echo '<div class="bt-title-mb">' . $item['pricing_title'] . '</div>';
+                                    ?>
+                                    <span><?php echo $item['pricing_one_time']; ?></span>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        if (!empty($button_text) && !empty($url)) { ?>
+                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        <?php }
+                        ?>
+                    </div>
+                </div>
+                <div class="bt-col-mb">
+                    <h3 class="bt-pricing-name">
+                        <?php
+                        if ($settings['select_best_value'] == 'weekly') {
+                            pricing_item_best_value();
+                        }
+                        echo esc_html__('Weekly Cleaning', 'cleanira');
+                        ?>
+                    </h3>
+                    <div class="bt-content-mb">
+                        <?php
+                        foreach ($pricing_list as $key => $item) {
+                            ?>
+                            <div class="bt-pricing-body--item">
+                                <div class="bt-col bt-pricing-value">
+                                    <?php
+                                    if (!empty($item['pricing_title']))
+                                        echo '<div class="bt-title-mb">' . $item['pricing_title'] . '</div>';
+                                    ?>
+                                    <span><?php echo $item['pricing_weekly']; ?></span>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        if (!empty($button_text) && !empty($url)) { ?>
+                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        <?php }
+                        ?>
+                    </div>
+                </div>
+                <div class="bt-col-mb">
+                    <h3 class="bt-pricing-name">
+                        <?php
+                        if ($settings['select_best_value'] == 'bi_weekly') {
+                            pricing_item_best_value();
+                        }
+                        echo esc_html__('Bi-Weekly Cleaning', 'cleanira');
+                        ?>
+                    </h3>
+                    <div class="bt-content-mb">
+                        <?php
+                        foreach ($pricing_list as $key => $item) {
+                            ?>
+                            <div class="bt-pricing-body--item">
+                                <div class="bt-col bt-pricing-value">
+                                    <?php
+                                    if (!empty($item['pricing_title']))
+                                        echo '<div class="bt-title-mb">' . $item['pricing_title'] . '</div>';
+                                    ?>
+                                    <span><?php echo $item['pricing_bi_weekly']; ?></span>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        if (!empty($button_text) && !empty($url)) { ?>
+                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        <?php }
+                        ?>
+                    </div>
+                </div>
+                <div class="bt-col-mb">
+                    <h3 class="bt-pricing-name">
+                        <?php
+                        if ($settings['select_best_value'] == 'monthly') {
+                            pricing_item_best_value();
+                        }
+                        echo esc_html__('Monthly Cleaning', 'cleanira');
+                        ?>
+                    </h3>
+                    <div class="bt-content-mb">
+                        <?php
+                        foreach ($pricing_list as $key => $item) {
+                            ?>
+                            <div class="bt-pricing-body--item">
+                                <div class="bt-col bt-pricing-value">
+                                    <?php
+                                    if (!empty($item['pricing_title']))
+                                        echo '<div class="bt-title-mb">' . $item['pricing_title'] . '</div>';
+                                    ?>
+                                    <span><?php echo $item['pricing_monthly']; ?></span>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        if (!empty($button_text) && !empty($url)) { ?>
+                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        <?php }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+
+    protected function content_template()
+    {
+
+    }
+}
+
+function pricing_item_best_value()
+{
+    ?>
+    <div class="bt-best-value">
+        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0_10935_2902)">
+                <path d="M12.5 1.70508L11.25 7.95508L16.25 9.83008L7.5 19.2051L8.75 12.9551L3.75 11.0801L12.5 1.70508Z"
+                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </g>
+            <defs>
+                <clipPath id="clip0_10935_2902">
+                    <rect width="20" height="20" fill="white" transform="translate(0 0.455078)" />
+                </clipPath>
+            </defs>
+        </svg>
+        <span><?php echo esc_html__('Best Value', 'cleanira'); ?></span>
+    </div>
+    <?php
 }
