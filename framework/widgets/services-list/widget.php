@@ -368,7 +368,7 @@ class Widget_ServicesList extends Widget_Base
 					?>
 						<div class="bt-service-list-item bubble-container">
 							<div class="bt-post--img">
-								<img src="<?php echo esc_attr( $img_1_url ) ?>" alt="">
+								<img src="<?php echo esc_url( $img_1_url ) ?>" alt="">
 							</div>
 							<div class="bt-post--content">
 								<?php echo cleanira_post_title_render(); ?>
@@ -380,11 +380,10 @@ class Widget_ServicesList extends Widget_Base
 									</ul>
 								<?php endif; ?>
 								<a class="bt-service--button bt-primary-btn" href="#">
-									<span>Request an estimate</span>
+									<span><?php echo esc_html__( 'Request an estimate', 'cleanira') ?></span>
 									<?php echo cleanira_get_icon_svg_html('ArrowRight-icon') ?>
 								</a>
 							</div>
-							
 							<!-- Small, medium, and large bubbles -->
 							<?php 
 								for ($i = 1; $i <= 10; $i++): 
@@ -404,7 +403,7 @@ class Widget_ServicesList extends Widget_Base
 											break;
 									}
 								?>
-								<img class="bubble <?php echo $bubble_size ?>" src="<?php echo CLEANIRA_IMG_DIR . 'Bubble-white.png'; ?>" alt="">
+								<img class="bubble <?php echo $bubble_size ?>" src="<?php echo CLEANIRA_IMG_DIR . 'bubble-white.png'; ?>" alt="">
 							<?php endfor; ?>
 						</div>
 					<?php

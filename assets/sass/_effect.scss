@@ -523,7 +523,6 @@ body {
 }
 
 .bt-bg-scroll-enable {
-
 	.bt-bg-scroll-effect,
 	.bt-site-titlebar {
 		animation: effectBgScroll 70s infinite;
@@ -552,7 +551,7 @@ body {
 
 .bt-img-zoom-enable {
 	.bt-image-zoom-effect {
-		>.elementor-widget-container {
+		> .elementor-widget-container {
 			overflow: hidden;
 		}
 
@@ -734,7 +733,7 @@ body {
 		animation: effectPlayButton 2s infinite;
 		border-radius: 50%;
 
-		>a {
+		> a {
 			display: block;
 		}
 	}
@@ -746,78 +745,8 @@ body {
 		animation: effectPlayButton2 2s infinite;
 		border-radius: 50%;
 
-		>a {
+		> a {
 			display: block;
-		}
-	}
-}
-
-.bt-button-hover-enable {
-	.elementor-widget-button {
-		.elementor-button-wrapper {
-			overflow: hidden;
-		}
-
-		.elementor-button {
-			position: relative;
-			z-index: 1;
-			transition: all 0.2s ease-in-out;
-
-			.elementor-button-text {
-				transition: all 0.2s ease-in-out;
-			}
-
-			&::before {
-				content: "";
-				position: absolute;
-				width: 300%;
-				height: 0%;
-				left: 50%;
-				top: 50%;
-				background-color: rgba(255, 255, 255, 0.2);
-				transform: translate(-50%, -50%) rotate(-45deg);
-				z-index: 1;
-			}
-
-			&:hover {
-				&::before {
-					height: 250%;
-					transition: all 600ms linear !important;
-					background-color: transparent;
-				}
-			}
-		}
-	}
-
-	.gform_footer,
-	.bt-button-effect {
-		overflow: hidden;
-		position: relative;
-		z-index: 1;
-
-		input {
-			position: relative;
-			z-index: 2;
-		}
-
-		&::before {
-			content: "";
-			position: absolute;
-			width: 300%;
-			height: 0%;
-			left: 50%;
-			top: 50%;
-			background-color: rgba(255, 255, 255, 0.2);
-			transform: translate(-50%, -50%) rotate(-45deg);
-			z-index: 1;
-		}
-
-		&:hover {
-			&::before {
-				height: 250%;
-				transition: all 600ms linear !important;
-				background-color: transparent;
-			}
 		}
 	}
 }
@@ -835,8 +764,7 @@ body {
 			content: "";
 			width: 160px;
 			height: 146px;
-			background-image:
-				url("../images/img-bubble-num.svg");
+			background-image: url("../images/img-bubble-num.svg");
 			background-size: contain;
 			background-repeat: no-repeat;
 			position: absolute;
@@ -854,7 +782,6 @@ body {
 
 .bt-animation-bubble-background {
 	z-index: 1 !important;
-
 	&:after {
 		content: "";
 		width: 800px;
@@ -875,11 +802,15 @@ body {
 }
 
 .bt-animation-bubble-up-6 {
-	animation: effectBubbleRise 10s linear infinite, effectBubbleSideWays 3s ease-in-out infinite alternate;
+	animation:
+		effectBubbleRise 10s linear infinite,
+		effectBubbleSideWays 3s ease-in-out infinite alternate;
 	animation-duration: 6;
 }
 .bt-animation-bubble-up-12 {
-	animation: effectBubbleRise 10s linear infinite, effectBubbleSideWays 3s ease-in-out infinite alternate;
+	animation:
+		effectBubbleRise 10s linear infinite,
+		effectBubbleSideWays 3s ease-in-out infinite alternate;
 	animation-duration: 12s;
 }
 
@@ -909,18 +840,209 @@ body {
 	}
 
 	25% {
-		transform: scaleY(1.05) skewY(2deg)
+		transform: scaleY(1.05) skewY(2deg);
 	}
 
 	50% {
-		transform: none
+		transform: none;
 	}
 
 	75% {
-		transform: scaleY(1.05) skewY(-2deg)
+		transform: scaleY(1.05) skewY(-2deg);
 	}
 
 	100% {
 		transform: none;
+	}
+}
+
+/* Animation for bubbles rising */
+@keyframes effectBubbleRise {
+	0% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	70% {
+		opacity: 0.8;
+	}
+	100% {
+		transform: translateY(-640px);
+		opacity: 0;
+	}
+}
+
+@keyframes effectBubbleSideWays {
+	0% {
+		margin-left: 0px;
+	}
+	100% {
+		margin-left: 100px;
+	}
+}
+
+.bubble-container {
+	position: relative;
+	.bubble {
+		position: absolute;
+		bottom: -200px;
+		width: 200px;
+		animation:
+			effectBubbleRise 10s linear infinite,
+			effectBubbleSideWays 3s ease-in-out infinite alternate;
+		&.small {
+			width: 100px;
+		}
+		&.medium {
+			width: 150px;
+		}
+		&.large {
+			width: 200px;
+		}
+		/* Randomization: animate bubbles at different speeds and from different positions */
+		&:nth-of-type(1) {
+			left: 0%;
+			animation-duration: 13s;
+		}
+		&:nth-of-type(2) {
+			left: 10%;
+			animation-duration: 8s;
+		}
+		&:nth-of-type(3) {
+			left: 20%;
+			animation-duration: 10s;
+		}
+		&:nth-of-type(4) {
+			left: 30%;
+			animation-duration: 14s;
+		}
+		&:nth-of-type(5) {
+			left: 40%;
+			animation-duration: 6s;
+		}
+		&:nth-of-type(6) {
+			left: 50%;
+			animation-duration: 12s;
+		}
+		&:nth-of-type(7) {
+			left: 60%;
+			animation-duration: 15s;
+		}
+		&:nth-of-type(8) {
+			left: 70%;
+			animation-duration: 9s;
+		}
+		&:nth-of-type(9) {
+			left: 80%;
+			animation-duration: 11s;
+		}
+		&:nth-of-type(10) {
+			left: 90%;
+			animation-duration: 7s;
+		}
+	}
+}
+
+@keyframes effectBubbleRiseButton {
+	0% {
+		transform: translateY(0);
+		opacity: 1;
+	}
+	70% {
+		opacity: 0.8;
+	}
+	100% {
+		transform: translateY(-100px);
+		opacity: 0;
+	}
+}
+
+@keyframes effectBubbleSideWaysButton {
+	0% {
+		margin-left: 0px;
+	}
+	100% {
+		margin-left: 30px;
+	}
+}
+.bt-button-hover {
+	.elementor-button-wrapper{
+		.elementor-button{
+			position: relative;
+			overflow: hidden;
+			&::before{
+				position: absolute;
+				bottom: -30px;
+				width: 30px;
+				content: '';
+				height: 30px;
+				background-image: url("../images/bubble-white.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				left: 10%;
+			}
+			&::after{
+				position: absolute;
+				bottom: -30px;
+				width: 15px;
+				content: '';
+				height: 15px;
+				background-image: url("../images/bubble-white.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+			
+				left: 40%;
+			}
+			.elementor-button-content-wrapper{
+				&::before{
+					position: absolute;
+					bottom: -30px;
+					width: 30px;
+					content: '';
+					height: 30px;
+					background-image: url("../images/bubble-white.png");
+					background-size: contain;
+					background-repeat: no-repeat;
+					left: 50%;
+				}
+				&::after{
+					position: absolute;
+					bottom: -30px;
+					width: 15px;
+					content: '';
+					height: 15px;
+					background-image: url("../images/bubble-white.png");
+					background-size: contain;
+					background-repeat: no-repeat;
+					left: 70%;
+				}
+			}
+			&:hover{
+				box-shadow: 0px 4px 50px 0 rgba(0, 0, 0, 0.1);
+				&::before,&::after{
+					animation:
+					effectBubbleRiseButton 5s linear infinite,
+					effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
+				}
+				&::before{
+					animation-duration: 8s;
+				}
+				&::after{
+					animation-duration: 4s;
+				}
+				.elementor-button-content-wrapper{
+					&::before,&::after{
+						animation:
+						effectBubbleRiseButton 5s linear infinite,
+						effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
+					}
+					&::before{
+						animation-duration: 5s;
+					}
+					&::after{
+						animation-duration: 3s;
+					}
+				}
+			}
+		}
 	}
 }
