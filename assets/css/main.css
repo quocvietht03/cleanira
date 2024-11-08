@@ -4295,7 +4295,7 @@ body {
   width: 30px;
   content: "";
   height: 30px;
-  background-image: url("../images/bubble-white.png");
+  background-image: url("../images/img-bubble-white.png");
   background-size: contain;
   background-repeat: no-repeat;
   left: 10%;
@@ -4306,7 +4306,7 @@ body {
   width: 15px;
   content: "";
   height: 15px;
-  background-image: url("../images/bubble-white.png");
+  background-image: url("../images/img-bubble-white.png");
   background-size: contain;
   background-repeat: no-repeat;
   left: 40%;
@@ -4317,7 +4317,7 @@ body {
   width: 30px;
   content: "";
   height: 30px;
-  background-image: url("../images/bubble-white.png");
+  background-image: url("../images/img-bubble-white.png");
   background-size: contain;
   background-repeat: no-repeat;
   left: 50%;
@@ -4328,7 +4328,7 @@ body {
   width: 15px;
   content: "";
   height: 15px;
-  background-image: url("../images/bubble-white.png");
+  background-image: url("../images/img-bubble-white.png");
   background-size: contain;
   background-repeat: no-repeat;
   left: 70%;

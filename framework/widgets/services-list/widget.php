@@ -403,7 +403,7 @@ class Widget_ServicesList extends Widget_Base
 											break;
 									}
 								?>
-								<img class="bubble <?php echo $bubble_size ?>" src="<?php echo CLEANIRA_IMG_DIR . 'bubble-white.png'; ?>" alt="">
+								<img class="bubble <?php echo $bubble_size ?>" src="<?php echo CLEANIRA_IMG_DIR . 'img-bubble-white.png'; ?>" alt="">
 							<?php endfor; ?>
 						</div>
 					<?php
