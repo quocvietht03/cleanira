@@ -13,6 +13,7 @@
   &.elementor-popup-modal {
     .dialog-widget-content {
       position: initial;
+      box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.1);
       .e-search-form {
         .e-search-label {
           svg {
@@ -23,24 +24,7 @@
       @media (max-width: $break-sm) {
         width: 100%;
       }
-      @media (max-width: $break-xs) {
-        .e-search-form {
-          flex-direction: column;
-          gap: 10px;
-          .e-search-label {
-            position: absolute;
-            top: 27px;
-          }
-          input {
-            border-radius: 15px;
-          }
-          .e-search-submit {
-            border-radius: 15px;
-            display: block;
-            padding: 10px;
-          }
-        }
-      }
+
     }
   }
 }
