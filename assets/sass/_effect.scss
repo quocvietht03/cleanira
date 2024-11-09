@@ -969,7 +969,7 @@ body {
 		.elementor-button{
 			position: relative;
 			overflow: hidden;
-			display: block;
+			display: inline-flex;
 			&::before{
 				position: absolute;
 				bottom: -30px;

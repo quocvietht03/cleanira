@@ -4288,7 +4288,7 @@ body {
 .bt-button-hover .elementor-button-wrapper .elementor-button {
   position: relative;
   overflow: hidden;
-  display: block;
+  display: inline-flex;
 }
 .bt-button-hover .elementor-button-wrapper .elementor-button::before {
   position: absolute;
