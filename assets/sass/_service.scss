@@ -6,9 +6,11 @@
     .bt-service-list-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 100px;
       background-color: $color-background;
       border-radius: 40px;
+      &:not(:last-child){
+        margin-bottom: 100px;
+      }
       &:nth-child(even) {
         flex-direction: row-reverse;
       }
@@ -83,7 +85,9 @@
   @media only screen and (max-width:1024px) {
     .bt-service-list {
       .bt-service-list-item {
-        margin-bottom: 60px;
+        &:not(:last-child){
+          margin-bottom: 60px;
+        }
         .bt-post--content {
           margin: 30px;
           padding: 30px;

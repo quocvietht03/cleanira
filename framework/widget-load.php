@@ -81,7 +81,8 @@ class ElementorWidgets
 			'site-box-phone',
 			'location-list',
 			'opening-times',
-			'mini-cart'
+			'mini-cart',
+			'brand-slider'
 		);
 
 		return $this->widgets;
@@ -98,6 +99,7 @@ class ElementorWidgets
 	public function widget_styles()
 	{
 		wp_enqueue_style('slick-slider', get_template_directory_uri() . '/assets/libs/slick/slick.css', array(), false);
+		wp_enqueue_style('elementor-swiper', plugins_url('elementor/assets/lib/swiper/css/swiper.min.css'), array(), false);
 	}
 
 	/**
@@ -110,6 +112,7 @@ class ElementorWidgets
 	 */
 	public function widget_scripts()
 	{
+		wp_register_script('elementor-swiper',plugins_url('elementor/assets/lib/swiper/swiper.min.js'), array('jquery'), '', true);
 		wp_register_script('slick-slider', get_template_directory_uri() . '/assets/libs/slick/slick.min.js', array('jquery'), '', true);
 		wp_register_script('select2-min', get_template_directory_uri() . '/assets/libs/select2/select2.min.js', array('jquery'), '', true);
 		wp_register_script('elementor-widgets',  get_stylesheet_directory_uri() . '/framework/widgets/frontend.js', ['jquery'], '', true);
@@ -212,6 +215,7 @@ class ElementorWidgets
 
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\OpeningTime\Widget_OpeningTime());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\MiniCart\Widget_MiniCart());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\BrandSlider\Widget_BrandSlider());
 	}
 
 	/**

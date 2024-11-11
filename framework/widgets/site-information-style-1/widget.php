@@ -165,7 +165,7 @@ class Widget_SiteInformationStyle1 extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}}  .bt-elwg-site-infor--item-icon' => 'fill: {{VALUE}};',
+					'{{WRAPPER}}  .bt-elwg-site-infor--item-icon' => 'border-color: {{VALUE}};',
 				],
 			]
 		);

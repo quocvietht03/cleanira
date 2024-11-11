@@ -180,7 +180,42 @@ class Widget_PostLoopItem extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bt-post--title a',
 			]
 		);
+		$this->add_control(
+			'publish_style',[
+				'label' => esc_html__( 'Publish', 'cleanira' ),
+				'type'  => Controls_Manager::HEADING,
+			]
+		);
 
+		$this->add_control(
+			'publish_color',[
+				'label'     => esc_html__( 'Color', 'cleanira' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-post--publish' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
+			'publish_background',[
+				'label'     => esc_html__( 'Background', 'cleanira' ),
+				'type'      => Controls_Manager::COLOR,
+				'default'   => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-post--publish' => 'background: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'publish_typography',
+				'label'    => esc_html__( 'Typography', 'cleanira' ),
+				'default'  => '',
+				'selector' => '{{WRAPPER}} .bt-post--publish',
+			]
+		);
 		$this->add_control(
 			'excerpt_style',[
 				'label' => esc_html__( 'Excerpt', 'cleanira' ),

@@ -353,9 +353,7 @@ class Widget_PricingItem extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-
         $pricing_list = $settings['list_pricing'];
-
         $button_text = $settings['button_text'];
         $button_url = $settings['button_url'];
         $url = $button_url['url'];
@@ -434,17 +432,17 @@ class Widget_PricingItem extends Widget_Base
                 <?php if (!empty($button_text) && !empty($url)) { ?>
                     <div class="bt-pricing-body--item">
                         <div class="bt-col bt-pricing-title"></div>
-                        <div class="bt-col bt-pricing-value">
-                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        <div class="bt-col bt-pricing-value bt-button-hover">
+                            <a class="bt-button" href="<?php echo esc_url($url); ?>"><span class="bt-heading"><?php echo esc_html($button_text); ?></span></a>
                         </div>
-                        <div class="bt-col bt-pricing-value">
-                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        <div class="bt-col bt-pricing-value bt-button-hover">
+                            <a class="bt-button" href="<?php echo esc_url($url); ?>"><span class="bt-heading"><?php echo esc_html($button_text); ?></span></a>
                         </div>
-                        <div class="bt-col bt-pricing-value">
-                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        <div class="bt-col bt-pricing-value bt-button-hover">
+                            <a class="bt-button" href="<?php echo esc_url($url); ?>"><span class="bt-heading"><?php echo esc_html($button_text); ?></span></a>
                         </div>
-                        <div class="bt-col bt-pricing-value">
-                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                        <div class="bt-col bt-pricing-value bt-button-hover">
+                            <a class="bt-button" href="<?php echo esc_url($url); ?>"><span class="bt-heading"><?php echo esc_html($button_text); ?></span></a>
                         </div>
                     </div>
                 <?php } ?>
@@ -457,7 +455,7 @@ class Widget_PricingItem extends Widget_Base
                         if ($settings['select_best_value'] == 'one_time') {
                             pricing_item_best_value();
                         }
-                        echo esc_html__('Bed Rooms', 'cleanira');
+                        echo esc_html__('One-Time Cleaning', 'cleanira');
                         ?>
                     </h3>
                     <div class="bt-content-mb">
