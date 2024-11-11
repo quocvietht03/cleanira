@@ -886,15 +886,9 @@ body {
 		transform: rotate(40deg) scale(0.95);
 	}
 }
-.bt-animation-bubble-up-6 {
+.bt-animation-bubble-images-style1 {
 	transform: rotate(0) scale(1);
 	animation: bubble 6s ease-in-out 3s infinite alternate;
-}
-.bt-animation-bubble-up-12 {
-	animation:
-		effectBubbleRise 10s linear infinite,
-		effectBubbleSideWays 3s ease-in-out infinite alternate;
-	animation-duration: 12s;
 }
 
 @keyframes effectBubbleRiseButton {
