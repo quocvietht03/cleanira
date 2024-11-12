@@ -239,27 +239,6 @@
                     "rows_per_page": 20,
                     "sub_fields": [
                         {
-                            "key": "field_6688a0911e7c6",
-                            "label": "Heading",
-                            "name": "heading",
-                            "aria-label": "",
-                            "type": "text",
-                            "instructions": "",
-                            "required": 0,
-                            "conditional_logic": 0,
-                            "wrapper": {
-                                "width": "",
-                                "class": "",
-                                "id": ""
-                            },
-                            "default_value": "",
-                            "maxlength": "",
-                            "placeholder": "",
-                            "prepend": "",
-                            "append": "",
-                            "parent_repeater": "field_6688a0691e7c5"
-                        },
-                        {
                             "key": "field_6688a09d1e7c7",
                             "label": "Hours",
                             "name": "hours",
@@ -1287,5 +1266,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1731046423
+    "modified": 1731374145
 }

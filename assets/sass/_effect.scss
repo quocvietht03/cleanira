@@ -1147,3 +1147,88 @@ body {
 		}
 	}
 }
+
+.bt-button-slider{
+	a{
+		position: relative;
+		overflow: hidden;
+		display: inline-flex;
+		&::before {
+			position: absolute;
+			bottom: -30px;
+			width: 30px;
+			content: "";
+			height: 30px;
+			background-image: url("../images/img-bubble-white.png");
+			background-size: contain;
+			background-repeat: no-repeat;
+			left: 10%;
+			display: block !important;
+		}
+		&::after {
+			position: absolute;
+			bottom: -30px;
+			width: 15px;
+			content: "";
+			height: 15px;
+			background-image: url("../images/img-bubble-white.png");
+			background-size: contain;
+			background-repeat: no-repeat;
+			display: block !important;
+			left: 40%;
+		}
+		> div{
+			&::before {
+				position: absolute;
+				bottom: -30px;
+				width: 30px;
+				content: "";
+				height: 30px;
+				background-image: url("../images/img-bubble-white.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				left: 50%;
+			}
+			&::after {
+				position: absolute;
+				bottom: -30px;
+				width: 15px;
+				content: "";
+				height: 15px;
+				background-image: url("../images/img-bubble-white.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				left: 70%;
+			}
+		}
+		&:hover {
+			box-shadow: 0px 4px 50px 0 rgba(0, 0, 0, 0.1);
+			&::before,
+			&::after {
+				animation:
+					effectBubbleRiseButton 5s linear infinite,
+					effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
+			}
+			&::before {
+				animation-duration: 8s;
+			}
+			&::after {
+				animation-duration: 4s;
+			}
+			> div{
+				&::before,
+				&::after {
+					animation:
+						effectBubbleRiseButton 5s linear infinite,
+						effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
+				}
+				&::before {
+					animation-duration: 5s;
+				}
+				&::after {
+					animation-duration: 3s;
+				}
+			}
+		}
+	}
+}

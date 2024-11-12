@@ -93,17 +93,17 @@
 
 	};
 	/* location list toggle */
-	var LocationListHandler = function( $scope, $ ) {
+	var LocationListHandler = function ($scope, $) {
 		var buttonMore = $scope.find('.bt-more-info');
 		var contentList = $scope.find('.bt-location-list--content');
-		if(buttonMore.length > 0) {
-			buttonMore.on('click', function(e) {
+		if (buttonMore.length > 0) {
+			buttonMore.on('click', function (e) {
 				e.preventDefault();
-				if($(this).hasClass('active')){
+				if ($(this).hasClass('active')) {
 					$(this).parent().find('.bt-location-list--content').slideUp();
 					$(this).removeClass('active');
 					$(this).children('span').text('More Information');
-				}else{
+				} else {
 					contentList.slideUp();
 					buttonMore.children('span').text('More Information');
 					buttonMore.removeClass('active');
@@ -124,24 +124,16 @@
 			const $spaceBetween = $brandslider.data('spacebetween');
 
 			const $swiper = new Swiper($brandslider[0], {
-				slidesPerView: $itemMobile,
+				slidesPerView: 'auto',
 				loop: true,
-				spaceBetween: $spaceBetween,
-				speed: $speed,
-				freeMode:true,
+				loopAdditionalSlides: 10,
+				spaceBetween: 60,
+				speed: 5000,
+				freeMode: true,
 				allowTouchMove: true,
-				autoplay:
-				{
+				autoplay: {
 					delay: 0,
 					disableOnInteraction: false,
-				},
-				breakpoints: {
-					1024: {
-						slidesPerView: $item,
-					},
-					768: {
-						slidesPerView: $itemTablet,
-					},
 				},
 			});
 			$brandslider[0].addEventListener('mouseenter', () => {
