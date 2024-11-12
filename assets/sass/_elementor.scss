@@ -1337,11 +1337,11 @@
   }
 }
 
-// .bt-elwg-service-loop-item {
-//   &--default {
-//     @extend .__bt-service-style-default;
-//   }
-// }
+.bt-elwg-service-loop-item {
+  &--default {
+    @extend .__bt-service-style-default;
+  }
+}
 .bt-elwg-brand-loop-item {
   &--default {
     a {
