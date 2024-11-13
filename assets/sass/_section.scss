@@ -92,26 +92,43 @@
             }
         }
     }
-    &.bt-section-choose-us{
-        .elementor-icon-box-wrapper{
-            .elementor-icon-box-icon{
-                svg{
+    &.bt-section-choose-us {
+        .elementor-icon-box-wrapper {
+            .elementor-icon-box-icon {
+                svg {
                     max-height: 80px;
                 }
             }
         }
     }
-    &.bt-section-our-offer{
-        .elementor-widget-image{
-            &.bt-img-our-offer{
+    &.bt-section-our-offer {
+        @keyframes wave-animation {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            50% {
+                transform: translateX(30%);
+            }
+        }
+        .elementor-shape-top {
+            @media (min-width: $break-lg) {
+                svg {
+                    left: -50%;
+                    transform: none;
+                    animation: wave-animation 150s infinite;
+                }
+            }
+        }
+        .elementor-widget-image {
+            &.bt-img-our-offer {
                 height: 100%;
-                @media(max-width:1300px) and (min-width: $break-tl){
-                    img{
+                @media (max-width: 1300px) and (min-width: $break-tl) {
+                    img {
                         max-width: 250px;
                     }
                 }
             }
         }
-       
     }
 }
