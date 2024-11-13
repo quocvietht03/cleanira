@@ -101,4 +101,17 @@
             }
         }
     }
+    &.bt-section-our-offer{
+        .elementor-widget-image{
+            &.bt-img-our-offer{
+                height: 100%;
+                @media(max-width:1300px) and (min-width: $break-tl){
+                    img{
+                        max-width: 250px;
+                    }
+                }
+            }
+        }
+       
+    }
 }
