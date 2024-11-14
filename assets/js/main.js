@@ -235,6 +235,10 @@
 	function CleaniraCheckVisibilityText() {
 		$('.elementor-widget-heading .elementor-heading-title').each(function () {
 			const $this = $(this);
+			if (!$this.is('h1, h2, h3, h4, h5, h6')) {
+				return;
+			}
+			$this.parent().parent().addClass('bt-fade-animation');
 			const windowHeight = $(window).height();
 			const elementTop = $this.offset().top;
 			const elementBottom = elementTop + $this.outerHeight();
@@ -248,16 +252,16 @@
 						delayFactor = parseFloat(settings._animation_delay) || delayFactor;
 					}
 					if (settings && settings._animation == 'fadeInRight') {
-						$this.addClass('animated animation-right');
+						$this.addClass('animated bt-animation-right');
 						CleaniraAnimateText(this, delayFactor);
 					} else if (settings && settings._animation == 'fadeInLeft') {
-						$this.addClass('animated animation-left');
+						$this.addClass('animated bt-animation-left');
 						CleaniraAnimateText(this, delayFactor);
 					} else if (settings && settings._animation == 'fadeInUp') {
-						$this.addClass('animated animation-up');
+						$this.addClass('animated bt-animation-up');
 						CleaniraAnimateText(this, delayFactor);
 					} else if (settings && settings._animation == 'fadeInDown') {
-						$this.addClass('animated animation-down');
+						$this.addClass('animated bt-animation-down');
 						CleaniraAnimateText(this, delayFactor);
 					}
 				}

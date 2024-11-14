@@ -737,6 +737,13 @@ body {
 			display: block;
 		}
 	}
+	&.elementor-widget-icon {
+		.elementor-icon {
+			-webkit-animation: effectPlayButton2 2s infinite;
+			animation: effectPlayButton2 2s infinite;
+			border-radius: 50%;
+		}
+	}
 }
 
 .bt-play-btn-effect2 {
@@ -747,6 +754,13 @@ body {
 
 		> a {
 			display: block;
+		}
+	}
+	&.elementor-widget-icon {
+		.elementor-icon {
+			-webkit-animation: effectPlayButton2 2s infinite;
+			animation: effectPlayButton2 2s infinite;
+			border-radius: 50%;
 		}
 	}
 }
@@ -1303,10 +1317,7 @@ body {
 	}
 }
 .elementor-widget-heading {
-	&.fadeInLeft,
-	&.fadeInRight,
-	&.fadeInDown,
-	&.fadeInUp {
+	&.bt-fade-animation {
 		animation-name: none !important;
 		animation-duration: inherit !important;
 	}
@@ -1321,17 +1332,17 @@ body {
 	transform: translateX(50px);
 	animation: fadeInRight 0.5s ease forwards;
 }
-.animation-left {
+.bt-animation-left {
 	.bt-letter {
 		animation: fadeInLeft 0.5s ease forwards;
 	}
 }
-.animation-up {
+.bt-animation-up {
 	.bt-letter {
 		animation: fadeInUp 0.5s ease forwards;
 	}
 }
-.animation-down {
+.bt-animation-down {
 	.bt-letter {
 		animation: fadeInDown 0.5s ease forwards;
 	}

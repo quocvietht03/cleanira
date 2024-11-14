@@ -199,4 +199,25 @@
             }
         }
     }
+    &.bt-section-about-video{
+        > .e-con-inner{
+            > .elementor-element{
+                .elementor-widget-n-tabs{
+                    .e-n-tabs-heading{
+                        border-bottom: 1px solid #E4E4E4;
+                        .e-n-tab-title{
+                            margin-bottom: -1px;
+                        }
+                    }
+                }
+                &:last-child{
+                    @media(max-width:$break-lg) and (min-width: $break-tl){
+                        --flex-grow: auto;
+                        --flex-shrink: auto;
+                        --width: 100%;
+                    }
+                }
+            }
+        }
+    }
 }

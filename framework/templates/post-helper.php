@@ -66,9 +66,7 @@ if (!function_exists('cleanira_post_title_render')) {
     ob_start();
   ?>
     <h3 class="bt-post--title">
-      <a href="<?php the_permalink(); ?>">
-        <?php the_title(); ?>
-      </a>
+      <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
     </h3>
     <?php
 
