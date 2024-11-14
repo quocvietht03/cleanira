@@ -131,4 +131,72 @@
             }
         }
     }
+    &.bt-section-hero {
+        > .e-con-inner {
+            > .elementor-element {
+                @media (max-width: $break-lg) and (min-width: $break-tl) {
+                    &:first-child{
+                        .elementor-widget-heading{
+                            --container-widget-width: 400px;
+                            h2{
+                                font-size: 58px;
+                                line-height: 70px;
+                            }
+                        }
+                        .elementor-widget-text-editor{
+                            --container-widget-width: 433px;
+                        }
+                    }
+                    &:last-child{
+                        > .elementor-element{
+                            &:first-child{
+                                .elementor-widget-container{
+                                    margin-right: 0;
+                                }
+                            }
+                            &:nth-child(2){
+                                left: -30%;
+                                img{
+                                    max-width: 85px;
+                                    border-width: 5px;
+                                }
+                            }
+                            &:nth-child(3){
+                                left: -15%;
+                                top: 39%;
+                                img{
+                                    max-width: 100px;
+                                    border-width: 5px;
+                                }
+                            }
+                            &:nth-child(4){
+                                left: -24%;
+                                top: 62%;
+                                img{
+                                    max-width: 120px;
+                                    border-width: 5px;
+                                }
+                              
+                            }
+                        }
+                    }
+                }
+                @media (max-width: $break-tl) and (min-width: 900px) {
+                    &:first-child{
+                        width: 55%;
+                        .elementor-widget-heading{
+                            --container-widget-width: 450px;
+                            h2{
+                                font-size: 60px;
+                                line-height: 70px;
+                            }
+                        }
+                    }
+                    &:last-child{
+                        width: 45%;
+                    }
+                }
+            }
+        }
+    }
 }

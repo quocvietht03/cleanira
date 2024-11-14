@@ -1260,3 +1260,25 @@ body {
 		}
 	}
 }
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.bt-word {
+    display: inline-block;
+}
+
+.bt-letter {
+    display: inline-block;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: fadeInRight 0.5s ease forwards;
+}
+

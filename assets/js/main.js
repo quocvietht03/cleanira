@@ -210,6 +210,43 @@
 			});
 		}
 	};
+	/* animation Text */
+	function CleaniraAnimateText(selector) {
+		const $text = $(selector);
+		const textContent = $text.text();
+		$text.empty();
+		
+		let letterIndex = 0;
+		
+		textContent.split(" ").forEach((word) => {
+			const $wordSpan = $("<span>").addClass("bt-word");
+			
+			word.split("").forEach((char) => {
+				const $charSpan = $("<span>").addClass("bt-letter").text(char);
+				$charSpan.css("animation-delay", `${letterIndex * 0.1}s`);
+				$wordSpan.append($charSpan);
+				letterIndex++;
+			});
+		
+			$text.append($wordSpan).append(" ");
+		});
+	}
+	
+	function CleaniraCheckVisibilityText(selector) {
+		$(selector).each(function() {
+			const $this = $(this);
+			const windowHeight = $(window).height();
+			const elementTop = $this.offset().top;
+			const elementBottom = elementTop + $this.outerHeight();
+			
+			if (elementTop < $(window).scrollTop() + windowHeight && elementBottom > $(window).scrollTop()) {
+				if (!$this.hasClass('animated')) {
+					CleaniraAnimateText(this);
+					$this.addClass('animated');
+				}
+			}
+		});
+	}
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -221,6 +258,7 @@
 		// CleaniraUnitsCustom();
 		CleaniraCheckboxCustom();
 		CleaniraBorderTop();
+		CleaniraCheckVisibilityText(".bt-text-animation .elementor-heading-title");
 	});
 
 	jQuery(window).on('resize', function () {
@@ -229,7 +267,6 @@
 	});
 
 	jQuery(window).on('scroll', function () {
-
+		CleaniraCheckVisibilityText(".bt-text-animation .elementor-heading-title");
 	});
-
 })(jQuery);
