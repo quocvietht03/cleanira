@@ -211,38 +211,69 @@
 		}
 	};
 	/* animation Text */
-	function CleaniraAnimateText(selector) {
+	function CleaniraAnimateText(selector, delayFactor = 0.05) {
 		const $text = $(selector);
 		const textContent = $text.text();
 		$text.empty();
-		
+
 		let letterIndex = 0;
-		
+
 		textContent.split(" ").forEach((word) => {
 			const $wordSpan = $("<span>").addClass("bt-word");
-			
+
 			word.split("").forEach((char) => {
 				const $charSpan = $("<span>").addClass("bt-letter").text(char);
-				$charSpan.css("animation-delay", `${letterIndex * 0.1}s`);
+				$charSpan.css("animation-delay", `${letterIndex * delayFactor}s`);
 				$wordSpan.append($charSpan);
 				letterIndex++;
 			});
-		
+
 			$text.append($wordSpan).append(" ");
 		});
 	}
-	
-	function CleaniraCheckVisibilityText(selector) {
-		$(selector).each(function() {
+
+	function CleaniraCheckVisibilityText() {
+		$('.elementor-widget-heading .elementor-heading-title').each(function () {
 			const $this = $(this);
 			const windowHeight = $(window).height();
 			const elementTop = $this.offset().top;
 			const elementBottom = elementTop + $this.outerHeight();
-			
+
 			if (elementTop < $(window).scrollTop() + windowHeight && elementBottom > $(window).scrollTop()) {
 				if (!$this.hasClass('animated')) {
-					CleaniraAnimateText(this);
-					$this.addClass('animated');
+					let delayFactor = 0.05;
+					const settings = $this.parent().parent().data('settings');
+
+					if (settings && settings._animation_delay) {
+						delayFactor = parseFloat(settings._animation_delay) || delayFactor;
+					}
+					if (settings && settings._animation == 'fadeInRight') {
+						$this.addClass('animated animation-right');
+						CleaniraAnimateText(this, delayFactor);
+					} else if (settings && settings._animation == 'fadeInLeft') {
+						$this.addClass('animated animation-left');
+						CleaniraAnimateText(this, delayFactor);
+					} else if (settings && settings._animation == 'fadeInUp') {
+						$this.addClass('animated animation-up');
+						CleaniraAnimateText(this, delayFactor);
+					} else if (settings && settings._animation == 'fadeInDown') {
+						$this.addClass('animated animation-down');
+						CleaniraAnimateText(this, delayFactor);
+					}
+				}
+			}
+		});
+		$('.bt-text-animation').each(function () {
+			const $this = $(this);
+			const windowHeight = $(window).height();
+			const elementTop = $this.offset().top;
+			const elementBottom = elementTop + $this.outerHeight();
+
+			if (elementTop < $(window).scrollTop() + windowHeight && elementBottom > $(window).scrollTop()) {
+				if (!$this.hasClass('animated')) {
+					let delayFactor = 0.05;
+					$this.addClass('animated animation-right');
+					CleaniraAnimateText(this, delayFactor);
 				}
 			}
 		});
@@ -258,7 +289,7 @@
 		// CleaniraUnitsCustom();
 		CleaniraCheckboxCustom();
 		CleaniraBorderTop();
-		CleaniraCheckVisibilityText(".bt-text-animation .elementor-heading-title");
+		CleaniraCheckVisibilityText();
 	});
 
 	jQuery(window).on('resize', function () {
@@ -267,6 +298,6 @@
 	});
 
 	jQuery(window).on('scroll', function () {
-		CleaniraCheckVisibilityText(".bt-text-animation .elementor-heading-title");
+		CleaniraCheckVisibilityText();
 	});
 })(jQuery);

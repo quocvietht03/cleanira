@@ -844,7 +844,7 @@ body {
 		}
 	}
 }
-.bt-animation-bubble-number-style2{
+.bt-animation-bubble-number-style2 {
 	.elementor-widget-container {
 		position: relative;
 		animation-name: effectMoveX;
@@ -1176,8 +1176,8 @@ body {
 	}
 }
 
-.bt-button-slider{
-	a{
+.bt-button-slider {
+	a {
 		position: relative;
 		overflow: hidden;
 		display: inline-flex;
@@ -1205,7 +1205,7 @@ body {
 			display: block !important;
 			left: 40%;
 		}
-		> div{
+		> div {
 			&::before {
 				position: absolute;
 				bottom: -30px;
@@ -1243,7 +1243,7 @@ body {
 			&::after {
 				animation-duration: 4s;
 			}
-			> div{
+			> div {
 				&::before,
 				&::after {
 					animation:
@@ -1261,24 +1261,78 @@ body {
 	}
 }
 @keyframes fadeInRight {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
+	from {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes fadeInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.elementor-widget-heading {
+	&.fadeInLeft,
+	&.fadeInRight,
+	&.fadeInDown,
+	&.fadeInUp {
+		animation-name: none !important;
+		animation-duration: inherit !important;
+	}
+}
 .bt-word {
-    display: inline-block;
+	display: inline-block;
 }
 
 .bt-letter {
-    display: inline-block;
-    opacity: 0;
-    transform: translateX(50px);
-    animation: fadeInRight 0.5s ease forwards;
+	display: inline-block;
+	opacity: 0;
+	transform: translateX(50px);
+	animation: fadeInRight 0.5s ease forwards;
 }
-
+.animation-left {
+	.bt-letter {
+		animation: fadeInLeft 0.5s ease forwards;
+	}
+}
+.animation-up {
+	.bt-letter {
+		animation: fadeInUp 0.5s ease forwards;
+	}
+}
+.animation-down {
+	.bt-letter {
+		animation: fadeInDown 0.5s ease forwards;
+	}
+}
