@@ -48,6 +48,13 @@ class Widget_TestimonialLoopItem extends Widget_Base
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'box_border',
+				'selector' => '{{WRAPPER}} .bt-post',
+			]
+		);
 
 		$this->add_control(
 			'box_border_radius',
@@ -202,6 +209,37 @@ class Widget_TestimonialLoopItem extends Widget_Base
 				'label' => __('Typography', 'cleanira'),
 				'default' => '',
 				'selector' => '{{WRAPPER}} .bt-post--desc',
+			]
+		);
+
+		$this->add_control(
+			'gap_desc',
+			[
+				'label' => esc_html__( 'Gap', 'textdomain' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 20,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bt-post--infor' => 'padding-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+		
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'desc_border',
+				'selector' => '{{WRAPPER}} .bt-post--infor',
 			]
 		);
 

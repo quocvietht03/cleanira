@@ -1337,11 +1337,97 @@
   }
 }
 
-// .bt-elwg-service-loop-item {
-//   &--default {
-//     @extend .__bt-service-style-default;
-//   }
-// }
+.bt-elwg-service-loop-item {
+  &--style-1{
+    .bt-post{
+      border-radius: 20px 0 20px 20px;
+      border: 1px solid #E4E4E4;
+      background: #FFF;
+      padding: 52px;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+      @media (max-width: $break-lg){
+        padding: 32px;
+      }
+      .bt-image-overlay{
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        z-index: -1;
+        @media (max-width: $break-tl){
+          width: 140px;
+          height: 98px;
+        }
+      }
+      &--infor{
+        display: flex;
+        @media (max-width: $break-tl){
+          flex-direction: column;
+        }
+      }
+      &--left{
+        width: 180px;
+        @media (max-width: $break-tl){
+          width: 100%;
+        }
+      }
+      &--right{
+        width: calc(100% - 180px);
+        padding-left: 30px;
+        @media (max-width: $break-tl){
+          width: 100%;
+          padding-left: 0;
+          margin-top: 16px;
+        }
+      }
+      &--content{
+        .bt-post--icon{
+          width: 90px;
+          vertical-align: middle;
+          @media (max-width: $break-tl){
+            width: 56px;
+          }
+        }
+        .bt-post--title{
+          color: $color-primary;
+          font-family: $text-font;
+          font-size: 32px;
+          font-weight: 700;
+          line-height: 125%;
+          margin-top: 24px;
+          @media (max-width: $break-tl){
+            font-size: 24px;
+          }
+          &:hover{
+            color: $color-accent;
+          }
+        }
+      }
+      &--services-type{
+        .bt-post--service-item{
+          padding-left: 32px;
+          position: relative;
+          color: $color-primary;
+          font-family: $text-font;
+          font-size: 18px;
+          font-weight: 400;
+          line-height: 166.667%;
+          &:not(:last-child){
+            margin-bottom: 8px;
+          }
+          .bt-icon-service{
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            left: 0;
+            top: 2px;
+          }
+        }
+      }
+    }
+  }
+}
 .bt-elwg-brand-loop-item {
   &--default {
     a {
