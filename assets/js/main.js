@@ -210,6 +210,78 @@
 			});
 		}
 	};
+	/* animation Text */
+	function CleaniraAnimateText(selector, delayFactor = 0.05) {
+		const $text = $(selector);
+		const textContent = $text.text();
+		$text.empty();
+
+		let letterIndex = 0;
+
+		textContent.split(" ").forEach((word) => {
+			const $wordSpan = $("<span>").addClass("bt-word");
+
+			word.split("").forEach((char) => {
+				const $charSpan = $("<span>").addClass("bt-letter").text(char);
+				$charSpan.css("animation-delay", `${letterIndex * delayFactor}s`);
+				$wordSpan.append($charSpan);
+				letterIndex++;
+			});
+
+			$text.append($wordSpan).append(" ");
+		});
+	}
+
+	function CleaniraCheckVisibilityText() {
+		$('.elementor-widget-heading .elementor-heading-title').each(function () {
+			const $this = $(this);
+			if (!$this.is('h1, h2, h3, h4, h5, h6')) {
+				return;
+			}
+			$this.parent().parent().addClass('bt-fade-animation');
+			const windowHeight = $(window).height();
+			const elementTop = $this.offset().top;
+			const elementBottom = elementTop + $this.outerHeight();
+
+			if (elementTop < $(window).scrollTop() + windowHeight && elementBottom > $(window).scrollTop()) {
+				if (!$this.hasClass('animated')) {
+					let delayFactor = 0.05;
+					const settings = $this.parent().parent().data('settings');
+
+					if (settings && settings._animation_delay) {
+						delayFactor = parseFloat(settings._animation_delay) || delayFactor;
+					}
+					if (settings && settings._animation == 'fadeInRight') {
+						$this.addClass('animated bt-animation-right');
+						CleaniraAnimateText(this, delayFactor);
+					} else if (settings && settings._animation == 'fadeInLeft') {
+						$this.addClass('animated bt-animation-left');
+						CleaniraAnimateText(this, delayFactor);
+					} else if (settings && settings._animation == 'fadeInUp') {
+						$this.addClass('animated bt-animation-up');
+						CleaniraAnimateText(this, delayFactor);
+					} else if (settings && settings._animation == 'fadeInDown') {
+						$this.addClass('animated bt-animation-down');
+						CleaniraAnimateText(this, delayFactor);
+					}
+				}
+			}
+		});
+		$('.bt-text-animation').each(function () {
+			const $this = $(this);
+			const windowHeight = $(window).height();
+			const elementTop = $this.offset().top;
+			const elementBottom = elementTop + $this.outerHeight();
+
+			if (elementTop < $(window).scrollTop() + windowHeight && elementBottom > $(window).scrollTop()) {
+				if (!$this.hasClass('animated')) {
+					let delayFactor = 0.05;
+					$this.addClass('animated animation-right');
+					CleaniraAnimateText(this, delayFactor);
+				}
+			}
+		});
+	}
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -221,6 +293,7 @@
 		// CleaniraUnitsCustom();
 		CleaniraCheckboxCustom();
 		CleaniraBorderTop();
+		CleaniraCheckVisibilityText();
 	});
 
 	jQuery(window).on('resize', function () {
@@ -229,7 +302,6 @@
 	});
 
 	jQuery(window).on('scroll', function () {
-
+		CleaniraCheckVisibilityText();
 	});
-
 })(jQuery);

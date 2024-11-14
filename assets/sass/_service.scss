@@ -1,3 +1,79 @@
+.__bt-service-style-default {
+  .bt-post {
+    &--inner {
+      border-radius: 20px;
+      overflow: hidden;
+      background-color: #fff;
+    }
+    &--image {
+      position: relative;
+      min-height: 249px;
+      padding: 32px 32px 0;
+      @media(max-width:$break-lg) and (min-width:$break-tl){
+        padding: 32px 15px 0;
+      }
+      @media(max-width: $break-xs){
+        padding: 32px 20px 0;
+      }
+      svg {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+      img {
+        position: relative;
+      }
+    }
+    &--infor {
+      padding: 0 32px 32px;
+      @media(max-width:$break-lg) and (min-width:$break-tl){
+        padding: 0 15px 30px;
+      }
+      @media(max-width: $break-xs){
+        padding: 0 20px 30px;
+      }
+    }
+    &--title {
+      font-size: 32px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 40px;
+      text-align: left;
+      margin: 24px 0;
+      @media(max-width:$break-lg) and (min-width:$break-tl){
+        margin: 12px 0;
+        font-size: 27px;
+      }
+      @media(max-width: $break-xs){
+        margin: 12px 0;
+        font-size: 27px;
+      }
+    }
+    .bt-service-types {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      li {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 30px;
+        &:not(:last-child) {
+          margin-bottom: 8px;
+        }
+        @media(max-width:$break-lg) and (min-width:$break-tl){
+          font-size: 16px;
+        }
+        @media(max-width: $break-xs){
+          font-size: 16px;
+        }
+      }
+    }
+  }
+}
 .bt-elwg-service-list {
   padding: 50px 0 0;
   overflow: hidden;
@@ -8,7 +84,7 @@
       justify-content: space-between;
       background-color: $color-background;
       border-radius: 40px;
-      &:not(:last-child){
+      &:not(:last-child) {
         margin-bottom: 100px;
       }
       &:nth-child(even) {
@@ -25,7 +101,7 @@
           z-index: 2;
         }
       }
-      
+
       .bt-post--content {
         width: 100%;
         max-width: 546px;
@@ -61,7 +137,7 @@
             bottom: 5px;
             width: 24px;
             height: 24px;
-            background-image: url('/wp-content/themes/cleanira/assets/images/checked-blu-Icon.svg');
+            background-image: url("/wp-content/themes/cleanira/assets/images/checked-blu-Icon.svg");
             background-repeat: no-repeat;
             background-size: contain;
           }
@@ -73,7 +149,7 @@
     }
   }
 
-  @media only screen and (max-width:1200px) {
+  @media only screen and (max-width: 1200px) {
     .bt-service-list {
       .bt-service-list-item {
         .bt-post--content {
@@ -82,10 +158,10 @@
       }
     }
   }
-  @media only screen and (max-width:1024px) {
+  @media only screen and (max-width: 1024px) {
     .bt-service-list {
       .bt-service-list-item {
-        &:not(:last-child){
+        &:not(:last-child) {
           margin-bottom: 60px;
         }
         .bt-post--content {
@@ -108,7 +184,7 @@
       }
     }
   }
-  @media only screen and (max-width:768px) {
+  @media only screen and (max-width: 768px) {
     .bt-service-list {
       .bt-service-list-item {
         flex-wrap: wrap;
@@ -124,7 +200,7 @@
       }
     }
   }
-  @media only screen and (max-width:480px) {
+  @media only screen and (max-width: 480px) {
     .bt-service-list {
       .bt-service-list-item {
         .bt-post--img img {

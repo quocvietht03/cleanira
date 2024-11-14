@@ -737,6 +737,13 @@ body {
 			display: block;
 		}
 	}
+	&.elementor-widget-icon {
+		.elementor-icon {
+			-webkit-animation: effectPlayButton2 2s infinite;
+			animation: effectPlayButton2 2s infinite;
+			border-radius: 50%;
+		}
+	}
 }
 
 .bt-play-btn-effect2 {
@@ -747,6 +754,13 @@ body {
 
 		> a {
 			display: block;
+		}
+	}
+	&.elementor-widget-icon {
+		.elementor-icon {
+			-webkit-animation: effectPlayButton2 2s infinite;
+			animation: effectPlayButton2 2s infinite;
+			border-radius: 50%;
 		}
 	}
 }
@@ -830,6 +844,34 @@ body {
 			width: 160px;
 			height: 146px;
 			background-image: url("../images/img-bubble-num.svg");
+			background-size: contain;
+			background-repeat: no-repeat;
+			position: absolute;
+			left: calc(50% - 80px);
+			transform: translateX(-50%);
+			top: 0;
+			animation-name: effectDeformY;
+			animation-duration: 3s;
+			animation-timing-function: ease-in-out;
+			animation-direction: alternate;
+			animation-iteration-count: infinite;
+		}
+	}
+}
+.bt-animation-bubble-number-style2 {
+	.elementor-widget-container {
+		position: relative;
+		animation-name: effectMoveX;
+		animation-duration: 5s;
+		animation-timing-function: ease-in-out;
+		animation-direction: alternate;
+		animation-iteration-count: infinite;
+
+		&:before {
+			content: "";
+			width: 160px;
+			height: 146px;
+			background-image: url("../images/img-bubble-num-02.png");
 			background-size: contain;
 			background-repeat: no-repeat;
 			position: absolute;
@@ -1145,5 +1187,163 @@ body {
 				}
 			}
 		}
+	}
+}
+
+.bt-button-slider {
+	a {
+		position: relative;
+		overflow: hidden;
+		display: inline-flex;
+		&::before {
+			position: absolute;
+			bottom: -30px;
+			width: 30px;
+			content: "";
+			height: 30px;
+			background-image: url("../images/img-bubble-white.png");
+			background-size: contain;
+			background-repeat: no-repeat;
+			left: 10%;
+			display: block !important;
+		}
+		&::after {
+			position: absolute;
+			bottom: -30px;
+			width: 15px;
+			content: "";
+			height: 15px;
+			background-image: url("../images/img-bubble-white.png");
+			background-size: contain;
+			background-repeat: no-repeat;
+			display: block !important;
+			left: 40%;
+		}
+		> div {
+			&::before {
+				position: absolute;
+				bottom: -30px;
+				width: 30px;
+				content: "";
+				height: 30px;
+				background-image: url("../images/img-bubble-white.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				left: 50%;
+			}
+			&::after {
+				position: absolute;
+				bottom: -30px;
+				width: 15px;
+				content: "";
+				height: 15px;
+				background-image: url("../images/img-bubble-white.png");
+				background-size: contain;
+				background-repeat: no-repeat;
+				left: 70%;
+			}
+		}
+		&:hover {
+			box-shadow: 0px 4px 50px 0 rgba(0, 0, 0, 0.1);
+			&::before,
+			&::after {
+				animation:
+					effectBubbleRiseButton 5s linear infinite,
+					effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
+			}
+			&::before {
+				animation-duration: 8s;
+			}
+			&::after {
+				animation-duration: 4s;
+			}
+			> div {
+				&::before,
+				&::after {
+					animation:
+						effectBubbleRiseButton 5s linear infinite,
+						effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
+				}
+				&::before {
+					animation-duration: 5s;
+				}
+				&::after {
+					animation-duration: 3s;
+				}
+			}
+		}
+	}
+}
+@keyframes fadeInRight {
+	from {
+		opacity: 0;
+		transform: translateX(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+@keyframes fadeInLeft {
+	from {
+		opacity: 0;
+		transform: translateX(-50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeInDown {
+	from {
+		opacity: 0;
+		transform: translateY(-50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+.elementor-widget-heading {
+	&.bt-fade-animation {
+		animation-name: none !important;
+		animation-duration: inherit !important;
+	}
+}
+.bt-word {
+	display: inline-block;
+}
+
+.bt-letter {
+	display: inline-block;
+	opacity: 0;
+	transform: translateX(50px);
+	animation: fadeInRight 0.5s ease forwards;
+}
+.bt-animation-left {
+	.bt-letter {
+		animation: fadeInLeft 0.5s ease forwards;
+	}
+}
+.bt-animation-up {
+	.bt-letter {
+		animation: fadeInUp 0.5s ease forwards;
+	}
+}
+.bt-animation-down {
+	.bt-letter {
+		animation: fadeInDown 0.5s ease forwards;
 	}
 }

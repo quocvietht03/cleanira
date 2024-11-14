@@ -331,9 +331,9 @@ class Widget_BrandSlider extends Widget_Base
                                 <?php
                                 $attachment = wp_get_attachment_image_src($item['brand_image']['id'], $settings['thumbnail_size']);
                                 if (!empty($attachment)) {
-                                    echo '<img src=" ' . esc_url($attachment[0]) . ' " alt="">';
+                                    echo '<img src="' . esc_url($attachment[0]) . '" alt="">';
                                 } else {
-                                    echo '<img src=" ' . esc_url($item['brand_image']['url']) . ' " alt="">';
+                                    echo '<img src="' . esc_url($item['brand_image']['url']) . '" alt="">';
                                 }
                                 ?>
                             </div>
