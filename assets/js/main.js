@@ -244,7 +244,7 @@
 			const elementBottom = elementTop + $this.outerHeight();
 
 			if (elementTop < $(window).scrollTop() + windowHeight && elementBottom > $(window).scrollTop()) {
-				if (!$this.hasClass('animated')) {
+				if (!$this.hasClass('bt-animated')) {
 					let delayFactor = 0.05;
 					const settings = $this.parent().parent().data('settings');
 
@@ -252,16 +252,16 @@
 						delayFactor = parseFloat(settings._animation_delay) || delayFactor;
 					}
 					if (settings && settings._animation == 'fadeInRight') {
-						$this.addClass('animated bt-animation-right');
+						$this.addClass('bt-animated bt-animation-right');
 						CleaniraAnimateText(this, delayFactor);
 					} else if (settings && settings._animation == 'fadeInLeft') {
-						$this.addClass('animated bt-animation-left');
+						$this.addClass('bt-animated bt-animation-left');
 						CleaniraAnimateText(this, delayFactor);
 					} else if (settings && settings._animation == 'fadeInUp') {
-						$this.addClass('animated bt-animation-up');
+						$this.addClass('bt-animated bt-animation-up');
 						CleaniraAnimateText(this, delayFactor);
 					} else if (settings && settings._animation == 'fadeInDown') {
-						$this.addClass('animated bt-animation-down');
+						$this.addClass('bt-animated bt-animation-down');
 						CleaniraAnimateText(this, delayFactor);
 					}
 				}
@@ -274,9 +274,9 @@
 			const elementBottom = elementTop + $this.outerHeight();
 
 			if (elementTop < $(window).scrollTop() + windowHeight && elementBottom > $(window).scrollTop()) {
-				if (!$this.hasClass('animated')) {
+				if (!$this.hasClass('bt-animated')) {
 					let delayFactor = 0.05;
-					$this.addClass('animated animation-right');
+					$this.addClass('bt-animated bt-animation-right');
 					CleaniraAnimateText(this, delayFactor);
 				}
 			}
