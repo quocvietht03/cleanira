@@ -244,7 +244,7 @@
       }
       .bt-service-types {
         margin-bottom: 36px;
-        padding-left: 32px;
+        padding-left: 0;
         .bt-type-item {
           position: relative;
           margin-bottom: 8px;
@@ -252,18 +252,9 @@
           font-size: 18px;
           font-weight: 400;
           line-height: 166%;
-          &::before {
-            content: "";
-            display: block;
-            position: absolute;
-            left: -32px;
-            bottom: 5px;
-            width: 24px;
-            height: 24px;
-            background-image: url("/wp-content/themes/cleanira/assets/images/checked-blu-icon.svg");
-            background-repeat: no-repeat;
-            background-size: contain;
-          }
+          display: flex;
+          align-items: center;
+          gap: 8px;
           &:last-child {
             margin-bottom: 0;
           }
