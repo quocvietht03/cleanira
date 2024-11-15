@@ -195,15 +195,13 @@ class Widget_ServicesList extends Widget_Base
 		$this->end_controls_section();
 	}
 
-
 	protected function register_style_section_controls()
 	{
-
 
 		$this->start_controls_section(
 			'section_style_content',
 			[
-				'label' => esc_html__('Content', 'cleanira'),
+				'label' => esc_html__('Items', 'cleanira'),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -212,40 +210,81 @@ class Widget_ServicesList extends Widget_Base
 			[
 				'label' => __('Space Between', 'cleanira'),
 				'type' => Controls_Manager::SLIDER,
-				'default' => [
-					'size' => 30,
-				],
 				'range' => [
 					'px' => [
-						'min' => 1,
-						'max' => 100,
-						'step' => 1,
+						'min' => 0,
+						'max' => 200,
+						'step' => 10,
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bt-service-list ' => 'grid-gap: {{SIZE}}px;',
+					'{{WRAPPER}} .bt-service-list-item' => 'margin-bottom: {{SIZE}}px;',
 				],
 			]
 		);
 		$this->add_control(
-			'icon_style',
+			'section_bg_color',
 			[
-				'label' => __('Icon', 'cleanira'),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-
-		$this->add_control(
-			'icon_color',
-			[
-				'label' => __('Color', 'cleanira'),
+				'label' => __('Background Color', 'cleanira'),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .bt-post--icon svg path' => 'fill: {{VALUE}};',
+					'{{WRAPPER}} .bt-service-list .bt-service-list-item' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
+
+		// Image Style
+		$this->add_control(
+			'img_style',
+			[
+				'label' => __('Image', 'cleanira'),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+		$this->add_control(
+			'img_width_options',
+			[
+				'label' => __('Width Options', 'cleanira'),
+				'type' => Controls_Manager::SELECT,
+				'options' => [
+					'default_width' => 'Default',
+					'custom_width' => 'Custom',
+				],
+				'default' => 'default_width',
+			]
+		);
+		$this->add_control(
+			'img_custom_width',
+			[
+				'label' => esc_html__( 'Image Custom Width', 'cleanira' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px', '%' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+						'step' => 1,
+					],
+					'%' => [
+						'min' => 0,
+						'max' => 100,
+					]
+				],
+				'default' => [
+					'unit' => 'px',
+					'size' => 580,
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bt-post--img img' => 'width: {{SIZE}}{{UNIT}};',
+				],
+				'condition' => [
+					'img_width_options' => 'custom_width',
+				],
+			]
+		);
+
+		// Title Style
 		$this->add_control(
 			'title_style',
 			[
@@ -253,7 +292,6 @@ class Widget_ServicesList extends Widget_Base
 				'type' => Controls_Manager::HEADING,
 			]
 		);
-
 		$this->add_control(
 			'title_color',
 			[
@@ -265,7 +303,6 @@ class Widget_ServicesList extends Widget_Base
 				],
 			]
 		);
-
 		$this->add_control(
 			'title_color_hover',
 			[
@@ -277,7 +314,6 @@ class Widget_ServicesList extends Widget_Base
 				],
 			]
 		);
-
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -285,6 +321,104 @@ class Widget_ServicesList extends Widget_Base
 				'label' => __('Typography', 'cleanira'),
 				'default' => '',
 				'selector' => '{{WRAPPER}} .bt-post--title',
+			]
+		);
+
+		// Content Style
+		$this->add_control(
+			'content_style',
+			[
+				'label' => __('Content', 'cleanira'),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+		$this->add_control(
+			'content_color',
+			[
+				'label' => __('Color', 'cleanira'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-service-types .bt-type-item' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
+			'content_bg_color',
+			[
+				'label' => __('Background Color', 'cleanira'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-post--content' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'content_typography',
+				'label' => __('Typography', 'cleanira'),
+				'default' => '',
+				'selector' => '{{WRAPPER}} .bt-service-types .bt-type-item',
+			]
+		);
+
+		// Button Style
+		$this->add_control(
+			'button_style',
+			[
+				'label' => __('Button', 'cleanira'),
+				'type' => Controls_Manager::HEADING,
+			]
+		);
+		$this->add_control(
+			'button_color',
+			[
+				'label' => __('Color', 'cleanira'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-service--button' => 'color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_control(
+			'button_bg_color',
+			[
+				'label' => __('Background Color', 'cleanira'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-service--button' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'button_typography',
+				'label' => __('Typography', 'cleanira'),
+				'default' => '',
+				'selector' => '{{WRAPPER}} .bt-service--button',
+			]
+		);
+		$this->add_control(
+			'button_icon_size',
+			[
+				'label' => esc_html__( 'Icon Size', 'cleanira' ),
+				'type' => Controls_Manager::SLIDER,
+				'size_units' => [ 'px' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 1,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bt-service--button .bt-button-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+				],
 			]
 		);
 

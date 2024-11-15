@@ -416,10 +416,6 @@
   }
 }
 
-.bt-elwg-page-titlebar {
-  @extend .__bt-page-titlebar-style;
-}
-
 .bt-elwg-step-list {
   &--default {
     position: relative;
@@ -1430,9 +1426,6 @@
         }
       }
     }
-  }
-  &--default {
-    @extend .__bt-service-style-default;
   }
 }
 .bt-elwg-brand-loop-item {

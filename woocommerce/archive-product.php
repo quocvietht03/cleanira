@@ -17,6 +17,9 @@
 
 defined( 'ABSPATH' ) || exit;
 
+global $wp_query;
+$total_products = $wp_query->found_posts;
+
 get_header( 'shop' );
 get_template_part( 'framework/templates/site', 'titlebar');
 
@@ -25,51 +28,61 @@ get_template_part( 'framework/templates/site', 'titlebar');
 	<div class="bt-main-content">
 		<div class="bt-main-products-ss">
 			<div class="bt-container">
-				<?php
-				if ( woocommerce_product_loop() ) {
+				<div class="bt-products-sidebar">
+					<?php get_template_part( 'woocommerce/filter', 'product'); ?>
+				</div>
+				<div class="bt-main-products-inner">
+					<div class="bt-spinner"><?php echo cleanira_get_icon_svg_html('img-spinner-loading'); ?></div>
+					<div class="bt-products-topbar">
+						<div class="bt-results-count"><?php echo $total_products ?> Products Recommended for You</div>
+						<div class="bt-results-orderby">
+							<label for="bt-results-sort-field">Sort by:</label>
+							<select name="bt_product_results_orderby" id="bt-results-sort-field">
+								<option value="date_desc">Date: latest first</option>
+								<option value="date_asc">Date: oldest first</option>
+								<option value="popularity">Popularity</option>
+								<option value="rating">Average Rating</option>
+								<option value="price_desc">Price: high to low</option>
+								<option value="price_asc">Price: low to high</option>
+							</select>
+						</div>
+					</div>
+					<?php
+					if ( woocommerce_product_loop() ) {		
 
-					/**
-					 * Hook: woocommerce_before_shop_loop.
-					 *
-					 * @hooked woocommerce_output_all_notices - 10
-					 * @hooked woocommerce_result_count - 20
-					 * @hooked woocommerce_catalog_ordering - 30
-					 */
-					// do_action( 'woocommerce_before_shop_loop' );
+						woocommerce_product_loop_start();
 
-					woocommerce_product_loop_start();
+						if ( wc_get_loop_prop( 'total' ) ) {
+							while ( have_posts() ) {
+								the_post();
 
-					if ( wc_get_loop_prop( 'total' ) ) {
-						while ( have_posts() ) {
-							the_post();
+								/**
+								 * Hook: woocommerce_shop_loop.
+								 */
+								do_action( 'woocommerce_shop_loop' );
 
-							/**
-							 * Hook: woocommerce_shop_loop.
-							 */
-							do_action( 'woocommerce_shop_loop' );
-
-							wc_get_template_part( 'content', 'product' );
+								wc_get_template_part( 'content', 'product' );
+							}
 						}
+
+						woocommerce_product_loop_end();
+
+						/**
+						 * Hook: woocommerce_after_shop_loop.
+						 *
+						 * @hooked woocommerce_pagination - 10
+						 */
+						do_action( 'woocommerce_after_shop_loop' );
+					} else {
+						/**
+						 * Hook: woocommerce_no_products_found.
+						 *
+						 * @hooked wc_no_products_found - 10
+						 */
+						do_action( 'woocommerce_no_products_found' );
 					}
-
-					woocommerce_product_loop_end();
-
-					/**
-					 * Hook: woocommerce_after_shop_loop.
-					 *
-					 * @hooked woocommerce_pagination - 10
-					 */
-					do_action( 'woocommerce_after_shop_loop' );
-				} else {
-					/**
-					 * Hook: woocommerce_no_products_found.
-					 *
-					 * @hooked wc_no_products_found - 10
-					 */
-					do_action( 'woocommerce_no_products_found' );
-				}
-
-				?>
+					?>
+				</div>
 			</div>
 		</div>
 	</div>

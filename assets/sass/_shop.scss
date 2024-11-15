@@ -1,3 +1,31 @@
+.bt-main-products-ss {
+  .bt-container {
+    display: flex;
+    gap: 40px;
+  }
+  .bt-products-sidebar {
+    width: 100%;
+    max-width: 360px;
+  }
+  .bt-main-products-inner {
+    position: relative;
+    width: 100%;
+    .bt-spinner {
+      display: none;
+      position: absolute;
+      top: 200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+      svg {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+} 
+
 .__bt-loop-product-style {
   .woocommerce-loop-product {
     position: relative;
@@ -88,8 +116,12 @@
       color: #767676;
       display: inline-block;
     }
-    .star-rating {
-      margin: 12px 0 0 0;
+    .bt-product-rating {
+      display: flex;
+      gap: 8px;
+      .star-rating {
+        margin: 0;
+      }
     }
     &__sold {
       background: $color-accent;
@@ -266,11 +298,20 @@
     @extend .__bt-pagination-style;
   }
 
+  .bt-products-topbar {
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .woocommerce-loop-products {
+    position: relative;
     clear: both;
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
+    min-height: 600px;
     &.columns-4 .product {
       width: calc(25% - 23px);
     }

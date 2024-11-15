@@ -165,7 +165,7 @@ if (!function_exists('cleanira_page_title')) {
 			}elseif (is_tax('post_format', 'post-format-chat')){
 				esc_html_e('Chat', 'cleanira');
 			}else{
-				esc_html_e('Archive', 'cleanira');
+				echo get_the_title(wc_get_page_id( 'shop' ));
 			}
 		}else {
 			echo get_the_title();
@@ -195,7 +195,7 @@ if (!function_exists('cleanira_page_breadcrumb')) {
 		}elseif (is_tag()) {
 			echo '<span class="current">' . single_tag_title(esc_html__('Posts tagged: ', 'cleanira'), false) . '</span>';
 		}elseif(is_post_type_archive()){
-			echo '<span class="current">' . post_type_archive_title( esc_html__('Archive: ', 'cleanira'), false ) . '</span>';
+			echo post_type_archive_title('<span class="current">', '</span>');
 		}elseif(is_tax()){
 			echo '<span class="current">' . single_term_title(esc_html__('Archive by taxonomy: ', 'cleanira'), false) . '</span>';
 		}elseif(is_search()){

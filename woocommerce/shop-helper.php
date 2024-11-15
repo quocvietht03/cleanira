@@ -3,7 +3,6 @@
 add_action('cleanira_woocommerce_template_loop_product_link_open', 'woocommerce_template_loop_product_link_open', 10);
 add_action('cleanira_woocommerce_template_loop_product_link_close', 'woocommerce_template_loop_product_link_close', 5);
 add_action('cleanira_woocommerce_show_product_loop_sale_flash', 'woocommerce_show_product_loop_sale_flash', 10);
-add_action('cleanira_woocommerce_template_loop_product_thumbnail', 'woocommerce_template_loop_product_thumbnail', 10);
 add_action('cleanira_woocommerce_template_loop_product_title', 'woocommerce_template_loop_product_title', 10);
 add_action('cleanira_woocommerce_template_loop_rating', 'woocommerce_template_loop_rating', 5);
 add_action('cleanira_woocommerce_template_loop_price', 'woocommerce_template_loop_price', 10);
@@ -174,37 +173,6 @@ function cleanira_woocommerce_custom_field_save($post_id)
     update_post_meta($post_id, '_subtitle', '');
   }
 }
-/* Sold Product */
-function cleanira_woocommerce_item_sold($product_id)
-{
-  $args = array(
-    'status' => 'completed',
-    'limit'  => -1,
-  );
-  $orders = wc_get_orders($args);
-
-  $total_quantity_sold = 0;
-  if (!empty($orders)) {
-    foreach ($orders as $order) {
-      foreach ($order->get_items() as $item) {
-        if ($item->get_product_id() == $product_id) {
-          $total_quantity_sold += $item->get_quantity();
-        }
-      }
-    }
-  }
-  echo '<div class="woocommerce-loop-product__sold">';
-  echo esc_html($total_quantity_sold) . ' ' . esc_html__('Item Sold', 'cleanira');
-  echo '</div>';
-}
-add_action('cleanira_woocommerce_shop_loop_item_sold', 'cleanira_woocommerce_item_sold', 10, 2);
-/* Add Sold Product affer Quanty Single Product */
-function cleanira_display_sold_after_quantity()
-{
-  global $product;
-  cleanira_woocommerce_item_sold($product->get_id());
-}
-add_action('woocommerce_after_add_to_cart_quantity', 'cleanira_display_sold_after_quantity');
 
 /* Remove the additional information tab */
 add_filter('woocommerce_product_tabs', 'cleanira_woocommerce_remove_additional_information_tabs', 98);
@@ -246,17 +214,56 @@ function cleanira_woocommerce_custom_reviews_tab_title($tabs)
   }
   return $tabs;
 }
-/* auto update mini cart */
-add_filter('woocommerce_add_to_cart_fragments', 'cleanira_woocommerce_icon_add_to_cart_fragment');
-if (!function_exists('cleanira_woocommerce_icon_add_to_cart_fragment')) {
-	function cleanira_woocommerce_icon_add_to_cart_fragment($fragments)
-	{
-		global $woocommerce;
-		ob_start();
-?>
-		<span class="cart_total"><?php echo esc_html($woocommerce->cart->cart_contents_count); ?></span>
-<?php
-		$fragments['span.cart_total'] = ob_get_clean();
-		return $fragments;
-	}
+
+/* Custom the "Review" tab title */
+function cleanira_woo_loop_product_thumbnail_size() {
+  // Use the medium_large image size for product thumbnails
+  echo wp_get_attachment_image( get_post_thumbnail_id(), 'medium_large' );
 }
+add_action( 'cleanira_woocommerce_template_loop_product_thumbnail', 'cleanira_woo_loop_product_thumbnail_size', 10 );
+
+
+function cleanira_loop_products_filter_ajax() {
+
+  $keyword   = !empty($_POST['search_keyword']) ? $_POST['search_keyword'] : '';
+  $min_price = isset($_POST['min_price']) ? floatval($_POST['min_price']) : 0;
+  $max_price = isset($_POST['max_price']) ? floatval($_POST['max_price']) : 100;
+  
+  // Set default arguments
+  $args = array(
+    'post_type'      => 'product',
+    'posts_per_page' => isset($_POST['posts_per_page']) ? intval($_POST['posts_per_page']) : 3,
+    'paged'          => isset($_POST['page']) ? intval($_POST['page']) : 1,
+    'post_status'    => 'publish',
+    's'              => $keyword,
+    'meta_query'     => array(
+      array(
+        'key' => '_price',
+        'value' => array($min_price, $max_price),
+        'compare' => 'BETWEEN',
+        'type' => 'DECIMAL'
+      ),
+    ),
+  );
+
+  // Query products with modified arguments
+  $products = new WP_Query($args);
+
+  ob_start();
+  if ($products->have_posts()) {
+    while ($products->have_posts()) {
+      $products->the_post();
+      wc_get_template_part('content', 'product');
+    }
+  } else {
+    echo '<p>No products found.</p>';
+  }
+  wp_reset_postdata();
+  
+  $output = ob_get_clean();
+  echo $output;
+  
+  wp_die();
+}
+add_action('wp_ajax_loop_products_filter', 'cleanira_loop_products_filter_ajax');
+add_action('wp_ajax_nopriv_loop_products_filter', 'cleanira_loop_products_filter_ajax');

@@ -282,6 +282,69 @@
 			}
 		});
 	}
+
+	function CleaniraLoopProductsFilterAjax() {
+		let page = 1;
+    	let loading = false;
+		let mainForm = $('form#bt-products-filter-form');
+		let spinner = $('.bt-spinner');
+		let loopProductsWrapper = $('.woocommerce-loop-products');
+		let loopProduct = loopProductsWrapper.find('.product')
+		let searchKeyword = mainForm.find('input#bt-product-search-keyword').val()
+		let minPrice = mainForm.find('#bt-min-price').val()
+		let maxPrice = mainForm.find('#bt-max-price').val()
+
+		$.ajax({
+            url: AJ_Options.ajax_url,
+            type: 'POST',
+            data: {
+                action: 'loop_products_filter',
+                page: page,
+                posts_per_page: -1,
+                min_price: minPrice,
+                max_price: maxPrice,
+                search_keyword: searchKeyword,
+            },
+            beforeSend: function () {
+                spinner.show()
+				loopProduct.hide()
+            },
+            success: function (response) {
+                loopProductsWrapper.html(response)
+            },
+            complete: function () {
+                loading = false;
+				spinner.hide()
+				loopProduct.show()
+            }
+        });
+	}
+
+	function CleaniraCreatePriceSilder() {
+		// Initialize the noUiSlider for price range
+		const priceSlider = document.getElementById('bt-price-slider');
+		noUiSlider.create(priceSlider, {
+			start: [10, 90],    // Set initial min and max values
+			connect: true,
+			range: {
+				'min': 0,
+				'max': 100       // Set max range for prices
+			},
+			step: 5              // Set step size
+		});
+	
+		// Update displayed min and max values as the slider is moved
+		const minPriceValue = $('#bt-min-price');
+		const maxPriceValue = $('#bt-max-price');
+		priceSlider.noUiSlider.on('update', function (values) {
+			console.log(values);
+			
+			minPriceValue.val(Math.round(values[0]));
+			maxPriceValue.val(Math.round(values[1]));
+			CleaniraLoopProductsFilterAjax();
+		});
+	}
+
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -294,6 +357,7 @@
 		CleaniraCheckboxCustom();
 		CleaniraBorderTop();
 		CleaniraCheckVisibilityText();
+		CleaniraCreatePriceSilder();
 	});
 
 	jQuery(window).on('resize', function () {
@@ -303,5 +367,20 @@
 
 	jQuery(window).on('scroll', function () {
 		CleaniraCheckVisibilityText();
+	});
+
+	jQuery('form #bt-search-product-button').on('click', function(e) {
+		e.preventDefault();
+		CleaniraLoopProductsFilterAjax();
+	});
+
+	jQuery('form #bt-min-price').on('change keyup', function(e) {
+		e.preventDefault();
+		CleaniraLoopProductsFilterAjax();
+	});
+
+	jQuery('form #bt-max-price').on('change keyup', function(e) {
+		e.preventDefault();
+		CleaniraLoopProductsFilterAjax();
 	});
 })(jQuery);
