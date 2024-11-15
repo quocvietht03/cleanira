@@ -38,8 +38,8 @@ if (!function_exists('cleanira_fonts_url')) {
 	function cleanira_fonts_url()
 	{
 		global $cleanira_options;
-		$base_font = 'Cormorant';
-		$head_font = 'DM Sans';
+		$base_font = 'Mulish';
+		$head_font = 'Mulish';
 
 		$font_url = '';
 		if ('off' !== _x('on', 'Google font: on or off', 'cleanira')) {
@@ -61,11 +61,16 @@ if (!function_exists('cleanira_enqueue_scripts')) {
 			wp_enqueue_script('zoom-master', get_template_directory_uri() . '/assets/libs/zoom-master/jquery.zoom.min.js', array('jquery'), '', true);
 		}
 
+		if (is_archive('product')) {
+			wp_enqueue_script('nouislider-script', get_template_directory_uri() . '/assets/libs/nouislider/nouislider.min.js', array('jquery'), '', true);
+			wp_enqueue_style('nouislider-style', get_template_directory_uri() . '/assets/libs/nouislider/nouislider.min.css', array(), false);
+		}
+
 		wp_enqueue_script('select2', get_template_directory_uri() . '/assets/libs/select2/select2.min.js', array('jquery'), '', true);
 		wp_enqueue_style('select2', get_template_directory_uri() . '/assets/libs/select2/select2.min.css', array(), false);
 
 		/* Fonts */
-		wp_enqueue_style('cleanira-fonts', cleanira_fonts_url(), false);
+		// wp_enqueue_style('cleanira-fonts', cleanira_fonts_url(), false);
 		wp_enqueue_style('cleanira-main', get_template_directory_uri() . '/assets/css/main.css',  array(), false);
 		wp_enqueue_style('cleanira-style', get_template_directory_uri() . '/style.css',  array(), false);
 		wp_enqueue_script('cleanira-main', get_template_directory_uri() . '/assets/js/main.js', array('jquery'), '', true);
