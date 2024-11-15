@@ -242,48 +242,6 @@ class Widget_ServicesList extends Widget_Base
 				'type' => Controls_Manager::HEADING,
 			]
 		);
-		$this->add_control(
-			'img_width_options',
-			[
-				'label' => __('Width Options', 'cleanira'),
-				'type' => Controls_Manager::SELECT,
-				'options' => [
-					'default_width' => 'Default',
-					'custom_width' => 'Custom',
-				],
-				'default' => 'default_width',
-			]
-		);
-		$this->add_control(
-			'img_custom_width',
-			[
-				'label' => esc_html__( 'Image Custom Width', 'cleanira' ),
-				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px', '%' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 1000,
-						'step' => 1,
-					],
-					'%' => [
-						'min' => 0,
-						'max' => 100,
-					]
-				],
-				'default' => [
-					'unit' => 'px',
-					'size' => 580,
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--img img' => 'width: {{SIZE}}{{UNIT}};',
-				],
-				'condition' => [
-					'img_width_options' => 'custom_width',
-				],
-			]
-		);
-
 		// Title Style
 		$this->add_control(
 			'title_style',
@@ -379,7 +337,7 @@ class Widget_ServicesList extends Widget_Base
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .bt-service--button' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bt-post--button-booknow a' => 'color: {{VALUE}};',
 				],
 			]
 		);
@@ -390,7 +348,7 @@ class Widget_ServicesList extends Widget_Base
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .bt-service--button' => 'background-color: {{VALUE}};',
+					'{{WRAPPER}} .bt-post--button-booknow a' => 'background-color: {{VALUE}};',
 				],
 			]
 		);
@@ -400,15 +358,15 @@ class Widget_ServicesList extends Widget_Base
 				'name' => 'button_typography',
 				'label' => __('Typography', 'cleanira'),
 				'default' => '',
-				'selector' => '{{WRAPPER}} .bt-service--button',
+				'selector' => '{{WRAPPER}} .bt-post--button-booknow a',
 			]
 		);
 		$this->add_control(
 			'button_icon_size',
 			[
-				'label' => esc_html__( 'Icon Size', 'cleanira' ),
+				'label' => esc_html__('Icon Size', 'cleanira'),
 				'type' => Controls_Manager::SLIDER,
-				'size_units' => [ 'px' ],
+				'size_units' => ['px'],
 				'range' => [
 					'px' => [
 						'min' => 0,
@@ -417,7 +375,7 @@ class Widget_ServicesList extends Widget_Base
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bt-service--button .bt-button-icon svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .bt-post--button-booknow a svg' => 'width: {{SIZE}}{{UNIT}}; height: {{SIZE}}{{UNIT}};',
 				],
 			]
 		);
@@ -496,44 +454,45 @@ class Widget_ServicesList extends Widget_Base
 				<div class="bt-service-list">
 					<?php
 					while ($query->have_posts()) : $query->the_post();
-					$img_1 = get_field('image_template_1', get_the_ID());
-					$img_1_url = !empty($img_1['url']) ? $img_1['url'] : $placeholder_img_url;
-					$service_types = get_field('service_types', get_the_ID());
+						$img_1 = get_field('image_template_1', get_the_ID());
+						$img_1_url = !empty($img_1['url']) ? $img_1['url'] : $placeholder_img_url;
+						$service_types = get_field('service_types', get_the_ID());
 					?>
 						<div class="bt-service-list-item bubble-container">
 							<div class="bt-post--img">
-								<img src="<?php echo esc_url( $img_1_url ) ?>" alt="">
+								<img src="<?php echo esc_url($img_1_url) ?>" alt="">
 							</div>
 							<div class="bt-post--content">
 								<?php echo cleanira_post_title_render(); ?>
 								<?php if (!empty($service_types)): ?>
 									<ul class="bt-service-types">
 										<?php foreach ($service_types as $type): ?>
-											<li class="bt-type-item"><?php echo esc_html( $type['name'] ) ?></li>
+											<li class="bt-type-item"><?php echo esc_html($type['name']) ?></li>
 										<?php endforeach; ?>
 									</ul>
 								<?php endif; ?>
 								<?php echo cleanira_service_button_book_now_render('Request An Estimate'); ?>
 							</div>
+
 							<!-- Small, medium, and large bubbles -->
-							<?php 
-								for ($i = 1; $i <= 10; $i++): 
-									switch ($i) {
-										case 1:
-										case 4:
-										case 7:
-											$bubble_size = 'small';
-											break;
-										case 2:
-										case 5:
-										case 8:
-											$bubble_size = 'large';
-											break;
-										default:
-											$bubble_size = 'medium';
-											break;
-									}
-								?>
+							<?php
+							for ($i = 1; $i <= 10; $i++):
+								switch ($i) {
+									case 1:
+									case 4:
+									case 7:
+										$bubble_size = 'small';
+										break;
+									case 2:
+									case 5:
+									case 8:
+										$bubble_size = 'large';
+										break;
+									default:
+										$bubble_size = 'medium';
+										break;
+								}
+							?>
 								<img class="bubble <?php echo $bubble_size ?>" src="<?php echo CLEANIRA_IMG_DIR . 'img-bubble-white.png'; ?>" alt="">
 							<?php endfor; ?>
 						</div>
@@ -551,7 +510,5 @@ class Widget_ServicesList extends Widget_Base
 		wp_reset_postdata();
 	}
 
-	protected function content_template()
-	{
-	}
+	protected function content_template() {}
 }
