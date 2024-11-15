@@ -560,6 +560,10 @@
     ul.elementor-nav-menu--dropdown {
       min-width: 240px !important;
       padding: 12px;
+      left: -24px !important;
+      ul.elementor-nav-menu--dropdown{
+        left: 0 !important;
+      }
       .elementor-sub-item {
         border-radius: 8px !important;
         border-inline-start: none !important;
