@@ -145,8 +145,8 @@
 .elementor-widget-shortcode {
   width: 100%;
 
-  .tnp-subscription-minimal {
-    margin: 0;
+  .tnp-subscription{
+    margin: 0 auto;
     @extend .__bt-newsletter-form-style;
   }
 }

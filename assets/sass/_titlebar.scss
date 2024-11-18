@@ -1,25 +1,143 @@
 .bt-site-titlebar {
   position: relative;
-  padding: 110px 0;
-  .bt-background-img {
-    display: flex;
+  padding: 109px 0 115px;
+  overflow: hidden;
+  @media (max-width: $break-tl) {
+    padding-top: 60px;
+    padding-bottom: 110px;
+  }
+  @media (max-width: $break-sm) {
+    padding-top: 50px;
+    padding-bottom: 80px;
+  }
+  &:before {
+    content: "";
+    background-image: url("../images/bubble-titlebar-min.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 140px;
+    height: 138px;
     position: absolute;
-    z-index: -1;
-    top: 0;
+    left: 9%;
+    bottom: 14%;
+    animation-name: effectDeformY;
+    animation-duration: 3s;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    animation-iteration-count: infinite;
+    @media (max-width: $break-tl) {
+      width: 93px;
+      height: 92px;
+      left: 2%;
+    }
+    @media (max-width: $break-sm) {
+      width: 70px;
+      height: 69px;
+      left: 2%;
+      bottom: 5%;
+    }
+  }
+  &::after {
+    content: "";
+    background-image: url("../images/bubble-titlebar-min.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 335px;
+    height: 331px;
+    position: absolute;
+    left: 10%;
+    bottom: -67%;
+    transform: rotate(0) scale(1);
+    animation: bubble 6s ease-in-out 3s infinite alternate;
+    @media (max-width: $break-tl) {
+      width: 276px;
+      height: 273px;
+      left: 2%;
+      bottom: -74%;
+    }
+    @media (max-width: $break-sm) {
+      display: none;
+    }
+  }
+  .bt-wave {
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    line-height: 0;
+    direction: ltr;
+    bottom: -1px;
+    transform: rotate(180deg);
+    svg {
+      display: block;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      width: calc(122% + 1.3px);
+      height: 75px;
+      z-index: -1;
+      @media (max-width: $break-tl) {
+        width: calc(127% + 1.3px);
+        height: 55px;
+      }
+      @media (max-width: $break-sm) {
+        width: calc(144% + 1.3px);
+        height: 40px;
+      }
+      path {
+        fill: #fff;
+        transform-origin: center;
+        transform: rotateY(0deg);
+      }
+    }
   }
   .bt-page-titlebar {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    flex-direction: column;
+    &::before {
+      content: "";
+      background-image: url("../images/bubble-titlebar-min.png");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      width: 291px;
+      height: 287px;
+      position: absolute;
+      right: 10%;
+      bottom: -23%;
+      animation-name: effectDeformY;
+      animation-duration: 3s;
+      animation-timing-function: ease-in-out;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+      @media (max-width: $break-tl) {
+        width: 210px;
+        height: 207px;
+        right: 2%;
+        bottom: -28%;
+      }
+      @media (max-width: $break-sm) {
+        width: 134px;
+        height: 132px;
+        bottom: -65px;
+      }
+    }
+
     &--breadcrumb {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 4px;
       font-size: 14px;
-      line-height: 160%;
+      line-height: 22px;
       color: $color-primary;
+      position: relative;
+      z-index: 1;
       .bt-deli {
         display: flex;
       }
@@ -29,71 +147,17 @@
     }
     &--title {
       margin: 12px 0 0;
-    }
-  }
-  &.bubble-container {
-    overflow: hidden;
-    .bubble {
-      bottom: -250px; /* Start below the container */
-      &:nth-of-type(1) {
-        left: 0%;
-        animation-duration: 30s;
-      }
-      &:nth-of-type(2) {
-        left: 10%;
-        animation-duration: 15s;
-      }
-      &:nth-of-type(3) {
-        left: 20%;
-        animation-duration: 25s;
-      }
-      &:nth-of-type(4) {
-        left: 60%;
-        animation-duration: 28s;
-      }
-      &:nth-of-type(5) {
-        left: 70%;
-        animation-duration: 18s;
-      }
-      &:nth-of-type(6) {
-        left: 90%;
-        animation-duration: 22s;
-      }
-    }
-  }
-  @media only screen and (max-width:1440px) {
-    .bt-background-img {
-      top: unset;
-      bottom: 0;
-      left: -200px;
-    }
-    .bt-page-titlebar{
-      &--title {
-        font-size: 44px;
-      }
-    }
-  }
-  @media only screen and (max-width:1024px) {
-    padding: 80px 0;
-    .bt-background-img {
-      left: -400px;
-    }
-    .bt-page-titlebar{
-      &--title {
-        font-size: 36px;
-      }
-    }
-  }
-  @media only screen and (max-width:767px) {
-    padding: 60px 0;
-    .bt-background-img {
-      left: -800px;
-    }
-    .bt-page-titlebar{
-      &--title {
-        font-size: 30px;
+      font-size: 56px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 68px;
+      position: relative;
+      z-index: 1;
+      @media(max-width:$break-sm){
+        margin: 10px 0 0;
+        font-size: 42px;
+        line-height: 1.2em;
       }
     }
   }
 }
-

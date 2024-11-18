@@ -700,10 +700,10 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    border:1px solid #E4E4E4;
-    &:hover{
-      border-color: #C1DCFB;
-      background-color: #C1DCFB;
+    border: 1px solid #e4e4e4;
+    &:hover {
+      border-color: #c1dcfb;
+      background-color: #c1dcfb;
     }
   }
 }
@@ -888,7 +888,7 @@
       font-weight: 700;
       line-height: normal;
       margin: 9px 0 18px 0;
-      span{
+      span {
         font-family: $accent-font;
       }
     }
@@ -951,64 +951,89 @@
 }
 
 .__bt-newsletter-form-style {
+  max-width: 833px;
+  width: 100%;
   form {
     position: relative;
     text-align: left !important;
+    display: flex;
+    gap: 16px;
+    @media(max-width:870px){
+      flex-wrap: wrap;
+      gap: 12px 2%;
+    }
+    label {
+      display: none;
+    }
+    .tnp-field-surname,
+    .tnp-field-email {
+      width: 38%;
+      margin-bottom: 0;
+      @media(max-width:870px){
+        width: 49%;
+      }
+      @media(max-width:$break-xs){
+        width: 100%;
+      }
+    }
+    .tnp-field-button {
+      width: 24%;
+      margin-bottom: 0;
+      @media(max-width:870px){
+        width: 100%;
+      }
+    }
+    input.tnp-surname,
+    input.tnp-surname::placeholder,
+    input.tnp-email,
+    input.tnp-email::placeholder {
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 26px;
+      color: #a2a3ab;
+      font-family: $text-font;
+      border-radius: 52px;
+    }
+    input.tnp-surname,
     input.tnp-email {
       width: 100%;
       border: none;
-      background: #f7f4ef;
-      padding: 15px 34px;
+      background: #fff;
       margin: 0;
       max-width: 100%;
-      margin-bottom: 19px;
+      padding: 14px 16px;
+      color: $color-primary;
       @media (max-width: $break-sm) {
         max-width: 100%;
-        padding: 10px 35px;
-      }
-    }
-
-    input.tnp-email,
-    input.tnp-email::placeholder {
-      font-size: 18px;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 36px;
-      color: #555;
-      font-family: $text-font;
-      border-radius: 10px;
-      @media (max-width: $break-sm) {
-        font-size: 16px;
+        padding: 10px 16px;
       }
     }
     input.tnp-submit {
-      width: unset;
-      min-width: 216px;
-      font-size: 18px;
+      width: auto;
+      font-size: 16px;
       font-family: $text-font;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
-      text-transform: uppercase;
-      padding: 19px 37px 19px 75px;
+      line-height: 24px;
+      text-transform: capitalize;
+      padding: 15px 82px 15px 40px;
       min-height: auto;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0;
-      color: #fff;
-      border: 3px solid $color-accent;
-      background: $color-accent;
-      background-image: url("../images/icon-subcribe.svg");
-      background-position: center left 38px;
+      color: $color-primary;
+      background: $color-secondary;
+      background-image: url("../images/icon-arrow-right-long.svg");
+      background-position: center right 40px;
       background-repeat: no-repeat;
-      background-size: 24px;
+      background-size: 32px;
       z-index: 1;
-      border-radius: 10px;
+      border-radius: 40px;
       @media (max-width: $break-sm) {
-        padding: 16px 30px 15px 60px;
-        background-size: 20px;
-        background-position: center left 32px;
+        padding: 13px 75px 13px 40px;
       }
     }
     .tnp-privacy-field {
@@ -1191,7 +1216,6 @@
   }
 }
 
-
 .bt-primary-btn {
   display: flex;
   width: fit-content;
@@ -1209,7 +1233,7 @@
   &:hover {
     box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
   }
-  @media only screen and (max-width:1024px) {
+  @media only screen and (max-width: 1024px) {
     padding: 12px 26px;
   }
 }

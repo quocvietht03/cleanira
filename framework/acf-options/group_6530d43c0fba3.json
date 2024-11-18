@@ -123,28 +123,6 @@
                     "prepend": "",
                     "append": "",
                     "parent_repeater": "field_67130f61a9159"
-                },
-                {
-                    "key": "field_6713100fa915b",
-                    "label": "Description",
-                    "name": "description",
-                    "aria-label": "",
-                    "type": "textarea",
-                    "instructions": "",
-                    "required": 0,
-                    "conditional_logic": 0,
-                    "wrapper": {
-                        "width": "70",
-                        "class": "",
-                        "id": ""
-                    },
-                    "default_value": "",
-                    "maxlength": "",
-                    "allow_in_bindings": 0,
-                    "rows": 3,
-                    "placeholder": "Service type description",
-                    "new_lines": "",
-                    "parent_repeater": "field_67130f61a9159"
                 }
             ]
         }
@@ -167,5 +145,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1729304010
+    "modified": 1731726612
 }

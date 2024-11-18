@@ -1060,15 +1060,16 @@ body {
 				left: 50%;
 			}
 			&::after {
-				position: absolute;
-				bottom: -30px;
-				width: 15px;
 				content: "";
-				height: 15px;
-				background-image: url("../images/img-bubble-white.png");
-				background-size: contain;
-				background-repeat: no-repeat;
-				left: 70%;
+				position: absolute;
+				width: 55px;
+				height: 55px;
+				background: url("../images/icon-clean.png") no-repeat center / contain;
+				bottom: -10px;
+				left: -50px;
+				transform: translateY(0) rotate(-30deg);
+				z-index: 1;
+				transition: all 2s cubic-bezier(0.11, 0.52, 0.53, 0.79) 0s;
 			}
 		}
 		&:hover {
@@ -1080,24 +1081,25 @@ body {
 					effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
 			}
 			&::before {
-				animation-duration: 8s;
+				animation-duration: 6s;
 			}
 			&::after {
-				animation-duration: 4s;
+				animation-duration: 3s;
 			}
 			.elementor-button-content-wrapper,
 			.bt-heading {
-				&::before,
-				&::after {
+				&::before
+				{
 					animation:
 						effectBubbleRiseButton 5s linear infinite,
 						effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
 				}
 				&::before {
-					animation-duration: 5s;
+					animation-duration: 4s;
 				}
 				&::after {
-					animation-duration: 3s;
+					left: 110%;
+				transform: translateY(0) rotate(30deg);
 				}
 			}
 		}
@@ -1146,15 +1148,16 @@ body {
 				left: 50%;
 			}
 			&::after {
-				position: absolute;
-				bottom: -30px;
-				width: 15px;
 				content: "";
-				height: 15px;
-				background-image: url("../images/img-bubble-blue.png");
-				background-size: contain;
-				background-repeat: no-repeat;
-				left: 70%;
+				position: absolute;
+				width: 55px;
+				height: 55px;
+				background: url("../images/icon-clean.png") no-repeat center / contain;
+				bottom: -10px;
+				left: -50px;
+				transform: translateY(0) rotate(-30deg);
+				z-index: 1;
+				transition: all 2s cubic-bezier(0.11, 0.52, 0.53, 0.79) 0s;
 			}
 		}
 		&:hover {
@@ -1166,24 +1169,24 @@ body {
 					effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
 			}
 			&::before {
-				animation-duration: 8s;
+				animation-duration: 6s;
 			}
 			&::after {
-				animation-duration: 4s;
+				animation-duration: 3s;
 			}
 			.elementor-button-content-wrapper,
 			.bt-heading {
-				&::before,
-				&::after {
+				&::before{
 					animation:
 						effectBubbleRiseButton 5s linear infinite,
 						effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
 				}
 				&::before {
-					animation-duration: 5s;
+					animation-duration: 4s;
 				}
 				&::after {
-					animation-duration: 3s;
+					left: 110%;
+					transform: translateY(0) rotate(30deg);
 				}
 			}
 		}
@@ -1232,15 +1235,16 @@ body {
 				left: 50%;
 			}
 			&::after {
-				position: absolute;
-				bottom: -30px;
-				width: 15px;
 				content: "";
-				height: 15px;
-				background-image: url("../images/img-bubble-white.png");
-				background-size: contain;
-				background-repeat: no-repeat;
-				left: 70%;
+				position: absolute;
+				width: 55px;
+				height: 55px;
+				background: url("../images/icon-clean.png") no-repeat center / contain;
+				bottom: -10px;
+				left: -50px;
+				transform: translateY(0) rotate(-30deg);
+				z-index: 1;
+				transition: all 2s cubic-bezier(0.11, 0.52, 0.53, 0.79) 0s;
 			}
 		}
 		&:hover {
@@ -1252,23 +1256,23 @@ body {
 					effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
 			}
 			&::before {
-				animation-duration: 8s;
+				animation-duration: 6s;
 			}
 			&::after {
-				animation-duration: 4s;
+				animation-duration: 3s;
 			}
 			> div {
-				&::before,
-				&::after {
+				&::before{
 					animation:
 						effectBubbleRiseButton 5s linear infinite,
 						effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
 				}
 				&::before {
-					animation-duration: 5s;
+					animation-duration: 4s;
 				}
 				&::after {
-					animation-duration: 3s;
+					left: 110%;
+					transform: translateY(0) rotate(30deg);
 				}
 			}
 		}
