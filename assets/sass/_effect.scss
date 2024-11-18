@@ -1016,7 +1016,21 @@ body {
 		}
 	}
 }
-
+@keyframes effectcCleaningSwipe {
+	0% {
+		left: -50px;
+		opacity: 1;
+		transform: rotate(-30deg);
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		left: 130%;
+		opacity: 0;
+		transform: rotate(30deg);
+	}
+}
 .bt-button-hover {
 	.elementor-button,
 	.bt-button {
@@ -1069,7 +1083,7 @@ body {
 				left: -50px;
 				transform: translateY(0) rotate(-30deg);
 				z-index: 1;
-				transition: all 2s cubic-bezier(0.11, 0.52, 0.53, 0.79) 0s;
+				opacity: 0;
 			}
 		}
 		&:hover {
@@ -1088,8 +1102,7 @@ body {
 			}
 			.elementor-button-content-wrapper,
 			.bt-heading {
-				&::before
-				{
+				&::before {
 					animation:
 						effectBubbleRiseButton 5s linear infinite,
 						effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
@@ -1098,8 +1111,7 @@ body {
 					animation-duration: 4s;
 				}
 				&::after {
-					left: 110%;
-				transform: translateY(0) rotate(30deg);
+					animation: effectcCleaningSwipe 2.7s cubic-bezier(0.11, 0.52, 0.53, 0.79) forwards;
 				}
 			}
 		}
@@ -1157,7 +1169,7 @@ body {
 				left: -50px;
 				transform: translateY(0) rotate(-30deg);
 				z-index: 1;
-				transition: all 2s cubic-bezier(0.11, 0.52, 0.53, 0.79) 0s;
+				opacity: 0;
 			}
 		}
 		&:hover {
@@ -1176,7 +1188,7 @@ body {
 			}
 			.elementor-button-content-wrapper,
 			.bt-heading {
-				&::before{
+				&::before {
 					animation:
 						effectBubbleRiseButton 5s linear infinite,
 						effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
@@ -1185,8 +1197,7 @@ body {
 					animation-duration: 4s;
 				}
 				&::after {
-					left: 110%;
-					transform: translateY(0) rotate(30deg);
+					animation: effectcCleaningSwipe 2.7s cubic-bezier(0.11, 0.52, 0.53, 0.79) forwards;
 				}
 			}
 		}
@@ -1244,7 +1255,7 @@ body {
 				left: -50px;
 				transform: translateY(0) rotate(-30deg);
 				z-index: 1;
-				transition: all 2s cubic-bezier(0.11, 0.52, 0.53, 0.79) 0s;
+				opacity: 0;
 			}
 		}
 		&:hover {
@@ -1262,7 +1273,7 @@ body {
 				animation-duration: 3s;
 			}
 			> div {
-				&::before{
+				&::before {
 					animation:
 						effectBubbleRiseButton 5s linear infinite,
 						effectBubbleSideWaysButton 2s ease-in-out infinite alternate;
@@ -1271,8 +1282,7 @@ body {
 					animation-duration: 4s;
 				}
 				&::after {
-					left: 110%;
-					transform: translateY(0) rotate(30deg);
+					animation: effectcCleaningSwipe 2.7s cubic-bezier(0.11, 0.52, 0.53, 0.79) forwards;
 				}
 			}
 		}
