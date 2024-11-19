@@ -110,12 +110,13 @@ class Widget_OpeningTime extends Widget_Base
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-
+        if (function_exists('get_field')) {
         $theme_options = get_fields('option');
+        }
         $site_information = '';
         $opening_hours = '';
 
-        if ($theme_options) {
+        if (!empty($theme_options)) {
             $site_information = $theme_options['site_information'];
             $opening_hours = $site_information['opening_hours'];
         } else {
