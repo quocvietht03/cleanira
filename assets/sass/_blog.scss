@@ -262,7 +262,19 @@
 .bt-pagination {
   @extend .__bt-pagination-style;
 }
-
+.bt-main-image-full{
+  .bt-cover-image{
+    aspect-ratio: 3 / 2;
+    max-height: 744px;
+    width: 100%;
+    padding: 0;
+    box-sizing: border-box;
+  }
+}
+.bt-container-single{
+  max-width: 850px;
+  margin: 0 auto;
+}
 .bt-main-post {
   .bt-post {
     &--featured-wrap {

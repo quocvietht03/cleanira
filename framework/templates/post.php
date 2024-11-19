@@ -1,11 +1,10 @@
 <article <?php post_class('bt-post'); ?>>
 	<div class="bt-post--featured-wrap">
-		<?php echo cleanira_post_featured_render('full'); 
-			echo cleanira_post_category_render();
-		?>
+	
 	</div>
 	<div class="bt-post--infor">
 	<?php
+		echo cleanira_post_category_render();
 	echo cleanira_post_publish_render();
 	if (is_single()) {
 		echo cleanira_single_post_title_render();

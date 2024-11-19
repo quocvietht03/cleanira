@@ -4,12 +4,13 @@
  */
 
 get_header();
-get_template_part('framework/templates/site', 'titlebar');
-
 ?>
 
 <main id="bt_main" class="bt-site-main">
-
+	<div class="bt-main-image-full">
+		<?php echo cleanira_post_featured_render('full');
+		?>
+	</div>
 	<div class="bt-container-single">
 		<?php
 		while (have_posts()) : the_post();
