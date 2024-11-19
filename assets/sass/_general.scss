@@ -568,9 +568,8 @@
   font-family: $secondary-font;
   font-size: 26px;
   font-style: normal;
-  font-weight: 600;
-  line-height: 92.308%;
-  letter-spacing: 0.2px;
+  font-weight: 700;
+  line-height: 1.1;
   padding-left: 23px;
   @media (max-width: $break-sm) {
     font-size: 20px;
@@ -592,19 +591,22 @@
   display: flex;
   justify-content: center;
   margin-top: 60px;
+  gap: 8px;
   .page-numbers {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 36px;
-    height: 42px;
+    width: 40px;
+    height: 40px;
     font-family: $primary-font;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
-    line-height: 150%;
+    line-height: 24px;
     color: $color-primary;
     background: transparent;
-    border-radius: 10px;
+    border-radius: 5px;
+    text-transform: capitalize;
+    border:1px solid #E4E4E4;
     &:not(.current, .dots):hover {
       color: $color-accent;
       svg {
@@ -614,20 +616,23 @@
       }
     }
     &.current {
-      width: 42px;
+      width: 40px;
       color: #ffffff;
       background: $color-accent;
     }
     &.prev,
     &.next {
-      width: 42px;
+      width: 40px;
       font-size: 0;
+      svg{
+        width: 16px;
+        height: 16px;
+      }
     }
-    &.prev {
-      margin-right: 20px;
-    }
-    &.next {
-      margin-left: 20px;
+    &.prev{
+      svg{
+        transform: rotate(-180deg);
+      }
     }
     &.dots {
       width: auto;
@@ -958,7 +963,7 @@
     text-align: left !important;
     display: flex;
     gap: 16px;
-    @media(max-width:870px){
+    @media (max-width: 870px) {
       flex-wrap: wrap;
       gap: 12px 2%;
     }
@@ -969,17 +974,17 @@
     .tnp-field-email {
       width: 38%;
       margin-bottom: 0;
-      @media(max-width:870px){
+      @media (max-width: 870px) {
         width: 49%;
       }
-      @media(max-width:$break-xs){
+      @media (max-width: $break-xs) {
         width: 100%;
       }
     }
     .tnp-field-button {
       width: 24%;
       margin-bottom: 0;
-      @media(max-width:870px){
+      @media (max-width: 870px) {
         width: 100%;
       }
     }

@@ -4,16 +4,14 @@
   }
   .wp-block-group {
     margin: 0;
-    background: #f7f4ef;
+    background: $color-background;
     padding: 40px;
-    border-radius: 15px 15px 60px 15px;
+    border-radius: 20px;
     @media (max-width: $break-lg) and (min-width: $break-md) {
       padding: 30px 15px;
-      border-radius: 10px 10px 40px 10px;
     }
     @media (max-width: $break-xs) {
       padding: 30px 15px;
-      border-radius: 10px 10px 40px 10px;
     }
   }
   .wp-block-heading,
