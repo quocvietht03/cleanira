@@ -281,8 +281,8 @@ if ( ! function_exists( 'cleanira_post_nav' ) ) {
 		?>
 		<nav class="bt-post-nav clearfix">
 			<?php
-				previous_post_link('<div class="bt-post-nav--item bt-prev"><span>' . esc_html__('Previous Post', 'cleanira') . '</span><h3>%link</h3></div>');
-				next_post_link('<div class="bt-post-nav--item bt-next"><span>' . esc_html__('Next Post', 'cleanira') . '</span><h3>%link</h3></div>');
+				previous_post_link('<div class="bt-post-nav--item bt-prev"><span>' . esc_html__('Previous', 'cleanira') . '</span><h3>%link</h3></div>');
+				next_post_link('<div class="bt-post-nav--item bt-next"><span>' . esc_html__('Next', 'cleanira') . '</span><h3>%link</h3></div>');
 			?>
 		</nav>
 		<?php

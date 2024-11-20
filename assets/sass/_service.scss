@@ -392,24 +392,6 @@
         h3 {
           font-size: 26px;
         }
-        ul {
-          padding: 0;
-          li {
-            padding-left: 36px;
-            &:before {
-              content: "";
-              display: inline-block;
-              width: 25px;
-              height: 25px;
-              background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNSIgaGVpZ2h0PSIyNSIgdmlld0JveD0iMCAwIDI1IDI1IiBmaWxsPSJub25lIj48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTIwLjkxOTYgNy4wMzMxOEMyMS4zMDA0IDcuNDMzMjAgMjEuMjg0OCA4LjA2NjE3IDIwLjg4NDggOC40NDY5Nkw5LjMyOTI1IDE5LjQ0NzVDOS4xMzE5MiAxOS42MzQ4IDguODY2NDggMTkuNzM0MCA4LjU5NDMxIDE5LjcyMTZDOC4zMjIxNCAxOS43MDkyIDguMDY2ODEgMTkuNTg2MyA3Ljg4NzM1IDE5LjM4MTNMMy40NDI5MSAxNC4zMDQ0QzMuMDc5MTMgMTMuODg4OSAzLjEyMTA5IDEzLjI1NzEgMy41MzY2NCAxMi44OTMzQzMuOTUyMTkgMTIuNTI5NSA0LjU4Mzk2IDEyLjU3MTUgNC45NDc3NSAxMi45ODcxTDguNzA1NDUgMTcuMjc5NUwxOS41MDU4IDYuOTk4MzVDMTkuOTA1OSA2LjYxNzU2IDIwLjUzODggNi42MzMxNiAyMC45MTk2IDcuMDMzMThaIiBmaWxsPSIjMkQ3N0RDIi8+PC9zdmc+");
-              background-size: contain;
-              background-repeat: no-repeat;
-              position: absolute;
-              left: 0;
-              top: 1px;
-            }
-          }
-        }
         .wp-block-image {
           img {
             border-radius: 20px;

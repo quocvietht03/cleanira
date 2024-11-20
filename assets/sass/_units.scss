@@ -72,11 +72,12 @@ ol, ul {
 }
 input:not([type="checkbox"], [type="radio"]), select, textarea {
   font-size: 16px;
-  line-height: 24px;
+  line-height: 26px;
+  font-weight: 400;
   background: #FFFFFF;
-  padding: 18px 24px;
-  border: 1px solid #C7C7C7;
-  border-radius: 5px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  border: 2px solid #e4e4e4;
 }
 select {
   height: 58px;

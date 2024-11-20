@@ -100,7 +100,6 @@
 			}
 		}
 	}
-
 	/* Shop */
 	function CleaniraShop() {
 		if ($('.single-product').length > 0) {
@@ -231,7 +230,31 @@
 			$text.append($wordSpan).append(" ");
 		});
 	}
-
+	/* Validation form comment */
+	function ChambeshiCommentValidation() {
+		if ($('#bt_comment_form').length) {
+			jQuery('#bt_comment_form').validate({
+				rules: {
+					author: {
+						required: true,
+						minlength: 2
+					},
+					email: {
+						required: true,
+						email: true
+					},
+					comment: {
+						required: true,
+						minlength: 20
+					}
+				},
+				errorElement: "div",
+				errorPlacement: function (error, element) {
+					element.after(error);
+				}
+			});
+		}
+	}
 	function CleaniraCheckVisibilityText() {
 		$('.elementor-widget-heading .elementor-heading-title').each(function () {
 			const $this = $(this);
@@ -358,6 +381,7 @@
 		CleaniraCheckboxCustom();
 		CleaniraBorderTop();
 		CleaniraCheckVisibilityText();
+		ChambeshiCommentValidation();
 		CleaniraCreatePriceSilder();
 	});
 
