@@ -80,7 +80,7 @@ class ElementorWidgets
 			'service-loop-item-style-1',
 			'page-title-bar',
 			'site-box-phone',
-			'location-list',
+			'offer-box',
 			'opening-times',
 			'mini-cart',
 			'brand-slider'
@@ -213,7 +213,7 @@ class ElementorWidgets
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\TimeList\Widget_TimeList());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\SiteBoxPhone\Widget_SiteBoxPhone());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\PageTitleBar\Widget_PageTitleBar());
-		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\LocationList\Widget_LocationList());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\OfferBox\Widget_OfferBox());
 
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\OpeningTime\Widget_OpeningTime());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\MiniCart\Widget_MiniCart());

@@ -145,7 +145,7 @@
 .elementor-widget-shortcode {
   width: 100%;
 
-  .tnp-subscription{
+  .tnp-subscription {
     margin: 0 auto;
     @extend .__bt-newsletter-form-style;
   }
@@ -202,10 +202,10 @@
   flex-wrap: wrap;
   gap: 4px 50px;
   &.bt-no-show-icon {
-    svg{
+    svg {
       display: none;
     }
-    span{
+    span {
       width: 100%;
     }
   }
@@ -404,10 +404,10 @@
     font-style: normal;
     font-weight: 400;
     line-height: 22px;
-    .bt-deli{
+    .bt-deli {
       display: flex;
     }
-    .current{
+    .current {
       opacity: 0.5;
     }
     @media (max-width: $break-sm) {
@@ -1341,7 +1341,7 @@
   &--default {
     @extend .__bt-service-style-default;
   }
-  &--style-1{
+  &--style-1 {
     @extend .__bt-service-style-1;
   }
 }
@@ -1447,7 +1447,7 @@
           grid-template-columns: repeat(3, 1fr);
         }
 
-        @media (max-width: $break-sm) { 
+        @media (max-width: $break-sm) {
           grid-template-columns: repeat(2, 1fr);
           grid-gap: 10px;
         }
@@ -2470,6 +2470,283 @@
           object-fit: contain;
           max-width: 100%;
           object-position: center;
+        }
+      }
+    }
+  }
+}
+.bt-elwg-offer-box {
+  &--default {
+    .bt-offer {
+      display: flex;
+      gap: 6px;
+      overflow: hidden;
+      @media (max-width: $break-sm) {
+        flex-direction: column !important;
+      }
+      &--image {
+        width: calc(63% - 3px);
+        position: relative;
+        z-index: 1;
+        @media (max-width: $break-sm) {
+          width: 100%;
+        }
+        img {
+          display: block;
+          height: 100%;
+          object-fit: cover;
+          width: 100%;
+        }
+        .bt-line {
+          &::before {
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            content: "";
+            right: -26px;
+            top: -23px;
+            background: #fff;
+            border-radius: 50%;
+            @media (max-width: $break-sm) {
+              left: -23px;
+              bottom: -26px;
+              top: auto;
+            }
+          }
+          &::after {
+            position: absolute;
+            width: 46px;
+            height: 46px;
+            content: "";
+            right: -26px;
+            bottom: -23px;
+            background: #fff;
+            border-radius: 50%;
+            @media (max-width: $break-sm) {
+              right: -23px;
+              bottom: -26px;
+            }
+          }
+          &-left {
+            position: absolute;
+            width: 20px;
+            border-left: 20px dotted #fff;
+            top: 10px;
+            left: -10px;
+            bottom: 10px;
+            @media (max-width: $break-sm) {
+              bottom: 0;
+            }
+          }
+          &-right {
+            position: absolute;
+            width: 20px;
+            border-left: 20px dotted #fff;
+            top: 10px;
+            right: -13px;
+            bottom: 0px;
+            @media (max-width: $break-sm) {
+              right: -10px;
+            }
+          }
+          &-top {
+            position: absolute;
+            height: 20px;
+            border-top: 20px dotted #fff;
+            left: 10px;
+            top: -10px;
+            right: 50px;
+            @media (max-width: $break-sm) {
+              right: 10px;
+            }
+          }
+          &-bottom {
+            position: absolute;
+            height: 20px;
+            border-top: 20px dotted #fff;
+            left: 10px;
+            bottom: -10px;
+            right: 50px;
+            @media (max-width: $break-sm) {
+              bottom: -13px;
+            }
+          }
+        }
+      }
+      &--infor {
+        width: calc(37% - 3px);
+        position: relative;
+        background: #f1f5fb;
+        padding: 40px;
+        .bt-line {
+          &-right {
+            position: absolute;
+            width: 20px;
+            border-left: 20px dotted #fff;
+            top: 10px;
+            right: -13px;
+            bottom: 10px;
+            @media (max-width: $break-sm) {
+              top: 0;
+            }
+          }
+          &-top {
+            position: absolute;
+            height: 20px;
+            border-top: 20px dotted #fff;
+            left: 50px;
+            top: -10px;
+            right: 10px;
+            @media (max-width: $break-sm) {
+              display: none;
+            }
+          }
+          &-bottom {
+            position: absolute;
+            height: 20px;
+            border-top: 20px dotted #fff;
+            left: 50px;
+            bottom: -10px;
+            right: 10px;
+            @media (max-width: $break-sm) {
+              left: 10px;
+            }
+          }
+          &-left {
+            @media (max-width: $break-sm) {
+              position: absolute;
+              width: 20px;
+              border-left: 20px dotted #fff;
+              top: 0;
+              left: -10px;
+              bottom: 10px;
+            }
+          }
+        }
+        @media (max-width: $break-lg) and (min-width: $break-sm) {
+          padding: 20px;
+        }
+        @media (max-width: $break-sm) {
+          width: 100%;
+        }
+        @media (max-width: $break-xs) {
+          padding: 20px;
+        }
+      }
+      &--inner {
+        padding: 32px;
+        border-radius: 20px;
+        display: flex;
+        gap: 16px;
+        flex-direction: column;
+        background: #fff;
+        @media (max-width: $break-lg) and (min-width: $break-sm) {
+          padding: 20px;
+          gap: 10px;
+        }
+        @media (max-width: $break-xs) {
+          padding: 20px;
+          gap: 13px;
+        }
+      }
+      &--discount {
+        font-size: 44px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 52px;
+        color: $color-accent;
+        text-transform: uppercase;
+        @media (max-width: $break-tl) and (min-width: $break-sm) {
+          font-size: 35px;
+          line-height: 1.1;
+        }
+        @media (max-width: $break-xs) {
+          font-size: 30px;
+          line-height: 1.1;
+        }
+      }
+      &--heading {
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 40px;
+        color: $color-primary;
+        @media (max-width: $break-tl) and (min-width: $break-sm) {
+          font-size: 24px;
+          line-height: 1.2;
+        }
+        @media (max-width: $break-xs) {
+          font-size: 24px;
+          line-height: 1.2;
+        }
+      }
+      &--description {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 26px;
+        color: $color-text;
+        margin: 0;
+        max-width: 320px;
+        @media (max-width: $break-tl) and (min-width: $break-sm) {
+          font-size: 14px;
+        }
+        @media (max-width: $break-xs) {
+          font-size: 14px;
+        }
+      }
+      &.bt-reverse {
+        @media (min-width: $break-sm) {
+          flex-direction: row-reverse;
+          .bt-offer--image {
+            .bt-line {
+              &::before {
+                left: -26px;
+              }
+              &::after {
+                left: -26px;
+              }
+              &-left {
+                left: -13px;
+                bottom: 0;
+              }
+              &-right {
+                right: -10px;
+                bottom: 10px;
+              }
+              &-top {
+                left: 50px;
+                right: 10px;
+              }
+              &-bottom {
+                left: 50px;
+                right: 10px;
+              }
+            }
+          }
+          .bt-offer--infor {
+            .bt-line {
+              &-right {
+                display: none;
+              }
+              &-top {
+                left: 10px;
+                right: 50px;
+              }
+              &-bottom {
+                left: 10px;
+                right: 50px;
+              }
+              &-left {
+                position: absolute;
+                width: 20px;
+                border-left: 20px dotted #fff;
+                top: 10px;
+                left: -10px;
+                bottom: 10px;
+              }
+            }
+          }
         }
       }
     }
