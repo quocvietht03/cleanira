@@ -257,6 +257,12 @@
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   @extend .__bt-post-style-default;
+  @media(max-width:$break-md){
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media(max-width:$break-sm){
+    grid-template-columns: repeat(1, 1fr);
+  }
 }
 
 .bt-pagination {
@@ -492,73 +498,49 @@
     }
   }
 }
-
-
-.bt-related-posts {
-  margin-top: 75px;
-  &--heading {
-    margin-bottom: 32px;
-    .bt-sub {
-      color: $color-accent;
-      font-size: 24px;
-      font-weight: 700;
-      margin: 0;
-      font-family: $accent-font;
-      line-height: normal;
+.bt-form-search {
+  padding-bottom: 50px;
+  border-bottom: 1px solid #e4e4e4;
+  margin-bottom: 50px; 
+  @media(max-width:$break-sm){
+    padding-bottom: 35px;
+    margin-bottom: 35px;
+  }
+  .bt-form-head{
+    color: $color-primary;
+    font-family: $secondary-font;
+    font-size: 45px;
+    font-weight: 700;
+    margin: 0 0 30px 0;
+    text-transform: capitalize;
+    @media(max-width:$break-sm){
+      font-size: 35px;
+      margin: 0 0 20px 0;
     }
-    .bt-head {
-      color: $color-primary;
-      font-family: $secondary-font;
-      font-size: 48px;
-      font-style: normal;
-      font-weight: 600;
-      line-height: normal;
-      margin: 6px 0 0 0;
-      span {
-        color: $color-accent;
-        font-family: $accent-font;
-      }
+    @media(max-width:$break-xs){
+      font-size: 32px;
     }
   }
-  &--list {
+  form {
     display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    @extend .__bt-post-style-default;
-    .bt-post {
-      width: calc(50% - 15px);
-      @media (max-width: $break-tl) and (min-width: 992px) {
-        &--content {
-          padding-left: 15px;
-          padding-right: 15px;
-        }
-        &--info {
-          margin-left: 15px;
-          margin-right: 15px;
-          padding: 9px;
-          .bt-post--publish {
-            padding-right: 10px;
-          }
-          .bt-post-author {
-            padding-left: 10px;
-          }
-        }
-      }
-      @media (max-width: $break-sm) {
+    margin-bottom: 0;
+    label {
+      margin: 0;
+      width: 100%;
+      input {
         width: 100%;
+        border-right: none;
+        border-radius: 10px 0 0 10px;
+        padding: 14px 16px;
+        border: 1px solid #e4e4e4;
       }
     }
-  }
-  @media (max-width: 600px) {
-    margin-top: 45px;
-    &--heading {
-      margin-bottom: 28px;
-      .bt-head {
-        font-size: 45px;
-      }
+    input[type="submit"] {
+      border-radius: 0 10px 10px 0;
     }
   }
 }
+
 
 .bt-post-nav {
   display: flex;
