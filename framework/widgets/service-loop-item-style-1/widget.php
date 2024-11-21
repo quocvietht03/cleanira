@@ -1,4 +1,5 @@
 <?php
+
 namespace CleaniraElementorWidgets\Widgets\ServiceLoopItemStyle1;
 
 use Elementor\Widget_Base;
@@ -42,22 +43,10 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 			]
 		);
 
-		$this->add_control(
-			'show_icon',
-			[
-				'label' => esc_html__('Show Icon', 'cleanira'),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__('Show', 'cleanira'),
-				'label_off' => esc_html__('Hide', 'cleanira'),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
-
 		$this->add_responsive_control(
-			'icon_width',
+			'icon_size',
 			[
-				'label' => __('Icon Width', 'cleanira'),
+				'label' => __('Icon Size', 'cleanira'),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 80,
@@ -70,35 +59,10 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 					],
 				],
 				'selectors' => [
-					'{{WRAPPER}} .bt-post--content .bt-post--icon' => 'width: {{SIZE}}px;',
+					'{{WRAPPER}} .bt-post--content .bt-post--icon' => 'height: {{SIZE}}px;',
 				],
 			]
 		);
-
-		$this->add_control(
-			'show_service_types',
-			[
-				'label' => esc_html__('Show Service Types', 'cleanira'),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__('Show', 'cleanira'),
-				'label_off' => esc_html__('Hide', 'cleanira'),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
-
-		$this->add_control(
-			'show_img_overlay',
-			[
-				'label' => esc_html__('Show Image Overlay', 'cleanira'),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__('Show', 'cleanira'),
-				'label_off' => esc_html__('Hide', 'cleanira'),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
-
 		$this->end_controls_section();
 	}
 
@@ -124,7 +88,17 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 				],
 			]
 		);
-
+		$this->add_control(
+			'show_img_overlay',
+			[
+				'label' => esc_html__('Show Image Overlay', 'cleanira'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__('Show', 'cleanira'),
+				'label_off' => esc_html__('Hide', 'cleanira'),
+				'return_value' => 'yes',
+				'default' => 'yes',
+			]
+		);
 		$this->add_control(
 			'color_overlay',
 			[
@@ -134,9 +108,11 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 				'selectors' => [
 					'{{WRAPPER}} .bt-post .bt-image-overlay path' => 'fill: {{VALUE}};',
 				],
+				'condition' => [
+					'show_img_overlay' => 'yes',
+				],
 			]
 		);
-
 		$this->end_controls_section();
 
 		$this->start_controls_section(
@@ -200,7 +176,7 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 		);
 
 		$this->add_control(
-			'service_style',
+			'service_type_style',
 			[
 				'label' => esc_html__('Service Types', 'cleanira'),
 				'type' => Controls_Manager::HEADING,
@@ -208,7 +184,7 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 		);
 
 		$this->add_control(
-			'service_icon_color',
+			'service_type_icon_color',
 			[
 				'label' => esc_html__('Icon Color', 'cleanira'),
 				'type' => Controls_Manager::COLOR,
@@ -218,11 +194,21 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 				],
 			]
 		);
-
+		$this->add_control(
+			'service_type_color',
+			[
+				'label' => esc_html__('Color', 'cleanira'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '#2D77DC',
+				'selectors' => [
+					'{{WRAPPER}} .bt-post--service-item' => 'color: {{VALUE}};',
+				],
+			]
+		);
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
-				'name' => 'service_typography',
+				'name' => 'service_type_typography',
 				'label' => esc_html__('Typography', 'cleanira'),
 				'default' => '',
 				'selector' => '{{WRAPPER}} .bt-post--services-type .bt-post--service-item',
@@ -230,7 +216,6 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 		);
 
 		$this->end_controls_section();
-
 	}
 
 	protected function register_controls()
@@ -247,7 +232,7 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 
 		$image_template_3 = get_field('image_template_3', $post_id);
 		$service_types = get_field('service_types', $post_id);
-		?>
+?>
 		<div class="bt-elwg-service-loop-item--style-1 bt-image-effect">
 			<article <?php post_class('bt-post'); ?>>
 				<?php if ($settings['show_img_overlay']) { ?>
@@ -263,19 +248,17 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 						<div class="bt-post--left">
 							<div class="bt-post--content">
 								<?php
-								if ($settings['show_icon']) {
-									if (!empty($image_template_3)) {
-										echo '<a href="'. get_the_permalink($post_id) .'">';
-											echo '<img class="bt-post--icon" src="' . $image_template_3['url'] . '" />';
-										echo '</a>';
-									}
+								if (!empty($image_template_3)) {
+									echo '<a href="' . get_the_permalink($post_id) . '">';
+									echo '<img class="bt-post--icon" src="' . $image_template_3['url'] . '" />';
+									echo '</a>';
 								}
 								?>
 								<?php echo cleanira_post_title_render(); ?>
 							</div>
 						</div>
 
-						<?php if (!empty($service_types) && $settings['show_service_types']) { ?>
+						<?php if (!empty($service_types)) { ?>
 							<div class="bt-post--right">
 								<div class="bt-post--services-type">
 									<?php foreach ($service_types as $key => $service) {
@@ -295,11 +278,8 @@ class Widget_ServiceLoopItemStyle1 extends Widget_Base
 				</div>
 			</article>
 		</div>
-		<?php
+<?php
 	}
 
-	protected function content_template()
-	{
-
-	}
+	protected function content_template() {}
 }

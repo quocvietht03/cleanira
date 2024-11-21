@@ -126,356 +126,167 @@ class Widget_OfferBox extends Widget_Base
             ]
         );
         $this->add_control(
-            'offer_list_border',
+            'offer_box_color',
             [
-                'label' => __('Border Width', 'cleanira'),
-                'type' => Controls_Manager::SLIDER,
-                'size_units' => ['px'],
-                'range' => [
-                    'px' => [
-                        'min' => 0,
-                        'max' => 100,
-                        'step' => 1,
-                    ],
-                    '%' => [
-                        'min' => 0,
-                        'max' => 100,
-                    ],
-                ],
-                'default' => [
-                    'unit' => 'px',
-                    'size' => 1,
-                ],
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--item' => 'border-bottom: {{SIZE}}{{UNIT}} solid #e9e9e9;',
-                ],
-            ]
-        );
-        $this->add_control(
-            'offer_list_color',
-            [
-                'label' => __('Border Color', 'cleanira'),
+                'label' => __('Line Color', 'cleanira'),
                 'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--item' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer .bt-line > *' => 'border-color: {{VALUE}};',
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer .bt-line:before' => 'background: {{VALUE}};',
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer .bt-line:after' => 'background: {{VALUE}};',
                 ],
             ]
         );
-        $this->add_responsive_control(
-            'offer_list_maps_height',
+       
+        $this->add_control(
+            'offer_bg_infor',
             [
-                'label' => __('Maps height', 'cleanira'),
-                'type' => Controls_Manager::SLIDER,
-                'default' => [
-                    'size' => 213,
-                ],
-                'range' => [
-                    'px' => [
-                        'min' => 100,
-                        'max' => 800,
-                        'step' => 1,
-                    ],
-                ],
+                'label' => __('Background Info', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
                 'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--maps iframe' => 'height: {{SIZE}}px;',
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--infor' => 'background: {{VALUE}};',
                 ],
             ]
         );
         $this->end_controls_section();
 
         $this->start_controls_section(
-            'section_style_heading',
-            [
-                'label' => esc_html__('Heading', 'cleanira'),
-                'tab' => Controls_Manager::TAB_STYLE,
-            ]
-        );
-        $this->add_control(
-            'offer_title_style',
-            [
-                'label' => esc_html__('Title', 'cleanira'),
-                'type' => Controls_Manager::HEADING,
-            ]
-        );
-        $this->add_control(
-            'offer_title_color',
-            [
-                'label' => __('Color', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-infor .bt-offer-title-wrap h2' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->add_control(
-            'offer_title_hover_color',
-            [
-                'label' => __('Color Hover', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-infor:hover .bt-offer-title-wrap h2' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'offer_title_typography',
-                'label' => __('Typography', 'cleanira'),
-                'default' => '',
-                'selector' => '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-infor .bt-offer-title-wrap h2 ',
-            ]
-        );
-        $this->add_control(
-            'offer_address_color',
-            [
-                'label' => __('Color', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-infor .bt-offer-title-wrap span' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'offer_address_typography',
-                'label' => __('Typography', 'cleanira'),
-                'default' => '',
-                'selector' => '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-infor .bt-offer-title-wrap span',
-            ]
-        );
-        $this->start_controls_tabs('button_style_tabs');
-
-        $this->start_controls_tab(
-            'style_normal',
-            [
-                'label' => __('Normal', 'cleanira'),
-            ]
-        );
-
-        $this->add_control(
-            'button_text_color',
-            [
-                'label' => __('Text Color', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-button a' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'button_bg_color',
-            [
-                'label' => __('Background Color', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-button a' => 'background-color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->add_control(
-            'button_border_color',
-            [
-                'label' => __('border Color', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-button a' => 'border-color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->end_controls_tab();
-
-        $this->start_controls_tab(
-            'style_hover',
-            [
-                'label' => __('Hover', 'cleanira'),
-            ]
-        );
-
-        $this->add_control(
-            'button_text_color_hover',
-            [
-                'label' => __('Text Color', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-button a:hover' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_control(
-            'button_bg_color_hover',
-            [
-                'label' => __('Background Color', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-button a:hover' => 'background-color: {{VALUE}}; border-color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->add_control(
-            'button_border_color_hover',
-            [
-                'label' => __('border Color', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--heading-button a:hover' => 'border-color: {{VALUE}};',
-                ],
-            ]
-        );
-        $this->end_controls_tab();
-
-        $this->end_controls_tabs();
-        $this->end_controls_section();
-        $this->start_controls_section(
-            'section_style_content',
+            'section_style_Content',
             [
                 'label' => esc_html__('Content', 'cleanira'),
                 'tab' => Controls_Manager::TAB_STYLE,
             ]
         );
         $this->add_control(
-            'offer_opening_hours_style',
+            'offer_discount_style',
             [
-                'label' => esc_html__('Opening Hours', 'cleanira'),
+                'label' => esc_html__('Discount', 'cleanira'),
                 'type' => Controls_Manager::HEADING,
             ]
         );
         $this->add_control(
-            'offer_opening_hours_color',
+            'offer_discount_color',
             [
                 'label' => __('Color', 'cleanira'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--oppening-hours .bt-offer-time h3' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--discount' => 'color: {{VALUE}};',
                 ],
             ]
         );
-
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'offer_opening_hours_typography',
+                'name' => 'offer_discount_typography',
                 'label' => __('Typography', 'cleanira'),
                 'default' => '',
-                'selector' => '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--oppening-hours .bt-offer-time h3',
+                'selector' => '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--discount',
             ]
         );
+        
         $this->add_control(
-            'offer_list_time_style',
+            'offer_heading_style',
             [
-                'label' => esc_html__('List Time', 'cleanira'),
+                'label' => esc_html__('Heading', 'cleanira'),
                 'type' => Controls_Manager::HEADING,
             ]
         );
         $this->add_control(
-            'offer_title_list_time_color',
+            'offer_heading_color',
             [
-                'label' => __('Title Color', 'cleanira'),
+                'label' => __('Color', 'cleanira'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--oppening-hours .bt-offer-time--title' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--heading' => 'color: {{VALUE}};',
                 ],
             ]
         );
-
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'offer_title_list_time_typography',
-                'label' => __('Title Typography', 'cleanira'),
+                'name' => 'offer_heading_typography',
+                'label' => __('Typography', 'cleanira'),
                 'default' => '',
-                'selector' => '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--oppening-hours .bt-offer-time--title',
+                'selector' => '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--heading ',
             ]
         );
         $this->add_control(
-            'offer_hours_list_time_color',
+            'offer_description_style',
             [
-                'label' => __('Hours Color', 'cleanira'),
-                'type' => Controls_Manager::COLOR,
-                'default' => '',
-                'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--oppening-hours .bt-offer-time--hours' => 'color: {{VALUE}};',
-                ],
-            ]
-        );
-
-        $this->add_group_control(
-            Group_Control_Typography::get_type(),
-            [
-                'name' => 'offer_hours_list_time_typography',
-                'label' => __('Hours Typography', 'cleanira'),
-                'default' => '',
-                'selector' => '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--oppening-hours .bt-offer-time--hours',
-            ]
-        );
-        $this->add_control(
-            'offer_meta_style',
-            [
-                'label' => esc_html__('Meta', 'cleanira'),
+                'label' => esc_html__('Description', 'cleanira'),
                 'type' => Controls_Manager::HEADING,
             ]
         );
         $this->add_control(
-            'offer_title_meta_color',
+            'offer_description_color',
             [
-                'label' => __('Title Color', 'cleanira'),
+                'label' => __('Color', 'cleanira'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--meta-item .bt-offer-info h4' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--description' => 'color: {{VALUE}};',
                 ],
             ]
         );
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'offer_title_meta_typography',
-                'label' => __('Title Typography', 'cleanira'),
+                'name' => 'offer_description_typography',
+                'label' => __('Typography', 'cleanira'),
                 'default' => '',
-                'selector' => '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--meta-item .bt-offer-info h4',
+                'selector' => '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--description ',
             ]
         );
         $this->add_control(
-            'offer_content_meta_color',
+            'offer_button_style',
             [
-                'label' => __('Content Color', 'cleanira'),
+                'label' => esc_html__('Button', 'cleanira'),
+                'type' => Controls_Manager::HEADING,
+            ]
+        );
+        $this->add_control(
+            'offer_button_color',
+            [
+                'label' => __('Text Color', 'cleanira'),
                 'type' => Controls_Manager::COLOR,
                 'default' => '',
                 'selectors' => [
-                    '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--meta-item .bt-offer-info span' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--button a' => 'color: {{VALUE}};',
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--button a svg path' => 'stroke: {{VALUE}};',
+                ],
+            ]
+        );
+
+        $this->add_control(
+            'offer_button_bg',
+            [
+                'label' => __('Background Color', 'cleanira'),
+                'type' => Controls_Manager::COLOR,
+                'default' => '',
+                'selectors' => [
+                    '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--button a' => 'background-color: {{VALUE}};',
                 ],
             ]
         );
         $this->add_group_control(
             Group_Control_Typography::get_type(),
             [
-                'name' => 'offer_content_meta_typography',
-                'label' => __('Content Typography', 'cleanira'),
+                'name' => 'offer_button_typography',
+                'label' => __('Typography', 'cleanira'),
                 'default' => '',
-                'selector' => '{{WRAPPER}} .bt-elwg-offer-list--default .bt-offer-list--meta-item .bt-offer-info span',
+                'selector' => '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--button a',
             ]
         );
+
         $this->end_controls_section();
     }
 
     protected function register_controls()
     {
         $this->register_layout_section_controls();
-        //     $this->register_style_section_controls();
+          $this->register_style_section_controls();
     }
 
     protected function render()

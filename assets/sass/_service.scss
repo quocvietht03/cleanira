@@ -83,15 +83,21 @@
     position: relative;
     z-index: 1;
     overflow: hidden;
-    @media (max-width: $break-lg) {
-      padding: 32px;
+    @media (max-width: $break-lg) and (min-width:$break-tl) {
+      padding: 20px;
+    }
+    @media (max-width: 850px) and (min-width:$break-sm) {
+      padding: 25px;
+    }
+    @media(max-width:$break-xs){
+      padding: 30px 20px;
     }
     .bt-image-overlay {
       position: absolute;
       top: -1px;
       right: -1px;
       z-index: -1;
-      @media (max-width: $break-tl) {
+      @media (max-width: $break-sm) {
         width: 140px;
         height: 98px;
       }
@@ -111,6 +117,9 @@
     &--right {
       width: calc(100% - 180px);
       padding-left: 30px;
+      @media (max-width: $break-lg) and (min-width:$break-tl) {
+        padding-left: 25px;
+      }
       @media (max-width: $break-tl) {
         width: 100%;
         padding-left: 0;
@@ -119,11 +128,8 @@
     }
     &--content {
       .bt-post--icon {
-        width: 90px;
+        width: auto;
         vertical-align: middle;
-        @media (max-width: $break-tl) {
-          width: 56px;
-        }
       }
       .bt-post--title {
         color: $color-primary;
