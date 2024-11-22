@@ -83,7 +83,8 @@ class ElementorWidgets
 			'offer-box',
 			'opening-times',
 			'mini-cart',
-			'brand-slider'
+			'brand-slider',
+			'list-faq'
 		);
 
 		return $this->widgets;
@@ -218,6 +219,7 @@ class ElementorWidgets
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\OpeningTime\Widget_OpeningTime());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\MiniCart\Widget_MiniCart());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\BrandSlider\Widget_BrandSlider());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\ListFaq\Widget_ListFaq());
 	}
 
 	/**
