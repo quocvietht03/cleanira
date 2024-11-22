@@ -77,15 +77,15 @@ class Widget_ListFaq extends Widget_Base
                 'default' => [
                     [
                         'faq_title' => __('FAQ title 01', 'cleanira'),
-                        'faq_content' => 'Quisque imperdiet dignissim enim dictum finibus. Sed consectetutr convallis enim eget laoreet. Aenean vitae nisl mollis, porta risus vel, dapibus lectus. Etiam ac suscipit eros, eget maximus.'
+                        'faq_content' => 'we provide high-quality, eco-friendly cleaning supplies and equipment for every job. Our products are safe for your family and the environment. If you have specific preferences or sensitivities, let us know, and we will gladly accommodate your requests to ensure your satisfaction!'
                     ],
                     [
                         'faq_title' => __('FAQ title 02', 'cleanira'),
-                        'faq_content' => 'Quisque imperdiet dignissim enim dictum finibus. Sed consectetutr convallis enim eget laoreet. Aenean vitae nisl mollis, porta risus vel, dapibus lectus. Etiam ac suscipit eros, eget maximus.'
+                        'faq_content' => 'we provide high-quality, eco-friendly cleaning supplies and equipment for every job. Our products are safe for your family and the environment. If you have specific preferences or sensitivities, let us know, and we will gladly accommodate your requests to ensure your satisfaction!'
                     ],
                     [
                         'faq_title' => __('FAQ title 03', 'cleanira'),
-                        'faq_content' => 'Quisque imperdiet dignissim enim dictum finibus. Sed consectetutr convallis enim eget laoreet. Aenean vitae nisl mollis, porta risus vel, dapibus lectus. Etiam ac suscipit eros, eget maximus.'
+                        'faq_content' => 'we provide high-quality, eco-friendly cleaning supplies and equipment for every job. Our products are safe for your family and the environment. If you have specific preferences or sensitivities, let us know, and we will gladly accommodate your requests to ensure your satisfaction!'
                     ],
                 ],
                 'title_field' => '{{{ faq_title }}}',

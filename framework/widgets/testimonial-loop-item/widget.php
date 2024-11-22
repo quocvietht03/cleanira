@@ -85,7 +85,17 @@ class Widget_TestimonialLoopItem extends Widget_Base
 				],
 			]
 		);
-
+		$this->add_control(
+			'box_background',
+			[
+				'label' => __('Background', 'cleanira'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-post' => 'background: {{VALUE}};',
+				],
+			]
+		);
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			[

@@ -1,4 +1,5 @@
 <?php
+
 namespace CleaniraElementorWidgets\Widgets\PostGridStyle1;
 
 use Elementor\Widget_Base;
@@ -9,90 +10,98 @@ use Elementor\Group_Control_Typography;
 use Elementor\Group_Control_Border;
 use Elementor\Group_Control_Box_Shadow;
 
-class Widget_PostGridStyle1 extends Widget_Base {
+class Widget_PostGridStyle1 extends Widget_Base
+{
 
-	public function get_name() {
+	public function get_name()
+	{
 		return 'bt-post-grid-style-1';
 	}
 
-	public function get_title() {
-		return __( 'Post Grid Style 1', 'cleanira' );
+	public function get_title()
+	{
+		return __('Post Grid Style 1', 'cleanira');
 	}
 
-  public function get_icon() {
+	public function get_icon()
+	{
 		return 'eicon-posts-ticker';
 	}
 
-	public function get_categories() {
-		return [ 'cleanira' ];
+	public function get_categories()
+	{
+		return ['cleanira'];
 	}
 
-	protected function get_supported_ids() {
+	protected function get_supported_ids()
+	{
 		$supported_ids = [];
 
-		$wp_query = new \WP_Query( array(
-									'post_type' => 'post',
-									'post_status' => 'publish'
-								) );
+		$wp_query = new \WP_Query(array(
+			'post_type' => 'post',
+			'post_status' => 'publish'
+		));
 
-		if ( $wp_query->have_posts() ) {
-	    while ( $wp_query->have_posts() ) {
-        $wp_query->the_post();
-        $supported_ids[get_the_ID()] = get_the_title();
-	    }
+		if ($wp_query->have_posts()) {
+			while ($wp_query->have_posts()) {
+				$wp_query->the_post();
+				$supported_ids[get_the_ID()] = get_the_title();
+			}
 		}
 
 		return $supported_ids;
 	}
 
-	public function get_supported_taxonomies() {
+	public function get_supported_taxonomies()
+	{
 		$supported_taxonomies = [];
 
-		$categories = get_terms( array(
+		$categories = get_terms(array(
 			'taxonomy' => 'post_categories',
-	    'hide_empty' => false,
-		) );
-		if( ! empty( $categories )  && ! is_wp_error( $categories ) ) {
-			foreach ( $categories as $category ) {
-			    $supported_taxonomies[$category->term_id] = $category->name;
+			'hide_empty' => false,
+		));
+		if (! empty($categories)  && ! is_wp_error($categories)) {
+			foreach ($categories as $category) {
+				$supported_taxonomies[$category->term_id] = $category->name;
 			}
 		}
 
 		return $supported_taxonomies;
 	}
 
-	protected function register_layout_section_controls() {
+	protected function register_layout_section_controls()
+	{
 		$this->start_controls_section(
 			'section_layout',
 			[
-				'label' => __( 'Layout', 'cleanira' ),
+				'label' => __('Layout', 'cleanira'),
 			]
 		);
 
 		$this->add_control(
 			'posts_per_page',
 			[
-				'label' => __( 'Posts Per Page', 'cleanira' ),
+				'label' => __('Posts Per Page', 'cleanira'),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 6,
 			]
 		);
 
-    $this->add_group_control(
+		$this->add_group_control(
 			Group_Control_Image_Size::get_type(),
 			[
 				'name' => 'thumbnail',
-				'label' => __( 'Image Size', 'cleanira' ),
+				'label' => __('Image Size', 'cleanira'),
 				'show_label' => true,
 				'default' => 'medium',
-				'exclude' => [ 'custom' ],
+				'exclude' => ['custom'],
 			]
 		);
 
 		$this->add_responsive_control(
 			'image_ratio',
 			[
-				'label' => __( 'Image Ratio', 'cleanira' ),
+				'label' => __('Image Ratio', 'cleanira'),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 0.66,
@@ -110,13 +119,13 @@ class Widget_PostGridStyle1 extends Widget_Base {
 			]
 		);
 
-    $this->add_control(
+		$this->add_control(
 			'show_pagination',
 			[
-				'label' => __( 'Pagination', 'cleanira' ),
+				'label' => __('Pagination', 'cleanira'),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'cleanira' ),
-				'label_off' => __( 'Hide', 'cleanira' ),
+				'label_on' => __('Show', 'cleanira'),
+				'label_off' => __('Hide', 'cleanira'),
 				'default' => '',
 			]
 		);
@@ -124,27 +133,28 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->end_controls_section();
 	}
 
-	protected function register_query_section_controls() {
+	protected function register_query_section_controls()
+	{
 		$this->start_controls_section(
 			'section_query',
 			[
-				'label' => __( 'Query', 'cleanira' ),
+				'label' => __('Query', 'cleanira'),
 			]
 		);
 
-		$this->start_controls_tabs( 'tabs_query' );
+		$this->start_controls_tabs('tabs_query');
 
 		$this->start_controls_tab(
 			'tab_query_include',
 			[
-				'label' => __( 'Include', 'cleanira' ),
+				'label' => __('Include', 'cleanira'),
 			]
 		);
 
 		$this->add_control(
 			'ids',
 			[
-				'label' => __( 'Ids', 'cleanira' ),
+				'label' => __('Ids', 'cleanira'),
 				'type' => Controls_Manager::SELECT2,
 				'options' => $this->get_supported_ids(),
 				'label_block' => true,
@@ -155,7 +165,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'category',
 			[
-				'label' => __( 'Category', 'cleanira' ),
+				'label' => __('Category', 'cleanira'),
 				'type' => Controls_Manager::SELECT2,
 				'options' => $this->get_supported_taxonomies(),
 				'label_block' => true,
@@ -169,14 +179,14 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->start_controls_tab(
 			'tab_query_exnlude',
 			[
-				'label' => __( 'Exclude', 'cleanira' ),
+				'label' => __('Exclude', 'cleanira'),
 			]
 		);
 
 		$this->add_control(
 			'ids_exclude',
 			[
-				'label' => __( 'Ids', 'cleanira' ),
+				'label' => __('Ids', 'cleanira'),
 				'type' => Controls_Manager::SELECT2,
 				'options' => $this->get_supported_ids(),
 				'label_block' => true,
@@ -187,7 +197,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'category_exclude',
 			[
-				'label' => __( 'Category', 'cleanira' ),
+				'label' => __('Category', 'cleanira'),
 				'type' => Controls_Manager::SELECT2,
 				'options' => $this->get_supported_taxonomies(),
 				'label_block' => true,
@@ -198,10 +208,10 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'offset',
 			[
-				'label' => __( 'Offset', 'cleanira' ),
+				'label' => __('Offset', 'cleanira'),
 				'type' => Controls_Manager::NUMBER,
 				'default' => 0,
-				'description' => __( 'Use this setting to skip over posts (e.g. \'2\' to skip over 2 posts).', 'cleanira' ),
+				'description' => __('Use this setting to skip over posts (e.g. \'2\' to skip over 2 posts).', 'cleanira'),
 			]
 		);
 
@@ -212,14 +222,14 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'orderby',
 			[
-				'label' => __( 'Order By', 'cleanira' ),
+				'label' => __('Order By', 'cleanira'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'post_date',
 				'options' => [
-					'post_date' => __( 'Date', 'cleanira' ),
-					'post_title' => __( 'Title', 'cleanira' ),
-					'menu_order' => __( 'Menu Order', 'cleanira' ),
-					'rand' => __( 'Random', 'cleanira' ),
+					'post_date' => __('Date', 'cleanira'),
+					'post_title' => __('Title', 'cleanira'),
+					'menu_order' => __('Menu Order', 'cleanira'),
+					'rand' => __('Random', 'cleanira'),
 				],
 			]
 		);
@@ -227,12 +237,12 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'order',
 			[
-				'label' => __( 'Order', 'cleanira' ),
+				'label' => __('Order', 'cleanira'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'desc',
 				'options' => [
-					'asc' => __( 'ASC', 'cleanira' ),
-					'desc' => __( 'DESC', 'cleanira' ),
+					'asc' => __('ASC', 'cleanira'),
+					'desc' => __('DESC', 'cleanira'),
 				],
 			]
 		);
@@ -241,11 +251,12 @@ class Widget_PostGridStyle1 extends Widget_Base {
 	}
 
 
-	protected function register_style_section_controls() {
+	protected function register_style_section_controls()
+	{
 		$this->start_controls_section(
 			'section_style_image',
 			[
-				'label' => esc_html__( 'Image', 'cleanira' ),
+				'label' => esc_html__('Image', 'cleanira'),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -253,20 +264,21 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'img_border_radius',
 			[
-				'label' => __( 'Border Radius', 'cleanira' ),
+				'label' => __('Border Radius', 'cleanira'),
 				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
+				'size_units' => ['px', '%'],
 				'selectors' => [
 					'{{WRAPPER}} .bt-post--featured .bt-cover-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
 				],
 			]
 		);
 
-		$this->start_controls_tabs( 'thumbnail_effects_tabs' );
+		$this->start_controls_tabs('thumbnail_effects_tabs');
 
-		$this->start_controls_tab( 'thumbnail_tab_normal',
+		$this->start_controls_tab(
+			'thumbnail_tab_normal',
 			[
-				'label' => __( 'Normal', 'cleanira' ),
+				'label' => __('Normal', 'cleanira'),
 			]
 		);
 
@@ -280,155 +292,10 @@ class Widget_PostGridStyle1 extends Widget_Base {
 
 		$this->end_controls_tab();
 
-		$this->start_controls_tab( 'thumbnail_tab_hover',
+		$this->start_controls_tab(
+			'thumbnail_tab_hover',
 			[
-				'label' => __( 'Hover', 'cleanira' ),
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Css_Filter::get_type(),
-			[
-				'name' => 'thumbnail_hover_filters',
-				'selector' => '{{WRAPPER}} .bt-post:hover .bt-post--featured img',
-			]
-		);
-
-		$this->end_controls_tab();
-
-		$this->end_controls_tabs();
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'section_style_box',
-			[
-				'label' => esc_html__( 'Box', 'cleanira' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_control(
-			'box_border_width',
-			[
-				'label' => __( 'Border Width', 'cleanira' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 50,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--inner' => 'border-style: solid; border-width: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
-				],
-			]
-		);
-
-		$this->add_control(
-			'box_border_radius',
-			[
-				'label' => __( 'Border Radius', 'cleanira' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--inner' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->add_responsive_control(
-			'box_padding',
-			[
-				'label' => __( 'Padding', 'cleanira' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px' ],
-				'range' => [
-					'px' => [
-						'min' => 0,
-						'max' => 50,
-					],
-				],
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--inner' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}}',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Box_Shadow::get_type(),
-			[
-				'name' => 'box_shadow',
-				'selector' => '{{WRAPPER}} .bt-post--inner',
-			]
-		);
-
-		$this->add_control(
-			'box_bg_color',
-			[
-				'label' => __( 'Background Color', 'cleanira' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--inner' => 'background-color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->add_control(
-			'box_border_color',
-			[
-				'label' => __( 'Border Color', 'cleanira' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--inner' => 'border-color: {{VALUE}}',
-				],
-			]
-		);
-
-		$this->end_controls_section();
-
-		$this->start_controls_section(
-			'section_style_image',
-			[
-				'label' => esc_html__( 'Image', 'cleanira' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_control(
-			'img_border_radius',
-			[
-				'label' => __( 'Border Radius', 'cleanira' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--featured .bt-cover-image' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
-			]
-		);
-
-		$this->start_controls_tabs( 'thumbnail_effects_tabs' );
-
-		$this->start_controls_tab( 'thumbnail_tab_normal',
-			[
-				'label' => __( 'Normal', 'cleanira' ),
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Css_Filter::get_type(),
-			[
-				'name' => 'thumbnail_filters',
-				'selector' => '{{WRAPPER}} .bt-post--featured img',
-			]
-		);
-
-		$this->end_controls_tab();
-
-		$this->start_controls_tab( 'thumbnail_tab_hover',
-			[
-				'label' => __( 'Hover', 'cleanira' ),
+				'label' => __('Hover', 'cleanira'),
 			]
 		);
 
@@ -449,7 +316,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_content',
 			[
-				'label' => esc_html__( 'Content', 'cleanira' ),
+				'label' => esc_html__('Content', 'cleanira'),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -457,7 +324,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'date_style',
 			[
-				'label' => __( 'Date', 'cleanira' ),
+				'label' => __('Date', 'cleanira'),
 				'type' => Controls_Manager::HEADING,
 			]
 		);
@@ -465,7 +332,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'date_color',
 			[
-				'label' => __( 'Color', 'cleanira' ),
+				'label' => __('Color', 'cleanira'),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -474,23 +341,11 @@ class Widget_PostGridStyle1 extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'date_bg_color',
-			[
-				'label' => __( 'Background Color', 'cleanira' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--publish' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'date_typography',
-				'label' => __( 'Typography', 'cleanira' ),
+				'label' => __('Typography', 'cleanira'),
 				'default' => '',
 				'selector' => '{{WRAPPER}} .bt-post--publish',
 			]
@@ -499,7 +354,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'title_style',
 			[
-				'label' => __( 'Title', 'cleanira' ),
+				'label' => __('Title', 'cleanira'),
 				'type' => Controls_Manager::HEADING,
 			]
 		);
@@ -507,7 +362,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'title_color',
 			[
-				'label' => __( 'Color', 'cleanira' ),
+				'label' => __('Color', 'cleanira'),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -519,7 +374,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'title_color_hover',
 			[
-				'label' => __( 'Color Hover', 'cleanira' ),
+				'label' => __('Color Hover', 'cleanira'),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -532,75 +387,21 @@ class Widget_PostGridStyle1 extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'title_typography',
-				'label' => __( 'Typography', 'cleanira' ),
+				'label' => __('Typography', 'cleanira'),
 				'default' => '',
 				'selector' => '{{WRAPPER}} .bt-post--title',
 			]
 		);
 
-		$this->add_control(
-			'meta_style',
-			[
-				'label' => __( 'Meta', 'cleanira' ),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-
-		$this->add_control(
-			'meta_color',
-			[
-				'label' => __( 'Color', 'cleanira' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--meta' => 'color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'meta_color_hover',
-			[
-				'label' => __( 'Color Hover', 'cleanira' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--meta a:hover' => 'color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'meta_bg_color',
-			[
-				'label' => __( 'Background Color', 'cleanira' ),
-				'type' => Controls_Manager::COLOR,
-				'default' => '',
-				'selectors' => [
-					'{{WRAPPER}} .bt-post--meta' => 'background-color: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'meta_typography',
-				'label' => __( 'Typography', 'cleanira' ),
-				'default' => '',
-				'selector' => '{{WRAPPER}} .bt-post--meta',
-			]
-		);
-
 		$this->end_controls_section();
 
-    $this->start_controls_section(
+		$this->start_controls_section(
 			'section_style_pagination',
 			[
-				'label' => esc_html__( 'Pagination', 'cleanira' ),
+				'label' => esc_html__('Pagination', 'cleanira'),
 				'tab' => Controls_Manager::TAB_STYLE,
-        'condition' => [
-					'show_pagination!'=> '',
+				'condition' => [
+					'show_pagination!' => '',
 				],
 			]
 		);
@@ -608,7 +409,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'pagination_color',
 			[
-				'label' => __( 'Color', 'cleanira' ),
+				'label' => __('Color', 'cleanira'),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -620,7 +421,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->add_control(
 			'pagination_color_hover',
 			[
-				'label' => __( 'Color Hover', 'cleanira' ),
+				'label' => __('Color Hover', 'cleanira'),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -629,10 +430,10 @@ class Widget_PostGridStyle1 extends Widget_Base {
 			]
 		);
 
-    $this->add_control(
+		$this->add_control(
 			'pagination_color_current',
 			[
-				'label' => __( 'Color Current', 'cleanira' ),
+				'label' => __('Color Current', 'cleanira'),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -645,16 +446,16 @@ class Widget_PostGridStyle1 extends Widget_Base {
 			Group_Control_Typography::get_type(),
 			[
 				'name' => 'pagination_typography',
-				'label' => __( 'Typography', 'cleanira' ),
+				'label' => __('Typography', 'cleanira'),
 				'default' => '',
 				'selector' => '{{WRAPPER}} .bt-pagination .page-numbers',
 			]
 		);
 
-    $this->add_responsive_control(
+		$this->add_responsive_control(
 			'pagination_space',
 			[
-				'label' => __( 'Space', 'cleanira' ),
+				'label' => __('Space', 'cleanira'),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'size' => 60,
@@ -675,16 +476,17 @@ class Widget_PostGridStyle1 extends Widget_Base {
 		$this->end_controls_section();
 	}
 
-	protected function register_controls() {
+	protected function register_controls()
+	{
 
 		$this->register_layout_section_controls();
 		$this->register_query_section_controls();
 
 		$this->register_style_section_controls();
-
 	}
 
-	public function query_posts() {
+	public function query_posts()
+	{
 		$settings = $this->get_settings_for_display();
 
 		$args = [
@@ -695,19 +497,19 @@ class Widget_PostGridStyle1 extends Widget_Base {
 			'order' => $settings['order'],
 		];
 
-		if($settings['show_pagination'] == 'yes') {
-			$args['paged'] = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
+		if ($settings['show_pagination'] == 'yes') {
+			$args['paged'] = (get_query_var('paged')) ? get_query_var('paged') : 1;
 		}
 
-		if( ! empty( $settings['ids'] ) ) {
+		if (! empty($settings['ids'])) {
 			$args['post__in'] = $settings['ids'];
 		}
 
-		if( ! empty( $settings['ids_exclude'] ) ) {
+		if (! empty($settings['ids_exclude'])) {
 			$args['post__not_in'] = $settings['ids_exclude'];
 		}
 
-		if( ! empty( $settings['category'] ) ) {
+		if (! empty($settings['category'])) {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' 		=> 'post_categories',
@@ -718,7 +520,7 @@ class Widget_PostGridStyle1 extends Widget_Base {
 			);
 		}
 
-		if( ! empty( $settings['category_exclude'] ) ) {
+		if (! empty($settings['category_exclude'])) {
 			$args['tax_query'] = array(
 				array(
 					'taxonomy' 		=> 'post_categories',
@@ -729,44 +531,42 @@ class Widget_PostGridStyle1 extends Widget_Base {
 			);
 		}
 
-		if( 0 !== absint( $settings['offset'] ) ) {
+		if (0 !== absint($settings['offset'])) {
 			$args['offset'] = $settings['offset'];
 		}
 
-		return $query = new \WP_Query( $args );
+		return $query = new \WP_Query($args);
 	}
 
-	protected function render() {
-    $settings = $this->get_settings_for_display();
+	protected function render()
+	{
+		$settings = $this->get_settings_for_display();
 		$query = $this->query_posts();
 
-    ?>
-      <div class="bt-elwg-post-grid--style-1">
-        <?php
-          if( $query->have_posts() ) {
-            ?>
-              <div class="bt-post-grid">
-                <?php
-                  while ( $query->have_posts() ) : $query->the_post();
-                    get_template_part( 'framework/templates/post', 'style1', array('image-size' => $settings['thumbnail_size'], 'layout' => 'default'));
-                  endwhile;
-                ?>
-              </div>
-            <?php
-            if($settings['show_pagination'] == 'yes') {
-              cleanira_paginate_links($query);
-            }
-          } else {
-            get_template_part( 'framework/templates/post', 'none');
-          }
-        ?>
-      </div>
-    <?php
+?>
+		<div class="bt-elwg-post-grid--style-1">
+			<?php
+			if ($query->have_posts()) {
+			?>
+				<div class="bt-post-grid">
+					<?php
+					while ($query->have_posts()) : $query->the_post();
+						get_template_part('framework/templates/post', 'style1', array('image-size' => $settings['thumbnail_size'], 'layout' => 'default'));
+					endwhile;
+					?>
+				</div>
+			<?php
+				if ($settings['show_pagination'] == 'yes') {
+					cleanira_paginate_links($query);
+				}
+			} else {
+				get_template_part('framework/templates/post', 'none');
+			}
+			?>
+		</div>
+<?php
 		wp_reset_postdata();
 	}
 
-	protected function content_template() {
-
-	}
-
+	protected function content_template() {}
 }
