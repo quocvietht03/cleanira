@@ -29,7 +29,7 @@ get_template_part( 'framework/templates/site', 'titlebar');
 		<div class="bt-main-products-ss">
 			<div class="bt-container">
 				<div class="bt-products-sidebar">
-					<?php get_template_part( 'woocommerce/filter', 'product'); ?>
+					<?php get_template_part( 'woocommerce/sidebar', 'product'); ?>
 				</div>
 				<div class="bt-main-products-inner">
 					<div class="bt-spinner"><?php echo cleanira_get_icon_svg_html('img-spinner-loading'); ?></div>
@@ -47,6 +47,7 @@ get_template_part( 'framework/templates/site', 'titlebar');
 							</select>
 						</div>
 					</div>
+					<div class="bt-product-layout">
 					<?php
 					if ( woocommerce_product_loop() ) {		
 
@@ -79,9 +80,10 @@ get_template_part( 'framework/templates/site', 'titlebar');
 						 *
 						 * @hooked wc_no_products_found - 10
 						 */
-						do_action( 'woocommerce_no_products_found' );
+						//do_action( 'woocommerce_no_products_found' );
 					}
 					?>
+					</div>
 				</div>
 			</div>
 		</div>

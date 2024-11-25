@@ -199,3 +199,4 @@ function bt_custom_posts_per_page($query) {
 		$query->set( 'posts_per_page', 12 );
 	}
 };
+
