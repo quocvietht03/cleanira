@@ -143,6 +143,10 @@
       }
       .current {
         opacity: 0.5;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        flex-wrap: wrap;
       }
     }
     &--title {
@@ -153,7 +157,7 @@
       line-height: 68px;
       position: relative;
       z-index: 1;
-      @media(max-width:$break-sm){
+      @media (max-width: $break-sm) {
         margin: 10px 0 0;
         font-size: 42px;
         line-height: 1.2em;

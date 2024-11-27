@@ -26,7 +26,7 @@ if ( ! wc_review_ratings_enabled() ) {
 }
 ?>
 <div class="bt-product-rating">
-    <?php echo wc_get_rating_html( $product->get_average_rating() ); // WordPress.XSS.EscapeOutput.OutputNotEscaped. ?>
+    <?php echo wc_get_rating_html( $product->get_average_rating() );  ?>
     <?php if ($product->get_rating_count()): ?>
         <div class="bt-product-rating--count">
             (<?php echo $product->get_rating_count(); ?>)
