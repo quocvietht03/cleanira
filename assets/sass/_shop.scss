@@ -111,7 +111,7 @@
               display: flex;
               flex-direction: column;
               gap: 12px;
-              max-height: 210px;
+              max-height: 230px;
             }
             .bt-field-item {
               position: relative;
@@ -168,10 +168,12 @@
               border-radius: 0;
               box-shadow: none;
               width: calc(100% - 15px);
+              cursor: pointer;
               .noUi-connect {
                 background: $color-accent;
               }
               .noUi-handle {
+                cursor: pointer;
                 &::before,
                 &::after {
                   display: none;
@@ -252,6 +254,7 @@
                 opacity: 0;
                 top: 0;
                 left: 0;
+                cursor: pointer;
               }
               &:has(input:checked) {
                 span {
@@ -269,6 +272,7 @@
                 display: flex;
                 margin: 0;
                 align-items: center;
+                cursor: pointer;
                 span {
                   margin-left: 8px;
                 }
@@ -280,6 +284,7 @@
                 line-height: 26px;
                 color: $color-text;
                 text-transform: capitalize;
+                cursor: pointer;
               }
               .check-rating {
                 position: absolute;
@@ -291,6 +296,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                cursor: pointer;
                 &::before {
                   content: "";
                   width: 9px;
@@ -390,7 +396,7 @@
     z-index: 1001;
     display: flex;
     margin-top: 30px;
-    transition: transform 0.5s ease;
+    transition: transform 0.2s ease;
     transform: scale(0);
     &.show {
       transform: scale(1);

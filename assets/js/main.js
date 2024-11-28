@@ -440,11 +440,12 @@
 					url: AJ_Options.ajax_url,
 					data: param_ajax,
 					beforeSend: function () {
-						$('body').append('<div class="bt-popup-compare"><div class="bt-compare-overlay"></div><div class="bt-compare-body"><div class="bt-loading-wave"></div><div class="bt-compare-close"></div><div class="bt-compare-load"></div></div></div>').fadeIn('slow');
+						
 					},
 					success: function (response) {
 						if (response.success) {
 							setTimeout(function () {
+								$('body').append('<div class="bt-popup-compare"><div class="bt-compare-overlay"></div><div class="bt-compare-body"><div class="bt-loading-wave"></div><div class="bt-compare-close"></div><div class="bt-compare-load"></div></div></div>').fadeIn('slow');
 								$('.bt-compare-body').addClass('show');
 								$('.bt-popup-compare .bt-compare-load').html(response.data['product']).fadeIn('slow');
 							}, 100);
@@ -468,9 +469,9 @@
 				setTimeout(function () {
 					$('.bt-popup-compare').remove();
 				}, 300);
-				
+
 			});
-			
+
 		}
 		$(document).on('click', '.bt-remove-item', function (e) {
 			e.preventDefault();
