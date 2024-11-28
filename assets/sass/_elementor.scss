@@ -2846,6 +2846,9 @@
         align-items: center;
         justify-content: center;
         min-height: 165px;
+        .bt-loading-wave{
+          opacity: 0;
+        }
       }
       .bt-product-list {
         width: 100%;

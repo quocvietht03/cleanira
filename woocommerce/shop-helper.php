@@ -862,7 +862,7 @@ function cleanira_products_compare()
                     <path d="M256 512a25 25 0 0 1-25-25V25a25 25 0 0 1 50 0v462a25 25 0 0 1-25 25z"></path>
                     <path d="M487 281H25a25 25 0 0 1 0-50h462a25 25 0 0 1 0 50z"></path>
                   </svg>
-                  <span> <?php echo __('Add Product To Compare', 'autoart'); ?></span>
+                  <span> <?php echo __('Add Product To Compare', 'cleanira'); ?></span>
                 </div>
               </div>
               <div class="bt-table--col bt-name">
@@ -955,7 +955,7 @@ function cleanira_products_wishlist()
     }
     $output['items'] = ob_get_clean();
   } else {
-    $output['items'] = '<div class="bt-no-results">' . __('Post not found!', 'cleanira') . '<a href="/shop/">' . __('Back to Shop', 'cleanira') . '</a></div>';
+    $output['items'] = '<div class="bt-no-results">' . __('No products found! ', 'cleanira') . '<a href="/shop/">' . __('Back to Shop', 'cleanira') . '</a></div>';
   }
 
   wp_send_json_success($output);

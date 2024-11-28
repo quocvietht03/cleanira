@@ -422,6 +422,44 @@
 			});
 		}
 	}
+	/* Product Wishlist Load */
+	function CleaniraProductWishlistLoad() {
+		var wishlist_cookie = getCookie('productwishlistcookie');
+
+		if ($('.elementor-widget-bt-product-wishlist').length > 0) {
+			$('.bt-productwishlistcookie').val(wishlist_cookie);
+			
+			var param_ajax = {
+				action: 'cleanira_products_wishlist',
+				productwishlistcookie: wishlist_cookie
+			};
+	
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: AJ_Options.ajax_url,
+				data: param_ajax,
+				context: this,
+				beforeSend: function () {
+					$('.bt-table--body').addClass('loading');
+				},
+				success: function (response) {
+					if (response.success) {
+						setTimeout(function () {
+							$('.bt-product-list').html(response.data['items']).fadeIn('slow');
+							$('.bt-table--body').removeClass('loading');
+						}, 1000);
+	
+					} else {
+						console.log('error');
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log('The following error occured: ' + textStatus, errorThrown);
+				}
+			});
+		}
+	}
 	/* Product compare */
 	function CleaniraProductCompare() {
 		if ($('.bt-product-compare-btn').length > 0) {
@@ -862,6 +900,7 @@
 		//	CleaniraCreatePriceSilder();
 		CleaniraProductCompare();
 		CleaniraProductWishlist();
+		CleaniraProductWishlistLoad();
 		CleaniraProductsFilter();
 		CleaniraProductSidebarToggle();
 		CleaniraAttachTooltips();
