@@ -262,21 +262,21 @@ if (!function_exists('woocommerce_icon_add_to_cart_fragment')) {
 /* Create Product Wishlist Page */
 function cleanira_product_create_pages_support()
 {
-	$product_wishlist_page = get_posts(array(
-		'title' => 'Products Wishlist',
-		'post_type' => 'page',
-		'post_status'    => 'any'
-	));
+  $product_wishlist_page = get_posts(array(
+    'title' => 'Products Wishlist',
+    'post_type' => 'page',
+    'post_status'    => 'any'
+  ));
 
-	if (count($product_wishlist_page) == 0) {
-		wp_insert_post(array(
-			'post_type' => 'page',
-			'post_status' => 'publish',
-			'post_title' => 'Products Wishlist',
-			'post_content' => 'Products Wishlist Page.',
-			'post_name' => 'products-wishlist',
-		));
-	}
+  if (count($product_wishlist_page) == 0) {
+    wp_insert_post(array(
+      'post_type' => 'page',
+      'post_status' => 'publish',
+      'post_title' => 'Products Wishlist',
+      'post_content' => 'Products Wishlist Page.',
+      'post_name' => 'products-wishlist',
+    ));
+  }
 }
 add_action('init', 'cleanira_product_create_pages_support', 1);
 
@@ -778,10 +778,13 @@ function cleanira_products_compare()
     </div>
     <div class="bt-table-compare">
       <div class="bt-table--head">
-        <div class="bt-table--col"><?php esc_html_e('Product Info', 'cleanira') ?></div>
+        <div class="bt-table--col"><?php esc_html_e('Thumbnail', 'cleanira') ?></div>
         <div class="bt-table--col"><?php esc_html_e('Product Name', 'cleanira') ?></div>
         <div class="bt-table--col"><?php esc_html_e('Price', 'cleanira') ?></div>
-        <div class="bt-table--col"><?php esc_html_e('Button', 'cleanira') ?></div>
+        <div class="bt-table--col"><?php esc_html_e('Stock status', 'cleanira') ?></div>
+        <div class="bt-table--col"><?php esc_html_e('Rating', 'cleanira') ?></div>
+        <div class="bt-table--col"><?php esc_html_e('Brand', 'cleanira') ?></div>
+        <div class="bt-table--col"></div>
       </div>
       <div class="bt-table--body">
         <?php
@@ -797,6 +800,17 @@ function cleanira_products_compare()
               $product_image_url = $product_image[0];
             }
             $product_price = $product->get_price_html();
+            $stock_status = $product->is_in_stock() ? __('In Stock', 'cleanira') : __('Out of Stock', 'cleanira');
+            $brand = wp_get_post_terms($id, 'product_brand', ['fields' => 'names']);
+            $brand_list = !empty($brand) ? implode(', ', $brand) : '';
+
+            $brands = wp_get_post_terms($id, 'product_brand', ['fields' => 'all']);
+            $brand_links = [];
+            foreach ($brands as $brand) {
+              $brand_links[] = '<a href="' . get_term_link($brand) . '">' . esc_html($brand->name) . '</a>';
+            }
+            $brand_list = !empty($brand_links) ? implode(', ', $brand_links) : '';
+
         ?>
             <div class="bt-table--row">
               <div class="bt-table--col bt-thumb">
@@ -811,7 +825,23 @@ function cleanira_products_compare()
                 <h3><a href="<?php echo esc_url($product_url); ?>"><?php echo esc_html($product_name); ?></a></h3>
               </div>
               <div class="bt-table--col bt-price">
-                <p><?php echo $product_price; ?></p>
+                <?php echo '<p>' . $product_price . '</p>'; ?>
+              </div>
+              <div class="bt-table--col bt-stock">
+                <?php echo '<p>' . $stock_status . '</p>'; ?>
+              </div>
+              <div class="bt-table--col bt-rating">
+                <div class="bt-product-rating">
+                  <?php echo wc_get_rating_html($product->get_average_rating());  ?>
+                  <?php if ($product->get_rating_count()): ?>
+                    <div class="bt-product-rating--count">
+                      (<?php echo $product->get_rating_count(); ?>)
+                    </div>
+                  <?php endif; ?>
+                </div>
+              </div>
+              <div class="bt-table--col bt-brand">
+                <?php echo '<p>' . $brand_list . '</p>'; ?>
               </div>
               <div class="bt-table--col bt-add-to-cart">
                 <a href="?add-to-cart=<?php echo $id; ?>" aria-describedby="woocommerce_loop_add_to_cart_link_describedby_<?php echo $id; ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="<?php echo $id; ?>" data-product_sku="" rel="nofollow"><?php esc_attr_e('Add to cart', 'cleanira') ?></a>
@@ -840,6 +870,12 @@ function cleanira_products_compare()
               </div>
               <div class="bt-table--col bt-price">
 
+              </div>
+              <div class="bt-table--col bt-stock">
+              </div>
+              <div class="bt-table--col bt-rating">
+              </div>
+              <div class="bt-table--col bt-brand">
               </div>
               <div class="bt-table--col bt-add-to-cart">
 

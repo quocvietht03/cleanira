@@ -1,6 +1,6 @@
 <?php
 get_header();
-// get_template_part( 'framework/templates/site', 'titlebar');
+get_template_part( 'framework/templates/site', 'titlebar');
 
 ?>
 <main id="bt_main" class="bt-site-main">
