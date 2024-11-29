@@ -17,9 +17,10 @@ add_action('cleanira_woocommerce_template_single_add_to_cart', 'woocommerce_temp
 add_action('cleanira_woocommerce_template_single_meta', 'woocommerce_template_single_meta', 40);
 add_action('cleanira_woocommerce_template_single_sharing', 'woocommerce_template_single_sharing', 50);
 
-
+add_action('cleanira_woocommerce_template_cross_sell', 'woocommerce_cross_sell_display', 50);
 add_action('cleanira_woocommerce_shop_loop_item_subtitle', 'cleanira_woocommerce_template_loop_subtitle', 10, 2);
 
+remove_action('woocommerce_cart_collaterals', 'woocommerce_cross_sell_display');
 
 function cleanira_woocommerce_template_loop_subtitle()
 {
@@ -951,7 +952,7 @@ function cleanira_products_wishlist()
             <a href="?add-to-cart=<?php echo esc_attr($product_id); ?>" aria-describedby="woocommerce_loop_add_to_cart_link_describedby_<?php echo esc_attr($product_id); ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="<?php echo esc_attr($product_id); ?>" data-product_sku="" rel="nofollow"><?php esc_attr_e('Add to cart', 'cleanira') ?></a>
           </div>
         </div>
-<?php }
+  <?php }
     }
     $output['items'] = ob_get_clean();
   } else {
@@ -964,3 +965,61 @@ function cleanira_products_wishlist()
 }
 add_action('wp_ajax_cleanira_products_wishlist', 'cleanira_products_wishlist');
 add_action('wp_ajax_nopriv_cleanira_products_wishlist', 'cleanira_products_wishlist');
+
+/* get price freeship */
+function cleanira_get_free_shipping_minimum_amount()
+{
+  $shipping_zones = WC_Shipping_Zones::get_zones();
+
+  foreach ($shipping_zones as $zone) {
+    $shipping_methods = $zone['shipping_methods'];
+
+    foreach ($shipping_methods as $method) {
+      if ($method->id === 'free_shipping') {
+        if (isset($method->min_amount)) {
+          return $method->min_amount;
+        }
+      }
+    }
+  }
+  return 0;
+}
+function cleanira_get_free_shipping()
+{
+  $free_shipping_threshold = cleanira_get_free_shipping_minimum_amount();
+  $cart_total = WC()->cart->get_cart_contents_total();
+  $currency_symbol = get_woocommerce_currency_symbol();
+  if ($cart_total < $free_shipping_threshold) {
+    $amount_left = $free_shipping_threshold - $cart_total;
+    $output['percentage'] = ($cart_total / $free_shipping_threshold) * 100;
+    $output['message'] = sprintf(
+      __('<p class="bt-buy-more">Buy <span>%1$s%2$.2f</span> more to get <span>Freeship</span></p>', 'cleanira'),
+      $currency_symbol,
+      $amount_left
+    );
+  } else {
+    $output['message'] = __('<p class="bt-congratulation">Congratulations! You have free shipping!</p>', 'cleanira');
+    $output['percentage'] = 100;
+  }
+  ?>
+<?php
+  wp_send_json_success($output);
+}
+
+add_action('wp_ajax_cleanira_get_free_shipping', 'cleanira_get_free_shipping');
+add_action('wp_ajax_nopriv_cleanira_get_free_shipping', 'cleanira_get_free_shipping');
+
+add_filter( 'woocommerce_cross_sells_total', 'bt_limit_cross_sells_display' );
+add_filter( 'woocommerce_cross_sells_columns', 'bt_set_cross_sells_columns' );
+add_filter( 'woocommerce_product_cross_sells_products_heading', 'bt_custom_cross_sells_title' );
+
+function bt_custom_cross_sells_title( $title ) {
+    return esc_html__('Related Products', 'cleanira' ); 
+}
+function bt_limit_cross_sells_display( $limit ) {
+    return 4; // Limit to 4 products
+}
+
+function bt_set_cross_sells_columns( $columns ) {
+    return 4; // Set columns to 2
+}
