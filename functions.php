@@ -25,11 +25,19 @@ add_filter('upload_mimes', 'cleanira_mime_types');
 
 /* Get icon SVG HTML */
 function cleanira_get_icon_svg_html($icon_file_name) {
-    if ($icon_file_name) {
-        return file_get_contents(CLEANIRA_IMG_DIR . $icon_file_name.'.svg');
-    }
-    else {
-        return 'File not found!';
+    // Check if the icon file name is provided and sanitize it.
+    if (!empty($icon_file_name)) {
+        $file_path = CLEANIRA_IMG_DIR . $icon_file_name . '.svg';
+		// Try to get the file contents.
+		$file = file_get_contents($file_path);
+		// Check if file_get_contents was successful.
+		if ($file !== false) {
+			return $file;
+		} else {
+			return 'Error: File does not exist.';
+		}
+    } else {
+        return 'Error: Invalid file name or file name is missing.';
     }
 }
 
