@@ -2,18 +2,26 @@
 /*
 Template Name: 404 Template
 */
+get_header();
 ?>
-<?php get_header();
-get_template_part( 'framework/templates/site', 'titlebar');
-?>
-
 <main id="bt_main" class="bt-site-main">
 	<div class="bt-main-content-ss">
 		<div class="bt-container">
-			<h2><?php esc_html_e('404 Error', 'cleanira'); ?></h2>
-			<h3><?php esc_html_e('Sorry! The Page Not Found ;(', 'cleanira'); ?></h3>
-			<p><?php esc_html_e('It looks like nothing was found at this location. Maybe try a search?', 'cleanira'); ?></p>
-			<?php get_search_form(); ?>
+			<div class="bt-404-error">
+				<div class="bt-404-error__img">
+					<?php echo cleanira_get_icon_svg_html('img-404-error'); ?>
+				</div>
+				<div class="bt-404-error__content">
+					<h2><?php echo esc_html_e('Oops!', 'cleanira'); ?></h2>
+					<h3><?php echo esc_html_e('Something is Missing.', 'cleanira'); ?></h3>
+					<p><?php echo esc_html_e('The page you are looking for cannot be found. Take a break before trying again.', 'cleanira'); ?></p>
+					<div class="bt-button-hover">
+						<a href="<?php echo esc_url(home_url()); ?>" class="bt-primary-btn bt-button">
+							<span class="bt-heading"><?php echo esc_html_e('Back To Homepage', 'cleanira'); ?></span>
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </main><!-- #main -->
