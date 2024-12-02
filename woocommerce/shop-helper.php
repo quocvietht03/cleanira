@@ -16,11 +16,45 @@ add_action('cleanira_woocommerce_template_single_excerpt', 'woocommerce_template
 add_action('cleanira_woocommerce_template_single_add_to_cart', 'woocommerce_template_single_add_to_cart', 30);
 add_action('cleanira_woocommerce_template_single_meta', 'woocommerce_template_single_meta', 40);
 add_action('cleanira_woocommerce_template_single_sharing', 'woocommerce_template_single_sharing', 50);
-
+add_action('cleanira_checkout_review', 'woocommerce_order_review', 10);
+add_action('cleanira_checkout_order', 'woocommerce_checkout_payment', 20);
 add_action('cleanira_woocommerce_template_cross_sell', 'woocommerce_cross_sell_display', 50);
 add_action('cleanira_woocommerce_shop_loop_item_subtitle', 'cleanira_woocommerce_template_loop_subtitle', 10, 2);
 
 remove_action('woocommerce_cart_collaterals', 'woocommerce_cross_sell_display');
+
+add_action('woocommerce_add_to_cart', 'cleanira_redirect_form_appointment', 20, 0);
+function cleanira_redirect_form_appointment() {
+    if (isset($_POST['pickup_date']) && $_POST['pickup_date'] != '') {
+        WC()->session->set('redirect_after_add_to_cart', true);
+    }
+}
+
+add_action('woocommerce_cart_updated', 'cleanira_redirect_after_add_to_cart');
+function cleanira_redirect_after_add_to_cart() {
+    if (WC()->session->get('redirect_after_add_to_cart')) {
+
+        WC()->session->__unset('redirect_after_add_to_cart');
+        wp_redirect(wc_get_cart_url());
+        exit();
+    }
+}
+
+
+add_filter('get_terms', 'cleanira_exclude_hidden_category', 10, 3);
+
+function cleanira_exclude_hidden_category($terms, $taxonomies, $args)
+{
+  if (in_array('product_cat', $taxonomies)) {
+    $exclude = array('uncategorized');
+    foreach ($terms as $key => $term) {
+      if (is_object($term) && isset($term->slug) && in_array($term->slug, $exclude)) {
+        unset($terms[$key]);
+      }
+    }
+  }
+  return $terms;
+}
 
 function cleanira_woocommerce_template_loop_subtitle()
 {
@@ -673,6 +707,13 @@ function cleanira_products_query_args($params = array(), $limit = 9)
       'terms' => explode(',', $params['product_brand'])
     );
   }
+  $query_tax[] = array(
+    'taxonomy' => 'product_type',
+    'field' => 'slug',
+    'terms' => 'redq_rental',
+    'operator' => 'NOT IN'
+  );
+
   if (!empty($query_tax)) {
     $query_args['tax_query'] = $query_tax;
   }
@@ -703,6 +744,7 @@ function cleanira_products_query_args($params = array(), $limit = 9)
       ),
     );
   }
+
   if (!empty($query_meta)) {
     $query_args['meta_query'] = $query_meta;
     $query_args['relation'] = 'AND';
@@ -1009,17 +1051,20 @@ function cleanira_get_free_shipping()
 add_action('wp_ajax_cleanira_get_free_shipping', 'cleanira_get_free_shipping');
 add_action('wp_ajax_nopriv_cleanira_get_free_shipping', 'cleanira_get_free_shipping');
 
-add_filter( 'woocommerce_cross_sells_total', 'bt_limit_cross_sells_display' );
-add_filter( 'woocommerce_cross_sells_columns', 'bt_set_cross_sells_columns' );
-add_filter( 'woocommerce_product_cross_sells_products_heading', 'bt_custom_cross_sells_title' );
+add_filter('woocommerce_cross_sells_total', 'bt_limit_cross_sells_display');
+add_filter('woocommerce_cross_sells_columns', 'bt_set_cross_sells_columns');
+add_filter('woocommerce_product_cross_sells_products_heading', 'bt_custom_cross_sells_title');
 
-function bt_custom_cross_sells_title( $title ) {
-    return esc_html__('Related Products', 'cleanira' ); 
+function bt_custom_cross_sells_title($title)
+{
+  return esc_html__('Related Products', 'cleanira');
 }
-function bt_limit_cross_sells_display( $limit ) {
-    return 4; // Limit to 4 products
+function bt_limit_cross_sells_display($limit)
+{
+  return 4; // Limit to 4 products
 }
 
-function bt_set_cross_sells_columns( $columns ) {
-    return 4; // Set columns to 2
+function bt_set_cross_sells_columns($columns)
+{
+  return 4; // Set columns to 2
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The Template for displaying all single products
  *
@@ -15,29 +16,38 @@
  * @version     1.6.4
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly
 }
 
-get_header( 'shop' );
-get_template_part( 'framework/templates/site', 'titlebar');
-
+get_header('shop');
+get_template_part('framework/templates/site', 'titlebar');
 ?>
 <main id="bt_main" class="bt-site-main">
 	<div class="bt-main-content">
 		<div class="bt-main-product-ss">
 			<div class="bt-container">
-				<?php while ( have_posts() ) : ?>
-					<?php the_post(); ?>
 
-					<?php wc_get_template_part( 'content', 'single-product' ); ?>
+				<?php while (have_posts()) : ?>
+					<?php the_post();
+					$product_id = get_the_ID();
+					$product = wc_get_product($product_id);
+					$product_type = $product->get_type();
+					if ($product_type == 'redq_rental') {
+						wc_get_template_part('content', 'single-appointment');
+					} else {
+						wc_get_template_part('content', 'single-product');
+					}
+					?>
 
-				<?php endwhile; // end of the loop. ?>
+				<?php endwhile; // end of the loop. 
+				?>
+
 			</div>
 		</div>
 	</div>
 </main>
 <?php
-get_footer( 'shop' );
+get_footer('shop');
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

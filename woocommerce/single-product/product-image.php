@@ -40,7 +40,7 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 	<figure class="woocommerce-product-gallery__wrapper">
 		<?php
 		$attachment_ids = $product->get_gallery_image_ids();
-
+	
 		if ( sizeof($attachment_ids) > 1 && has_post_thumbnail() ) {
 			?>
 			<div class="woocommerce-product-gallery__slider">
@@ -75,10 +75,10 @@ $wrapper_classes   = apply_filters( 'woocommerce_single_product_image_gallery_cl
 			$attributes = array(
 				'title'                   => get_post_field( 'post_title', $post_thumbnail_id ),
 				'data-caption'            => get_post_field( 'post_excerpt', $post_thumbnail_id ),
-				'data-src'                => $full_size_image[0],
-				'data-large_image'        => $full_size_image[0],
-				'data-large_image_width'  => $full_size_image[1],
-				'data-large_image_height' => $full_size_image[2],
+				'data-src'                => $full_size_image[0] ?? '',
+				'data-large_image'        => $full_size_image[0] ?? '',
+				'data-large_image_width'  => $full_size_image[1] ?? '',
+				'data-large_image_height' => $full_size_image[2] ?? '',
 			);
 
 			if ( has_post_thumbnail() ) {
