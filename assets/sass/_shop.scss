@@ -473,7 +473,6 @@
         min-width: 100px;
         .bt-table--col {
           font-weight: 600;
-          text-transform: uppercase;
           font-size: 14px;
           line-height: 1.3;
         }
@@ -583,6 +582,8 @@
           }
           span {
             color: $color-text;
+            display: block;
+            text-align: center;
           }
         }
       }
@@ -1321,6 +1322,12 @@
       .pick-modal-title {
         display: none;
       }
+      .rnb-error-message {
+        padding: 4px 10px;
+        margin-top: 10px;
+        font-size: 16px;
+        border-radius: 4px;
+    }
       .redq_add_to_cart_button,
       #quote-content-confirm,
       #cal-submit-btn {
@@ -1331,7 +1338,7 @@
         line-height: 1.5;
         color: #212121 !important;
         border-radius: 100px;
-        background-color: var(--e-global-color-secondary, #c1dcfb) !important;
+        background-color: $color-secondary !important;
         font-weight: 700 !important;
         white-space: nowrap;
         display: flex;

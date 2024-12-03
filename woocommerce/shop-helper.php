@@ -873,7 +873,7 @@ function cleanira_products_compare()
               <div class="bt-table--col bt-stock">
                 <?php echo '<p>' . $stock_status . '</p>'; ?>
               </div>
-              <div class="bt-table--col bt-rating">
+              <div class="bt-table--col bt-rating woocommerce">
                 <div class="bt-product-rating">
                   <?php echo wc_get_rating_html($product->get_average_rating());  ?>
                   <?php if ($product->get_rating_count()): ?>

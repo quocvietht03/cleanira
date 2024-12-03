@@ -118,6 +118,9 @@
       margin: 20px auto;
       border: 10px solid $color-secondary;
       border-radius: 8px;
+      @media (max-width: $break-sm) {
+        padding: 15px;
+      }
       p {
         span {
           font-weight: 700;
@@ -152,6 +155,11 @@
         align-items: center;
         width: 32px;
         height: 32px;
+      }
+      .quote-submit {
+        @media (max-width: $break-xs) {
+          font-size: 14px;
+        }
       }
     }
   }

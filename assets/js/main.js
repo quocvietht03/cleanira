@@ -346,6 +346,7 @@
 					setTimeout(function () {
 						$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').addClass('added');
 						$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').removeClass('loading');
+						$('.bt-product-wishlist-btn[data-id="' + post_id + '"] .tooltip').text("View Wishlist"); 
 					}, 500);
 					$('.bt-productwishlistcookie').val(post_id);
 				} else {
@@ -360,6 +361,7 @@
 						setTimeout(function () {
 							$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').addClass('added');
 							$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').removeClass('loading');
+							$('.bt-product-wishlist-btn[data-id="' + post_id + '"] .tooltip').text("View Wishlist"); 
 						}, 500);
 						$('.bt-productwishlistcookie').val(wishlist_cookie + ',' + post_id);
 					}
