@@ -51,12 +51,14 @@
                         "id": ""
                     },
                     "post_type": [
-                        "page"
+                        "product"
                     ],
                     "post_status": [
                         "publish"
                     ],
-                    "taxonomy": "",
+                    "taxonomy": [
+                        "product_type:redq_rental"
+                    ],
                     "allow_archives": 1,
                     "multiple": 0,
                     "allow_null": 0
@@ -1122,7 +1124,7 @@
                 {
                     "key": "field_674e84ddef8cb",
                     "label": "Sub Heading",
-                    "name": "Sub_Heading",
+                    "name": "sub_heading",
                     "aria-label": "",
                     "type": "text",
                     "instructions": "",
@@ -1358,5 +1360,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1733199179
+    "modified": 1733208816
 }

@@ -33,42 +33,45 @@ if (post_password_required()) {
 }
 if (function_exists('get_field')) {
 	$site_infor = get_field('site_information', 'options') ?: '';
+	$appointment = get_field('appointment','options');
 } else {
 	$site_infor = '';
+	$appointment = '';
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<div class="bt-single-appointment">
-		<?php
-		/**
-		 * Hook: woocommerce_before_single_product_summary.
-		 *
-		 * @hooked woocommerce_show_product_sale_flash - 10
-		 * @hooked woocommerce_show_product_images - 20
-		 */
-		//do_action('woocommerce_before_single_product_summary');
-		?>
 		<div class="bt-info-appointment">
-			<span>office and house shining</span>
-			<h2>Book Your House Cleaning Today!</h2>
-			<p>Transform your home into a spotless sanctuary! Contact us now to schedule your cleaning and enjoy a fresh, welcoming space.</p>
+			<?php
+			if (!empty($appointment['sub_heading'])) {
+				echo '<span>' . $appointment['sub_heading'] . '</span>';
+			}
+			if (!empty($appointment['heading'])) {
+				echo '<h2>' . $appointment['heading'] . '</h2>';
+			}
+			if (!empty($appointment['description'])) {
+				echo '<p>' . $appointment['description'] . '</p>';
+			}
+			?>
 			<div class="box-button-offer-contact">
-				<div class="bt-button-offer bt-button-hover">
-					<a href="#" class="bt-button">
-						<span class="bt-heading">See our Offer</span>
-						<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-							<g id="ArrowRight" clip-path="url(#clip0_10935_2624)">
-								<path id="Vector" d="M3.125 10.3455H16.875" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-								<path id="Vector_2" d="M11.25 4.72046L16.875 10.3455L11.25 15.9705" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-							</g>
-							<defs>
-								<clipPath id="clip0_10935_2624">
-									<rect width="20" height="20" fill="white" transform="translate(0 0.345459)"></rect>
-								</clipPath>
-							</defs>
-						</svg>
-					</a>
-				</div>
+				<?php if (!empty($appointment['button'])) { ?>
+					<div class="bt-button-offer bt-button-hover">
+						<a href="<?php echo esc_url($appointment['button']['url']); ?>" class="bt-button">
+							<span class="bt-heading"><?php echo esc_html( $appointment['button']['title'] ); ?></span>
+							<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<g id="ArrowRight" clip-path="url(#clip0_10935_2624)">
+									<path id="Vector" d="M3.125 10.3455H16.875" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+									<path id="Vector_2" d="M11.25 4.72046L16.875 10.3455L11.25 15.9705" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+								</g>
+								<defs>
+									<clipPath id="clip0_10935_2624">
+										<rect width="20" height="20" fill="white" transform="translate(0 0.345459)"></rect>
+									</clipPath>
+								</defs>
+							</svg>
+						</a>
+					</div>
+				<?php } ?>
 				<div class="bt-contact">
 					<a href="<?php echo esc_url('tel:' . preg_replace('/[^0-9]+/', '', $site_infor['site_phone'])); ?>">
 						<div class="bt-contact-icon">
