@@ -355,7 +355,6 @@ if (!function_exists('cleanira_service_button_book_now_render')) {
         <a href="<?php echo esc_html($book_now); ?>" class="bt-primary-btn bt-button">
           <span class="bt-heading"> <?php echo esc_html($text) ?> </span>
           <?php echo cleanira_get_icon_svg_html('icon-arrow-right') ?>
-          <span class="broom"></span>
         </a>
       </div>
     <?php }

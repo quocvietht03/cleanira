@@ -54,7 +54,7 @@ if (function_exists('get_field')) {
 			<p>Transform your home into a spotless sanctuary! Contact us now to schedule your cleaning and enjoy a fresh, welcoming space.</p>
 			<div class="box-button-offer-contact">
 				<div class="bt-button-offer bt-button-hover">
-					<a href="#" class="bt-primary-btn bt-button">
+					<a href="#" class="bt-button">
 						<span class="bt-heading">See our Offer</span>
 						<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<g id="ArrowRight" clip-path="url(#clip0_10935_2624)">

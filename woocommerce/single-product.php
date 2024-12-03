@@ -22,17 +22,21 @@ if (! defined('ABSPATH')) {
 
 get_header('shop');
 get_template_part('framework/templates/site', 'titlebar');
+if (function_exists('get_field')) {
+	$template_section = get_field('template_section_appointment', 'options');
+}
+$product_id = get_the_ID();
+$product = wc_get_product($product_id);
+$product_type = $product->get_type();
 ?>
-<main id="bt_main" class="bt-site-main">
+<main id="bt_main" class="bt-site-main <?php echo ($product_type == 'redq_rental') ? 'bt-site-appointment' : ''; ?>">
 	<div class="bt-main-content">
 		<div class="bt-main-product-ss">
 			<div class="bt-container">
 
 				<?php while (have_posts()) : ?>
 					<?php the_post();
-					$product_id = get_the_ID();
-					$product = wc_get_product($product_id);
-					$product_type = $product->get_type();
+				
 					if ($product_type == 'redq_rental') {
 						wc_get_template_part('content', 'single-appointment');
 					} else {
@@ -47,6 +51,16 @@ get_template_part('framework/templates/site', 'titlebar');
 		</div>
 	</div>
 </main>
+<?php
+if ($product_type == 'redq_rental') {
+	if (!empty($template_section['template_section_bottom_appointment'])) {
+		foreach ($template_section['template_section_bottom_appointment'] as $key => $item) {
+			$id_template = $item->ID;
+			echo do_shortcode('[elementor-template id="' . esc_attr($id_template) . '"]');
+		}
+	}
+}
+?>
 <?php
 get_footer('shop');
 

@@ -985,6 +985,14 @@
 			}
 		}
 	}
+	function CleaniraSelect2Appointment() {
+		if ($('.rnb-cart').length > 0) {
+			$('.rnb-cart .rnb-select-box').select2({
+				dropdownParent: $('.rnb-cart'),
+				minimumResultsForSearch: Infinity
+			});
+		}
+	}
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -1008,6 +1016,7 @@
 		CleaniraUpdateMiniCart();
 		CleaniraProgressCart();
 		CleaniraCountdownCart();
+		CleaniraSelect2Appointment();
 	});
 
 	jQuery(window).on('resize', function () {
