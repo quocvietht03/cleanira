@@ -191,7 +191,16 @@ class Widget_ServicesList extends Widget_Base
 				'default' => 6,
 			]
 		);
-
+		$this->add_control(
+			'show_pagination',
+			[
+				'label' => __('Pagination', 'cleanira'),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => __('Show', 'cleanira'),
+				'label_off' => __('Hide', 'cleanira'),
+				'default' => '',
+			]
+		);
 		$this->end_controls_section();
 	}
 
@@ -381,6 +390,87 @@ class Widget_ServicesList extends Widget_Base
 		);
 
 		$this->end_controls_section();
+		$this->start_controls_section(
+			'section_style_pagination',
+			[
+				'label' => esc_html__('Pagination', 'cleanira'),
+				'tab' => Controls_Manager::TAB_STYLE,
+				'condition' => [
+					'show_pagination!' => '',
+				],
+			]
+		);
+
+		$this->add_control(
+			'pagination_color',
+			[
+				'label' => __('Pagination Color', 'cleanira'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-pagination .page-numbers:not(.current)' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bt-pagination .page-numbers:not(.current) svg' => 'fill: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'pagination_color_hover',
+			[
+				'label' => __('Pagination Hover Color', 'cleanira'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-pagination .page-numbers:not(.current):hover' => 'color: {{VALUE}};',
+					'{{WRAPPER}} .bt-pagination .page-numbers:not(.current):hover svg path' => 'fill: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'pagination_color_current',
+			[
+				'label' => __('Color Current', 'cleanira'),
+				'type' => Controls_Manager::COLOR,
+				'default' => '',
+				'selectors' => [
+					'{{WRAPPER}} .bt-pagination .page-numbers.current' => 'background-color: {{VALUE}};border-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'pagination_typography',
+				'label' => __('Typography', 'cleanira'),
+				'default' => '',
+				'selector' => '{{WRAPPER}} .bt-pagination .page-numbers',
+			]
+		);
+
+		$this->add_responsive_control(
+			'pagination_space',
+			[
+				'label' => __('Space', 'cleanira'),
+				'type' => Controls_Manager::SLIDER,
+				'default' => [
+					'size' => 60,
+				],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 100,
+						'step' => 5,
+					],
+				],
+				'selectors' => [
+					'{{WRAPPER}} .bt-pagination' => 'margin-top: {{SIZE}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
 	}
 
 	protected function register_controls()
@@ -401,7 +491,9 @@ class Widget_ServicesList extends Widget_Base
 			'orderby' => $settings['orderby'],
 			'order' => $settings['order'],
 		];
-
+		if ($settings['show_pagination'] == 'yes') {
+			$args['paged'] = (get_query_var('paged')) ? get_query_var('paged') : 1;
+		}
 
 		if (!empty($settings['ids'])) {
 			$args['post__in'] = $settings['ids'];
@@ -468,8 +560,8 @@ class Widget_ServicesList extends Widget_Base
 									<ul class="bt-service-types">
 										<?php foreach ($service_types as $type): ?>
 											<li class="bt-type-item"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
-												<path fill-rule="evenodd" clip-rule="evenodd" d="M21.0573 7.00193C21.4381 7.40195 21.4225 8.03492 21.0225 8.41571L9.46695 19.4157C9.26961 19.6036 9.00417 19.7028 8.732 19.6904C8.45984 19.678 8.2045 19.5551 8.02505 19.3501L3.5806 14.2732C3.21682 13.8576 3.25879 13.2258 3.67434 12.8621C4.08989 12.4983 4.72166 12.5403 5.08544 12.9558L8.84314 17.2483L19.6435 6.9671C20.0436 6.58631 20.6765 6.60191 21.0573 7.00193Z" fill="#2D77DC" />
-											</svg><?php echo esc_html($type['name']) ?></li>
+													<path fill-rule="evenodd" clip-rule="evenodd" d="M21.0573 7.00193C21.4381 7.40195 21.4225 8.03492 21.0225 8.41571L9.46695 19.4157C9.26961 19.6036 9.00417 19.7028 8.732 19.6904C8.45984 19.678 8.2045 19.5551 8.02505 19.3501L3.5806 14.2732C3.21682 13.8576 3.25879 13.2258 3.67434 12.8621C4.08989 12.4983 4.72166 12.5403 5.08544 12.9558L8.84314 17.2483L19.6435 6.9671C20.0436 6.58631 20.6765 6.60191 21.0573 7.00193Z" fill="#2D77DC" />
+												</svg><?php echo esc_html($type['name']) ?></li>
 										<?php endforeach; ?>
 									</ul>
 								<?php endif; ?>
@@ -503,6 +595,9 @@ class Widget_ServicesList extends Widget_Base
 					?>
 				</div>
 			<?php
+				if ($settings['show_pagination'] == 'yes') {
+					cleanira_paginate_links($query);
+				}
 			} else {
 				get_template_part('framework/templates/post', 'none');
 			}

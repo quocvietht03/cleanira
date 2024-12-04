@@ -170,10 +170,10 @@
   }
 }
 .bt-elwg-service-list {
-  padding: 50px 0 0;
-  overflow: hidden;
   font-family: $primary-font;
   .bt-service-list {
+    overflow: hidden;
+    padding: 50px 0 0;
     .bt-service-list-item {
       display: flex;
       justify-content: flex-end;
@@ -341,7 +341,11 @@
     }
   }
 }
-
+.post-type-archive-service{
+  .bt-pagination{
+    margin-top: 60px;
+  }
+}
 .single-service {
   .bt-main-content-ss {
     .bt-main-post-row {

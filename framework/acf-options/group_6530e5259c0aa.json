@@ -357,8 +357,8 @@
             "sub_fields": [
                 {
                     "key": "field_6687ad304daa8",
-                    "label": "Nubmer Posts",
-                    "name": "nubmer_posts",
+                    "label": "Number Posts",
+                    "name": "number_posts",
                     "aria-label": "",
                     "type": "number",
                     "instructions": "",
@@ -1360,5 +1360,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1733208816
+    "modified": 1733275498
 }
