@@ -995,6 +995,12 @@
 			});
 		}
 	}
+	/* mega menu add class custom */
+	function CleaniraMegaMenuAddClass() {
+		jQuery('.bt-mega-menu-sub').each(function () {
+			jQuery(this).parent().parent().addClass('bt-submenu-content');
+		});
+	}
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -1019,6 +1025,7 @@
 		CleaniraProgressCart();
 		CleaniraCountdownCart();
 		CleaniraSelect2Appointment();
+		CleaniraMegaMenuAddClass();
 	});
 
 	jQuery(window).on('resize', function () {
