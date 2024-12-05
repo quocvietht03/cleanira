@@ -216,6 +216,15 @@ class Widget_PostLoopItem extends Widget_Base {
 				'selector' => '{{WRAPPER}} .bt-post--publish',
 			]
 		);
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name'     => 'publish_day_typography',
+				'label'    => esc_html__( 'Typography Day', 'cleanira' ),
+				'default'  => '',
+				'selector' => '{{WRAPPER}} .bt-post--publish span',
+			]
+		);
 		$this->add_control(
 			'excerpt_style',[
 				'label' => esc_html__( 'Excerpt', 'cleanira' ),

@@ -348,7 +348,6 @@
             gap: 10px;
             &:first-child {
               width: 73%;
-              gap: 30px;
               .elementor-widget-nav-menu {
                 --e-nav-menu-horizontal-menu-item-margin: 10px;
               }
@@ -431,7 +430,6 @@
             gap: 10px;
             &:first-child {
               width: 73%;
-              gap: 30px;
               .elementor-widget-nav-menu {
                 --e-nav-menu-horizontal-menu-item-margin: 10px;
               }
@@ -703,8 +701,11 @@ body.admin-bar .dialog-type-lightbox {
     }
     .elementor-widget-loop-carousel {
       .swiper-pagination {
-        left: 0;
-        transform: translateY(-50%);
+        left: calc(var(--dots-horizontal-position) + var(--dots-horizontal-offset));
+        transform: translate(
+          calc(var(--dots-horizontal-transform) * var(--horizontal-transform-modifier)),
+          var(--dots-vertical-transform)
+        );
       }
     }
     .bt-elwg-post-loop-item--default {
@@ -715,14 +716,22 @@ body.admin-bar .dialog-type-lightbox {
         }
         .bt-post--content {
           padding-top: 10px;
-          .bt-post--title a {
-            font-size: 18px;
-            line-height: 20px;
-          }
           .bt-post--excerpt {
             display: none;
           }
         }
+      }
+    }
+  }
+  &.style-1 {
+    .bt-mega-menu-service {
+      @media (min-width: 1760px) {
+        margin-left: -150px;
+      }
+    }
+    .bt-mega-menu-shop {
+      @media (min-width: 1760px) {
+        margin-left: -150px;
       }
     }
   }
@@ -736,22 +745,56 @@ body.admin-bar .dialog-type-lightbox {
           > .e-n-menu-heading {
             > .e-n-menu-item {
               > .e-n-menu-title {
-                position: relative;
-                &::before {
-                  background: $color-secondary;
-                  content: "";
-                  top: 50%;
-                  width: 0;
-                  height: 2px;
-                  display: block;
-                  position: absolute;
-                  margin-top: 13px;
-                  transition: 0.5s all;
+                .e-n-menu-title-text {
+                  position: relative;
+                  &::before {
+                    background: $color-secondary;
+                    content: "";
+                    top: 50%;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    display: block;
+                    position: absolute;
+                    margin-top: 13px;
+                    transition: 0.5s all;
+                  }
                 }
                 &.e-current,
                 &:hover {
-                  &::before {
-                    width: 100%;
+                  .e-n-menu-title-text {
+                    &::before {
+                      width: 100%;
+                    }
+                  }
+                }
+              }
+              &:not(.bt-submenu-content) {
+                .e-n-menu-content {
+                  .e-n-menu-heading {
+                    > .e-n-menu-item {
+                      width: 100%;
+                      > .e-n-menu-title {
+                        position: relative;
+                        &::before {
+                          background: $color-secondary;
+                          content: "";
+                          top: 50%;
+                          width: 0;
+                          height: 2px;
+                          display: block;
+                          position: absolute;
+                          margin-top: 13px;
+                          transition: 0.3s all;
+                        }
+                        &.e-current,
+                        &:hover {
+                          &::before {
+                            width: 30px;
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -763,61 +806,13 @@ body.admin-bar .dialog-type-lightbox {
   }
   @media (max-width: 1300px) and (min-width: $break-tl) {
     &.elementor-widget-n-menu {
-      .e-n-menu-item {
-        .e-n-menu-title {
-          padding: 30px 15px;
-          a {
-            span {
-              font-size: 15px;
-            }
-          }
-        }
-        .elementor-widget-n-menu {
-          .e-n-menu-title {
-            padding: 9px 20px 9px 20px;
-          }
-        }
-        .bt-mega-menu-cases {
-          > .elementor-element {
-            > .e-con-inner {
-              > .elementor-element {
-                padding-left: 250px;
-                .elementor-widget-image {
-                  img {
-                    max-width: 242px;
-                  }
-                }
-                .elementor-widget-bt-highlighted-heading {
-                  left: 12px;
-                  max-width: 220px;
-                  top: 28px;
-                  h3 {
-                    font-size: 18px;
-                  }
-                }
-                .bt-elwg-project-loop-item--default {
-                  .bt-post--featured {
-                    .bt-cover-image {
-                      min-height: 280px;
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-        .bt-mega-menu-pages {
-          > .elementor-element {
-            > .e-con-inner {
-              > .elementor-element {
-                > .elementor-element {
-                  &:nth-last-child(2) {
-                    width: 20%;
-                    padding-left: 0;
-                  }
-                  &:last-child {
-                    width: 40%;
-                  }
+      > .elementor-widget-container {
+        > .e-n-menu {
+          > .e-n-menu-wrapper {
+            > .e-n-menu-heading {
+              > .e-n-menu-item {
+                > .e-n-menu-title {
+                  padding: 30px 15px;
                 }
               }
             }
@@ -826,23 +821,49 @@ body.admin-bar .dialog-type-lightbox {
       }
     }
   }
-  @media (max-width: 1100px) and (min-width: $break-tl) {
-    &.elementor-widget-n-menu {
-      > .elementor-widget-container {
-        padding-right: 10px !important;
-      }
-      .e-n-menu-item {
-        .e-n-menu-title {
-          padding: 30px 12px;
-          a {
-            span {
-              font-size: 15px;
+  @media (max-width: $break-lg) and (min-width: $break-tl) {
+    .bt-mega-menu-shop {
+      > .e-con-inner {
+        > .elementor-element {
+          padding-left: 20px;
+          padding-right: 15px;
+          > .e-con-inner {
+            > .elementor-element {
+              &:first-child {
+                width: 35%;
+              }
+              &:last-child {
+                width: 65%;
+                padding-left: 0;
+              }
             }
           }
         }
-        .elementor-widget-n-menu {
-          .e-n-menu-title {
-            padding: 9px 20px 9px 20px;
+      }
+    }
+  }
+  @media (max-width: 1130px) and (min-width: $break-tl) {
+    &.elementor-widget-n-menu {
+      > .elementor-widget-container {
+        > .e-n-menu {
+          > .e-n-menu-wrapper {
+            > .e-n-menu-heading {
+              > .e-n-menu-item {
+                > .e-n-menu-title {
+                  padding: 30px 11px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .bt-mega-menu-service {
+      > .e-con-inner {
+        > .elementor-element {
+          gap: 20px;
+          .bt-elwg-service-loop-item--menu .bt-post--title {
+            font-size: 18px;
           }
         }
       }
