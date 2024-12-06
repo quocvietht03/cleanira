@@ -969,6 +969,59 @@ function cleanira_products_compare()
     <?php
     $count = count($product_ids);
     $output['count'] = $count;
+  }else{
+    ?>
+     <div class="bt-table-title">
+      <h2><?php esc_html_e('Compare products', 'cleanira') ?></h2>
+    </div>
+    <div class="bt-table-compare">
+      <div class="bt-table--head">
+        <div class="bt-table--col"><?php esc_html_e('Thumbnail', 'cleanira') ?></div>
+        <div class="bt-table--col"><?php esc_html_e('Product Name', 'cleanira') ?></div>
+        <div class="bt-table--col"><?php esc_html_e('Price', 'cleanira') ?></div>
+        <div class="bt-table--col"><?php esc_html_e('Stock status', 'cleanira') ?></div>
+        <div class="bt-table--col"><?php esc_html_e('Rating', 'cleanira') ?></div>
+        <div class="bt-table--col"><?php esc_html_e('Brand', 'cleanira') ?></div>
+        <div class="bt-table--col"></div>
+      </div>
+      <div class="bt-table--body">
+        <?php
+        if ($ex_items > 0) {
+          for ($i = 0; $i < $ex_items; $i++) {
+        ?>
+            <div class="bt-table--row bt-product-add-compare">
+              <div class="bt-table--col bt-thumb">
+                <div class="bt-cover-image">
+                  <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="512" height="512" x="0" y="0" viewBox="0 0 512 512" fill="currentColor">
+                    <path d="M256 512a25 25 0 0 1-25-25V25a25 25 0 0 1 50 0v462a25 25 0 0 1-25 25z"></path>
+                    <path d="M487 281H25a25 25 0 0 1 0-50h462a25 25 0 0 1 0 50z"></path>
+                  </svg>
+                  <span> <?php echo __('Add Product To Compare', 'cleanira'); ?></span>
+                </div>
+              </div>
+              <div class="bt-table--col bt-name">
+
+              </div>
+              <div class="bt-table--col bt-price">
+
+              </div>
+              <div class="bt-table--col bt-stock">
+              </div>
+              <div class="bt-table--col bt-rating">
+              </div>
+              <div class="bt-table--col bt-brand">
+              </div>
+              <div class="bt-table--col bt-add-to-cart">
+
+              </div>
+            </div>
+        <?php
+          }
+        }
+        ?>
+      </div>
+    </div>
+    <?php
   }
   $output['product'] = ob_get_clean();
 
