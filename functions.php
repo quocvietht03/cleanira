@@ -25,12 +25,10 @@ add_filter('upload_mimes', 'cleanira_mime_types');
 
 /* Get icon SVG HTML */
 function cleanira_get_icon_svg_html($icon_file_name) {
-    // Check if the icon file name is provided and sanitize it.
+
     if (!empty($icon_file_name)) {
         $file_path = CLEANIRA_IMG_DIR . $icon_file_name . '.svg';
-		// Try to get the file contents.
 		$file = file_get_contents($file_path);
-		// Check if file_get_contents was successful.
 		if ($file !== false) {
 			return $file;
 		} else {

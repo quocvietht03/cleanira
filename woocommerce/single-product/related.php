@@ -25,7 +25,6 @@ if ( $related_products ) :
 		$related_posts = get_field('product_related_posts', 'options');
 	} else {
 		$related_posts = array(
-			'sub_heading' => __( 'Style Change Your Life', 'cleanira' ),
 			'heading' => __( 'Related Products', 'cleanira' ),
 		);
 	}
@@ -36,10 +35,6 @@ if ( $related_products ) :
 
 		<div class="bt-related-heading">
 			<?php
-				if(!empty($related_posts['sub_heading'])) {
-					echo '<div class="bt-sub-text">' . $related_posts['sub_heading'] . '</div>';
-				}
-
 				if(!empty($related_posts['heading'])) {
 					echo '<h2 class="bt-main-text">' . $related_posts['heading'] . '</h2>';
 				}
@@ -62,12 +57,6 @@ if ( $related_products ) :
 			<?php endforeach; ?>
 
 		<?php woocommerce_product_loop_end(); ?>
-
-		<?php
-			if(!empty($related_posts['bottom_text'])) {
-				echo '<div class="bt-related-bottom-text">' . $related_posts['bottom_text'] . '</div>';
-			}
-		?>
 	</section>
 	<?php
 endif;

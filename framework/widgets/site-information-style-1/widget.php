@@ -46,7 +46,31 @@ class Widget_SiteInformationStyle1 extends Widget_Base {
 				'default' => [ 'phone' ],
 			]
 		);
-
+		$this->add_control(
+			'title_phone',
+			[
+				'label' => esc_html__('Title Phone', 'cleanira'),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+				'default' => esc_html__('Have any Question?', 'cleanira'),
+			]
+		);
+		$this->add_control(
+			'title_email',
+			[
+				'label' => esc_html__('Title Email', 'cleanira'),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+			]
+		);
+		$this->add_control(
+			'title_address',
+			[
+				'label' => esc_html__('Title Address', 'cleanira'),
+				'type' => Controls_Manager::TEXT,
+				'label_block' => true,
+			]
+		);
 		$this->end_controls_section();
 	}
 
@@ -211,14 +235,14 @@ class Widget_SiteInformationStyle1 extends Widget_Base {
 		$this->add_control(
 			'text_style',
 			[
-				'label' => __('Text', 'cleanira'),
+				'label' => __('Info', 'cleanira'),
 				'type' => Controls_Manager::HEADING,
 			]
 		);
 		$this->add_control(
 			'text_color',
 			[
-				'label' => __( 'Text Color', 'cleanira' ),
+				'label' => __( 'Info Color', 'cleanira' ),
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
@@ -267,7 +291,7 @@ class Widget_SiteInformationStyle1 extends Widget_Base {
 		}
 	?>
 			<div class="bt-elwg-site-infor bt-elwg-site-infor--style-1">  
-				<?php get_template_part( 'framework/templates/site-information', 'style', array('layout' => 'style-1', 'data' => $settings['list'])); ?>
+				<?php get_template_part( 'framework/templates/site-information', 'style', array('layout' => 'style-1', 'data' => $settings['list'],'title_phone' => $settings['title_phone'],'title_email' => $settings['title_email'],'title_address' => $settings['title_address'])); ?>
 			</div>
 		<?php
 	}

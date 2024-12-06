@@ -14,30 +14,66 @@ add_action('cleanira_woocommerce_template_single_rating', 'woocommerce_template_
 add_action('cleanira_woocommerce_template_single_price', 'woocommerce_template_single_price', 10);
 add_action('cleanira_woocommerce_template_single_excerpt', 'woocommerce_template_single_excerpt', 20);
 add_action('cleanira_woocommerce_template_single_add_to_cart', 'woocommerce_template_single_add_to_cart', 30);
-add_action('cleanira_woocommerce_template_single_meta', 'woocommerce_template_single_meta', 40);
+remove_action('woocommerce_single_product_meta', 'woocommerce_template_single_meta');
+add_action('woocommerce_single_product_meta', 'custom_woocommerce_single_product_meta');
+
+
 add_action('cleanira_woocommerce_template_single_sharing', 'woocommerce_template_single_sharing', 50);
 add_action('cleanira_checkout_review', 'woocommerce_order_review', 10);
 add_action('cleanira_checkout_order', 'woocommerce_checkout_payment', 20);
 add_action('cleanira_woocommerce_template_cross_sell', 'woocommerce_cross_sell_display', 50);
 add_action('cleanira_woocommerce_shop_loop_item_subtitle', 'cleanira_woocommerce_template_loop_subtitle', 10, 2);
+add_filter( 'woocommerce_product_description_heading', '__return_null' );
+
+add_action('cleanira_woocommerce_template_single_meta', 'cleanira_woocommerce_single_product_meta', 40);
+
+function cleanira_woocommerce_single_product_meta()
+{
+  global $product;
+
+  echo '<ul class="product-meta">';
+
+  $sku = $product->get_sku();
+  if ($sku) {
+    echo '<li class="sku"><span>SKU:</span> ' . esc_html($sku) . '</li>';
+  }
+
+  $author_id = $product->get_post_data()->post_author;
+  $author = get_the_author_meta('display_name', $author_id);
+  if ($author) {
+    echo '<li class="vendor"><span>Vendor:</span> ' . esc_html($author) . '</li>';
+  }
+
+  $availability = $product->is_in_stock() ? 'In stock' : 'Out of stock';
+  echo '<li class="availability"><span>Availability:</span> ' . esc_html($availability) . '</li>';
+
+  $categories = wc_get_product_category_list($product->get_id());
+  if ($categories) {
+    echo '<li class="categories"><span>Categories:</span> ' . wp_kses_post($categories) . '</li>';
+  }
+
+  echo '</ul>';
+}
 
 remove_action('woocommerce_cart_collaterals', 'woocommerce_cross_sell_display');
 
 add_action('woocommerce_add_to_cart', 'cleanira_redirect_form_appointment', 20, 0);
-function cleanira_redirect_form_appointment() {
-    if (isset($_POST['pickup_date']) && $_POST['pickup_date'] != '') {
-        WC()->session->set('redirect_after_add_to_cart', true);
-    }
+function cleanira_redirect_form_appointment()
+{
+  if (isset($_POST['pickup_date']) && $_POST['pickup_date'] != '') {
+    WC()->session->set('redirect_after_add_to_cart', true);
+  }
 }
 
 add_action('woocommerce_cart_updated', 'cleanira_redirect_after_add_to_cart');
-function cleanira_redirect_after_add_to_cart() {
-    if (WC()->session->get('redirect_after_add_to_cart')) {
+function cleanira_redirect_after_add_to_cart()
+{
+  if (WC()->session->get('redirect_after_add_to_cart')) {
 
-        WC()->session->__unset('redirect_after_add_to_cart');
-        wp_redirect(wc_get_cart_url());
-        exit();
-    }
+    WC()->session->__unset('redirect_after_add_to_cart');
+    wp_redirect(wc_get_cart_url());
+    exit();
+  }
 }
 
 
@@ -149,20 +185,6 @@ function cleanira_woocommerce_pagination_args()
                   </svg>',
   );
 }
-
-// WooCommerce availability
-add_filter('woocommerce_get_availability', 'cleanira_woocommerce_show_in_stock', 10, 2);
-function cleanira_woocommerce_show_in_stock($availability, $product)
-{
-  if (!$product->managing_stock() && $product->is_in_stock()) {
-    $availability['availability'] = __('In Stock', 'cleanira');
-  }
-
-  $availability['availability'] = __('Availability: ', 'cleanira') . '<span>' . $availability['availability'] . '</span>';
-
-  return $availability;
-}
-
 // WooCommerce ralated params
 add_filter('woocommerce_output_related_products_args', 'cleanira_woocommerce_related_products_args', 20);
 function cleanira_woocommerce_related_products_args($args)
@@ -184,20 +206,6 @@ if (function_exists('get_field')) {
     remove_action('woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20);
   }
 }
-// WooCommerce custom field
-add_action('woocommerce_product_options_general_product_data', 'cleanira_woocommerce_custom_field');
-function cleanira_woocommerce_custom_field()
-{
-  global $post;
-
-  woocommerce_wp_text_input(
-    array(
-      'id'          => '_subtitle',
-      'label'       => __('Subtitle', 'cleanira'),
-      'description' => ''
-    )
-  );
-}
 
 add_action('woocommerce_process_product_meta', 'cleanira_woocommerce_custom_field_save');
 function cleanira_woocommerce_custom_field_save($post_id)
@@ -209,6 +217,39 @@ function cleanira_woocommerce_custom_field_save($post_id)
     update_post_meta($post_id, '_subtitle', '');
   }
 }
+/* Sold Product */
+function cleanira_woocommerce_item_sold($product_id)
+{
+  $args = array(
+    'status' => 'completed',
+    'limit'  => -1,
+  );
+  $orders = wc_get_orders($args);
+
+  $total_quantity_sold = 0;
+  if (!empty($orders)) {
+    foreach ($orders as $order) {
+      foreach ($order->get_items() as $item) {
+        if ($item->get_product_id() == $product_id) {
+          $total_quantity_sold += $item->get_quantity();
+        }
+      }
+    }
+  }
+  echo '<div class="woocommerce-loop-product__sold">';
+  echo '<svg xmlns="http://www.w3.org/2000/svg" width="21" height="20" viewBox="0 0 21 20" fill="none">
+  <path d="M17.106 9.80077L8.35603 19.1758C8.26331 19.2747 8.14091 19.3408 8.00731 19.3641C7.87372 19.3874 7.73617 19.3666 7.61543 19.3049C7.49468 19.2432 7.3973 19.1438 7.33796 19.0219C7.27863 18.8999 7.26057 18.762 7.2865 18.6289L8.43181 12.9L3.92947 11.2094C3.83277 11.1732 3.74655 11.1136 3.67849 11.036C3.61043 10.9584 3.56266 10.8651 3.53944 10.7645C3.51623 10.6639 3.5183 10.5591 3.54546 10.4595C3.57262 10.3599 3.62403 10.2686 3.69509 10.1937L12.4451 0.818744C12.5378 0.719788 12.6602 0.653675 12.7938 0.630383C12.9274 0.60709 13.065 0.627882 13.1857 0.68962C13.3064 0.751359 13.4038 0.850694 13.4632 0.972636C13.5225 1.09458 13.5406 1.23251 13.5146 1.36562L12.3662 7.10077L16.8685 8.78906C16.9645 8.82547 17.05 8.88496 17.1176 8.96228C17.1851 9.0396 17.2326 9.13236 17.2557 9.23237C17.2789 9.33237 17.2771 9.43655 17.2504 9.53569C17.2238 9.63482 17.1731 9.72587 17.1029 9.80077H17.106Z" fill="#C72929"/>
+</svg>' . esc_html($total_quantity_sold) . ' ' . esc_html__('item sold', 'cleanira');
+  echo '</div>';
+}
+add_action('cleanira_woocommerce_shop_loop_item_sold', 'cleanira_woocommerce_item_sold', 10, 2);
+/* Add Sold Product affer Quanty Single Product */
+function cleanira_display_sold_after_rating()
+{
+  global $product;
+  cleanira_woocommerce_item_sold($product->get_id());
+}
+add_action('cleanira_woocommerce_template_single_rating', 'cleanira_display_sold_after_rating', 15);
 
 /* Remove the additional information tab */
 add_filter('woocommerce_product_tabs', 'cleanira_woocommerce_remove_additional_information_tabs', 98);
@@ -233,12 +274,7 @@ function cleanira_woocommerce_add_additional_information($content)
   }
   return $content;
 }
-/* Custom the "Description" title */
-add_filter('woocommerce_product_description_heading', 'cleanira_woocommerce_custom_description_heading');
-function cleanira_woocommerce_custom_description_heading()
-{
-  return esc_html__('Key Ingredient:', 'cleanira');
-}
+
 /* Custom the "Review" tab title */
 add_filter('woocommerce_product_tabs', 'cleanira_woocommerce_custom_reviews_tab_title');
 function cleanira_woocommerce_custom_reviews_tab_title($tabs)
@@ -246,7 +282,7 @@ function cleanira_woocommerce_custom_reviews_tab_title($tabs)
   if (isset($tabs['reviews'])) {
     global $product;
     $review_count = $product->get_review_count();
-    $tabs['reviews']['title'] = sprintf(__('Reviews <span>%d</span>', 'cleanira'), $review_count);
+    $tabs['reviews']['title'] = esc_html__('Reviews', 'cleanira');
   }
   return $tabs;
 }
@@ -1067,4 +1103,108 @@ function bt_limit_cross_sells_display($limit)
 function bt_set_cross_sells_columns($columns)
 {
   return 4; // Set columns to 2
+}
+/* add button wishlist and compare */
+function cleanira_display_button_wishlist_compare()
+{
+  global $product;
+?>
+  <div class="bt-product-icon-btn">
+    <a class="bt-icon-btn bt-product-compare-btn <?php echo cleanira_is_compare($product->get_id()) ? 'added' : 'no-added'; ?>" href="#" data-id="<?php echo $product->get_id(); ?>">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 20 18" fill="none">
+        <path d="M8.50001 11.2504C8.3011 11.2504 8.11033 11.3295 7.96968 11.4701C7.82903 11.6108 7.75001 11.8015 7.75001 12.0004V14.6901L5.09876 12.0379C4.7493 11.6907 4.47224 11.2776 4.28364 10.8224C4.09503 10.3673 3.99862 9.87933 4.00001 9.38669V5.90669C4.707 5.72415 5.32315 5.29002 5.73296 4.68568C6.14277 4.08135 6.3181 3.3483 6.2261 2.62394C6.13409 1.89958 5.78106 1.23364 5.23318 0.750949C4.6853 0.268258 3.98019 0.00195312 3.25001 0.00195312C2.51983 0.00195312 1.81471 0.268258 1.26683 0.750949C0.718953 1.23364 0.365924 1.89958 0.273918 2.62394C0.181912 3.3483 0.357247 4.08135 0.767056 4.68568C1.17687 5.29002 1.79301 5.72415 2.50001 5.90669V9.38763C2.49826 10.0773 2.63324 10.7606 2.89715 11.3978C3.16105 12.035 3.54864 12.6136 4.03751 13.1001L6.6897 15.7504H4.00001C3.8011 15.7504 3.61033 15.8295 3.46968 15.9701C3.32903 16.1108 3.25001 16.3015 3.25001 16.5004C3.25001 16.6994 3.32903 16.8901 3.46968 17.0308C3.61033 17.1714 3.8011 17.2504 4.00001 17.2504H8.50001C8.69892 17.2504 8.88969 17.1714 9.03034 17.0308C9.17099 16.8901 9.25001 16.6994 9.25001 16.5004V12.0004C9.25001 11.8015 9.17099 11.6108 9.03034 11.4701C8.88969 11.3295 8.69892 11.2504 8.50001 11.2504ZM1.75001 3.00044C1.75001 2.70377 1.83798 2.41376 2.0028 2.16709C2.16763 1.92041 2.40189 1.72815 2.67598 1.61462C2.95007 1.50109 3.25167 1.47138 3.54264 1.52926C3.83361 1.58714 4.10089 1.73 4.31067 1.93978C4.52045 2.14956 4.66331 2.41683 4.72119 2.70781C4.77906 2.99878 4.74936 3.30038 4.63583 3.57447C4.5223 3.84855 4.33004 4.08282 4.08336 4.24764C3.83669 4.41247 3.54668 4.50044 3.25001 4.50044C2.85218 4.50044 2.47065 4.3424 2.18935 4.0611C1.90804 3.7798 1.75001 3.39827 1.75001 3.00044ZM17.5 12.0942V8.61419C17.5018 7.92448 17.3668 7.24127 17.1029 6.60404C16.839 5.96681 16.4514 5.38822 15.9625 4.90169L13.3103 2.25044H16C16.1989 2.25044 16.3897 2.17142 16.5303 2.03077C16.671 1.89012 16.75 1.69935 16.75 1.50044C16.75 1.30153 16.671 1.11076 16.5303 0.970111C16.3897 0.829458 16.1989 0.750441 16 0.750441H11.5C11.3011 0.750441 11.1103 0.829458 10.9697 0.970111C10.829 1.11076 10.75 1.30153 10.75 1.50044V6.00044C10.75 6.19935 10.829 6.39012 10.9697 6.53077C11.1103 6.67142 11.3011 6.75044 11.5 6.75044C11.6989 6.75044 11.8897 6.67142 12.0303 6.53077C12.171 6.39012 12.25 6.19935 12.25 6.00044V3.31075L14.9013 5.96294C15.2507 6.31018 15.5278 6.72333 15.7164 7.17843C15.905 7.63354 16.0014 8.12155 16 8.61419V12.0942C15.293 12.2767 14.6769 12.7109 14.2671 13.3152C13.8572 13.9195 13.6819 14.6526 13.7739 15.3769C13.8659 16.1013 14.219 16.7672 14.7668 17.2499C15.3147 17.7326 16.0198 17.9989 16.75 17.9989C17.4802 17.9989 18.1853 17.7326 18.7332 17.2499C19.2811 16.7672 19.6341 16.1013 19.7261 15.3769C19.8181 14.6526 19.6428 13.9195 19.233 13.3152C18.8232 12.7109 18.207 12.2767 17.5 12.0942ZM16.75 16.5004C16.4533 16.5004 16.1633 16.4125 15.9167 16.2476C15.67 16.0828 15.4777 15.8486 15.3642 15.5745C15.2507 15.3004 15.221 14.9988 15.2788 14.7078C15.3367 14.4168 15.4796 14.1496 15.6893 13.9398C15.8991 13.73 16.1664 13.5871 16.4574 13.5293C16.7483 13.4714 17.0499 13.5011 17.324 13.6146C17.5981 13.7282 17.8324 13.9204 17.9972 14.1671C18.162 14.4138 18.25 14.7038 18.25 15.0004C18.25 15.3983 18.092 15.7798 17.8107 16.0611C17.5294 16.3424 17.1478 16.5004 16.75 16.5004Z" fill="#212121" />
+      </svg>
+    </a>
+    <a class="bt-icon-btn bt-product-wishlist-btn  <?php echo cleanira_is_wishlist($product->get_id()) ? 'added' : 'no-added'; ?>" href="#" data-id="<?php echo $product->get_id(); ?>">
+      <svg width="25" height="25" viewBox="0 0 25 25" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.9916 18.8679C14.3066 19.4224 13.4266 19.7282 12.5129 19.7282C11.6004 19.7282 10.7179 19.4236 10.0054 18.8512C5.51289 15.2466 2.65289 13.3342 2.50414 9.41186C2.34789 5.26103 7.12289 3.74375 10.0504 7.15438C10.6429 7.84341 11.5329 8.2385 12.4929 8.2385C13.4616 8.2385 14.3579 7.83864 14.9516 7.14128C17.8154 3.78539 22.7179 5.21462 22.4941 9.53324C22.2941 13.3747 19.3241 15.3585 14.9916 18.8679ZM12.9841 5.72634C12.8616 5.87033 12.6766 5.94292 12.4929 5.94292C12.3129 5.94292 12.1341 5.87271 12.0141 5.73348C7.58539 0.574693 -0.234601 3.14396 0.0053982 9.49159C0.196648 14.5433 3.95664 17.0471 8.38414 20.5994C9.56788 21.549 11.0404 22.0238 12.5129 22.0238C13.9891 22.0238 15.4641 21.5466 16.6454 20.5898C21.0241 17.0424 24.7366 14.5552 24.9904 9.64154C25.3279 3.1523 17.4016 0.546134 12.9841 5.72634Z" />
+      </svg>
+    </a>
+
+  </div>
+  <?php
+}
+add_action('woocommerce_after_add_to_cart_button', 'cleanira_display_button_wishlist_compare');
+
+add_filter('woocommerce_product_single_add_to_cart_text', 'cleanira_custom_add_to_cart_text', 10, 2);
+function cleanira_custom_add_to_cart_text($text, $product)
+{
+  if ($product->is_type('simple')) {
+    $price = $product->get_price();
+    $formatted_price = wc_price($price);
+    $formatted_price = strip_tags($formatted_price);
+    $text = sprintf(__('Add to cart - %s', 'woocommerce'), $formatted_price);
+  }
+  return $text;
+}
+add_action('wp_ajax_cleanira_products_buy_now', 'cleanira_products_buy_now');
+add_action('wp_ajax_nopriv_cleanira_products_buy_now', 'cleanira_products_buy_now');
+
+function cleanira_products_buy_now()
+{
+
+  if (isset($_POST['product_id']) && !empty($_POST['product_id'])) {
+    $product_id = intval($_POST['product_id']);
+
+    $product = wc_get_product($product_id);
+
+    if ($product) {
+      WC()->cart->add_to_cart($product_id);
+
+      $redirect_url = wc_get_checkout_url();
+
+      wp_send_json_success(array('redirect_url' => $redirect_url));
+      wp_die();
+    }
+  }
+}
+
+/* Product share */
+if (!function_exists('cleanira_product_share_render')) {
+  function cleanira_product_share_render()
+  {
+
+    $social_item = array();
+    $social_item[] = '<li>
+                        <a target="_blank" data-btIcon="fa fa-linkedin" data-toggle="tooltip" title="' . esc_attr__('Linkedin', 'cleanira') . '" href="https://www.linkedin.com/shareArticle?url=' . get_the_permalink() . '">
+                          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
+                            <path d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"/>
+                          </svg>
+                        </a>
+                      </li>';
+    $social_item[] = '<li>
+                        <a target="_blank" data-btIcon="fa fa-facebook" data-toggle="tooltip" title="' . esc_attr__('Facebook', 'cleanira') . '" href="https://www.facebook.com/sharer/sharer.php?u=' . get_the_permalink() . '">
+                          <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 320 512">
+                            <path d="M279.14 288l14.22-92.66h-88.91v-60.13c0-25.35 12.42-50.06 52.24-50.06h40.42V6.26S260.43 0 225.36 0c-73.22 0-121.08 44.38-121.08 124.72v70.62H22.89V288h81.39v224h100.17V288z"/>
+                          </svg>
+                        </a>
+                      </li>';
+    $social_item[] = '<li>
+                      <a target="_blank" data-btIcon="fa fa-twitter" data-toggle="tooltip" title="' . esc_attr__('Twitter', 'cleanira') . '" href="https://twitter.com/share?url=' . get_the_permalink() . '">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
+                          <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
+                        </svg>
+                      </a>
+                    </li>';
+    $social_item[] = '<li>
+                        <a target="_blank" data-btIcon="fa fa-pinterest" data-toggle="tooltip" title="' . esc_attr__('Pinterest', 'cleanira') . '" href="https://pinterest.com/pin/create/button/?url=' . get_the_permalink() . '&media=' . wp_get_attachment_url(get_post_thumbnail_id()) . '&description=' . get_the_title() . '">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="16" viewBox="0 0 13 16" fill="none">
+                            <path d="M6.53967 0C3.2506 0 0 2.19271 0 5.74145C0 7.99827 1.26947 9.28056 2.03884 9.28056C2.3562 9.28056 2.53893 8.39578 2.53893 8.14574C2.53893 7.8476 1.77918 7.21287 1.77918 5.97226C1.77918 3.39486 3.74108 1.5676 6.28001 1.5676C8.4631 1.5676 10.0788 2.80821 10.0788 5.08748C10.0788 6.78972 9.39597 9.98261 7.18402 9.98261C6.3858 9.98261 5.70298 9.40558 5.70298 8.57851C5.70298 7.36675 6.54929 6.19345 6.54929 4.94322C6.54929 2.82103 3.53912 3.20572 3.53912 5.7703C3.53912 6.30886 3.60644 6.90512 3.84686 7.3956C3.40448 9.2998 2.50046 12.1369 2.50046 14.0988C2.50046 14.7046 2.58702 15.3009 2.64472 15.9068C2.75371 16.0286 2.69922 16.0158 2.86591 15.9549C4.4816 13.7429 4.42389 13.3102 5.1548 10.4154C5.5491 11.1655 6.56852 11.5694 7.37636 11.5694C10.7808 11.5694 12.31 8.25152 12.31 5.26059C12.31 2.07731 9.55946 0 6.53967 0Z" fill="#212121"/>
+                          </svg>
+                        </a>
+                      </li>';
+
+    ob_start();
+    if (is_singular('product')) { ?>
+      <div class="bt-product-share">
+        <?php if (!empty($social_item)) {
+          echo '<div class="button-share"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+<path d="M13.7526 12.5005C13.3357 12.5004 12.923 12.5839 12.5389 12.7462C12.1549 12.9084 11.8073 13.1461 11.5167 13.4451L7.91513 11.1302C8.19843 10.4038 8.19843 9.59734 7.91513 8.87086L11.5167 6.55602C12.0577 7.11017 12.7851 7.44372 13.5581 7.49198C14.331 7.54024 15.0943 7.29978 15.7 6.81723C16.3057 6.33467 16.7107 5.64439 16.8364 4.88023C16.9621 4.11606 16.7995 3.33245 16.3803 2.68131C15.9611 2.03017 15.315 1.5579 14.5673 1.35606C13.8196 1.15421 13.0236 1.23718 12.3337 1.58887C11.6437 1.94057 11.1089 2.53592 10.8329 3.25953C10.557 3.98313 10.5596 4.78342 10.8401 5.50524L7.23857 7.82008C6.80487 7.37483 6.24824 7.06902 5.63985 6.94175C5.03145 6.81449 4.39892 6.87154 3.82312 7.10563C3.24731 7.33971 2.7544 7.74019 2.40738 8.25586C2.06036 8.77154 1.875 9.37898 1.875 10.0005C1.875 10.6221 2.06036 11.2296 2.40738 11.7452C2.7544 12.2609 3.24731 12.6614 3.82312 12.8955C4.39892 13.1296 5.03145 13.1866 5.63985 13.0593C6.24824 12.9321 6.80487 12.6263 7.23857 12.181L10.8401 14.4959C10.5989 15.1181 10.5632 15.8013 10.7382 16.4454C10.9133 17.0894 11.29 17.6605 11.8132 18.075C12.3363 18.4894 12.9784 18.7255 13.6454 18.7487C14.3124 18.7718 14.9694 18.5808 15.52 18.2036C16.0706 17.8264 16.4859 17.2828 16.7053 16.6524C16.9246 16.0221 16.9363 15.338 16.7387 14.7005C16.5412 14.063 16.1447 13.5055 15.6074 13.1096C15.07 12.7137 14.4201 12.5003 13.7526 12.5005ZM13.7526 2.50055C14.1235 2.50055 14.486 2.61052 14.7943 2.81654C15.1027 3.02257 15.343 3.31541 15.4849 3.65802C15.6268 4.00063 15.6639 4.37763 15.5916 4.74134C15.5193 5.10506 15.3407 5.43915 15.0785 5.70137C14.8162 5.9636 14.4821 6.14217 14.1184 6.21452C13.7547 6.28687 13.3777 6.24974 13.0351 6.10782C12.6925 5.96591 12.3997 5.72559 12.1936 5.41724C11.9876 5.1089 11.8776 4.74639 11.8776 4.37555C11.8776 3.87827 12.0752 3.40135 12.4268 3.04972C12.7784 2.69809 13.2553 2.50055 13.7526 2.50055ZM5.00263 11.8755C4.63179 11.8755 4.26928 11.7656 3.96093 11.5596C3.65259 11.3535 3.41227 11.0607 3.27036 10.7181C3.12844 10.3755 3.09131 9.99847 3.16366 9.63475C3.236 9.27104 3.41458 8.93695 3.6768 8.67472C3.93903 8.4125 4.27312 8.23392 4.63683 8.16158C5.00055 8.08923 5.37755 8.12636 5.72016 8.26827C6.06277 8.41019 6.35561 8.65051 6.56163 8.95885C6.76766 9.2672 6.87763 9.62971 6.87763 10.0005C6.87763 10.4978 6.68008 10.9747 6.32845 11.3264C5.97682 11.678 5.49991 11.8755 5.00263 11.8755ZM13.7526 17.5005C13.3818 17.5005 13.0193 17.3906 12.7109 17.1846C12.4026 16.9785 12.1623 16.6857 12.0204 16.3431C11.8784 16.0005 11.8413 15.6235 11.9137 15.2598C11.986 14.896 12.1646 14.5619 12.4268 14.2997C12.689 14.0375 13.0231 13.8589 13.3868 13.7866C13.7505 13.7142 14.1275 13.7514 14.4702 13.8933C14.8128 14.0352 15.1056 14.2755 15.3116 14.5839C15.5177 14.8922 15.6276 15.2547 15.6276 15.6255C15.6276 16.1228 15.4301 16.5997 15.0785 16.9514C14.7268 17.303 14.2499 17.5005 13.7526 17.5005Z" fill="#212121"/>
+</svg>' . esc_html__('Share', 'cleanira') . '</div><ul>' . implode(' ', $social_item) . '</ul>';
+        } ?>
+      </div>
+<?php }
+
+    return ob_get_clean();
+  }
 }

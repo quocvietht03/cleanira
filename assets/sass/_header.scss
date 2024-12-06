@@ -462,8 +462,8 @@
           }
           @media (max-width: $break-lg) and (min-width: $break-tl) {
             gap: 10px;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
           }
           > .elementor-element {
             .elementor-widget-nav-menu {
@@ -504,6 +504,12 @@
               }
             }
             @media (max-width: 1500px) and (min-width: 1420px) {
+              &:first-child {
+                width: 65%;
+              }
+              &:last-child {
+                width: 35%;
+              }
               .elementor-widget-bt-site-information-style-1 {
                 .bt-elwg-site-infor--item-content {
                   display: none;
@@ -521,7 +527,7 @@
                 width: 32%;
               }
             }
-            @media (max-width: 1250px) and (min-width: $break-tl) {
+            @media (max-width: 1270px) and (min-width: $break-tl) {
               &:first-child {
                 width: 73%;
                 gap: 15px;

@@ -346,7 +346,7 @@
 					setTimeout(function () {
 						$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').addClass('added');
 						$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').removeClass('loading');
-						$('.bt-product-wishlist-btn[data-id="' + post_id + '"] .tooltip').text("View Wishlist"); 
+						$('.bt-product-wishlist-btn[data-id="' + post_id + '"] .tooltip').text("View Wishlist");
 					}, 500);
 					$('.bt-productwishlistcookie').val(post_id);
 				} else {
@@ -361,7 +361,7 @@
 						setTimeout(function () {
 							$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').addClass('added');
 							$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').removeClass('loading');
-							$('.bt-product-wishlist-btn[data-id="' + post_id + '"] .tooltip').text("View Wishlist"); 
+							$('.bt-product-wishlist-btn[data-id="' + post_id + '"] .tooltip').text("View Wishlist");
 						}, 500);
 						$('.bt-productwishlistcookie').val(wishlist_cookie + ',' + post_id);
 					}
@@ -528,7 +528,13 @@
 			$(document).on('click', '.bt-product-add-compare .bt-cover-image', function () {
 				$('.bt-compare-body').removeClass('show');
 				setTimeout(function () {
-					$('.bt-popup-compare').remove();
+					if ($('body').hasClass('archive')) {
+						$('.bt-popup-compare').remove();
+					} else {
+						window.location.href = '/shop/';
+					}
+
+
 				}, 300);
 
 			});
@@ -1001,6 +1007,47 @@
 			jQuery(this).parent().parent().addClass('bt-submenu-content');
 		});
 	}
+	function CleaniraBuyNow() {
+		$(document).on('click', '.bt-button-buy-now a', function (e) {
+			e.preventDefault();
+			var product_id = $(this).data('id').toString();
+			var param_ajax = {
+				action: 'cleanira_products_buy_now',
+				product_id: product_id
+			};
+
+			$.ajax({
+				type: 'POST',
+				dataType: 'json',
+				url: AJ_Options.ajax_url,
+				data: param_ajax,
+				beforeSend: function () {
+
+				},
+				success: function (response) {
+					if (response.success) {
+						window.location.href = response.data['redirect_url'];
+					} else {
+						console.log('error');
+					}
+				},
+				error: function (jqXHR, textStatus, errorThrown) {
+					console.log('The following error occured: ' + textStatus, errorThrown);
+				}
+			});
+		});
+	}
+	function CleaniraScrollReview() {
+		$(document).on('click', '.bt-action-review', function (e) {
+			e.preventDefault();
+			var reviewForm = $('#review_form_wrapper');
+			if (reviewForm.length) {
+				$('html, body').animate({
+					scrollTop: reviewForm.offset().top - 100
+				}, 500); 
+			}
+		});
+	}
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -1026,6 +1073,8 @@
 		CleaniraCountdownCart();
 		CleaniraSelect2Appointment();
 		CleaniraMegaMenuAddClass();
+		CleaniraBuyNow();
+		CleaniraScrollReview();
 	});
 
 	jQuery(window).on('resize', function () {

@@ -19,7 +19,11 @@ if (function_exists('get_field')) {
                             </svg>
                         </div>
                         <div class="bt-elwg-site-infor--item-content">
-                            <h4><?php echo esc_html__('Have any Question?', 'cleanira') ?></h4>
+                            <?php if (!empty($args['title_phone']) && isset($args['title_phone'])) { ?>
+                                <h4><?php echo esc_attr($args['title_phone']) ?></h4>
+                            <?php } else { ?>
+                                <h4><?php echo esc_html__('Have any Question?', 'cleanira') ?></h4>
+                            <?php } ?>
                             <span> <?php echo esc_html($site_infor['site_phone']); ?> </span>
                         </div>
                     <?php else : ?>
@@ -55,7 +59,11 @@ if (function_exists('get_field')) {
                             </svg>
                         </div>
                         <div class="bt-elwg-site-infor--item-content">
-                            <h4><?php echo esc_html__('Email:', 'cleanira') ?></h4>
+                            <?php if (!empty($args['title_email']) && isset($args['title_email'])) { ?>
+                                <h4><?php echo esc_attr($args['title_email']) ?></h4>
+                            <?php } else { ?>
+                                <h4><?php echo esc_html__('Email:', 'cleanira') ?></h4>
+                            <?php } ?>
                             <span> <?php echo esc_html($site_infor['site_email']); ?> </span>
                         </div>
                     <?php else : ?>
@@ -82,7 +90,11 @@ if (function_exists('get_field')) {
                         </svg>
                     </div>
                     <div class="bt-elwg-site-infor--item-content">
-                        <h4><?php echo esc_html__('Address:', 'cleanira') ?></h4>
+                        <?php if (!empty($args['title_address']) && isset($args['title_address'])) { ?>
+                            <h4><?php echo esc_attr($args['title_address']) ?></h4>
+                        <?php } else { ?>
+                            <h4><?php echo esc_html__('Address:', 'cleanira') ?></h4>
+                        <?php } ?>
                         <span> <?php echo esc_html($site_infor['site_address']); ?> </span>
                     </div>
                 <?php else : ?>

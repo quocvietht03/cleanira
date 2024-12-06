@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Product quantity inputs
  *
@@ -18,12 +19,15 @@
  * @var string $type     The input type attribute.
  */
 
-defined( 'ABSPATH' ) || exit;
+defined('ABSPATH') || exit;
 
 /* translators: %s: Quantity. */
-$label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 'cleanira' ), wp_strip_all_tags( $args['product_name'] ) ) : esc_html__( 'Quantity', 'cleanira' );
-
+$label = ! empty($args['product_name']) ? sprintf(esc_html__('%s quantity', 'cleanira'), wp_strip_all_tags($args['product_name'])) : esc_html__('Quantity', 'cleanira');
+if (is_product()) {
+	echo '<span class="title-quantity">' . esc_html__('Quantity:', 'cleanira') . '</span>';
+}
 ?>
+
 <div class="quantity">
 	<?php
 	/**
@@ -31,35 +35,34 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 	 *
 	 * @since 7.2.0
 	 */
-	do_action( 'woocommerce_before_quantity_input_field' );
+	do_action('woocommerce_before_quantity_input_field');
 	?>
-	<label class="screen-reader-text" for="<?php echo esc_attr( $input_id ); ?>"><?php echo esc_html( $label ); ?></label>
+	<label class="screen-reader-text" for="<?php echo esc_attr($input_id); ?>"><?php echo esc_html($label); ?></label>
 	<span class="qty-minus">
 		<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-			<path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+			<path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z" />
 		</svg>
 	</span>
 	<input
-		type="<?php echo esc_attr( $type ); ?>"
-		<?php if($readonly) echo 'readonly="readonly"'; ?>
-		id="<?php echo esc_attr( $input_id ); ?>"
-		class="<?php echo esc_attr( join( ' ', (array) $classes ) ); ?>"
-		name="<?php echo esc_attr( $input_name ); ?>"
-		value="<?php echo esc_attr( $input_value ); ?>"
-		aria-label="<?php esc_attr_e( 'Product quantity', 'cleanira' ); ?>"
+		type="<?php echo esc_attr($type); ?>"
+		<?php if ($readonly) echo 'readonly="readonly"'; ?>
+		id="<?php echo esc_attr($input_id); ?>"
+		class="<?php echo esc_attr(join(' ', (array) $classes)); ?>"
+		name="<?php echo esc_attr($input_name); ?>"
+		value="<?php echo esc_attr($input_value); ?>"
+		aria-label="<?php esc_attr_e('Product quantity', 'cleanira'); ?>"
 		size="4"
-		min="<?php echo esc_attr( $min_value ); ?>"
-		max="<?php echo esc_attr( 0 < $max_value ? $max_value : '' ); ?>"
-		<?php if ( ! $readonly ) : ?>
-			step="<?php echo esc_attr( $step ); ?>"
-			placeholder="<?php echo esc_attr( $placeholder ); ?>"
-			inputmode="<?php echo esc_attr( $inputmode ); ?>"
-			autocomplete="<?php echo esc_attr( isset( $autocomplete ) ? $autocomplete : 'on' ); ?>"
-		<?php endif; ?>
-	/>
+		min="<?php echo esc_attr($min_value); ?>"
+		max="<?php echo esc_attr(0 < $max_value ? $max_value : ''); ?>"
+		<?php if (! $readonly) : ?>
+		step="<?php echo esc_attr($step); ?>"
+		placeholder="<?php echo esc_attr($placeholder); ?>"
+		inputmode="<?php echo esc_attr($inputmode); ?>"
+		autocomplete="<?php echo esc_attr(isset($autocomplete) ? $autocomplete : 'on'); ?>"
+		<?php endif; ?> />
 	<span class="qty-plus">
 		<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512">
-			<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
+			<path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
 		</svg>
 	</span>
 	<?php
@@ -68,7 +71,7 @@ $label = ! empty( $args['product_name'] ) ? sprintf( esc_html__( '%s quantity', 
 	 *
 	 * @since 3.6.0
 	 */
-	do_action( 'woocommerce_after_quantity_input_field' );
+	do_action('woocommerce_after_quantity_input_field');
 	?>
 </div>
 <?php

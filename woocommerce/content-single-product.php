@@ -31,6 +31,9 @@ if (post_password_required()) {
 	echo get_the_password_form(); // WPCS: XSS ok.
 	return;
 }
+if (function_exists('get_field')) {
+	$more_information = get_field('more_information', 'options');
+}
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<div class="bt-product-inner">
@@ -49,19 +52,118 @@ if (post_password_required()) {
 			do_action('cleanira_woocommerce_shop_loop_item_subtitle');
 			do_action('cleanira_woocommerce_template_single_title');
 			?>
-
+			<div class="woocommerce-product-rating-sold">
+				<?php
+				do_action('cleanira_woocommerce_template_single_rating');
+				?>
+			</div>
 			<div class="woocommerce-product-price-wrap">
 				<?php
 				do_action('cleanira_woocommerce_template_single_price');
-				do_action('cleanira_woocommerce_template_single_rating');
+				do_action('cleanira_woocommerce_show_product_loop_sale_flash');
+
 				?>
 			</div>
 			<div class="bt-product-excerpt-add-to-cart">
 				<?php
 				do_action('cleanira_woocommerce_template_single_excerpt');
 				do_action('cleanira_woocommerce_template_single_add_to_cart');
-
 				?>
+				<div class="bt-button-buy-now">
+					<a class="button" data-id="<?php echo get_the_ID(); ?>"><?php echo esc_html__('Buy it now ', 'cleanira') ?></a>
+				</div>
+				<?php if ($more_information && $more_information['enable_more_information']) {
+					$delivery_return = $more_information['delivery_return'];
+					$ask_question = $more_information['ask_question'];
+					if (!empty($delivery_return['icon'])) {
+						$icon_delivery_svg = file_get_contents($delivery_return['icon']['url']);
+					} else {
+						$icon_delivery_svg = '';
+					}
+					if (!empty($ask_question['icon'])) {
+						$icon_ask_svg = file_get_contents($ask_question['icon']['url']);
+					} else {
+						$icon_ask_svg = '';
+					}
+				?>
+					<div class="bt-more-information">
+						<div class="bt-policy-share">
+							<ul>
+								<li>
+									<?php if (!empty($icon_delivery_svg)): ?>
+										<div class="bt-icon">
+											<?php echo $icon_delivery_svg; ?>
+										</div>
+									<?php endif; ?>
+
+									<?php
+									$title_and_link = $delivery_return['title_and_link'];
+									if ($title_and_link):
+										$link_title = $title_and_link['title'];
+										$link_url = $title_and_link['url'];
+									?>
+										<div class="bt-link">
+											<a href="<?php echo esc_url($link_url); ?>">
+												<?php echo esc_html($link_title); ?>
+											</a>
+										</div>
+									<?php endif; ?>
+								</li>
+								<li>
+									<?php if (!empty($icon_ask_svg)): ?>
+										<div class="bt-icon">
+											<?php echo $icon_ask_svg; ?>
+										</div>
+									<?php endif; ?>
+
+									<?php
+									$title_and_link = $ask_question['title_and_link'];
+									if ($title_and_link):
+										$link_title = $title_and_link['title'];
+										$link_url = $title_and_link['url'];
+									?>
+										<div class="bt-link">
+											<a href="<?php echo esc_url($link_url); ?>">
+												<?php echo esc_html($link_title); ?>
+											</a>
+										</div>
+									<?php endif; ?>
+								</li>
+							</ul>
+							<?php echo cleanira_product_share_render(); ?>
+						</div>
+
+						<?php
+						$list_info = $more_information['list_info'];
+						if ($list_info):
+							echo '<ul class="bt-list-info">';
+							foreach ($list_info as $item):
+								if (!empty($item['icon'])) {
+									$icon_svg = file_get_contents($item['icon']['url']);
+								} else {
+									$icon_svg = '';
+								}
+								echo '<li>';
+								if (!empty($item['link_text'])) {
+									echo '<a href="' . esc_url($item['link_text']) . '">';
+								}
+								if (!empty($icon_svg)) {
+									echo $icon_svg;
+								}
+								if (!empty($item['text'])) {
+									echo '<p>' . $item['text'] . '</p>';
+								}
+								if (!empty($item['link_text'])) {
+									echo '</a>';
+								}
+								echo '</li>';
+							endforeach;
+							echo '</ul>';
+						endif;
+						?>
+
+					</div>
+				<?php } ?>
 			</div>
 
 			<?php do_action('cleanira_woocommerce_template_single_meta'); ?>

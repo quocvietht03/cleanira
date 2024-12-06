@@ -213,6 +213,10 @@
         min-height: unset;
         box-sizing: border-box;
         border-width: 2px;
+        &::placeholder{
+          letter-spacing: 0;
+          font-family: $primary-font;
+        }
       }
       div.error {
         color: #ff0000;
