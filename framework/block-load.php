@@ -28,26 +28,6 @@ function cleanira_acf_init()
         ));
 
         acf_register_block(array(
-            'name'              => 'widget-make-appointment',
-            'title'             => __('Widget - Make Appointment', 'cleanira'),
-            'description'       => __('Widget - Make Appointment block.', 'cleanira'),
-            'render_callback'   => 'cleanira_acf_block_render_callback',
-            // 'enqueue_assets' => 'cleanira_acf_block_assets_callback',
-            'category'          => 'bt-custom-block',
-            'icon'              => '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z" /><path d="M19 13H5v-2h14v2z" /></svg>',
-            'keywords'          => array('Make Appointment', 'Make', 'Appointment'),
-        ));
-        acf_register_block(array(
-            'name'              => 'widget-popular-category-posts',
-            'title'             => __('Widget - Popular Category Posts', 'cleanira'),
-            'description'       => __('Widget - Popular Category Posts block.', 'cleanira'),
-            'render_callback'   => 'cleanira_acf_block_render_callback',
-            // 'enqueue_assets' => 'cleanira_acf_block_assets_callback',
-            'category'          => 'bt-custom-block',
-            'icon'              => '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z" /><path d="M19 13H5v-2h14v2z" /></svg>',
-            'keywords'          => array('Popular Category', 'Category', 'Posts'),
-        ));
-        acf_register_block(array(
             'name'              => 'widget-instagram-posts',
             'title'             => __('Widget - Instagram Posts', 'cleanira'),
             'description'       => __('Widget - Instagram Posts block.', 'cleanira'),

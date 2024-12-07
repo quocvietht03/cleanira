@@ -6,7 +6,7 @@
 	});
 
 	jQuery(window).on('resize', function() {
-    CleaniraSubmenuAuto();
+  //  CleaniraSubmenuAuto();
 	});
 
 	jQuery(window).on('scroll', function() {

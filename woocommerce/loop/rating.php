@@ -25,7 +25,7 @@ if ( ! wc_review_ratings_enabled() ) {
 	return;
 }
 ?>
-<div class="bt-product-rating">
+<div class="bt-product-rating woocommerce">
     <?php echo wc_get_rating_html( $product->get_average_rating() );  ?>
     <?php if ($product->get_rating_count()): ?>
         <div class="bt-product-rating--count">

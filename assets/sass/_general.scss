@@ -839,56 +839,6 @@
   }
 }
 
-.__bt-contact-information-style {
-  .bt-contact-information {
-    background: $color-accent;
-    padding: 58px 40px;
-    border-radius: 15px;
-    &--head {
-      font-family: $secondary-font;
-      font-size: 30px;
-      color: #fff;
-      margin: 0 0 5px;
-    }
-    &--desc {
-      font-size: 18px;
-      line-height: 156%;
-      color: #ffffff;
-    }
-    &--button {
-      @extend .__bt-button-dark-style;
-      text-transform: uppercase;
-      margin-top: 32px;
-    }
-    &--social {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 16px;
-      margin-top: 46px;
-      a {
-        display: inline-block;
-        line-height: 0;
-      }
-      img {
-        width: auto;
-        height: 32px;
-      }
-    }
-  }
-  @media (max-width: $break-xs) {
-    .bt-contact-information {
-      padding: 36px 20px;
-      &--head {
-        font-size: 24px;
-      }
-      &--desc {
-        font-size: 16px;
-      }
-    }
-  }
-}
-
 .__instagram-posts-style {
   .bt-ins-posts {
     &--head {
@@ -920,36 +870,7 @@
     &--image {
       .bt-cover-image {
         padding-bottom: 100%;
-      }
-      &:nth-child(5n + 1) {
-        .bt-cover-image {
-          border-radius: 10px 10px 10px 40px;
-        }
-      }
-      &:nth-child(5n + 2) {
-        .bt-cover-image {
-          border-radius: 40px 10px 10px 10px;
-        }
-      }
-      &:nth-child(5n + 3) {
-        .bt-cover-image {
-          border-radius: 10px 40px 10px 10px;
-        }
-      }
-      &:nth-child(5n + 4) {
-        .bt-cover-image {
-          border-radius: 10px 10px 40px 10px;
-        }
-      }
-      &:nth-child(5n + 5) {
-        .bt-cover-image {
-          border-radius: 10px 40px 10px 10px;
-        }
-      }
-      &:nth-child(5n + 6) {
-        .bt-cover-image {
-          border-radius: 10px 10px 40px 10px;
-        }
+        border-radius: 10px;
       }
     }
     &--link {

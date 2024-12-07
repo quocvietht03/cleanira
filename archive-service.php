@@ -17,11 +17,11 @@ get_template_part('framework/templates/site', 'titlebar');
                         $service_types = get_field('service_types', get_the_ID());
                     ?>
                         <div class="bt-service-list-item bubble-container">
-                            <div class="bt-post--img">
+                            <a href="<?php the_permalink(); ?>" class="bt-post--img">
                                 <?php if (!empty($img_1_url)) { ?>
                                     <img src="<?php echo esc_url($img_1_url) ?>" alt="">
                                 <?php } ?>
-                            </div>
+                            </a>
                             <div class="bt-post--content">
                                 <?php echo cleanira_post_title_render(); ?>
                                 <?php if (!empty($service_types)): ?>

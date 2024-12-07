@@ -551,9 +551,9 @@ class Widget_ServicesList extends Widget_Base
 						$service_types = get_field('service_types', get_the_ID());
 					?>
 						<div class="bt-service-list-item bubble-container">
-							<div class="bt-post--img">
+							<a href="<?php the_permalink(); ?>" class="bt-post--img">
 								<img src="<?php echo esc_url($img_1_url) ?>" alt="">
-							</div>
+							</a>
 							<div class="bt-post--content">
 								<?php echo cleanira_post_title_render(); ?>
 								<?php if (!empty($service_types)): ?>

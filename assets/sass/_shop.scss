@@ -1009,6 +1009,12 @@
 }
 .bt-elwg-product-loop-item {
   @extend .__bt-loop-product-style;
+  .woocommerce-loop-product .bt-product-rating .star-rating{
+    word-break: normal;
+    span{
+      word-break: normal;
+    }
+  }
   .woocommerce-loop-product__thumbnail .button {
     max-width: 200px;
   }

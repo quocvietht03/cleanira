@@ -11,7 +11,7 @@
     }
     .bt-cover-image {
       padding-bottom: 100%;
-      border-radius: 10px 10px 40px 10px;
+      border-radius: 10px 10px 10px 10px;
     }
     &--thumbnail {
       width: 100px;
@@ -49,32 +49,6 @@
   }
 }
 
-
-.bt-block-popular-category-posts {
-  .bt-popular-category-posts {
-    display: flex;
-    flex-direction: column;
-    grid-gap: 20px;
-    padding-top: 10px;
-    &--item {
-      margin-bottom: 0;
-      a {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: $color-primary;
-        font-family: $secondary-font;
-        font-size: 22px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 1.3;
-        &:hover {
-          color: $color-accent;
-        }
-      }
-    }
-  }
-}
 .bt-block-instagram-posts {
   padding: 0;
   @extend .__instagram-posts-style;

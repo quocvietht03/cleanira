@@ -121,15 +121,8 @@ if (!function_exists('cleanira_page_title')) {
 		}elseif (is_archive()) {
 			if (is_category()){
 				single_cat_title();
-			}elseif(get_post_type() == 'service'||get_post_type() == 'therapist'){
-				if(is_post_type_archive('therapist')) {
-					esc_html_e('SPA Therapist', 'cleanira');
-				} elseif(is_post_type_archive('service')) {
-					esc_html_e('SPA Services', 'cleanira');
-				} else {
+			}elseif(get_post_type() == 'service'){
 					single_term_title();
-				}
-				
 			}elseif (get_post_type() == 'product'){
 				if(wc_get_page_id( 'shop' )){
 					echo get_the_title( wc_get_page_id( 'shop' ) );
