@@ -532,22 +532,23 @@
       }
       &.bt-thumb {
         position: relative;
+        .bt-remove-item {
+          position: absolute;
+          padding: 4px;
+          display: flex;
+          align-items: center;
+          right: 20px;
+          top: 10px;
+          z-index: 999;
+          background: #fff;
+          border: 1px solid $color-accent;
+          border-radius: 50%;
+          cursor: pointer;
+        }
         a {
           display: block;
           position: relative;
-          .bt-remove-item {
-            position: absolute;
-            padding: 4px;
-            display: flex;
-            align-items: center;
-            right: 10px;
-            top: 10px;
-            z-index: 999;
-            background: #fff;
-            border: 1px solid $color-accent;
-            border-radius: 50%;
-            cursor: pointer;
-          }
+
           img {
             width: 250px;
             border-radius: 10px;
@@ -1332,7 +1333,7 @@
         height: 56px;
         font-family: $accent-font !important;
       }
-      .bt-product-icon-btn{
+      .bt-product-icon-btn {
         display: none;
       }
     }
@@ -1643,7 +1644,7 @@
           }
           &__slider-nav {
             margin: 20px -5px 0;
-            @media(max-width:$break-xs){
+            @media (max-width: $break-xs) {
               margin: 20px 0 0;
             }
             .slick-slide {
@@ -1659,10 +1660,10 @@
                 width: 100%;
                 padding: 0 10px;
                 box-sizing: border-box;
-                @media(max-width:$break-xs){
+                cursor: pointer;
+                @media (max-width: $break-xs) {
                   padding: 0 5px;
                 }
-                cursor: pointer;
                 > div {
                   border: 2px solid transparent;
                 }
@@ -1691,7 +1692,7 @@
           font-style: normal;
           font-weight: 700;
           line-height: 40px;
-          @media(max-width:$break-xs){
+          @media (max-width: $break-xs) {
             font-size: 30px;
           }
         }
@@ -2150,7 +2151,7 @@
       .woocommerce-tabs {
         max-width: 1070px;
         margin: 60px auto 0 auto;
-        @media(max-width:$break-sm){
+        @media (max-width: $break-sm) {
           margin: 40px auto 0 auto;
         }
         ul.tabs {
@@ -2207,7 +2208,7 @@
           .page-links {
             margin-top: 40px;
           }
-          @media(max-width:$break-sm){
+          @media (max-width: $break-sm) {
             margin: 30px 0;
           }
         }
@@ -2369,9 +2370,9 @@
                       background: transparent !important;
                       float: inherit !important;
                       padding: 0 !important;
-                      @media(max-width:$break-xs){
+                      @media (max-width: $break-xs) {
                         width: 45px !important;
-                      height: 45px !important;
+                        height: 45px !important;
                       }
                     }
                     .comment-text {
@@ -2382,7 +2383,7 @@
                       border-left: none !important;
                       border-bottom: 1px solid #e4e4e4 !important;
                       padding: 0 !important;
-                      @media(max-width:$break-xs){
+                      @media (max-width: $break-xs) {
                         margin: 0 0 0 60px !important;
                       }
                       .meta {
@@ -2441,7 +2442,7 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 20px 0px;
-                @media(max-width:$break-sm){
+                @media (max-width: $break-sm) {
                   gap: 15px 0px;
                 }
                 &-rating {
@@ -3855,6 +3856,7 @@
       }
       input {
         border-radius: 15px;
+        min-height: 52px;
         &[type="checkbox"] {
           min-height: unset;
         }
@@ -3876,6 +3878,7 @@
       padding: 15px 35px;
       color: #ffffff;
       background: $color-accent;
+      border-radius: 30px;
     }
   }
   .woocommerce-MyAccount-navigation ul {

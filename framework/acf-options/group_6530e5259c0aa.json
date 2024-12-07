@@ -37,6 +37,26 @@
             "layout": "block",
             "sub_fields": [
                 {
+                    "key": "field_6753ab3c1fc95",
+                    "label": "Text Button Book Now",
+                    "name": "text_button_book_now",
+                    "aria-label": "",
+                    "type": "text",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "maxlength": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": ""
+                },
+                {
                     "key": "field_6674ee596ad31",
                     "label": "Page Book Now",
                     "name": "page_book_now",
@@ -1568,5 +1588,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1733458799
+    "modified": 1733536630
 }

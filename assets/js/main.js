@@ -1087,6 +1087,29 @@
 			}
 		});
 	}
+	function CleaniraAddSelect2GravityForm() {
+		$('.gform_wrapper').each(function () {
+			const $self = $(this);
+			$($self).find('select').select2({
+				dropdownParent: $self,
+				minimumResultsForSearch: Infinity,
+				placeholder: "Choose Services",
+				allowClear: true
+			});
+		})
+	}
+	function CleaniraHookGravityFormEvents() {
+		$(document).on('submit', '.gform_wrapper form', function(e) {
+			let $form = $(this);
+			let $submitButton = $form.find('input[type="submit"], button[type="submit"]');
+			$form.addClass('loading');
+			$submitButton.prop('disabled', true).addClass('loading');
+	
+		});
+		$(document).on('gform_post_render', function(event, formId) {
+			CleaniraAddSelect2GravityForm();
+		});
+    }
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -1115,6 +1138,7 @@
 		CleaniraMegaMenuAddClass();
 		CleaniraBuyNow();
 		CleaniraScrollReview();
+		CleaniraHookGravityFormEvents();
 	});
 
 	jQuery(window).on('resize', function () {

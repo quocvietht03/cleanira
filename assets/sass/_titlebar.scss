@@ -70,6 +70,7 @@
     direction: ltr;
     bottom: -1px;
     transform: rotate(180deg);
+    z-index: 2;
     svg {
       display: block;
       position: relative;
