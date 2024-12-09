@@ -833,8 +833,8 @@
     border-radius: 50%;
     border: 1px solid #e4e4e4;
     &:hover {
-      border-color: #c1dcfb;
-      background-color: #c1dcfb;
+      border-color: $color-secondary;
+      background-color: $color-secondary;
     }
   }
 }
@@ -1087,7 +1087,7 @@
   padding: 16px 40px;
   font-size: 16px;
   line-height: 1.5;
-  color: #212121;
+  color: $color-primary;
   border-radius: 100px;
   background-color: $color-secondary;
   font-family: $primary-font;

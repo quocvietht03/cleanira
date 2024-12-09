@@ -1467,7 +1467,7 @@
       &--infor {
         width: calc(37% - 3px);
         position: relative;
-        background: #f1f5fb;
+        background: $color-background;
         padding: 40px;
         .bt-line {
           &-right {
@@ -1855,7 +1855,7 @@
             padding: 13px 40px;
             font-size: 16px;
             line-height: 1.5;
-            color: #212121;
+            color: $color-primary;
             border-radius: 100px;
             background-color: $color-secondary;
             font-weight: 700;
@@ -1995,7 +1995,7 @@
           .bt-table-compare {
             padding: 0;
             .bt-table--head {
-              background: #f1f5fb;
+              background: $color-background;
               .bt-table--col {
                 font-size: 17px;
                 padding: 15px;
