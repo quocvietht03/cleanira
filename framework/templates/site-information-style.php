@@ -20,7 +20,7 @@ if (function_exists('get_field')) {
                         </div>
                         <div class="bt-elwg-site-infor--item-content">
                             <?php if (!empty($args['title_phone']) && isset($args['title_phone'])) { ?>
-                                <h4><?php echo esc_attr($args['title_phone']) ?></h4>
+                                <h4><?php echo esc_html($args['title_phone']) ?></h4>
                             <?php } else { ?>
                                 <h4><?php echo esc_html__('Have any Question?', 'cleanira') ?></h4>
                             <?php } ?>
@@ -60,7 +60,7 @@ if (function_exists('get_field')) {
                         </div>
                         <div class="bt-elwg-site-infor--item-content">
                             <?php if (!empty($args['title_email']) && isset($args['title_email'])) { ?>
-                                <h4><?php echo esc_attr($args['title_email']) ?></h4>
+                                <h4><?php echo esc_html($args['title_email']) ?></h4>
                             <?php } else { ?>
                                 <h4><?php echo esc_html__('Email:', 'cleanira') ?></h4>
                             <?php } ?>
@@ -91,7 +91,7 @@ if (function_exists('get_field')) {
                     </div>
                     <div class="bt-elwg-site-infor--item-content">
                         <?php if (!empty($args['title_address']) && isset($args['title_address'])) { ?>
-                            <h4><?php echo esc_attr($args['title_address']) ?></h4>
+                            <h4><?php echo esc_html($args['title_address']) ?></h4>
                         <?php } else { ?>
                             <h4><?php echo esc_html__('Address:', 'cleanira') ?></h4>
                         <?php } ?>

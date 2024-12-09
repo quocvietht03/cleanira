@@ -2,11 +2,15 @@
 
 /**
  * Site Titlebar
- *
+ *  
  */
-$background_color = !empty(get_field('title_bar_bg_color', 'options')) ? get_field('title_bar_bg_color', 'options') : '#F1F5FB';
+if (function_exists('get_field')) {
+  $background_color = !empty(get_field('title_bar_bg_color', 'options')) ? get_field('title_bar_bg_color', 'options') : '';
+}else{
+  $background_color = '';
+}
 ?>
-<section class="bt-site-titlebar" style="background-color: <?php echo esc_attr($background_color) ?>">
+<section class="bt-site-titlebar" <?php echo !empty($background_color) ? ' style="background-color: ' . esc_attr($background_color) . ';"' : ''; ?>>
   <div class="bt-container">
     <div class="bt-wave bt-wave-bottom" data-negative="false">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Loop Rating
  *
@@ -15,22 +16,21 @@
  * @version 3.6.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (! defined('ABSPATH')) {
+    exit;
 }
 
 global $product;
 
-if ( ! wc_review_ratings_enabled() ) {
-	return;
+if (! wc_review_ratings_enabled()) {
+    return;
 }
 ?>
 <div class="bt-product-rating woocommerce">
-    <?php echo wc_get_rating_html( $product->get_average_rating() );  ?>
+    <?php echo wc_get_rating_html($product->get_average_rating());  ?>
     <?php if ($product->get_rating_count()): ?>
         <div class="bt-product-rating--count">
-            (<?php echo $product->get_rating_count(); ?>)
+            (<?php echo esc_html($product->get_rating_count()); ?>)
         </div>
     <?php endif; ?>
 </div>
-

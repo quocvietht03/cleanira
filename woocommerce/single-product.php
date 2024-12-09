@@ -44,7 +44,7 @@ if ($product_type == 'redq_rental') {
 		</div>
 	</div>
 <?php } ?>
-<main id="bt_main" class="bt-site-main <?php echo ($product_type == 'redq_rental') ? 'bt-site-appointment' : ''; ?>">
+<main id="bt_main" class="bt-site-main <?php echo esc_attr(($product_type == 'redq_rental') ? 'bt-site-appointment' : ''); ?>">
 	<div class="bt-main-content">
 		<div class="bt-main-product-ss">
 			<div class="bt-container">

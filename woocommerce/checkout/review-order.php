@@ -36,7 +36,7 @@ defined('ABSPATH') || exit;
 				<tr class="<?php echo esc_attr(apply_filters('woocommerce_cart_item_class', 'cart_item', $cart_item, $cart_item_key)); ?>">
 					<td class="product-name">
 						<a href="<?php echo esc_url($_product->get_permalink()); ?>">
-							<?php echo $_product->get_image('thumbnail');  ?>
+							<?php echo wp_kses_post($_product->get_image('thumbnail'));  ?>
 							<div class="bt-title-product">
 							<?php echo wp_kses_post(apply_filters('woocommerce_cart_item_name', $_product->get_name(), $cart_item, $cart_item_key)); ?>
 							</div>

@@ -225,7 +225,7 @@ class Widget_TestimonialLoopItem extends Widget_Base
 		$this->add_control(
 			'gap_desc',
 			[
-				'label' => esc_html__( 'Gap', 'textdomain' ),
+				'label' => esc_html__( 'Gap', 'cleanira' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', '%', 'em', 'rem', 'custom' ],
 				'range' => [

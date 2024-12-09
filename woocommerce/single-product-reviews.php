@@ -47,24 +47,24 @@ if (!empty($rating_counts)) {
 		<div class="bt-summary-rating">
 			<div class="bt-left-summary">
 				<div class="bt-product-rating">
-					<div class="bt-product-total"><?php echo number_format($product->get_average_rating(), 1); ?></div>
-					<?php echo wc_get_rating_html($product->get_average_rating());
-					?>
+					<div class="bt-product-total"><?php echo esc_html(number_format($product->get_average_rating(), 1)); ?></div>
+					<?php echo wc_get_rating_html($product->get_average_rating()); ?>
 					<?php if ($product->get_rating_count()): ?>
 						<div class="bt-product-rating--count">
 							<span class="bt-count-text">
 								(<?php
-									echo $product->get_rating_count();
-									echo $product->get_rating_count() == 1 ? ' Rating' : ' Ratings';
+									echo esc_html($product->get_rating_count());
+									echo esc_html($product->get_rating_count() == 1 ? ' Rating' : ' Ratings');
 									?>)
 							</span>
 							<span class="bt-count-text-version-two">
-								(<?php echo $product->get_rating_count(); ?>)
+								(<?php echo esc_html($product->get_rating_count()); ?>)
 							</span>
 						</div>
 					<?php endif; ?>
 				</div>
 			</div>
+
 
 			<div class="bt-center-summary">
 				<?php
@@ -72,16 +72,16 @@ if (!empty($rating_counts)) {
 					foreach ($distribution as $key => $rating) {
 				?>
 						<div class="bt-bar">
-							<div class="bt-num"><?php echo $key; ?></div>
+							<div class="bt-num"><?php echo esc_html($key); ?></div>
 							<svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<path
 									d="M19.2949 8.93578L15.7715 12.0108L16.827 16.5889C16.8828 16.8282 16.8669 17.0787 16.7812 17.309C16.6954 17.5394 16.5437 17.7393 16.3449 17.8839C16.1462 18.0284 15.9092 18.1112 15.6637 18.1218C15.4182 18.1324 15.175 18.0704 14.9645 17.9436L10.9715 15.5217L6.98713 17.9436C6.77664 18.0704 6.53342 18.1324 6.28789 18.1218C6.04236 18.1112 5.8054 18.0284 5.60665 17.8839C5.40791 17.7393 5.25618 17.5394 5.17045 17.309C5.08471 17.0787 5.06877 16.8282 5.12463 16.5889L6.17853 12.0155L2.65431 8.93578C2.46791 8.77502 2.33313 8.5628 2.26686 8.32574C2.20059 8.08868 2.20578 7.83733 2.28179 7.60321C2.3578 7.36909 2.50124 7.16262 2.69413 7.0097C2.88701 6.85678 3.12075 6.76421 3.36603 6.7436L8.01135 6.34125L9.82463 2.01625C9.91932 1.78931 10.079 1.59546 10.2837 1.45911C10.4883 1.32276 10.7287 1.25 10.9746 1.25C11.2205 1.25 11.4609 1.32276 11.6656 1.45911C11.8702 1.59546 12.0299 1.78931 12.1246 2.01625L13.9434 6.34125L18.5871 6.7436C18.8324 6.76421 19.0662 6.85678 19.259 7.0097C19.4519 7.16262 19.5954 7.36909 19.6714 7.60321C19.7474 7.83733 19.7526 8.08868 19.6863 8.32574C19.62 8.5628 19.4852 8.77502 19.2988 8.93578H19.2949Z"
 									fill="#FFB600" />
 							</svg>
 							<div class="bt-bar-percent">
-								<span style="width: <?php echo $rating; ?>%"></span>
+								<span style="width: <?php echo esc_attr($rating); ?>%"></span>
 							</div>
-							<div class="bt-num-percent"><?php echo $rating; ?>%</div>
+							<div class="bt-num-percent"><?php echo esc_html($rating); ?>%</div>
 						</div>
 				<?php
 					}
@@ -90,7 +90,7 @@ if (!empty($rating_counts)) {
 			</div>
 
 			<div class="bt-right-summary">
-				<a href="#" class="bt-action-review"><?php echo esc_html__( 'Write a review', 'cleanira' ) ?></a>
+				<a href="#" class="bt-action-review"><?php echo esc_html__('Write a review', 'cleanira') ?></a>
 			</div>
 
 		</div>
@@ -130,7 +130,7 @@ if (!empty($rating_counts)) {
 			endif;
 			?>
 		<?php else: ?>
-			<p class="woocommerce-noreviews"><?php esc_html_e('There are no reviews yet.', 'woocommerce'); ?></p>
+			<p class="woocommerce-noreviews"><?php esc_html_e('There are no reviews yet.', 'cleanira'); ?></p>
 		<?php endif; ?>
 	</div>
 
@@ -140,14 +140,12 @@ if (!empty($rating_counts)) {
 				<?php
 				$commenter = wp_get_current_commenter();
 				$comment_form = array(
-					/* translators: %s is product title */
 					'title_reply' => '',
-					/* translators: %s is product title */
-					'title_reply_to' => esc_html__('Leave a Reply to %s', 'woocommerce'),
+					'title_reply_to' => esc_html__('Leave a Reply to %s', 'cleanira'),
 					'title_reply_before' => '<span id="reply-title" class="comment-reply-title">',
 					'title_reply_after' => '</span>',
 					'comment_notes_after' => '',
-					'label_submit' => esc_html__('Submit Review', 'woocommerce'),
+					'label_submit' => esc_html__('Submit Review', 'cleanira'),
 					'logged_in_as' => '',
 					'comment_field' => '',
 				);
@@ -155,14 +153,14 @@ if (!empty($rating_counts)) {
 				$name_email_required = (bool) get_option('require_name_email', 1);
 				$fields = array(
 					'author' => array(
-						'label' => __('Name', 'woocommerce'),
+						'label' => __('Name', 'cleanira'),
 						'type' => 'text',
 						'value' => $commenter['comment_author'],
 						'required' => $name_email_required,
 						'placeholder' => 'You Name (Public)*'
 					),
 					'email' => array(
-						'label' => __('Email', 'woocommerce'),
+						'label' => __('Email', 'cleanira'),
 						'type' => 'email',
 						'value' => $commenter['comment_author_email'],
 						'required' => $name_email_required,
@@ -188,21 +186,21 @@ if (!empty($rating_counts)) {
 				$account_page_url = wc_get_page_permalink('myaccount');
 				if ($account_page_url) {
 					/* translators: %s opening and closing link tags respectively */
-					$comment_form['must_log_in'] = '<p class="must-log-in">' . sprintf(esc_html__('You must be %1$slogged in%2$s to post a review.', 'woocommerce'), '<a href="' . esc_url($account_page_url) . '">', '</a>') . '</p>';
+					$comment_form['must_log_in'] = '<p class="must-log-in">' . sprintf(esc_html__('You must be %1$slogged in%2$s to post a review.', 'cleanira'), '<a href="' . esc_url($account_page_url) . '">', '</a>') . '</p>';
 				}
 
 				if (wc_review_ratings_enabled()) {
-					$comment_form['comment_field'] = '<div class="comment-form-rating"><label for="rating">' . esc_html__('Write a review:', 'woocommerce') . (wc_review_ratings_required() ? '&nbsp;<span class="required">*</span>' : '') . '</label><select name="rating" id="rating" required>
-						<option value="">' . esc_html__('Rate&hellip;', 'woocommerce') . '</option>
-						<option value="5">' . esc_html__('Perfect', 'woocommerce') . '</option>
-						<option value="4">' . esc_html__('Good', 'woocommerce') . '</option>
-						<option value="3">' . esc_html__('Average', 'woocommerce') . '</option>
-						<option value="2">' . esc_html__('Not that bad', 'woocommerce') . '</option>
-						<option value="1">' . esc_html__('Very poor', 'woocommerce') . '</option>
+					$comment_form['comment_field'] = '<div class="comment-form-rating"><label for="rating">' . esc_html__('Write a review:', 'cleanira') . (wc_review_ratings_required() ? '&nbsp;<span class="required">*</span>' : '') . '</label><select name="rating" id="rating" required>
+						<option value="">' . esc_html__('Rate&hellip;', 'cleanira') . '</option>
+						<option value="5">' . esc_html__('Perfect', 'cleanira') . '</option>
+						<option value="4">' . esc_html__('Good', 'cleanira') . '</option>
+						<option value="3">' . esc_html__('Average', 'cleanira') . '</option>
+						<option value="2">' . esc_html__('Not that bad', 'cleanira') . '</option>
+						<option value="1">' . esc_html__('Very poor', 'cleanira') . '</option>
 					</select></div>';
 				}
 
-				$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . esc_html__('Write your comment here', 'woocommerce') . '&nbsp;<span class="required">*</span></label><textarea placeholder="Write your comment here*" id="comment" name="comment" cols="45" rows="8" required></textarea></p>';
+				$comment_form['comment_field'] .= '<p class="comment-form-comment"><label for="comment">' . esc_html__('Write your comment here', 'cleanira') . '&nbsp;<span class="required">*</span></label><textarea placeholder="Write your comment here*" id="comment" name="comment" cols="45" rows="8" required></textarea></p>';
 
 				comment_form(apply_filters('woocommerce_product_review_comment_form_args', $comment_form));
 				?>
@@ -210,7 +208,7 @@ if (!empty($rating_counts)) {
 		</div>
 	<?php else: ?>
 		<p class="woocommerce-verification-required">
-			<?php esc_html_e('Only logged in customers who have purchased this product may leave a review.', 'woocommerce'); ?>
+			<?php esc_html_e('Only logged in customers who have purchased this product may leave a review.', 'cleanira'); ?>
 		</p>
 	<?php endif; ?>
 

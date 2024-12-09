@@ -349,7 +349,25 @@ class Widget_PricingItem extends Widget_Base
         $this->register_layout_section_controls();
         $this->register_style_section_controls();
     }
-
+    public function pricing_item_best_value()
+    {
+        ?>
+        <div class="bt-best-value">
+            <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_10935_2902)">
+                    <path d="M12.5 1.70508L11.25 7.95508L16.25 9.83008L7.5 19.2051L8.75 12.9551L3.75 11.0801L12.5 1.70508Z"
+                        stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </g>
+                <defs>
+                    <clipPath id="clip0_10935_2902">
+                        <rect width="20" height="20" fill="white" transform="translate(0 0.455078)" />
+                    </clipPath>
+                </defs>
+            </svg>
+            <span><?php echo esc_html__('Best Value', 'cleanira'); ?></span>
+        </div>
+        <?php
+    }
     protected function render()
     {
         $settings = $this->get_settings_for_display();
@@ -366,7 +384,7 @@ class Widget_PricingItem extends Widget_Base
                 <div class="bt-col bt-pricing-head--item">
                     <?php
                     if ($settings['select_best_value'] == 'one_time') {
-                        pricing_item_best_value();
+                        $this->pricing_item_best_value();
                     }
                     ?>
                     <h3 class="bt-pricing-name"><?php echo esc_html__('One-Time Cleaning', 'cleanira'); ?></h3>
@@ -374,7 +392,7 @@ class Widget_PricingItem extends Widget_Base
                 <div class="bt-col bt-pricing-head--item">
                     <?php
                     if ($settings['select_best_value'] == 'weekly') {
-                        pricing_item_best_value();
+                        $this->pricing_item_best_value();
                     }
                     ?>
                     <h3 class="bt-pricing-name"><?php echo esc_html__('Weekly Cleaning', 'cleanira'); ?></h3>
@@ -382,7 +400,7 @@ class Widget_PricingItem extends Widget_Base
                 <div class="bt-col bt-pricing-head--item">
                     <?php
                     if ($settings['select_best_value'] == 'bi_weekly') {
-                        pricing_item_best_value();
+                        $this->pricing_item_best_value();
                     }
                     ?>
                     <h3 class="bt-pricing-name"><?php echo esc_html__('Bi-Weekly Cleaning', 'cleanira'); ?></h3>
@@ -390,7 +408,7 @@ class Widget_PricingItem extends Widget_Base
                 <div class="bt-col bt-pricing-head--item">
                     <?php
                     if ($settings['select_best_value'] == 'monthly') {
-                        pricing_item_best_value();
+                        $this->pricing_item_best_value();
                     }
                     ?>
                     <h3 class="bt-pricing-name"><?php echo esc_html__('Monthly Cleaning', 'cleanira'); ?></h3>
@@ -402,25 +420,25 @@ class Widget_PricingItem extends Widget_Base
                     foreach ($pricing_list as $key => $item) {
                         ?>
                         <div class="bt-pricing-body--item">
-                            <div class="bt-col bt-pricing-title"><?php echo $item['pricing_title']; ?></div>
+                            <div class="bt-col bt-pricing-title"><?php echo esc_html($item['pricing_title']); ?></div>
                             <div class="bt-col bt-pricing-value">
                                 <?php
-                                echo $item['pricing_one_time'];
+                                echo esc_html($item['pricing_one_time']);
                                 ?>
                             </div>
                             <div class="bt-col bt-pricing-value">
                                 <?php
-                                echo $item['pricing_weekly'];
+                                echo esc_html($item['pricing_weekly']);
                                 ?>
                             </div>
                             <div class="bt-col bt-pricing-value">
                                 <?php
-                                echo $item['pricing_bi_weekly'];
+                                echo esc_html($item['pricing_bi_weekly']);
                                 ?>
                             </div>
                             <div class="bt-col bt-pricing-value">
                                 <?php
-                                echo $item['pricing_monthly'];
+                                echo esc_html($item['pricing_monthly']);
                                 ?>
                             </div>
                         </div>
@@ -453,7 +471,7 @@ class Widget_PricingItem extends Widget_Base
                     <h3 class="bt-pricing-name">
                         <?php
                         if ($settings['select_best_value'] == 'one_time') {
-                            pricing_item_best_value();
+                            $this->pricing_item_best_value();
                         }
                         echo esc_html__('One-Time Cleaning', 'cleanira');
                         ?>
@@ -468,13 +486,13 @@ class Widget_PricingItem extends Widget_Base
                                     if (!empty($item['pricing_title']))
                                         echo '<div class="bt-title-mb">' . $item['pricing_title'] . '</div>';
                                     ?>
-                                    <span><?php echo $item['pricing_one_time']; ?></span>
+                                    <span><?php echo esc_html($item['pricing_one_time']); ?></span>
                                 </div>
                             </div>
                             <?php
                         }
                         if (!empty($button_text) && !empty($url)) { ?>
-                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                            <a class="bt-button" href="<?php echo esc_url($url); ?>"><?php echo esc_html($button_text); ?></a>
                         <?php }
                         ?>
                     </div>
@@ -483,7 +501,7 @@ class Widget_PricingItem extends Widget_Base
                     <h3 class="bt-pricing-name">
                         <?php
                         if ($settings['select_best_value'] == 'weekly') {
-                            pricing_item_best_value();
+                            $this->pricing_item_best_value();
                         }
                         echo esc_html__('Weekly Cleaning', 'cleanira');
                         ?>
@@ -498,13 +516,13 @@ class Widget_PricingItem extends Widget_Base
                                     if (!empty($item['pricing_title']))
                                         echo '<div class="bt-title-mb">' . $item['pricing_title'] . '</div>';
                                     ?>
-                                    <span><?php echo $item['pricing_weekly']; ?></span>
+                                    <span><?php echo esc_html($item['pricing_weekly']); ?></span>
                                 </div>
                             </div>
                             <?php
                         }
                         if (!empty($button_text) && !empty($url)) { ?>
-                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                            <a class="bt-button" href="<?php echo esc_url($url); ?>"><?php echo esc_html($button_text); ?></a>
                         <?php }
                         ?>
                     </div>
@@ -513,7 +531,7 @@ class Widget_PricingItem extends Widget_Base
                     <h3 class="bt-pricing-name">
                         <?php
                         if ($settings['select_best_value'] == 'bi_weekly') {
-                            pricing_item_best_value();
+                            $this->pricing_item_best_value();
                         }
                         echo esc_html__('Bi-Weekly Cleaning', 'cleanira');
                         ?>
@@ -528,13 +546,13 @@ class Widget_PricingItem extends Widget_Base
                                     if (!empty($item['pricing_title']))
                                         echo '<div class="bt-title-mb">' . $item['pricing_title'] . '</div>';
                                     ?>
-                                    <span><?php echo $item['pricing_bi_weekly']; ?></span>
+                                    <span><?php echo esc_html($item['pricing_bi_weekly']); ?></span>
                                 </div>
                             </div>
                             <?php
                         }
                         if (!empty($button_text) && !empty($url)) { ?>
-                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                            <a class="bt-button" href="<?php echo esc_url($url); ?>"><?php echo esc_html($button_text); ?></a>
                         <?php }
                         ?>
                     </div>
@@ -543,7 +561,7 @@ class Widget_PricingItem extends Widget_Base
                     <h3 class="bt-pricing-name">
                         <?php
                         if ($settings['select_best_value'] == 'monthly') {
-                            pricing_item_best_value();
+                            $this->pricing_item_best_value();
                         }
                         echo esc_html__('Monthly Cleaning', 'cleanira');
                         ?>
@@ -558,13 +576,13 @@ class Widget_PricingItem extends Widget_Base
                                     if (!empty($item['pricing_title']))
                                         echo '<div class="bt-title-mb">' . $item['pricing_title'] . '</div>';
                                     ?>
-                                    <span><?php echo $item['pricing_monthly']; ?></span>
+                                    <span><?php echo esc_html($item['pricing_monthly']); ?></span>
                                 </div>
                             </div>
                             <?php
                         }
                         if (!empty($button_text) && !empty($url)) { ?>
-                            <a class="bt-button" href="<?php echo $url; ?>"><?php echo $button_text; ?></a>
+                            <a class="bt-button" href="<?php echo esc_url($url); ?>"><?php echo esc_html($button_text); ?></a>
                         <?php }
                         ?>
                     </div>
@@ -580,22 +598,3 @@ class Widget_PricingItem extends Widget_Base
     }
 }
 
-function pricing_item_best_value()
-{
-    ?>
-    <div class="bt-best-value">
-        <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <g clip-path="url(#clip0_10935_2902)">
-                <path d="M12.5 1.70508L11.25 7.95508L16.25 9.83008L7.5 19.2051L8.75 12.9551L3.75 11.0801L12.5 1.70508Z"
-                    stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-            </g>
-            <defs>
-                <clipPath id="clip0_10935_2902">
-                    <rect width="20" height="20" fill="white" transform="translate(0 0.455078)" />
-                </clipPath>
-            </defs>
-        </svg>
-        <span><?php echo esc_html__('Best Value', 'cleanira'); ?></span>
-    </div>
-    <?php
-}

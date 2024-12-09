@@ -295,7 +295,7 @@ class Widget_OfferBox extends Widget_Base
 
 ?>
         <div class="bt-elwg-offer-box--default">
-            <div class="bt-offer <?php echo ($settings['offer_reverse'] === 'yes') ? 'bt-reverse' : ''; ?>">
+            <div class="bt-offer <?php echo esc_attr(($settings['offer_reverse'] === 'yes') ? 'bt-reverse' : ''); ?>">
                 <div class="bt-offer--image">
                     <?php if (!empty($settings['offer_image']['url'])) : ?>
                         <img src="<?php echo esc_url($settings['offer_image']['url']); ?>">

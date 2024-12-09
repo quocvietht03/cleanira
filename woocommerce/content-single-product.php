@@ -91,9 +91,7 @@ if (function_exists('get_field')) {
 							<ul>
 								<li>
 									<?php if (!empty($icon_delivery_svg)): ?>
-										<div class="bt-icon">
-											<?php echo $icon_delivery_svg; ?>
-										</div>
+										<?php echo '<div class="bt-icon">' . $icon_delivery_svg . '</div>'; ?>
 									<?php endif; ?>
 
 									<?php
@@ -111,9 +109,7 @@ if (function_exists('get_field')) {
 								</li>
 								<li>
 									<?php if (!empty($icon_ask_svg)): ?>
-										<div class="bt-icon">
-											<?php echo $icon_ask_svg; ?>
-										</div>
+										<?php echo '<div class="bt-icon">' . $icon_ask_svg . '</div>'; ?>
 									<?php endif; ?>
 
 									<?php
@@ -148,7 +144,7 @@ if (function_exists('get_field')) {
 									echo '<a href="' . esc_url($item['link_text']) . '">';
 								}
 								if (!empty($icon_svg)) {
-									echo $icon_svg;
+									echo '<div class="bt-icon">'. $icon_svg. '</div>';
 								}
 								if (!empty($item['text'])) {
 									echo '<p>' . $item['text'] . '</p>';

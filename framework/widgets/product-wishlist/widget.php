@@ -153,7 +153,7 @@ class Widget_ProductWishlist extends Widget_Base
 						</div>
 					</div>
 
-					<div class="bt-table--body">
+					<div class="bt-table--body woocommerce">
 						<span class="bt-loading-wave"></span>
 
 						<?php if (!empty($product_ids)) { ?>
@@ -177,13 +177,13 @@ class Widget_ProductWishlist extends Widget_Base
 											</div>
 											<div class="bt-table--col bt-product-thumb">
 												<a href="<?php echo esc_url(get_permalink($product_id)); ?>" class="bt-thumb">
-													<?php echo $product->get_image('medium'); ?>
+													<?php echo wp_kses_post($product->get_image('medium')); ?>
 												</a>
 											</div>
 											<div class="bt-table--col bt-product-title">
 												<h3 class="bt-title">
 													<a href="<?php echo esc_url(get_permalink($product_id)); ?>">
-														<?php echo $product->get_name(); ?>
+														<?php echo esc_html($product->get_name()); ?>
 													</a>
 												</h3>
 											</div>
@@ -198,7 +198,7 @@ class Widget_ProductWishlist extends Widget_Base
 												<span><?php echo esc_html($stock_status); ?></span>
 											</div>
 											<div class="bt-table--col bt-product-add-to-cart">
-												<a href="?add-to-cart=<?php echo esc_attr($product_id); ?>" aria-describedby="woocommerce_loop_add_to_cart_link_describedby_<?php echo esc_attr($product_id); ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="<?php echo esc_attr($product_id); ?>" data-product_sku="" rel="nofollow"><?php esc_attr_e('Add to cart', 'cleanira') ?></a>
+												<a href="?add-to-cart=<?php echo esc_attr($product_id); ?>" aria-describedby="woocommerce_loop_add_to_cart_link_describedby_<?php echo esc_attr($product_id); ?>" data-quantity="1" class="button product_type_simple add_to_cart_button ajax_add_to_cart" data-product_id="<?php echo esc_attr($product_id); ?>" data-product_sku="" rel="nofollow"><?php echo esc_html__('Add to cart', 'cleanira') ?></a>
 											</div>
 										</div>
 									<?php } ?>
@@ -217,9 +217,7 @@ class Widget_ProductWishlist extends Widget_Base
 
 					<div class="bt-table--foot">
 						<div class="bt-table--row">
-							<div class="bt-table--col bt-social-share">
-								<?php echo $this->post_social_share(); ?>
-							</div>
+							<?php echo '<div class="bt-table--col bt-social-share">' . $this->post_social_share() . '</div>'; ?>
 						</div>
 					</div>
 				</div>

@@ -326,7 +326,7 @@ class Widget_BrandSlider extends Widget_Base
                     }
                 ?>
                     <li class="bt-brand--item swiper-slide">
-                        <a class="bt-brand--image" <?php echo $this->get_render_attribute_string($item_key) ?>>
+                        <a class="bt-brand--image" <?php echo wp_kses_post($this->get_render_attribute_string($item_key)) ?>>
                             <div class="bt-brand--inner" <?php echo (!empty($item['brand_image_width']['size']) ? 'style="width:' . esc_attr($item['brand_image_width']['size']) . 'px;"' : '') ?> >
                                 <?php
                                 $attachment = wp_get_attachment_image_src($item['brand_image']['id'], $settings['thumbnail_size']);

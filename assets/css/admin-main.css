@@ -1263,7 +1263,7 @@ html :where(.editor-styles-wrapper) {
 }
 .widget .wp-block-group {
   margin: 0;
-  background: var(--e-global-color-background, #F1F5FB);
+  background: var(--e-global-color-31e49eb, #F1F5FB);
   padding: 40px;
   border-radius: 20px;
 }

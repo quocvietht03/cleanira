@@ -207,14 +207,35 @@
         min-height: unset;
         box-sizing: border-box;
         border-width: 2px;
+        font-family: $primary-font;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 26px;
+        &::placeholder {
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 26px;
+          font-family: $primary-font;
+        }
       }
       textarea {
         width: 100%;
         min-height: unset;
         box-sizing: border-box;
         border-width: 2px;
-        &::placeholder{
+        font-family: $primary-font;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 26px;
+        &::placeholder {
           letter-spacing: 0;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: 26px;
           font-family: $primary-font;
         }
       }
@@ -255,7 +276,7 @@
         }
       }
     }
-   .bt-comment-item .bt-comment-item {
+    .bt-comment-item .bt-comment-item {
       margin-left: 50px;
     }
   }
