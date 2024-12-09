@@ -1358,16 +1358,17 @@
       }
     }
   }
-  .woocommerce-notices-wrapper{
+  .woocommerce-notices-wrapper {
     .woocommerce-message {
       border-top-color: $color-secondary;
-      &::before{
+      &::before {
         color: $color-accent;
       }
-  }
+    }
   }
   .add_to_cart_button {
     &.ajax_add_to_cart {
+      position: relative;
       &.loading {
         color: transparent;
         opacity: 0.5;
