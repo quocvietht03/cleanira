@@ -461,7 +461,6 @@
   }
 }
 
-
 .bt-elwg-testimonial-loop-item {
   &--default {
     .bt-post {
@@ -639,7 +638,6 @@
   }
 }
 
-
 .bt-elwg-highlighted-heading {
   display: flex;
   justify-content: start;
@@ -703,8 +701,6 @@
     width: auto;
   }
 }
-
-
 
 .elementor-widget-button {
   .elementor-button-icon svg {
@@ -2018,6 +2014,11 @@
                 .bt-remove-item {
                   right: 25px;
                   top: 25px;
+                  @media (max-width: $break-tl) {
+                    right: 0;
+                    top: 0;
+                    padding: 25px 25px 10px 10px;
+                  }
                 }
                 a {
                   width: 100%;

@@ -535,9 +535,13 @@
         .bt-remove-item {
           position: absolute;
           position: absolute;
-          right: 0;
-          top: 0;
-          padding: 10px 20px 10px 10px;
+          right: 20px;
+          top: 10px;
+          @media (max-width: $break-tl) {
+            right: 0;
+            top: 0;
+            padding: 10px 20px 10px 10px;
+          }
           .bt-icon {
             padding: 4px;
             display: flex;
