@@ -544,11 +544,14 @@
           border: 1px solid $color-accent;
           border-radius: 50%;
           cursor: pointer;
+          width: 22px;
+          height: 22px;
+          box-sizing: border-box;
         }
         a {
           display: block;
           position: relative;
-
+          z-index: 1;
           img {
             width: 250px;
             border-radius: 10px;
@@ -3029,7 +3032,7 @@
                 width: auto;
                 min-height: auto;
                 height: 40px;
-                &:hover{
+                &:hover {
                   background: $color-accent;
                   color: #fff;
                 }
@@ -3224,7 +3227,7 @@
           color: $color-primary;
           border-radius: 30px;
           margin-bottom: 12px;
-          &:hover{
+          &:hover {
             background: $color-accent;
             color: #fff;
           }
@@ -3348,7 +3351,7 @@
         display: inline-block;
         min-width: auto;
         color: $color-primary;
-        &:hover{
+        &:hover {
           background: $color-accent;
           color: #fff;
         }
@@ -3388,7 +3391,7 @@
     .form-row {
       .button {
         padding: 10px 32px !important;
-        &:hover{
+        &:hover {
           background: $color-accent;
           color: #fff;
         }
@@ -3823,7 +3826,7 @@
           line-height: 24px;
           text-transform: capitalize;
           width: 100%;
-          &:hover{
+          &:hover {
             background: $color-accent;
             color: #fff;
           }
@@ -4038,9 +4041,9 @@
       margin-right: auto !important;
       box-sizing: border-box;
     }
-    .my_account_orders{
-      .quote-actions{
-        .button{
+    .my_account_orders {
+      .quote-actions {
+        .button {
           background: $color-accent;
           color: #fff;
           border-radius: 10px;

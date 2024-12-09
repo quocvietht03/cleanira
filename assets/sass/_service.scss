@@ -408,7 +408,7 @@
           }
         }
         .bt-button{
-          text-decoration: auto;
+          text-decoration: none;
         }
       }
       &--button-booknow{
@@ -446,9 +446,8 @@
                 text-decoration-line: underline;
                 text-decoration-style: solid;
                 text-decoration-skip-ink: none;
-                text-decoration-thickness: auto;
-                text-underline-offset: auto;
-                text-underline-position: from-font;
+                text-decoration-thickness: 2px;
+                text-underline-offset: 4px;
                 color: $color-accent;
                 a {
                   color: $color-accent;
