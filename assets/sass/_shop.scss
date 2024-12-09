@@ -1031,6 +1031,10 @@
   .bt-main-product-ss {
     .woocommerce & {
       padding-bottom: 0 !important;
+      padding-top: 100px !important;
+      @media (max-width: $break-md) {
+        padding-top: 60px !important;
+      }
     }
   }
 }
@@ -1184,6 +1188,13 @@
       margin: 25px 0 0 0 !important;
       .rnb-component-wrapper {
         margin-bottom: 15px;
+      }
+      .bt-disabled {
+        cursor: not-allowed;
+        opacity: 0.5;
+        input{
+          cursor: not-allowed;
+        }
       }
       .select2-container {
         min-height: 52px;
@@ -3919,6 +3930,7 @@
     padding: 60px 40px;
     border: none;
     border-radius: 15px;
+    overflow: hidden;
     @media (max-width: $break-xs) {
       padding: 40px 20px;
     }

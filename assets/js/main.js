@@ -999,6 +999,18 @@
 			CleaniraAddSelect2GravityForm();
 		});
 	}
+	function CleaniraValidationFormBooking() {
+		if ($('.bt-site-appointment').length > 0) {
+			var pickuptime = $('.pick-up-time-picker'),
+				dropofftime = $('.drop-off-time-picker');
+			pickuptime.addClass('bt-disabled');
+			dropofftime.addClass('bt-disabled');
+			$('.pick-up-date-picker input').on('change', function () {
+				pickuptime.removeClass('bt-disabled');
+				dropofftime.removeClass('bt-disabled');
+			});
+		}
+	}
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -1021,6 +1033,7 @@
 		CleaniraBuyNow();
 		CleaniraScrollReview();
 		CleaniraHookGravityFormEvents();
+		CleaniraValidationFormBooking();
 	});
 
 	jQuery(window).on('resize', function () {

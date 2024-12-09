@@ -44,6 +44,11 @@
     }
   }
 }
+.elementor-lightbox .elementor-video-container .elementor-video-landscape,
+.elementor-lightbox .elementor-video-container .elementor-video-portrait,
+.elementor-lightbox .elementor-video-container .elementor-video-square {
+  max-width: 90%;
+}
 .elementor-widget-heading .elementor-heading-title {
   span {
     font-family: inherit;
