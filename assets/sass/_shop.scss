@@ -532,7 +532,6 @@
       }
       &.bt-thumb {
         position: relative;
-        padding-right: 50%;
         .bt-remove-item {
           position: absolute;
           padding: 4px;
@@ -550,9 +549,6 @@
           box-sizing: border-box;
         }
         a {
-          display: block;
-          position: relative;
-          z-index: 1;
           img {
             width: 250px;
             border-radius: 10px;
