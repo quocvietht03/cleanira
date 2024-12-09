@@ -2623,7 +2623,7 @@ body.admin-bar .dialog-type-lightbox.bt-menu-mobile-popup {
   display: block !important;
 }
 .elementor-widget-n-menu .e-n-menu:not([data-layout=dropdown]):not(.content-above) .bt-submenu-content .e-n-menu-content {
-  left: -26px;
+  left: -8px;
   max-width: 240px;
 }
 .elementor-widget-n-menu .e-n-menu:not([data-layout=dropdown]):not(.content-above) .bt-submenu-content .e-n-menu-content > .e-con {
