@@ -4034,8 +4034,21 @@
     }
     > * {
       max-width: calc(100% - 60px);
-      margin-left: auto;
-      margin-right: auto;
+      margin-left: auto !important;
+      margin-right: auto !important;
+      box-sizing: border-box;
+    }
+    .my_account_orders{
+      .quote-actions{
+        .button{
+          background: $color-accent;
+          color: #fff;
+          border-radius: 10px;
+          padding: 5px 20px;
+          font-size: 16px;
+          line-height: 20px;
+        }
+      }
     }
     .col2-set .col-1,
     .col2-set .col-2 {
@@ -4079,6 +4092,9 @@
   background: $color-accent;
   color: #fff;
   border-radius: 10px;
+  padding: 10px 30px;
+  font-size: 16px;
+  line-height: 24px;
   &:hover {
     background: $color-accent;
     color: #fff;
