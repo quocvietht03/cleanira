@@ -534,19 +534,23 @@
         position: relative;
         .bt-remove-item {
           position: absolute;
-          padding: 4px;
-          display: flex;
-          align-items: center;
-          right: 20px;
-          top: 10px;
-          z-index: 999;
-          background: #fff;
-          border: 1px solid $color-accent;
-          border-radius: 50%;
-          cursor: pointer;
-          width: 100%;
-          height: 100%;
-          box-sizing: border-box;
+          position: absolute;
+          right: 0;
+          top: 0;
+          padding: 10px 20px 10px 10px;
+          .bt-icon {
+            padding: 4px;
+            display: flex;
+            align-items: center;
+            z-index: 999;
+            background: #fff;
+            border: 1px solid $color-accent;
+            border-radius: 50%;
+            cursor: pointer;
+            width: 22px;
+            height: 22px;
+            box-sizing: border-box;
+          }
         }
         a {
           img {
