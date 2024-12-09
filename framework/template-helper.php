@@ -270,9 +270,9 @@ if (!function_exists('cleanira_page_breadcrumb')) {
 		}
 
 		if (get_query_var('paged')) {
-			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) echo ' (';
+			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) echo '<span class="bt-pages"> (';
 			echo ' <span class="bt-deli">' . $delimiter . '</span> ' . esc_html__('Page', 'cleanira') . ' ' . get_query_var('paged');
-			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) echo ')';
+			if (is_category() || is_day() || is_month() || is_year() || is_search() || is_tag() || is_author()) echo ')</span>';
 		}
 	}
 }

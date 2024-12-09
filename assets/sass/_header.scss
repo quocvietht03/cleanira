@@ -705,15 +705,6 @@ body.admin-bar .dialog-type-lightbox {
         }
       }
     }
-    .elementor-widget-loop-carousel {
-      .swiper-pagination {
-        left: calc(var(--dots-horizontal-position) + var(--dots-horizontal-offset));
-        transform: translate(
-          calc(var(--dots-horizontal-transform) * var(--horizontal-transform-modifier)),
-          var(--dots-vertical-transform)
-        );
-      }
-    }
     .bt-elwg-post-loop-item--default {
       .bt-post--inner {
         .bt-cover-image {

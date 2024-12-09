@@ -307,34 +307,4 @@
             }
         }
     }
-    &.bt-section-testimonials-home3 {
-        .elementor-widget-loop-carousel {
-            .swiper-pagination {
-                display: flex;
-                align-items: center;
-                gap: 15px;
-                .swiper-pagination-bullet {
-                    background: #a2a3ab;
-                    opacity: 1;
-                    margin: 0;
-                    &.swiper-pagination-bullet-active {
-                        background: transparent;
-                        width: 15px;
-                        height: 15px;
-                        display: flex;
-                        align-items: center;
-                        justify-content: center;
-                        border: 1px solid $color-primary;
-                        &::before {
-                            content: "";
-                            width: 7px;
-                            height: 7px;
-                            background: $color-primary;
-                            border-radius: 50%;
-                        }
-                    }
-                }
-            }
-        }
-    }
 }

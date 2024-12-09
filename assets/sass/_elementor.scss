@@ -32,6 +32,17 @@
       z-index: 2;
     }
   }
+  &.elementor-widget-loop-carousel {
+    .swiper-pagination {
+      left: calc(var(--dots-horizontal-position) + var(--dots-horizontal-offset));
+      transform: translate(
+        calc(var(--dots-horizontal-transform) * var(--horizontal-transform-modifier)),
+        var(--dots-vertical-transform)
+      );
+      width: -moz-max-content;
+      width: max-content;
+    }
+  }
 }
 .elementor-widget-heading .elementor-heading-title {
   span {
@@ -633,6 +644,11 @@
         font-weight: 400;
         line-height: 22px;
         color: $color-text;
+        overflow: hidden;
+        width: 100%;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
     }
   }
