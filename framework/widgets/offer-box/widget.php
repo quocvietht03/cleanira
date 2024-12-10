@@ -300,7 +300,7 @@ class Widget_OfferBox extends Widget_Base
     {
         $settings = $this->get_settings_for_display();
         $link = !empty($settings['offer_button_link']) ? 
-        $settings['offer_button_link'] . (!empty($settings['offer_coupon']) ? '?offer-coupon=' . $settings['offer_coupon'] : '') 
+        $settings['offer_button_link'] . (!empty($settings['offer_coupon']) ? '?offer-coupon=' . $settings['offer_coupon'] . '&discount=' .$settings['offer_discount'] : '') 
         : '';
 ?>
         <div class="bt-elwg-offer-box--default">

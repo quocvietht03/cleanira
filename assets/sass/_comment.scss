@@ -183,6 +183,9 @@
         width: 100%;
         a {
           text-decoration: underline;
+          &:hover{
+            color: $color-accent;
+          }
         }
       }
       .bt-form-author,

@@ -762,6 +762,7 @@
     }
     &.dots {
       width: auto;
+      border: none;
     }
   }
   @media (max-width: $break-xs) {

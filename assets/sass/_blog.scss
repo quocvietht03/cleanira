@@ -154,7 +154,7 @@
           right: 30px;
           width: auto;
           z-index: 2;
-          @media(max-width:$break-xs){
+          @media (max-width: $break-xs) {
             left: 20px;
             bottom: 20px;
             right: 20px;
@@ -166,7 +166,7 @@
             line-height: 40px;
             color: #fff;
             margin-bottom: 8px;
-            @media(max-width:$break-xs){
+            @media (max-width: $break-xs) {
               font-size: 22px;
               line-height: 1.3;
             }
@@ -210,7 +210,7 @@
       display: flex;
       gap: 20px;
       align-items: center;
-      @media(max-width:$break-xs){
+      @media (max-width: $break-xs) {
         gap: 15px;
       }
     }
@@ -221,7 +221,7 @@
         min-height: 120px;
         border-radius: 4px;
       }
-      @media(max-width:$break-xs){
+      @media (max-width: $break-xs) {
         width: 120px;
         .bt-cover-image {
           min-height: 90px;
@@ -231,7 +231,7 @@
 
     &--content {
       width: calc(100% - 180px);
-      @media(max-width:$break-xs){
+      @media (max-width: $break-xs) {
         width: calc(100% - 135px);
       }
     }
@@ -251,7 +251,7 @@
       font-weight: 700;
       line-height: 32px;
       margin: 0 0 12px 0;
-      @media(max-width:$break-xs){
+      @media (max-width: $break-xs) {
         font-size: 18px;
         line-height: 1.3;
         margin: 0 0 8px 0;
@@ -260,14 +260,14 @@
         @extend .__bt-max-line-ellipsis;
       }
     }
-    @media(max-width:$break-md){
+    @media (max-width: $break-md) {
       grid-column: auto !important;
       grid-row: auto !important;
-      &:first-child{
+      &:first-child {
         padding-bottom: 20px;
         border-bottom: 1px solid #e4e4e4;
         margin-bottom: 20px;
-        &::before{
+        &::before {
           display: none;
         }
       }
@@ -351,6 +351,9 @@
         letter-spacing: 1.2px;
         text-transform: uppercase;
         color: $color-primary;
+        &:hover {
+          color: $color-accent;
+        }
       }
     }
     &--title {
@@ -386,6 +389,9 @@
         line-height: 28px;
         color: $color-primary;
         text-transform: capitalize;
+        display: flex;
+        align-items: center;
+        gap: 8px;
         &:not(:last-child) {
           padding-right: 16px;
           margin-right: 16px;
@@ -409,6 +415,9 @@
           display: flex;
           align-items: center;
           gap: 8px;
+          &:hover {
+            color: $color-accent;
+          }
         }
       }
     }

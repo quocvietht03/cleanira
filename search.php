@@ -9,7 +9,13 @@ get_template_part('framework/templates/site', 'titlebar');
 			<div class="bt-form-search">
 				<h2 class="bt-form-head"><?php esc_html_e('Need a new search?', 'cleanira') ?></h2>
 				<p class="bt-form-subhead"><?php esc_html_e("If you didn't find what you were looking for, try a new search!", "cleanira") ?></p>
-				<?php get_search_form(); ?>
+				<form method="get" class="search-form" action="<?php echo esc_url(home_url('/')); ?>">
+				<label>
+					<input type="search" class="search-field" placeholder="<?php echo esc_attr__( 'Search …', 'cleanira' ) ?>" value="<?php echo get_search_query(); ?>" name="s">
+					<input type="hidden" name="post_type" value="post" />
+				</label>
+				<input type="submit" class="search-submit" value="<?php echo esc_attr__( 'Search', 'cleanira' ) ?>">
+			</form>
 			</div>
 			<?php
 			if (have_posts()) {

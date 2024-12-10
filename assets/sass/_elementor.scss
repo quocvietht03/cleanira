@@ -416,7 +416,7 @@
     justify-content: center;
     align-items: center;
     grid-gap: 4px;
-    color: $color-primary;
+    color: rgba(33, 33, 33, 0.5);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
@@ -424,8 +424,11 @@
     .bt-deli {
       display: flex;
     }
+    a{
+      color: $color-primary;
+    }
     .current {
-      opacity: 0.5;
+      color: rgba(33, 33, 33, 0.5);
     }
     @media (max-width: $break-sm) {
       flex-wrap: wrap;

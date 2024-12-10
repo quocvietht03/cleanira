@@ -33,17 +33,15 @@ if (post_password_required()) {
 }
 if (function_exists('get_field')) {
 	$site_infor = get_field('site_information', 'options') ?: '';
-	$appointment = get_field('appointment','options');
+	$appointment = get_field('appointment', 'options');
 } else {
 	$site_infor = '';
 	$appointment = '';
 }
 if (isset($_GET['offer-coupon']) && $_GET['offer-coupon'] != '') {
-session_start();
-$_SESSION['coupon'] = $_GET['offer-coupon']; 
-echo cleanira_get_coupon_amount($_GET['offer-coupon']);
+	session_start();
+	$_SESSION['coupon'] = $_GET['offer-coupon'];
 }
-
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<div class="bt-single-appointment">
@@ -63,7 +61,7 @@ echo cleanira_get_coupon_amount($_GET['offer-coupon']);
 				<?php if (!empty($appointment['button'])) { ?>
 					<div class="bt-button-offer bt-button-hover">
 						<a href="<?php echo esc_url($appointment['button']['url']); ?>" class="bt-button">
-							<span class="bt-heading"><?php echo esc_html( $appointment['button']['title'] ); ?></span>
+							<span class="bt-heading"><?php echo esc_html($appointment['button']['title']); ?></span>
 							<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
 								<g id="ArrowRight" clip-path="url(#clip0_10935_2624)">
 									<path id="Vector" d="M3.125 10.3455H16.875" stroke="#212121" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
@@ -95,6 +93,9 @@ echo cleanira_get_coupon_amount($_GET['offer-coupon']);
 		</div>
 		<div class="bt-form-appointment">
 			<?php
+			if (isset($_GET['discount']) && $_GET['discount'] != '') {
+				echo '<div class="bt-offer-discount">' . $_GET['discount'] . '</div>';
+			}
 			do_action('cleanira_woocommerce_template_single_title');
 			do_action('cleanira_woocommerce_template_single_price');
 			?>

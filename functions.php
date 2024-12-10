@@ -24,19 +24,20 @@ function cleanira_mime_types($mimes)
 add_filter('upload_mimes', 'cleanira_mime_types');
 
 /* Get icon SVG HTML */
-function cleanira_get_icon_svg_html($icon_file_name) {
+function cleanira_get_icon_svg_html($icon_file_name)
+{
 
-    if (!empty($icon_file_name)) {
-        $file_path = CLEANIRA_IMG_DIR . $icon_file_name . '.svg';
+	if (!empty($icon_file_name)) {
+		$file_path = CLEANIRA_IMG_DIR . $icon_file_name . '.svg';
 		$file = file_get_contents($file_path);
 		if ($file !== false) {
 			return $file;
 		} else {
 			return 'Error: File does not exist.';
 		}
-    } else {
-        return 'Error: Invalid file name or file name is missing.';
-    }
+	} else {
+		return 'Error: Invalid file name or file name is missing.';
+	}
 }
 
 /* Register Default Fonts */
@@ -73,7 +74,7 @@ if (!function_exists('cleanira_enqueue_scripts')) {
 		if (class_exists('WooCommerce')) {
 			wp_enqueue_script('wc-cart-fragments');
 		}
-		if(is_singular('post') && comments_open() ) { 
+		if (is_singular('post') && comments_open()) {
 			wp_enqueue_script('jquery-validate', get_template_directory_uri() . '/assets/libs/jquery-validate/jquery.validate.min.js', array('jquery'), '', true);
 		}
 		wp_enqueue_script('select2', get_template_directory_uri() . '/assets/libs/select2/select2.min.js', array('jquery'), '', true);
@@ -176,9 +177,20 @@ if (function_exists('get_field')) {
 
 /* Custom number posts per page */
 add_action('pre_get_posts', 'bt_custom_posts_per_page');
-function bt_custom_posts_per_page($query) {
-	if ( $query->is_post_type_archive( 'service' ) && $query->is_main_query() && ! is_admin() ) {
-		$query->set( 'posts_per_page', 3 );
+function bt_custom_posts_per_page($query)
+{
+	if ($query->is_post_type_archive('service') && $query->is_main_query() && ! is_admin()) {
+		$query->set('posts_per_page', 3);
 	}
 };
-
+/* Custom search posts */
+function bt_custom_search_filter($query)
+{
+	if ($query->is_search() && !is_admin()) {
+		if (isset($_GET['post_type']) && $_GET['post_type'] == 'post') {
+            $query->set('post_type', 'post');
+        }
+	}
+	return $query;
+}
+add_filter('pre_get_posts', 'bt_custom_search_filter');

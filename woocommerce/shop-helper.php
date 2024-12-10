@@ -1346,19 +1346,3 @@ function cleanira_remove_section()
     unset($_SESSION['coupon']);
   }
 }
-function cleanira_get_coupon_amount($coupon_code) {
-  $coupon = new WC_Coupon($coupon_code);
-  if (!$coupon->get_id()) {
-      return 'Mã giảm giá không hợp lệ';
-  }
-  $discount_amount = 0;
-  if ($coupon->get_discount_type() == 'fixed_cart') {
-      $discount_amount = $coupon->get_amount();
-  }
-  elseif ($coupon->get_discount_type() == 'percent') {
-      $cart_total = WC()->cart->get_subtotal();
-      $discount_amount = ($cart_total * $coupon->get_amount()) / 100;
-  }
-
-  return $discount_amount;
-}

@@ -1164,11 +1164,34 @@
     background: $color-background;
     border-radius: 8px;
     padding: 40px;
+    position: relative;
+    overflow: hidden;
     @media (max-width: $break-md) {
       width: 100%;
     }
     @media (max-width: $break-xs) {
       padding: 30px 20px;
+    }
+    .bt-offer-discount {
+      position: absolute;
+      top: 23%;
+      right: -5%;
+      background-color: $color-accent;
+      color: #fff;
+      padding: 5px 60px;
+      font-size: 16px;
+      transform: rotate(45deg);
+      transform-origin: top right;
+      font-weight: 700;
+      text-transform: uppercase;
+      @media(max-width:$break-xs){
+        top: 21%;
+        right: -8%;
+        font-size: 14px;
+      }
+      @media(max-width:390px){
+        right: -10%;
+      }
     }
     .product_title {
       font-size: 35px;
@@ -1192,7 +1215,7 @@
       .bt-disabled {
         cursor: not-allowed;
         opacity: 0.5;
-        input{
+        input {
           cursor: not-allowed;
         }
       }
@@ -2804,8 +2827,8 @@
           color: #c72929;
         }
       }
-      .bt-progress-content{
-        &.is_appointment{
+      .bt-progress-content {
+        &.is_appointment {
           display: none;
         }
       }
@@ -2862,13 +2885,13 @@
     }
     .cart-collaterals {
       width: 380px;
-      &.is_appointment{
-        .woocommerce-shipping-methods{
-          li{
-            input{
+      &.is_appointment {
+        .woocommerce-shipping-methods {
+          li {
+            input {
               display: none;
             }
-            &:nth-child(2){
+            &:nth-child(2) {
               display: none;
             }
           }
@@ -3236,10 +3259,10 @@
             }
           }
         }
-        .cart-discount{
-          .woocommerce-remove-coupon{
-            &:hover{
-                color: $color-accent;
+        .cart-discount {
+          .woocommerce-remove-coupon {
+            &:hover {
+              color: $color-accent;
             }
           }
         }
