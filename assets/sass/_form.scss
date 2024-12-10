@@ -10,8 +10,7 @@
       :not(.wp-editor-container):not(.mce-tinymce):not(.mce-tinymce *)
       :not(.wp-editor-area):not(.gfield_description > *)
       :not(.gform-field-label--type-inline > :not(span))
-  )
-  path {
+  ){
   display: revert;
   all: revert-layer;
 }
@@ -33,6 +32,8 @@
         display: block;
         box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
         .select2-results__options {
+          margin: 0;
+          padding: 0;
           li.select2-results__option {
             padding: 8px 24px;
             font-size: 15px;
