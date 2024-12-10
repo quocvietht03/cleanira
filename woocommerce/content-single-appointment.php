@@ -41,7 +41,9 @@ if (function_exists('get_field')) {
 if (isset($_GET['offer-coupon']) && $_GET['offer-coupon'] != '') {
 session_start();
 $_SESSION['coupon'] = $_GET['offer-coupon']; 
+echo cleanira_get_coupon_amount($_GET['offer-coupon']);
 }
+
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class('', $product); ?>>
 	<div class="bt-single-appointment">
