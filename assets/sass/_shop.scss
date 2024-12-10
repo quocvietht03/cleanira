@@ -2804,6 +2804,11 @@
           color: #c72929;
         }
       }
+      .bt-progress-content{
+        &.is_appointment{
+          display: none;
+        }
+      }
       #bt-free-shipping-message {
         .bt-buy-more {
           font-size: 16px;
@@ -2857,6 +2862,18 @@
     }
     .cart-collaterals {
       width: 380px;
+      &.is_appointment{
+        .woocommerce-shipping-methods{
+          li{
+            input{
+              display: none;
+            }
+            &:nth-child(2){
+              display: none;
+            }
+          }
+        }
+      }
       @media (max-width: $break-tl) and (min-width: $break-md) {
         width: 290px;
       }

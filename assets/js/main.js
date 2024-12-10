@@ -885,6 +885,13 @@
 			},
 			success: function (response) {
 				if (response.success) {
+					if (response.data['is_appointment']) {
+						$(".bt-progress-content").addClass('is_appointment');
+						$(".cart-collaterals").addClass('is_appointment');
+					} else {
+						$(".bt-progress-content").removeClass('is_appointment');
+						$(".cart-collaterals").removeClass('is_appointment');
+					}
 					$(".bt-progress-bar").css("width", response.data['percentage'] + "%");
 					$('#bt-free-shipping-message').html(response.data['message']);
 
@@ -1011,6 +1018,34 @@
 			});
 		}
 	}
+	function CleaniraBookingCoupon() {
+		if ($('.bt-cart-content').length > 0) {
+			var coupon = $('.bt-cart-content').data('coupon');
+			if (coupon) {
+				$('.woocommerce-cart-form .coupon input[name="coupon_code"]').val(coupon);
+				setTimeout(function () {
+					$('.woocommerce-cart-form .coupon button').trigger('click');
+					var param_ajax = {
+						action: 'cleanira_remove_section',
+					};
+					$.ajax({
+						type: 'POST',
+						dataType: 'json',
+						url: AJ_Options.ajax_url,
+						data: param_ajax,
+						beforeSend: function () {
+						},
+						success: function (response) {
+						
+						},
+						error: function (jqXHR, textStatus, errorThrown) {
+							console.log('The following error occured: ' + textStatus, errorThrown);
+						}
+					});
+				}, 500);
+			}
+		}
+	}
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -1034,6 +1069,7 @@
 		CleaniraScrollReview();
 		CleaniraHookGravityFormEvents();
 		CleaniraValidationFormBooking();
+		CleaniraBookingCoupon();
 	});
 
 	jQuery(window).on('resize', function () {

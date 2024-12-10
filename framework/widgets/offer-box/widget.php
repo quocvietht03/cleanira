@@ -84,7 +84,6 @@ class Widget_OfferBox extends Widget_Base
                 'default' => __('', 'cleanira'),
             ]
         );
-
         $this->add_control(
             'offer_description',
             [
@@ -94,7 +93,15 @@ class Widget_OfferBox extends Widget_Base
                 'default' => __('', 'cleanira'),
             ]
         );
-
+        $this->add_control(
+            'offer_coupon',
+            [
+                'label' => __('Coupon', 'cleanira'),
+                'type' => Controls_Manager::TEXT,
+                'label_block' => true,
+                'default' => __('', 'cleanira'),
+            ]
+        );
         $this->add_control(
             'offer_button',
             [
@@ -137,7 +144,7 @@ class Widget_OfferBox extends Widget_Base
                 ],
             ]
         );
-       
+
         $this->add_control(
             'offer_bg_infor',
             [
@@ -184,7 +191,7 @@ class Widget_OfferBox extends Widget_Base
                 'selector' => '{{WRAPPER}} .bt-elwg-offer-box--default .bt-offer--discount',
             ]
         );
-        
+
         $this->add_control(
             'offer_heading_style',
             [
@@ -286,13 +293,15 @@ class Widget_OfferBox extends Widget_Base
     protected function register_controls()
     {
         $this->register_layout_section_controls();
-          $this->register_style_section_controls();
+        $this->register_style_section_controls();
     }
 
     protected function render()
     {
         $settings = $this->get_settings_for_display();
-
+        $link = !empty($settings['offer_button_link']) ? 
+        $settings['offer_button_link'] . (!empty($settings['offer_coupon']) ? '?offer-coupon=' . $settings['offer_coupon'] : '') 
+        : '';
 ?>
         <div class="bt-elwg-offer-box--default">
             <div class="bt-offer <?php echo esc_attr(($settings['offer_reverse'] === 'yes') ? 'bt-reverse' : ''); ?>">
@@ -322,7 +331,7 @@ class Widget_OfferBox extends Widget_Base
 
                         <?php if (!empty($settings['offer_button']) && !empty($settings['offer_button_link'])) : ?>
                             <div class="bt-offer--button bt-button-hover">
-                                <a href="<?php echo esc_url($settings['offer_button_link']); ?>" class="bt-primary-btn bt-button">
+                                <a href="<?php echo esc_url($link); ?>" class="bt-primary-btn bt-button">
                                     <span class="bt-heading"><?php echo esc_html($settings['offer_button']); ?></span>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                         <g clip-path="url(#clip0_10966_1169)">
