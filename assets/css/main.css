@@ -12103,7 +12103,7 @@ body.admin-bar .dialog-type-lightbox.bt-menu-mobile-popup {
     gap: 12px;
   }
   .elementor-element.bt-section-choose-us-about > .e-con-inner > .elementor-element:last-child > .elementor-element .elementor-icon-list-items .elementor-icon-list-item {
-    width: auto;
+    width: 100%;
   }
 }
 @media (max-width: 1199.98px) and (min-width: 1024.98px) {
