@@ -989,7 +989,7 @@
 		$('.gform_wrapper').each(function () {
 			const $self = $(this);
 			$($self).find('select').select2({
-				dropdownParent: $self,
+				dropdownParent: $($self),
 				minimumResultsForSearch: Infinity,
 				placeholder: "Choose Services",
 			});

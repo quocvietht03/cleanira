@@ -20,10 +20,29 @@
   border-radius: 16px;
   font-family: $primary-font !important;
   background-color: $color-background;
-  @media(max-width:$break-xs){
+  @media (max-width: $break-xs) {
     padding: 30px 20px;
   }
-  .gform_confirmation_message{
+  .select2-container {
+    &.select2-container--open {
+      .select2-dropdown {
+        background: #fff;
+        display: block;
+        border-radius: 4px;
+        box-sizing: border-box;
+        display: block;
+        box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+        .select2-results__options {
+          li.select2-results__option {
+            padding: 8px 24px;
+            font-size: 15px;
+            line-height: 150%;
+          }
+        }
+      }
+    }
+  }
+  .gform_confirmation_message {
     text-align: center;
   }
   &.contact-us-form_wrapper {
@@ -86,7 +105,7 @@
       .select2-selection--single {
         border: 1px solid #e4e4e4;
         border-radius: 8px;
-        padding:11px 16px;
+        padding: 11px 16px;
         height: 48px;
         background: #fff;
         position: relative;
@@ -125,7 +144,7 @@
     }
     .gform_fields {
       row-gap: 20px;
-      @media(max-width:$break-xs){
+      @media (max-width: $break-xs) {
         row-gap: 12px;
       }
     }
@@ -143,7 +162,7 @@
     width: fit-content;
     display: flex;
     justify-content: center;
-    @media(max-width:$break-xs){
+    @media (max-width: $break-xs) {
       margin: 20px auto 0;
     }
     &::after {
