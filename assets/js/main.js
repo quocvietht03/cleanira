@@ -991,7 +991,6 @@
 			$($self).find('select').select2({
 				dropdownParent: $($self),
 				minimumResultsForSearch: Infinity,
-				placeholder: "Choose Services",
 			});
 		})
 	}

@@ -10,7 +10,7 @@
       :not(.wp-editor-container):not(.mce-tinymce):not(.mce-tinymce *)
       :not(.wp-editor-area):not(.gfield_description > *)
       :not(.gform-field-label--type-inline > :not(span))
-  ){
+  ) path{
   display: revert;
   all: revert-layer;
 }
