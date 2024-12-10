@@ -986,7 +986,7 @@
 		});
 	}
 	function CleaniraAddSelect2GravityForm() {
-		$('.bt-select2-gravityform').each(function () {
+		$('.gform_wrapper').each(function () {
 			const $self = $(this);
 			$($self).find('select').select2({
 				dropdownParent: $self,
