@@ -21,7 +21,7 @@ session_start();
 $coupon = '';
 if (isset($_SESSION['coupon'])) {
 	$coupon = $_SESSION['coupon'];
-} 
+}
 do_action('woocommerce_before_cart');
 
 ?>
@@ -61,7 +61,7 @@ do_action('woocommerce_before_cart');
 	if ($free_shipping_threshold > 0) {
 	?>
 		<div class="bt-progress-content <?php echo esc_attr(cleanira_is_appointment_in_cart() ? 'is_appointment' : ''); ?>">
-			<div id="bt-free-shipping-message"><?php echo esc_html($message) ?></div>
+			<?php echo '<div id="bt-free-shipping-message">' . $message . '</div>'; ?>
 			<div class="bt-progress-container-cart">
 				<div class="bt-progress-bar" data-width="<?php echo esc_attr($percentage) ?>">
 					<div class="bt-icon-shipping">
