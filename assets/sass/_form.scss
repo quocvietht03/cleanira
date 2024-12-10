@@ -23,6 +23,7 @@
     padding: 30px 20px;
   }
   .select2-container {
+    display: block;
     &.select2-container--open {
       .select2-dropdown {
         background: #fff;
