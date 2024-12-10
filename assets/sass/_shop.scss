@@ -3236,6 +3236,13 @@
             }
           }
         }
+        .cart-discount{
+          .woocommerce-remove-coupon{
+            &:hover{
+                color: $color-accent;
+            }
+          }
+        }
         .order-total {
           .amount {
             font-size: 24px;
