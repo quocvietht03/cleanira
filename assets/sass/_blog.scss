@@ -640,6 +640,11 @@
       font-style: normal;
       font-weight: 700;
       line-height: 28px;
+      a{
+        &:hover{
+          color: $color-accent;
+        }
+      }
     }
   }
   @media (max-width: $break-sm) {

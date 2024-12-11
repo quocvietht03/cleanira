@@ -1174,8 +1174,8 @@
     }
     .bt-offer-discount {
       position: absolute;
-      top: 23%;
-      right: -5%;
+      top: 100px;
+      right: -30px;
       background-color: $color-accent;
       color: #fff;
       padding: 5px 60px;
@@ -1184,13 +1184,17 @@
       transform-origin: top right;
       font-weight: 700;
       text-transform: uppercase;
-      @media(max-width:$break-xs){
-        top: 21%;
-        right: -8%;
+      @media (max-width: $break-xs) {
+        top: 90px;
+        right: -36px; 
         font-size: 14px;
       }
       @media(max-width:390px){
-        right: -10%;
+        top: 81px;
+        right: -40px;
+        font-size: 12px;
+        padding: 3px 60px;
+        line-height: 23px;
       }
     }
     .product_title {

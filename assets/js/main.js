@@ -1016,6 +1016,13 @@
 				pickuptime.removeClass('bt-disabled');
 				dropofftime.removeClass('bt-disabled');
 			});
+			$('#cal-submit-btn').on('click', function () {
+				pickuptime.removeClass('bt-disabled');
+				dropofftime.removeClass('bt-disabled');
+			});
+			$('.redq_add_to_cart_button').on('click', function () {
+				$('.redq_add_to_cart_button').css('pointer-events','none');
+			});
 		}
 	}
 	function CleaniraBookingCoupon() {
@@ -1036,7 +1043,7 @@
 						beforeSend: function () {
 						},
 						success: function (response) {
-						
+
 						},
 						error: function (jqXHR, textStatus, errorThrown) {
 							console.log('The following error occured: ' + textStatus, errorThrown);

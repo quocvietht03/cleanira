@@ -424,7 +424,7 @@
     .bt-deli {
       display: flex;
     }
-    a{
+    a {
       color: $color-primary;
     }
     .current {
@@ -1441,32 +1441,42 @@
           &-left {
             position: absolute;
             width: 20px;
-            border-left: 20px dotted #fff;
+            border-left: none;
             top: 10px;
             left: -10px;
             bottom: 10px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="10" fill="white" /%3E%3C/svg%3E');
+            background-position: top center;
+            background-repeat: space;
             @media (max-width: $break-sm) {
-              bottom: 0;
+              bottom: 26px;
             }
           }
           &-right {
             position: absolute;
             width: 20px;
-            border-left: 20px dotted #fff;
-            top: 10px;
+            border-left: none;
+            top: 2px;
             right: -13px;
-            bottom: 0px;
+            bottom: 17px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="10" fill="white" /%3E%3C/svg%3E');
+            background-position: bottom center;
+            background-repeat: space;
             @media (max-width: $break-sm) {
               right: -10px;
+              bottom: 23px;
             }
           }
           &-top {
             position: absolute;
             height: 20px;
-            border-top: 20px dotted #fff;
+            border-top: none;
             left: 10px;
             top: -10px;
             right: 50px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="10" fill="white" /%3E%3C/svg%3E');
+            background-position: left center;
+            background-repeat: space;
             @media (max-width: $break-sm) {
               right: 10px;
             }
@@ -1474,12 +1484,17 @@
           &-bottom {
             position: absolute;
             height: 20px;
-            border-top: 20px dotted #fff;
+            border-top: none;
             left: 10px;
             bottom: -10px;
             right: 50px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="10" fill="white" /%3E%3C/svg%3E');
+            background-position: left center;
+            background-repeat: space;
             @media (max-width: $break-sm) {
               bottom: -13px;
+              left: 0;
+              right: 30px;
             }
           }
         }
@@ -1493,21 +1508,27 @@
           &-right {
             position: absolute;
             width: 20px;
-            border-left: 20px dotted #fff;
+            border-left: none;
             top: 10px;
-            right: -13px;
+            right: -10px;
             bottom: 10px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="10" fill="white" /%3E%3C/svg%3E');
+            background-position: center top;
+            background-repeat: space;
             @media (max-width: $break-sm) {
-              top: 0;
+              top: 26px;
             }
           }
           &-top {
             position: absolute;
             height: 20px;
-            border-top: 20px dotted #fff;
+            border-top: none;
             left: 50px;
             top: -10px;
             right: 10px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="10" fill="white" /%3E%3C/svg%3E');
+            background-position: right center;
+            background-repeat: space;
             @media (max-width: $break-sm) {
               display: none;
             }
@@ -1515,10 +1536,13 @@
           &-bottom {
             position: absolute;
             height: 20px;
-            border-top: 20px dotted #fff;
+            border-top: none;
             left: 50px;
             bottom: -10px;
             right: 10px;
+            background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="10" fill="white" /%3E%3C/svg%3E');
+            background-position: right center;
+            background-repeat: space;
             @media (max-width: $break-sm) {
               left: 10px;
             }
@@ -1527,10 +1551,13 @@
             @media (max-width: $break-sm) {
               position: absolute;
               width: 20px;
-              border-left: 20px dotted #fff;
-              top: 0;
+              border-left: none;
+              top: 26px;
               left: -10px;
               bottom: 10px;
+              background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="10" fill="white" /%3E%3C/svg%3E');
+              background-position: top center;
+              background-repeat: space;
             }
           }
         }
@@ -1619,7 +1646,8 @@
               }
               &-left {
                 left: -13px;
-                bottom: 0;
+                bottom: 23px;
+                top: 2px;
               }
               &-right {
                 right: -10px;
@@ -1651,10 +1679,13 @@
               &-left {
                 position: absolute;
                 width: 20px;
-                border-left: 20px dotted #fff;
+                border-left: none;
                 top: 10px;
                 left: -10px;
                 bottom: 10px;
+                background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="40px" height="40px" viewBox="0 0 40 40"%3E%3Ccircle cx="20" cy="20" r="10" fill="white" /%3E%3C/svg%3E');
+                background-position: top center;
+                background-repeat: space;
               }
             }
           }
