@@ -220,7 +220,30 @@
 		}
 		return "";
 	}
-
+	function CleaniraCheckButtonAdded(){
+		if ($('.bt-product-icon-btn').length > 0) {
+			$('.bt-product-icon-btn .bt-product-wishlist-btn').each(function () {
+				var post_id = $(this).data('id').toString(),
+					wishlist_cookie = getCookie('productwishlistcookie');
+					if(wishlist_cookie.includes(post_id)){
+						if(!$(this).hasClass('added')){
+							$(this).remove('no-added');
+							$(this).addClass('added');
+						}
+					}
+			});
+			$('.bt-product-icon-btn .bt-product-compare-btn').each(function () {
+				var post_id = $(this).data('id').toString(),
+					compare_cookie = getCookie('productcomparecookie');
+					if(compare_cookie.includes(post_id)){
+						if(!$(this).hasClass('added')){
+							$(this).remove('no-added');
+							$(this).addClass('added');
+						}
+					}
+			});
+		}
+	}
 	/* Product wishlist */
 	function CleaniraProductWishlist() {
 		if ($('.bt-product-wishlist-btn').length > 0) {
@@ -1060,6 +1083,7 @@
 		CleaniraShop();
 		CleaniraCheckVisibilityText();
 		ChambeshiCommentValidation();
+		CleaniraCheckButtonAdded();
 		CleaniraProductCompare();
 		CleaniraProductCompareLoad();
 		CleaniraProductWishlist();
