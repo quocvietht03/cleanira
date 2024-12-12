@@ -227,7 +227,7 @@
 					wishlist_cookie = getCookie('productwishlistcookie');
 					if(wishlist_cookie.includes(post_id)){
 						if(!$(this).hasClass('added')){
-							$(this).remove('no-added');
+							$(this).removeClass('no-added');
 							$(this).addClass('added');
 						}
 					}
@@ -237,7 +237,7 @@
 					compare_cookie = getCookie('productcomparecookie');
 					if(compare_cookie.includes(post_id)){
 						if(!$(this).hasClass('added')){
-							$(this).remove('no-added');
+							$(this).removeClass('no-added');
 							$(this).addClass('added');
 						}
 					}
