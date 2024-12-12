@@ -172,8 +172,6 @@
   }
   .wp-block-search {
     &__button {
-      padding: 16px;
-      border-radius: 0;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -182,7 +180,7 @@
     }
     &__input {
       width: 100%;
-      padding: 18px 24px;
+      padding: 15px 24px;
       border-radius: 0;
       font-family: $primary-font;
       border-radius: 10px;

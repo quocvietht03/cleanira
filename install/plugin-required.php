@@ -59,44 +59,51 @@ function cleanira_register_required_plugins() {
 
   $plugin_includes = array(
     array(
-		'name'     			=> 'Elementor Website Builder',
-		'slug'     			=> 'elementor',
+		'name'     		=> __( 'Elementor Website Builder', 'cleanira' ),
+		'slug'     		=> 'elementor',
 		'required'     	=> true,
     ),
     array(
-		'name'          => 'Elementor Pro',
+		'name'          => __( 'Elementor Pro', 'cleanira' ),
 		'slug'          => 'elementor-pro',
 		'source'        => $pathfile . 'elementor-pro.zip',
 		'required'      => true,
 	),
 	array(
-		'name'          => 'Smart Slider 3 Pro',
+		'name'          => __( 'Smart Slider 3 Pro', 'cleanira' ),
 		'slug'          => 'nextend-smart-slider3-pro',
 		'source'        => $pathfile . 'nextend-smart-slider3-pro.zip',
 		'required'      => true,
 	),
 	array(
-		'name'          => 'Advanced Custom Fields PRO',
+		'name'          => __( 'Advanced Custom Fields PRO', 'cleanira' ),
 		'slug'          => 'advanced-custom-fields-pro',
 		'source'        => $pathfile . 'advanced-custom-fields-pro.zip',
 		'required'      => true,
     ),
 	array(
-		'name'          => 'Gravity Forms',
+		'name'          => __( 'Gravity Forms', 'cleanira' ),
 		'slug'          => 'gravityforms',
 		'source'        => $pathfile . 'gravityforms.zip',
 		'required'      => true,
 	),
 	array(
-		'name'          => 'Newsletter',
+		'name'          => __( 'Newsletter', 'cleanira' ),
 		'slug'          => 'newsletter',
 		'required'      => false,
     ),
     array(
-		'name'          => 'WooCommerce',
+		'name'          => __( 'WooCommerce', 'cleanira' ),
 		'slug'          => 'woocommerce',
 		'required'      => false,
     ),
+	array(
+		'name'          => __( 'WooCommerce Booking & Rental System', 'cleanira' ),
+		'slug'          => 'woocommerce-rental-and-booking',
+		'source'        => $pathfile . 'woocommerce-rental-and-booking.zip',
+		'required'      => true,
+	),
+	
 
   );
 

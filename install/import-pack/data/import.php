@@ -36,6 +36,11 @@ $plugin_includes = array(
     'name'     => __( 'WooCommerce', 'cleanira' ),
     'slug'     => 'woocommerce',
   ),
+  array(
+    'name'     => __( 'WooCommerce Booking & Rental System', 'cleanira' ),
+    'slug'     => 'woocommerce-rental-and-booking',
+    'source'   => IMPORT_REMOTE_SERVER_PLUGIN_DOWNLOAD . 'woocommerce-rental-and-booking.zip',
+  ),
 
 );
 

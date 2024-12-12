@@ -16,16 +16,14 @@ if (!function_exists('cleanira_register_sidebar')) {
 }
 
 /* Add Support Upload Image Type SVG */
-function cleanira_mime_types($mimes)
-{
+function cleanira_mime_types($mimes) {
 	$mimes['svg'] = 'image/svg+xml';
 	return $mimes;
 }
 add_filter('upload_mimes', 'cleanira_mime_types');
 
 /* Get icon SVG HTML */
-function cleanira_get_icon_svg_html($icon_file_name)
-{
+function cleanira_get_icon_svg_html($icon_file_name) {
 
 	if (!empty($icon_file_name)) {
 		$file_path = CLEANIRA_IMG_DIR . $icon_file_name . '.svg';

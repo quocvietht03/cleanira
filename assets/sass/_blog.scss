@@ -83,6 +83,7 @@
     &--title {
       margin: 0;
       line-height: 1;
+      word-break: break-word;
       a {
         color: $color-primary;
         font-family: $text-font;
@@ -297,12 +298,9 @@
 }
 .bt-list-post {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
   @extend .__bt-post-style-default;
-  @media (max-width: $break-md) {
-    grid-template-columns: repeat(2, 1fr);
-  }
   @media (max-width: $break-sm) {
     grid-template-columns: repeat(1, 1fr);
   }
@@ -423,7 +421,7 @@
     }
     &--content {
       margin: 40px 0;
-      @extend .__bt-format-post-content;
+      @extend .__bt-format-post-content; 
       &:after {
         content: "";
         display: block;
