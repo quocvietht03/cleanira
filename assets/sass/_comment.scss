@@ -155,6 +155,7 @@
   .comment-respond {
     margin-top: 40px;
     .comment-reply-title {
+      position: relative;
       color: $color-primary;
       font-family: $secondary-font;
       font-size: 32px;
@@ -162,14 +163,16 @@
       font-weight: 700;
       line-height: 40px;
       margin: 0 0 24px 0;
+      padding-right: 120px;
       a {
         text-decoration: underline;
         text-underline-offset: 6px;
       }
       small {
         position: absolute;
-        top: 0;
+        top: 7px;
         right: 0;
+        font-size: 18px;
       }
     }
     .comment-form {
@@ -265,6 +268,9 @@
     }
   }
   @media (max-width: $break-xs) {
+    .bt-heading-comment {
+      font-size: 24px;
+    }
     .trackback,
     .pingback {
       .bt-comment {
@@ -286,5 +292,13 @@
     .bt-comment-item .bt-comment-item {
       margin-left: 50px;
     }
+    .comment-respond .comment-reply-title {
+      font-size: 24px;
+      padding-right: 100px;
+      small {
+        top: 2px;
+        font-size: 14px;
+      }
+    }
   }
-}
+} 

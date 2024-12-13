@@ -3138,20 +3138,23 @@ body.admin-bar .dialog-type-lightbox.bt-menu-mobile-popup {
   .bt-comment-wrapper .comment-respond {
     margin-top: 40px; }
     .bt-comment-wrapper .comment-respond .comment-reply-title {
+      position: relative;
       color: var(--e-global-color-primary, #212121);
       font-family: var(--e-global-typography-secondary-font-family, "Mulish");
       font-size: 32px;
       font-style: normal;
       font-weight: 700;
       line-height: 40px;
-      margin: 0 0 24px 0; }
+      margin: 0 0 24px 0;
+      padding-right: 120px; }
       .bt-comment-wrapper .comment-respond .comment-reply-title a {
         text-decoration: underline;
         text-underline-offset: 6px; }
       .bt-comment-wrapper .comment-respond .comment-reply-title small {
         position: absolute;
-        top: 0;
-        right: 0; }
+        top: 7px;
+        right: 0;
+        font-size: 18px; }
     .bt-comment-wrapper .comment-respond .comment-form {
       display: flex;
       flex-wrap: wrap;
@@ -3230,6 +3233,8 @@ body.admin-bar .dialog-type-lightbox.bt-menu-mobile-popup {
           background: var(--e-global-color-accent, #2D77DC);
           color: #fff; }
   @media (max-width: 519.98px) {
+    .bt-comment-wrapper .bt-heading-comment {
+      font-size: 24px; }
     .bt-comment-wrapper .trackback .bt-comment,
     .bt-comment-wrapper .pingback .bt-comment {
       padding: 15px; }
@@ -3242,7 +3247,13 @@ body.admin-bar .dialog-type-lightbox.bt-menu-mobile-popup {
         .bt-comment-wrapper .bt-comment .bt-content .bt-text {
           font-size: 15px; }
     .bt-comment-wrapper .bt-comment-item .bt-comment-item {
-      margin-left: 50px; } }
+      margin-left: 50px; }
+    .bt-comment-wrapper .comment-respond .comment-reply-title {
+      font-size: 24px;
+      padding-right: 100px; }
+      .bt-comment-wrapper .comment-respond .comment-reply-title small {
+        top: 2px;
+        font-size: 14px; } }
 
 @keyframes effectSpin {
   from {
