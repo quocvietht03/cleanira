@@ -26,7 +26,16 @@ function cleanira_acf_init()
             'icon'              => '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z" /><path d="M19 13H5v-2h14v2z" /></svg>',
             'keywords'          => array('Recent Posts', 'Posts'),
         ));
-
+        acf_register_block(array(
+            'name'              => 'widget-video-popup',
+            'title'             => __('Widget - Video Popup', 'cleanira'),
+            'description'       => __('Widget - Video Popup block.', 'cleanira'),
+            'render_callback'   => 'cleanira_acf_block_render_callback',
+            // 'enqueue_assets' => 'cleanira_acf_block_assets_callback',
+            'category'          => 'bt-custom-block',
+            'icon'              => '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="none" d="M0 0h24v24H0V0z" /><path d="M19 13H5v-2h14v2z" /></svg>',
+            'keywords'          => array('Video Popup', 'Video', 'Popup'),
+        ));
         acf_register_block(array(
             'name'              => 'widget-instagram-posts',
             'title'             => __('Widget - Instagram Posts', 'cleanira'),

@@ -172,7 +172,7 @@
 		}
 	}
 	/* Validation form comment */
-	function ChambeshiCommentValidation() {
+	function CleaniraCommentValidation() {
 		if ($('#bt_comment_form').length) {
 			jQuery('#bt_comment_form').validate({
 				rules: {
@@ -1082,7 +1082,7 @@
 		CleaniraToggleSubMenuMobile();
 		CleaniraShop();
 		CleaniraCheckVisibilityText();
-		ChambeshiCommentValidation();
+		CleaniraCommentValidation();
 		CleaniraCheckButtonAdded();
 		CleaniraProductCompare();
 		CleaniraProductCompareLoad();

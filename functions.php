@@ -184,13 +184,11 @@ function bt_custom_posts_per_page($query)
 	}
 };
 /* Custom search posts */
-function bt_custom_search_filter($query)
-{
-	if ($query->is_search() && !is_admin()) {
-		if (isset($_GET['post_type']) && $_GET['post_type'] == 'post') {
-            $query->set('post_type', 'post');
+function bt_custom_search_filter( $query ) {
+    if ( $query->is_search() && !is_admin() ) {
+        if ( !is_post_type_archive( 'product' ) && !is_tax( 'product_cat' ) && !is_singular( 'product' ) ) {
+            $query->set( 'post_type', 'post' );
         }
-	}
-	return $query;
+    }
 }
-add_filter('pre_get_posts', 'bt_custom_search_filter');
+add_action( 'pre_get_posts', 'bt_custom_search_filter' );
