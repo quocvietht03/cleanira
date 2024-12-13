@@ -798,8 +798,8 @@ function cleanira_products_query_args($params = array(), $limit = 9)
 
 function cleanira_products_filter()
 {
-  $rows = intval(get_option('woocommerce_catalog_rows', 1)); 
-  $columns = intval(get_option('woocommerce_catalog_columns', 1)); 
+  $rows = intval(get_option('woocommerce_catalog_rows', 2)); 
+  $columns = intval(get_option('woocommerce_catalog_columns', 4)); 
   $rows = $rows > 0 ? $rows : 1;
   $columns = $columns > 0 ? $columns : 1;
   $limit = $rows * $columns;

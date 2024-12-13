@@ -19,8 +19,8 @@
 defined('ABSPATH') || exit;
 
 global $wp_query;
-$rows = intval(get_option('woocommerce_catalog_rows', 1)); 
-$columns = intval(get_option('woocommerce_catalog_columns', 1)); 
+$rows = intval(get_option('woocommerce_catalog_rows', 2)); 
+$columns = intval(get_option('woocommerce_catalog_columns', 4)); 
 $rows = $rows > 0 ? $rows : 1;
 $columns = $columns > 0 ? $columns : 1;
 $limit = $rows * $columns;
