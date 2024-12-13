@@ -176,10 +176,10 @@ if (!function_exists('cleanira_post_meta_render')) {
   ?>
     <ul class="bt-post--meta">
       <li class="bt-meta bt-meta--publish">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M16.25 2.5H14.375V1.875C14.375 1.70924 14.3092 1.55027 14.1919 1.43306C14.0747 1.31585 13.9158 1.25 13.75 1.25C13.5842 1.25 13.4253 1.31585 13.3081 1.43306C13.1908 1.55027 13.125 1.70924 13.125 1.875V2.5H6.875V1.875C6.875 1.70924 6.80915 1.55027 6.69194 1.43306C6.57473 1.31585 6.41576 1.25 6.25 1.25C6.08424 1.25 5.92527 1.31585 5.80806 1.43306C5.69085 1.55027 5.625 1.70924 5.625 1.875V2.5H3.75C3.41848 2.5 3.10054 2.6317 2.86612 2.86612C2.6317 3.10054 2.5 3.41848 2.5 3.75V16.25C2.5 16.5815 2.6317 16.8995 2.86612 17.1339C3.10054 17.3683 3.41848 17.5 3.75 17.5H16.25C16.5815 17.5 16.8995 17.3683 17.1339 17.1339C17.3683 16.8995 17.5 16.5815 17.5 16.25V3.75C17.5 3.41848 17.3683 3.10054 17.1339 2.86612C16.8995 2.6317 16.5815 2.5 16.25 2.5ZM5.625 3.75V4.375C5.625 4.54076 5.69085 4.69973 5.80806 4.81694C5.92527 4.93415 6.08424 5 6.25 5C6.41576 5 6.57473 4.93415 6.69194 4.81694C6.80915 4.69973 6.875 4.54076 6.875 4.375V3.75H13.125V4.375C13.125 4.54076 13.1908 4.69973 13.3081 4.81694C13.4253 4.93415 13.5842 5 13.75 5C13.9158 5 14.0747 4.93415 14.1919 4.81694C14.3092 4.69973 14.375 4.54076 14.375 4.375V3.75H16.25V6.25H3.75V3.75H5.625ZM16.25 16.25H3.75V7.5H16.25V16.25Z" fill="#212121" />
-          </svg>
-          <?php echo get_the_date(get_option('date_format')); ?>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <path d="M16.25 2.5H14.375V1.875C14.375 1.70924 14.3092 1.55027 14.1919 1.43306C14.0747 1.31585 13.9158 1.25 13.75 1.25C13.5842 1.25 13.4253 1.31585 13.3081 1.43306C13.1908 1.55027 13.125 1.70924 13.125 1.875V2.5H6.875V1.875C6.875 1.70924 6.80915 1.55027 6.69194 1.43306C6.57473 1.31585 6.41576 1.25 6.25 1.25C6.08424 1.25 5.92527 1.31585 5.80806 1.43306C5.69085 1.55027 5.625 1.70924 5.625 1.875V2.5H3.75C3.41848 2.5 3.10054 2.6317 2.86612 2.86612C2.6317 3.10054 2.5 3.41848 2.5 3.75V16.25C2.5 16.5815 2.6317 16.8995 2.86612 17.1339C3.10054 17.3683 3.41848 17.5 3.75 17.5H16.25C16.5815 17.5 16.8995 17.3683 17.1339 17.1339C17.3683 16.8995 17.5 16.5815 17.5 16.25V3.75C17.5 3.41848 17.3683 3.10054 17.1339 2.86612C16.8995 2.6317 16.5815 2.5 16.25 2.5ZM5.625 3.75V4.375C5.625 4.54076 5.69085 4.69973 5.80806 4.81694C5.92527 4.93415 6.08424 5 6.25 5C6.41576 5 6.57473 4.93415 6.69194 4.81694C6.80915 4.69973 6.875 4.54076 6.875 4.375V3.75H13.125V4.375C13.125 4.54076 13.1908 4.69973 13.3081 4.81694C13.4253 4.93415 13.5842 5 13.75 5C13.9158 5 14.0747 4.93415 14.1919 4.81694C14.3092 4.69973 14.375 4.54076 14.375 4.375V3.75H16.25V6.25H3.75V3.75H5.625ZM16.25 16.25H3.75V7.5H16.25V16.25Z" fill="#212121" />
+        </svg>
+        <?php echo get_the_date(get_option('date_format')); ?>
       </li>
       <li class="bt-meta bt-meta--author">
         <a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>">
@@ -255,7 +255,7 @@ if (!function_exists('cleanira_tags_render')) {
     if (has_tag()) {
     ?>
       <div class="bt-post-tags">
-        <span><?php esc_html_e( 'Tag:', 'cleanira' ) ?></span>
+        <span><?php esc_html_e('Tag:', 'cleanira') ?></span>
         <?php
         if (has_tag()) {
           the_tags('', '', '');
@@ -288,7 +288,7 @@ if (!function_exists('cleanira_share_render')) {
                           </svg>
                         </a>
                       </li>';
-     $social_item[] = '<li>
+    $social_item[] = '<li>
                       <a target="_blank" data-btIcon="fa fa-twitter" data-toggle="tooltip" title="' . esc_attr__('Twitter', 'cleanira') . '" href="https://twitter.com/share?url=' . get_the_permalink() . '">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512">
                           <path d="M389.2 48h70.6L305.6 224.2 487 464H345L233.7 318.6 106.5 464H35.8L200.7 275.5 26.8 48H172.4L272.9 180.9 389.2 48zM364.4 421.8h39.1L151.1 88h-42L364.4 421.8z"/>
@@ -350,7 +350,7 @@ if (!function_exists('cleanira_service_button_book_now_render')) {
       }
       if (!empty($site_infor['text_button_book_now'])) {
         $text_book_now = $site_infor['text_button_book_now'];
-      }else{
+      } else {
         $text_book_now = $text;
       }
     ?>
@@ -377,7 +377,36 @@ if (!function_exists('cleanira_author_icon_render')) {
     </div>
   <?php }
 }
+/* Author with avatar */
+if (!function_exists('cleanira_author_w_avatar')) {
+  function cleanira_author_w_avatar()
+  {
+    $author_id = get_the_author_meta('ID');
+    if (function_exists('get_field')) {
+      $avatar = get_field('avatar', 'user_' . $author_id);
+    } else {
+      $avatar = array();
+    }
+  ?>
+    <div class="bt-post-author-w-avatar">
+      <div class="bt-post-author-w-avatar--thumbnail">
+        <?php
+        if (!empty($avatar)) {
+          echo '<img src="' . esc_url($avatar['url']) . '" alt="' . esc_attr($avatar['title']) . '" />';
+        } else {
+          echo get_avatar($author_id, 150);
+        }
+        ?>
+      </div>
 
+      <h4 class="bt-post-author-w-avatar--name"> <span><?php echo esc_html__('By ', 'cleanira') ?></span>
+        <a href="<?php echo esc_url(get_author_posts_url($author_id)); ?>">
+          <?php the_author(); ?>
+        </a>
+      </h4>
+    </div>
+  <?php }
+}
 /* Author */
 if (!function_exists('cleanira_author_render')) {
   function cleanira_author_render()

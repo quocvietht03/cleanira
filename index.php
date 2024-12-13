@@ -14,7 +14,7 @@ get_template_part('framework/templates/site', 'titlebar');
 								<div class="bt-list-post">
 									<?php
 									while (have_posts()) : the_post();
-										get_template_part('framework/templates/post', 'style', array('image-size' => 'large'));
+										get_template_part('framework/templates/post', 'index', array('image-size' => 'large'));
 									endwhile;
 									?>
 								</div>
