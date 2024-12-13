@@ -798,7 +798,11 @@ function cleanira_products_query_args($params = array(), $limit = 9)
 
 function cleanira_products_filter()
 {
-  $limit = get_option('woocommerce_catalog_rows') * get_option('woocommerce_catalog_columns');
+  $rows = intval(get_option('woocommerce_catalog_rows', 2)); 
+  $columns = intval(get_option('woocommerce_catalog_columns', 4)); 
+  $rows = $rows > 0 ? $rows : 1;
+  $columns = $columns > 0 ? $columns : 1;
+  $limit = $rows * $columns;
   $query_args = cleanira_products_query_args($_POST, $limit);
   $wp_query = new \WP_Query($query_args);
   $current_page = isset($_POST['current_page']) && $_POST['current_page'] != '' ? absint($_POST['current_page']) : 1;
