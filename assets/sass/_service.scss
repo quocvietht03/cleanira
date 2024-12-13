@@ -384,7 +384,7 @@
         }
       }
       &--content {
-        @extend .__bt-format-post-content;
+        @extend .__bt-format-post-content; 
         &:after {
           content: "";
           display: block;
@@ -503,7 +503,7 @@
               padding: 40px 15px;
               border-radius: 0 0 20px 20px;
               margin-bottom: 0;
-              @media (max-width: $break-md) and ((min-width:$break-xs)) {
+              @media (max-width: $break-md) and (min-width:$break-xs) {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
               }

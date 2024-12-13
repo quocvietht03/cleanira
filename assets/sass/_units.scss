@@ -26,9 +26,9 @@ a {
   color: inherit;
   -webkit-transition: all .3s;
   transition: all .3s;
-  // &:hover, &:focus {
-  //   color: $color-accent;
-  // }
+  &:hover, &:focus {
+    color: $color-accent;
+  }
 }
 h1, h2, h3, h4, h5, h6 {
   font-family: $primary-font;
@@ -213,9 +213,13 @@ strong{
 }
 blockquote {
 	font-size: 110%;
-  border-left: 8px solid $color-accent;
+  border-left: 8px solid $color-accent !important;
 	margin: 32px 0;
 	padding-left: 20px;
+  &.has-text-align-right {
+    border-left: none !important;
+    border-right: 8px solid $color-accent !important;
+  }
 }
 .alignfull {
     margin: 32px 0;
@@ -278,7 +282,8 @@ blockquote {
     text-align: center;
     margin: 32px auto;
 }
-.wp-block-file a:hover,
+.wp-element-button:hover,
+.wp-block-file__button:hover,
 .wp-block-button a:hover {
   color: #FFFFFF;
 }
@@ -306,11 +311,7 @@ iframe, embed {
 		min-height: unset;
 	}
 }
-.wp-block-embed .wp-block-embed__wrapper{
-	position: relative;
-  padding-bottom: 56.25%;
-	margin-bottom: 30px;
-}
+
 .wp-block-embed .wp-block-embed__wrapper iframe{
 	position: absolute;
     top: 0;
@@ -326,12 +327,6 @@ iframe, embed {
 	@media(max-width: 639px){
 		height: 280px;
 	}
-}
-.wp-image-907,
-.wp-image-754 {
-  width: 100%;
-	height: auto;
-  margin: 32px 0;
 }
 table{
 	border-radius: 2px;
@@ -570,5 +565,6 @@ img.alignright {
   gap: 10px;
 }
 .wp-block-cover {
-  margin: 32px 0;
+  margin-top: 32px;
+  margin-bottom: 32px;
 }
