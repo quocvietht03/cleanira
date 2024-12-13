@@ -4943,7 +4943,7 @@ body.admin-bar .dialog-type-lightbox.bt-menu-mobile-popup {
   margin-top: 12px;
 }
 .__bt-post-style-default .bt-post--infor, .bt-elwg-post-loop-item--default .bt-post--infor, .bt-elwg-post-grid--default .bt-post--infor, .bt-list-post .bt-post--infor {
-  margin-top: 12px;
+  margin-top: 15px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
