@@ -227,6 +227,7 @@
               background-image: url("../images/alt-arrow-down.svg");
               background-repeat: no-repeat;
               background-position: center;
+              background-size: 12px 8px;
               -webkit-transition: all 0.3s;
               transition: all 0.3s;
               &.bt-is-active {
@@ -240,6 +241,7 @@
               opacity: 1;
               visibility: visible;
               background: transparent;
+              box-shadow: none;
               li {
                 border-top: 1px solid #c4c4c4;
                 &:not(:first-child) {

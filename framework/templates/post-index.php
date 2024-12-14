@@ -13,14 +13,12 @@ $category = get_the_terms($post_id, 'category');
     </div>
     <div class="bt-post--content">
       <?php echo cleanira_post_title_render(); ?>
-      <?php if (has_excerpt($post_id)) { ?>
-        <div class="bt-post--infor">
-          <?php
+      <div class="bt-post--infor">
+        <?php
           echo cleanira_author_w_avatar();
           echo cleanira_reading_time_render();
-          ?>
-        </div>
-      <?php } ?>
+        ?>
+      </div>
     </div>
   </div>
 </article>

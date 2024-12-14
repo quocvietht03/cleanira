@@ -1,7 +1,7 @@
 === Cleanira ===
 Theme Name: Cleanira
 Theme URI: http://cleanira.beplusthemes.com/
-Author: bearsthemes
+Author: Bearsthemes
 Author URI: http://bearsthemes.com
 License: GNU General Public License v2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
