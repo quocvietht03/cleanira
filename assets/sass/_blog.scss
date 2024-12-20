@@ -195,6 +195,9 @@
             line-height: 40px;
             color: #fff;
             margin-bottom: 8px;
+            a{
+              color: inherit;
+            }
             @media (max-width: $break-xs) {
               font-size: 22px;
               line-height: 1.3;

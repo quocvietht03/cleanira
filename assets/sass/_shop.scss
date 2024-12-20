@@ -4144,17 +4144,22 @@
   .woocommerce-ResetPassword {
     .form-row {
       width: 100%;
+      input{
+        border-radius: 15px;
+        min-height: 52px;
+      }
     }
     .button {
-      color: #fff;
+      color: #fff !important;
       font-size: 16px;
       font-style: normal;
       font-weight: 700;
       line-height: normal;
       text-transform: uppercase;
-      padding: 14px 30px;
-      background: $color-accent;
+      padding: 15px 35px;
+      background: $color-accent !important;
       display: inline-block;
+      border-radius: 30px;
     }
   }
 }
