@@ -19,5 +19,5 @@ Text Domain: cleanira
 
 == Changelog ==
 = 1.0 =
-* Released: Jul 22, 2024
+* Released: Dec 17, 2024
 
