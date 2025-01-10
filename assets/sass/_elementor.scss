@@ -1796,6 +1796,14 @@
         align-items: center;
         justify-content: center;
         min-height: 165px;
+        &.loading{
+          .bt-loading-wave {
+            opacity: 1;
+          }
+          .bt-product-list{
+            opacity: 0;
+          }
+        }
         .bt-loading-wave {
           opacity: 0;
         }

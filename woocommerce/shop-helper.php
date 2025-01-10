@@ -529,33 +529,6 @@ function cleanira_product_field_rating($slug = '', $field_title = '', $field_val
   </div>
 <?php
 }
-/* Product wishlist */
-function cleanira_is_wishlist($post_id)
-{
-  if (isset($_COOKIE['productwishlistcookie']) && $_COOKIE['productwishlistcookie'] != '') {
-    $product_wishlist = explode(',', $_COOKIE['productwishlistcookie']);
-
-    if (in_array((string)$post_id, $product_wishlist)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-}
-
-/* Product compare */
-function cleanira_is_compare($post_id)
-{
-  if (isset($_COOKIE['productcomparecookie']) && $_COOKIE['productcomparecookie'] != '') {
-    $product_compare = explode(',', $_COOKIE['productcomparecookie']);
-
-    if (in_array((string)$post_id, $product_compare)) {
-      return true;
-    } else {
-      return false;
-    }
-  }
-}
 function cleanira_highest_and_lowest_product_price()
 {
   $args = array(
@@ -1050,8 +1023,8 @@ add_action('wp_ajax_nopriv_cleanira_products_compare', 'cleanira_products_compar
 
 function cleanira_products_wishlist()
 {
-  if (isset($_POST['productwishlistcookie']) && !empty($_POST['productwishlistcookie'])) {
-    $product_ids = explode(',', $_COOKIE['productwishlistcookie']);
+  if (isset($_POST['productwishlist_data']) && !empty($_POST['productwishlist_data'])) {
+    $product_ids = explode(',', $_POST['productwishlist_data']);
     $output['count'] = count($product_ids);
 
     ob_start();

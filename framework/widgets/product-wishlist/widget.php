@@ -119,16 +119,10 @@ class Widget_ProductWishlist extends Widget_Base
 		$settings = $this->get_settings_for_display();
 		$productwishlist = '';
 		$product_ids = array();
-
-		if (isset($_COOKIE['productwishlistcookie']) && !empty($_COOKIE['productwishlistcookie'])) {
-			$productwishlist = $_COOKIE['productwishlistcookie'];
-			$product_ids = explode(',', $productwishlist);
-		}
-
 	?>
 		<div class="bt-elwg-products-wishlist--default">
 			<form class="bt-products-wishlist-form" action="" method="post">
-				<input type="hidden" class="bt-productwishlistcookie" name="productwishlistcookie" value="<?php echo esc_attr($productwishlist); ?>">
+				<input type="hidden" class="bt-productwishlistlocal" name="productwishlistlocal" value="">
 
 				<div class="bt-table">
 					<div class="bt-table--head">
@@ -153,7 +147,7 @@ class Widget_ProductWishlist extends Widget_Base
 						</div>
 					</div>
 
-					<div class="bt-table--body woocommerce">
+					<div class="bt-table--body woocommerce loading">
 						<span class="bt-loading-wave"></span>
 
 						<?php if (!empty($product_ids)) { ?>

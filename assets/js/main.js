@@ -196,54 +196,6 @@
 			});
 		}
 	}
-	/* Set cookie */
-	function setCookie(cname, cvalue, exdays) {
-		const d = new Date();
-		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
-		let expires = "expires=" + d.toUTCString();
-		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-	}
-
-	/* Get cookie */
-	function getCookie(cname) {
-		let name = cname + "=";
-		let decodedCookie = decodeURIComponent(document.cookie);
-		let ca = decodedCookie.split(';');
-		for (let i = 0; i < ca.length; i++) {
-			let c = ca[i];
-			while (c.charAt(0) == ' ') {
-				c = c.substring(1);
-			}
-			if (c.indexOf(name) == 0) {
-				return c.substring(name.length, c.length);
-			}
-		}
-		return "";
-	}
-	function CleaniraCheckButtonAdded() {
-		if ($('.bt-product-icon-btn').length > 0) {
-			$('.bt-product-icon-btn .bt-product-wishlist-btn').each(function () {
-				var post_id = $(this).data('id').toString(),
-					wishlist_cookie = getCookie('productwishlistcookie');
-				if (wishlist_cookie.includes(post_id)) {
-					if (!$(this).hasClass('added')) {
-						$(this).removeClass('no-added');
-						$(this).addClass('added');
-					}
-				}
-			});
-			$('.bt-product-icon-btn .bt-product-compare-btn').each(function () {
-				var post_id = $(this).data('id').toString(),
-					compare_cookie = getCookie('productcomparecookie');
-				if (compare_cookie.includes(post_id)) {
-					if (!$(this).hasClass('added')) {
-						$(this).removeClass('no-added');
-						$(this).addClass('added');
-					}
-				}
-			});
-		}
-	}
 	/* Product wishlist */
 	function CleaniraProductWishlist() {
 		if ($('.bt-product-wishlist-btn').length > 0) {
@@ -251,10 +203,10 @@
 				e.preventDefault();
 
 				var post_id = $(this).data('id').toString(),
-					wishlist_cookie = getCookie('productwishlistcookie');
-
-				if (wishlist_cookie == '') {
-					setCookie('productwishlistcookie', post_id, 7);
+					wishlist_local = window.localStorage.getItem('productwishlistlocal');
+				if (!wishlist_local) {
+					window.localStorage.setItem('productwishlistlocal', post_id);
+					wishlist_local = window.localStorage.getItem('productwishlistlocal');
 					$(this).addClass('loading');
 					$(this).removeClass('no-added');
 					setTimeout(function () {
@@ -262,14 +214,15 @@
 						$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').removeClass('loading');
 						$('.bt-product-wishlist-btn[data-id="' + post_id + '"] .tooltip').text("View Wishlist");
 					}, 500);
-					$('.bt-productwishlistcookie').val(post_id);
+					$('.bt-productwishlistlocal').val(post_id);
 				} else {
-					var wishlist_arr = wishlist_cookie.split(',');
+					var wishlist_arr = wishlist_local.split(',');
 
 					if (wishlist_arr.includes(post_id)) {
 						window.location.href = '/products-wishlist/';
 					} else {
-						setCookie('productwishlistcookie', wishlist_cookie + ',' + post_id, 7);
+						window.localStorage.setItem('productwishlistlocal', wishlist_local + ',' + post_id);
+						wishlist_local = window.localStorage.getItem('productwishlistlocal');
 						$(this).addClass('loading');
 						$(this).removeClass('no-added');
 						setTimeout(function () {
@@ -277,7 +230,7 @@
 							$('.bt-product-wishlist-btn[data-id="' + post_id + '"]').removeClass('loading');
 							$('.bt-product-wishlist-btn[data-id="' + post_id + '"] .tooltip').text("View Wishlist");
 						}, 500);
-						$('.bt-productwishlistcookie').val(wishlist_cookie + ',' + post_id);
+						$('.bt-productwishlistlocal').val(wishlist_local + ',' + post_id);
 					}
 				}
 			});
@@ -288,7 +241,7 @@
 				e.preventDefault();
 				$(this).addClass('deleting');
 				var product_id = $(this).data('id').toString(),
-					wishlist_str = $('.bt-productwishlistcookie').val(),
+					wishlist_str = $('.bt-productwishlistlocal').val(),
 					wishlist_arr = wishlist_str.split(','),
 					index = wishlist_arr.indexOf(product_id);
 
@@ -297,8 +250,8 @@
 				}
 
 				wishlist_str = wishlist_arr.toString();
-				$('.bt-productwishlistcookie').val(wishlist_str);
-				setCookie('productwishlistcookie', wishlist_str, 7);
+				$('.bt-productwishlistlocal').val(wishlist_str);
+				window.localStorage.setItem('productwishlistlocal', wishlist_str);
 				$('.bt-products-wishlist-form').submit();
 			});
 
@@ -306,7 +259,7 @@
 			$('.bt-products-wishlist-form').submit(function () {
 				var param_ajax = {
 					action: 'cleanira_products_wishlist',
-					productwishlistcookie: $('.bt-productwishlistcookie').val()
+					productwishlist_data: $('.bt-productwishlistlocal').val()
 				};
 
 				$.ajax({
@@ -340,14 +293,14 @@
 	}
 	/* Product Wishlist Load */
 	function CleaniraProductWishlistLoad() {
-		var wishlist_cookie = getCookie('productwishlistcookie');
+		var wishlist_local = window.localStorage.getItem('productwishlistlocal');
 
 		if ($('.elementor-widget-bt-product-wishlist').length > 0) {
-			$('.bt-productwishlistcookie').val(wishlist_cookie);
+			$('.bt-productwishlistlocal').val(wishlist_local);
 
 			var param_ajax = {
 				action: 'cleanira_products_wishlist',
-				productwishlistcookie: wishlist_cookie
+				productwishlist_data: wishlist_local
 			};
 
 			$.ajax({
@@ -792,6 +745,7 @@
 							$('.bt-product-layout .woocommerce-loop-products').html(response.data['items']).fadeIn('slow');
 							$('.bt-product-pagination-wrap').html(response.data['pagination']).fadeIn('slow');
 							$('.bt-product-layout').removeClass('loading');
+							CleaniraProductButtonStatus();
 						}, 500);
 					} else {
 						console.log('error');
@@ -1085,10 +1039,20 @@
 	function CleaniraProductButtonStatus() {
 		var productCompare = localStorage.getItem('productcomparelocal');
 		var productCompareArray = productCompare ? productCompare.split(',') : [];
+		var productWishlist = localStorage.getItem('productwishlistlocal');
+		var productWishlistArray = productWishlist ? productWishlist.split(',') : [];
 
 		$('.bt-product-compare-btn').each(function () {
 			var productId = $(this).data('id');
 			if (productCompareArray.includes(productId.toString())) {
+				$(this).addClass('added').removeClass('no-added');
+			} else {
+				$(this).addClass('no-added').removeClass('added');
+			}
+		});
+		$('.bt-product-wishlist-btn').each(function () {
+			var productId = $(this).data('id');
+			if (productWishlistArray.includes(productId.toString())) {
 				$(this).addClass('added').removeClass('no-added');
 			} else {
 				$(this).addClass('no-added').removeClass('added');
@@ -1102,7 +1066,6 @@
 		CleaniraShop();
 		CleaniraCheckVisibilityText();
 		CleaniraCommentValidation();
-		CleaniraCheckButtonAdded();
 		CleaniraProductCompare();
 		CleaniraProductCompareLoad();
 		CleaniraProductWishlist();
