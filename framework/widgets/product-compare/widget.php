@@ -120,11 +120,6 @@ class Widget_ProductCompare extends Widget_Base
 		$productcompare = '';
 		$product_ids = array();
 		$ex_items = count($product_ids) < 3 ? 3 - count($product_ids) : 0;
-		if (isset($_COOKIE['productcomparecookie']) && !empty($_COOKIE['productcomparecookie'])) {
-			$productcompare = $_COOKIE['productcomparecookie'];
-			$product_ids = explode(',', $productcompare);
-		}
-		$ex_items = count($product_ids) < 3 ? 3 - count($product_ids) : 0;
 	?>
 		<div class="bt-elwg-products-compare--default">
 			<div class="bt-popup-compare bt-compare-elwwg">

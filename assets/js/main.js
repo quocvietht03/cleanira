@@ -383,9 +383,10 @@
 				e.preventDefault();
 				$(this).find('.tooltip').remove();
 				var post_id = $(this).data('id').toString(),
-					compare_cookie = getCookie('productcomparecookie');
-				if (compare_cookie == '') {
-					setCookie('productcomparecookie', post_id, 7);
+					compare_local = window.localStorage.getItem('productcomparelocal');
+				if (compare_local == '') {
+					window.localStorage.setItem('productcomparelocal', post_id);
+					compare_local = window.localStorage.getItem('productcomparelocal');
 					$(this).addClass('loading');
 					$(this).removeClass('no-added');
 					setTimeout(function () {
@@ -394,9 +395,10 @@
 					}, 500);
 
 				} else {
-					var compare_arr = compare_cookie.split(',');
+					var compare_arr = compare_local.split(',');
 					if (!compare_arr.includes(post_id)) {
-						setCookie('productcomparecookie', compare_cookie + ',' + post_id, 7);
+						window.localStorage.setItem('productcomparelocal', compare_local + ',' + post_id);
+						compare_local = window.localStorage.getItem('productcomparelocal');
 						$(this).addClass('loading');
 						$(this).removeClass('no-added');
 						setTimeout(function () {
@@ -407,6 +409,7 @@
 				}
 				var param_ajax = {
 					action: 'cleanira_products_compare',
+					compare_data: compare_local,
 				};
 				$.ajax({
 					type: 'POST',
@@ -455,19 +458,21 @@
 
 		$(document).on('click', '.bt-remove-item', function (e) {
 			e.preventDefault();
-			var compare_cookie = getCookie('productcomparecookie');
+			var compare_local = window.localStorage.getItem('productcomparelocal');
 			var product_id = $(this).data('id').toString(),
-				compare_arr = compare_cookie.split(','),
+				compare_arr = compare_local.split(','),
 				index = compare_arr.indexOf(product_id);
 
 			if (index > -1) {
 				compare_arr.splice(index, 1);
 			}
-			setCookie('productcomparecookie', compare_arr, 7);
+			window.localStorage.setItem('productcomparelocal', compare_arr);
+			compare_local = window.localStorage.getItem('productcomparelocal');
 			$('.bt-product-compare-btn[data-id="' + product_id + '"]').addClass('no-added');
 			$('.bt-product-compare-btn[data-id="' + product_id + '"]').removeClass('added');
 			var param_ajax = {
 				action: 'cleanira_products_compare',
+				compare_data: compare_local,
 			};
 			$.ajax({
 				type: 'POST',
@@ -508,12 +513,12 @@
 	}
 	/* Product Compare Load */
 	function CleaniraProductCompareLoad() {
-		var compare_cookie = getCookie('productcomparecookie');
+		var compare_local = window.localStorage.getItem('productcomparelocal');
 
 		if ($('.elementor-widget-bt-product-compare').length > 0) {
 			var param_ajax = {
 				action: 'cleanira_products_compare',
-				productcomparecookie: compare_cookie
+				compare_data: compare_local
 			};
 			$.ajax({
 				type: 'POST',
@@ -538,6 +543,7 @@
 			});
 		}
 	}
+
 	function CleaniraProductsFilter() {
 		if (!$('body').hasClass('post-type-archive-product')) {
 			return;
@@ -1076,6 +1082,19 @@
 			}
 		}
 	}
+	function CleaniraProductButtonStatus() {
+        var productCompare = localStorage.getItem('productcomparelocal');
+        var productCompareArray = productCompare ? productCompare.split(',') : [];
+
+        $('.bt-product-compare-btn').each(function() {
+            var productId = $(this).data('id'); 
+            if (productCompareArray.includes(productId.toString())) {
+                $(this).addClass('added').removeClass('no-added');
+            } else {
+                $(this).addClass('no-added').removeClass('added');
+            }
+        });
+    }
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -1101,6 +1120,7 @@
 		CleaniraHookGravityFormEvents();
 		CleaniraValidationFormBooking();
 		CleaniraBookingCoupon();
+		CleaniraProductButtonStatus();
 	});
 
 	jQuery(window).on('resize', function () {
