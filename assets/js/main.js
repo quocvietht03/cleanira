@@ -220,27 +220,27 @@
 		}
 		return "";
 	}
-	function CleaniraCheckButtonAdded(){
+	function CleaniraCheckButtonAdded() {
 		if ($('.bt-product-icon-btn').length > 0) {
 			$('.bt-product-icon-btn .bt-product-wishlist-btn').each(function () {
 				var post_id = $(this).data('id').toString(),
 					wishlist_cookie = getCookie('productwishlistcookie');
-					if(wishlist_cookie.includes(post_id)){
-						if(!$(this).hasClass('added')){
-							$(this).removeClass('no-added');
-							$(this).addClass('added');
-						}
+				if (wishlist_cookie.includes(post_id)) {
+					if (!$(this).hasClass('added')) {
+						$(this).removeClass('no-added');
+						$(this).addClass('added');
 					}
+				}
 			});
 			$('.bt-product-icon-btn .bt-product-compare-btn').each(function () {
 				var post_id = $(this).data('id').toString(),
 					compare_cookie = getCookie('productcomparecookie');
-					if(compare_cookie.includes(post_id)){
-						if(!$(this).hasClass('added')){
-							$(this).removeClass('no-added');
-							$(this).addClass('added');
-						}
+				if (compare_cookie.includes(post_id)) {
+					if (!$(this).hasClass('added')) {
+						$(this).removeClass('no-added');
+						$(this).addClass('added');
 					}
+				}
 			});
 		}
 	}
@@ -384,7 +384,7 @@
 				$(this).find('.tooltip').remove();
 				var post_id = $(this).data('id').toString(),
 					compare_local = window.localStorage.getItem('productcomparelocal');
-				if (compare_local == '') {
+				if (!compare_local) {
 					window.localStorage.setItem('productcomparelocal', post_id);
 					compare_local = window.localStorage.getItem('productcomparelocal');
 					$(this).addClass('loading');
@@ -1050,7 +1050,7 @@
 				dropofftime.removeClass('bt-disabled');
 			});
 			$('.redq_add_to_cart_button').on('click', function () {
-				$('.redq_add_to_cart_button').css('pointer-events','none');
+				$('.redq_add_to_cart_button').css('pointer-events', 'none');
 			});
 		}
 	}
@@ -1083,18 +1083,18 @@
 		}
 	}
 	function CleaniraProductButtonStatus() {
-        var productCompare = localStorage.getItem('productcomparelocal');
-        var productCompareArray = productCompare ? productCompare.split(',') : [];
+		var productCompare = localStorage.getItem('productcomparelocal');
+		var productCompareArray = productCompare ? productCompare.split(',') : [];
 
-        $('.bt-product-compare-btn').each(function() {
-            var productId = $(this).data('id'); 
-            if (productCompareArray.includes(productId.toString())) {
-                $(this).addClass('added').removeClass('no-added');
-            } else {
-                $(this).addClass('no-added').removeClass('added');
-            }
-        });
-    }
+		$('.bt-product-compare-btn').each(function () {
+			var productId = $(this).data('id');
+			if (productCompareArray.includes(productId.toString())) {
+				$(this).addClass('added').removeClass('no-added');
+			} else {
+				$(this).addClass('no-added').removeClass('added');
+			}
+		});
+	}
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
