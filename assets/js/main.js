@@ -1059,6 +1059,15 @@
 			}
 		});
 	}
+	/* Copyright Current Year */
+	function CleaniraCopyrightCurrentYear() {
+		var searchTerm = '{Year}',
+			replaceWith = new Date().getFullYear();
+
+		$('.bt-elwg-site-copyright').each(function () {
+			this.innerHTML = this.innerHTML.replace(searchTerm, replaceWith);
+		});
+	}
 	jQuery(document).ready(function ($) {
 		CleaniraSubmenuAuto();
 		CleaniraToggleMenuMobile();
@@ -1084,6 +1093,7 @@
 		CleaniraValidationFormBooking();
 		CleaniraBookingCoupon();
 		CleaniraProductButtonStatus();
+		CleaniraCopyrightCurrentYear();
 	});
 
 	jQuery(window).on('resize', function () {
