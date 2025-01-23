@@ -70,15 +70,11 @@
                         "class": "",
                         "id": ""
                     },
-                    "post_type": [
-                        "product"
-                    ],
+                    "post_type": "",
                     "post_status": [
                         "publish"
                     ],
-                    "taxonomy": [
-                        "product_type:redq_rental"
-                    ],
+                    "taxonomy": "",
                     "allow_archives": 1,
                     "multiple": 0,
                     "allow_null": 0
@@ -1425,5 +1421,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1734144254
+    "modified": 1737595412
 }

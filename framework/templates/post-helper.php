@@ -344,7 +344,7 @@ if (!function_exists('cleanira_service_button_book_now_render')) {
     $site_infor = get_field('site_information', 'options') ?: '';
     if (!empty($site_infor) && isset($site_infor)) {
       if (!empty($site_infor['page_book_now'])) {
-        $book_now = esc_url($site_infor['page_book_now']);
+        $book_now = $site_infor['page_book_now'];
       } else {
         $book_now = '#';
       }
@@ -355,7 +355,7 @@ if (!function_exists('cleanira_service_button_book_now_render')) {
       }
     ?>
       <div class="bt-post--button-booknow bt-button-hover">
-        <a href="<?php echo esc_html($book_now); ?>" class="bt-primary-btn bt-button">
+        <a href="<?php echo esc_url($book_now); ?>" class="bt-primary-btn bt-button">
           <span class="bt-heading"> <?php echo esc_html($text_book_now) ?> </span>
           <?php echo cleanira_get_icon_svg_html('icon-arrow-right') ?>
         </a>
