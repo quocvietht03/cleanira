@@ -971,12 +971,18 @@
 	function CleaniraAddSelect2GravityForm() {
 		$('.gform_wrapper').each(function () {
 			const $self = $(this);
-			$($self).find('select').select2({
-				dropdownParent: $($self),
-				minimumResultsForSearch: Infinity,
-				placeholder: "Choose Services",
+			$($self).find('select').each(function () {
+				const placeholder = $(this).find('option.gf_placeholder').text();
+				const select2Options = {
+					dropdownParent: $($self),
+					minimumResultsForSearch: Infinity,
+				};
+				if (placeholder) {
+					select2Options.placeholder = placeholder;
+				}
+				$(this).select2(select2Options);
 			});
-		})
+		});
 	}
 	function CleaniraHookGravityFormEvents() {
 		$(document).on('submit', '.gform_wrapper form', function (e) {
