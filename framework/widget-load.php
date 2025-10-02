@@ -53,6 +53,7 @@ class ElementorWidgets
 			'site-copyright',
 			'instagram-posts',
 			'page-breadcrumb',
+			'mobile-menu',
 			'post-grid',
 			'post-grid-style-1',
 			'post-loop-item',
@@ -168,6 +169,7 @@ class ElementorWidgets
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\SiteCopyright\Widget_SiteCopyright());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\InstagramPosts\Widget_InstagramPosts());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\PageBreadcrumb\Widget_PageBreadcrumb());
+		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\MobileMenu\Widget_MobileMenu());
 
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\PostGrid\Widget_PostGrid());
 		\Elementor\Plugin::instance()->widgets_manager->register_widget_type(new Widgets\PostGridStyle1\Widget_PostGridStyle1());
