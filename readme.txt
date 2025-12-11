@@ -21,7 +21,7 @@ Text Domain: cleanira
 = 1.0 =
 * Release first version
 
-= 1.4 =
+= 1.5 =
 * Release: Dec 11, 2025
 - Compatible WP 6.9 and Latest Plugins
 - Add verify Envato purchase code to active theme
