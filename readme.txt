@@ -18,8 +18,11 @@ Text Domain: cleanira
 5. Navigate to Appearance > Theme Options in your admin panel and customize to taste.
 
 == Changelog ==
-= 1.0 =
-* Release first version
+= 1.6 =
+* Release: Feb 24, 2026
+- Compatible Latest WP and Plugins
+- Update Outdated templates Woocommerce
+- Fixed many issues...
 
 = 1.5 =
 * Release: Dec 11, 2025
@@ -27,3 +30,8 @@ Text Domain: cleanira
 - Add verify Envato purchase code to active theme
 - Fixed issue widgets load on child theme
 - Fixed many issues...
+
+= 1.0 =
+* Release first version
+
+
